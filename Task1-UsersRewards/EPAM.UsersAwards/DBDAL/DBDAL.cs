@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,21 @@ namespace UsersAward.DAL.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand("INSERT INTO Award (Id, Title, Description) VALUES(@Id,@Title,@Description)", connection);
+                SqlCommand command = new SqlCommand("[dbo].[Award.AddAward]", connection);
+
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", award.Id)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Title", award.Title)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Description", award.Description)
+                {
+                    Direction = ParameterDirection.Input
+                });
 
                 command.Parameters.AddWithValue("@Id", award.Id);
                 command.Parameters.AddWithValue("@Title", award.Title);
@@ -39,11 +54,22 @@ namespace UsersAward.DAL.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand("INSERT INTO User (Id, Name, Birthdate) VALUES(@Id,@Name,@Birthdate)", connection);
+                SqlCommand command = new SqlCommand("[dbo].[User.AddUser]", connection);
 
-                command.Parameters.AddWithValue("@Id", user.Id);
-                command.Parameters.AddWithValue("@Name", user.Name);
-                command.Parameters.AddWithValue("@Birthdate", user.BirthDate);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", user.Id)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Name", user.Name)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Birthdate", user.BirthDate)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
@@ -51,34 +77,115 @@ namespace UsersAward.DAL.DBDAL
             }
         }
 
-        public bool DeleteAward(int awardId)
+        public bool DeleteAward(Guid awardId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Award.DeleteAward]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", awardId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow == 1;
+            }
         }
 
-        public bool DeleteUser(int userId)
+        public bool DeleteUser(Guid userId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[User.DeleteUser]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", userId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow == 1;
+            }
         }
 
         public IEnumerable<AwardDTO> GetAllAwards()
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Awards.GetAll]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new AwardDTO()
+                    {
+                        Id = (Guid)reader["Id"],
+                        Title = (string)reader["Title"],
+                        Description = (string)reader["Description"]
+                    };
+                }
+            }
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Users.GetAll]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new UserDTO()
+                    {
+                        Id = (Guid)reader["Id"],
+                        Name = (string)reader["Name"],
+                        BirthDate = (DateTime)reader["Birthdate"]
+                    };
+                }
+            }
         }
 
         public bool UpdateAward(AwardDTO updatedAward)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("UPDATE dbo.[Award] SET [Titl]e=@Title, [Description]=@Description WHERE dbo.[Award].Id=@Id", connection);
+
+                command.Parameters.AddWithValue("@Id", updatedAward.Id);
+                command.Parameters.AddWithValue("@Title", updatedAward.Title);
+                command.Parameters.AddWithValue("@Description", updatedAward.Description);
+
+                connection.Open();
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow == 1;
+            }
         }
 
         public bool UpdateUser(UserDTO updatedUser)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("UPDATE dbo.[User] SET [Name]=@Name, [Birthdate]=@Birthdate WHERE dbo.[User].Id=@Id", connection);
+
+                command.Parameters.AddWithValue("@Id", updatedUser.Id);
+                command.Parameters.AddWithValue("@Name", updatedUser.Name);
+                command.Parameters.AddWithValue("@Birthdate", updatedUser.BirthDate);
+
+                connection.Open();
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow == 1;
+            }
         }
     }
 }
