@@ -11,8 +11,8 @@ namespace UsersAward.DAL.AbstractDAL
     {
         IEnumerable<UserDTO> GetAllUsers();
         IEnumerable<AwardDTO> GetAllAwards();
-        bool DeleteUser(int userId);
-        bool DeleteAward(int awardId);
+        bool DeleteUser(Guid userId);
+        bool DeleteAward(Guid awardId);
         bool AddUser(UserDTO user);
         bool AddAward(AwardDTO award);
         bool UpdateUser(UserDTO updatedUser);

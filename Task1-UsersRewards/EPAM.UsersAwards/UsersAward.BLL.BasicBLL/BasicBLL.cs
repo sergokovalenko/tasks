@@ -25,12 +25,12 @@ namespace UsersAward.BLL.BasicBLL
             throw new NotImplementedException();
         }
 
-        public bool DeleteAward(int awardId)
+        public bool DeleteAward(Guid awardId)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteUser(int userId)
+        public bool DeleteUser(Guid userId)
         {
             throw new NotImplementedException();
         }
