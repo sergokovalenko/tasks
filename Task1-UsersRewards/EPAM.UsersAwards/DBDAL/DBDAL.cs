@@ -158,11 +158,20 @@ namespace UsersAward.DAL.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand("UPDATE dbo.[Award] SET [Titl]e=@Title, [Description]=@Description WHERE dbo.[Award].Id=@Id", connection);
-
-                command.Parameters.AddWithValue("@Id", updatedAward.Id);
-                command.Parameters.AddWithValue("@Title", updatedAward.Title);
-                command.Parameters.AddWithValue("@Description", updatedAward.Description);
+                SqlCommand command = new SqlCommand("[dbo].[Award.UpdateAward]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", updatedAward.Id)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Title", updatedAward.Title)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Description", updatedAward.Description)
+                {
+                    Direction = ParameterDirection.Input
+                });
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -175,11 +184,20 @@ namespace UsersAward.DAL.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand("UPDATE dbo.[User] SET [Name]=@Name, [Birthdate]=@Birthdate WHERE dbo.[User].Id=@Id", connection);
-
-                command.Parameters.AddWithValue("@Id", updatedUser.Id);
-                command.Parameters.AddWithValue("@Name", updatedUser.Name);
-                command.Parameters.AddWithValue("@Birthdate", updatedUser.BirthDate);
+                SqlCommand command = new SqlCommand("[dbo].[User.UpdateUser]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", updatedUser.Id)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Name", updatedUser.Name)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Birthdate", updatedUser.BirthDate)
+                {
+                    Direction = ParameterDirection.Input
+                });
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();

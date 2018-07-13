@@ -4,55 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UsersAward.BLL.AbstractBLL;
+using UsersAward.DAL.AbstractDAL;
+using UsersAward.DAL.DBDAL;
 using UsersAward.Entities;
 
 namespace UsersAward.BLL.BasicBLL
 {
     public class BasicBLL : IAbstractBLL
     {
+        private static IAbstractDAL dal;
+
         public BasicBLL()
         {
-
+            dal = new DBDAL();
         }
 
         public bool AddAward(AwardDTO award)
         {
-            throw new NotImplementedException();
+            return award == null ? false : dal.AddAward(award);
         }
 
         public bool AddUser(UserDTO user)
         {
-            throw new NotImplementedException();
+            return user == null ? false : dal.AddUser(user);
         }
 
         public bool DeleteAward(Guid awardId)
         {
-            throw new NotImplementedException();
+            return awardId == Guid.Empty ? false : dal.DeleteAward(awardId);
         }
 
         public bool DeleteUser(Guid userId)
         {
-            throw new NotImplementedException();
+            return userId == Guid.Empty ? false : dal.DeleteUser(userId);
         }
 
         public IEnumerable<AwardDTO> GetAllAwards()
         {
-            throw new NotImplementedException();
+            return dal.GetAllAwards();
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return dal.GetAllUsers();
         }
 
         public bool UpdateAward(AwardDTO updatedAward)
         {
-            throw new NotImplementedException();
+            return dal.UpdateAward(updatedAward);
         }
 
         public bool UpdateUser(UserDTO updatedUser)
         {
-            throw new NotImplementedException();
+            return dal.UpdateUser(updatedUser);
         }
     }
 }
