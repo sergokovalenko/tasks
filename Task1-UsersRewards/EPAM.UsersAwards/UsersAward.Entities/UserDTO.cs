@@ -13,5 +13,6 @@ namespace UsersAward.Entities
         public DateTime BirthDate { get; set; }
         public int Age { get; set; }
         public Guid ImageId { get; set; }
+        public List<AwardDTO> Awards { get; set; }
     }
 }

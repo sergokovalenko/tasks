@@ -40,9 +40,6 @@ namespace UsersAward.DAL.DBDAL
                     Direction = ParameterDirection.Input
                 });
 
-                command.Parameters.AddWithValue("@Id", award.Id);
-                command.Parameters.AddWithValue("@Title", award.Title);
-                command.Parameters.AddWithValue("@Description", award.Description);
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
@@ -137,18 +134,29 @@ namespace UsersAward.DAL.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Users.GetAll]", connection);
+                SqlCommand command = new SqlCommand("[Users.GetAll]", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
+                    DateTime birthDate = (DateTime)reader["Birthdate"],
+                            dateNow = DateTime.Now;
+                    int age = dateNow.Year - birthDate.Year;
+
+                    if (dateNow.Month < birthDate.Month || dateNow.Month == birthDate.Month && dateNow.Day < birthDate.Day)
+                    {
+                        age--;
+                    }
+
                     yield return new UserDTO()
                     {
                         Id = (Guid)reader["Id"],
                         Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"]
+                        BirthDate = birthDate,
+                        Awards = new List<AwardDTO>(),
+                        Age = age
                     };
                 }
             }

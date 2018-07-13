@@ -1,0 +1,28 @@
+﻿@model IEnumerable<UsersAward.PLL.Web.Models.UserVM>
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Birthday</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td>@item.BirthDate</td>
+            </tr>
+        }
+        <tr>@Html.ActionLink("Create", "Create", "Home", new { @class = "btn btn-default"})</tr>
+    </tbody>
+</table>
