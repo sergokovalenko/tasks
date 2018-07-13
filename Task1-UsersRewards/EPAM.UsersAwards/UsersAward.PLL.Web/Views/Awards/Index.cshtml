@@ -1,0 +1,25 @@
+﻿@model IEnumerable<UsersAward.PLL.Web.Models.AwardVM>
+@{
+    ViewBag.Title = "Awards";
+}
+
+<h2>Awards</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
