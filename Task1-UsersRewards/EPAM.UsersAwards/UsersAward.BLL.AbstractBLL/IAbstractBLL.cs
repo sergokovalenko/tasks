@@ -11,6 +11,8 @@ namespace UsersAward.BLL.AbstractBLL
     {
         IEnumerable<UserDTO> GetAllUsers();
         IEnumerable<AwardDTO> GetAllAwards();
+        UserDTO GetUserById(Guid id);
+        AwardDTO GetAwardById(Guid id);
         bool DeleteUser(Guid userId);
         bool DeleteAward(Guid awardId);
         bool AddUser(UserDTO user);
