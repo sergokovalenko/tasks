@@ -10,7 +10,7 @@ using UsersAward.PLL.Web.Models.UserModels;
 
 namespace UsersAward.PLL.Web.Controllers
 {
-    public class HomeController : Controller
+    public class UserController : Controller
     {
         public ActionResult Index()
         {
@@ -24,7 +24,6 @@ namespace UsersAward.PLL.Web.Controllers
         }
 
         [HttpPost]
-        [ChildActionOnly]
         public ActionResult Create(CreateUserVM user)
         {
             var newUser = Mapper.Map<UserDTO>(user);
@@ -34,9 +33,8 @@ namespace UsersAward.PLL.Web.Controllers
             }
 
             return View(user);
-        }
+        } 
 
-        [ChildActionOnly]
         public ActionResult Delete(Guid id)
         {
             BLLManager.DeleteUser(id);
@@ -45,14 +43,31 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            return View();
+            var user = BLLManager.GetUserById(id);
+
+            if (user == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var userModel = Mapper.Map<EditUserVM>(user);
+
+            return View(userModel);
         }
 
         [HttpPost]
-        [ChildActionOnly]
         public ActionResult Edit(EditUserVM user)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var updatedUser = Mapper.Map<UserDTO>(user);
+                if (BLLManager.UpdateUser(updatedUser))
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(user);
+            }
+            return View(user);
         }
     }
 }
