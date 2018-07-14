@@ -37,5 +37,10 @@ namespace UsersAward.PLL.Web.Models
             return bll.GetAllAwards();
         }
 
+        public static UserDTO GetUserById(Guid id)
+        {
+            return bll.GetUserById(id);
+        }
+
     }
 }
