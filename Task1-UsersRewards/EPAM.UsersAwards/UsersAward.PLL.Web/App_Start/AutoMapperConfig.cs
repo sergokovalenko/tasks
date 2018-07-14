@@ -16,6 +16,9 @@ namespace UsersAward.PLL.Web
             {
                 cfg.CreateMap<UserDTO, DisplayUserVM>();
                 cfg.CreateMap<UserDTO, CreateUserVM>();
+                cfg.CreateMap<CreateUserVM, UserDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.NewGuid()));
+                cfg.CreateMap<EditUserVM, UserDTO>();
+
             });
         }
     }
