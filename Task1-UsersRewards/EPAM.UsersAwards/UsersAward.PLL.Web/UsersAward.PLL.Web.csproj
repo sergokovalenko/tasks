@@ -117,10 +117,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AwardVM.cs" />
+    <Compile Include="Models\AwardModels\CreateAwardVM.cs" />
+    <Compile Include="Models\AwardModels\DisplayAwardVM.cs" />
     <Compile Include="Models\BLLManager.cs" />
     <Compile Include="Models\UserModels\CreateUserVM.cs" />
     <Compile Include="Models\UserModels\DisplayUserVM.cs" />
+    <Compile Include="Models\UserModels\EditUserVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,8 +135,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Awards\Index.cshtml" />
-    <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

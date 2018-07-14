@@ -17,6 +17,21 @@ namespace UsersAward.PLL.Web.Models
             return bll.GetAllUsers();
         }
 
+        public static bool AddUser(UserDTO user)
+        {
+            return bll.AddUser(user);
+        }
+
+        public static bool DeleteUser(Guid id)
+        {
+            return bll.DeleteUser(id);
+        }
+
+        public static bool UpdateUser(UserDTO updatedUser)
+        {
+            return bll.UpdateUser(updatedUser);
+        }
+
         public static IEnumerable<AwardDTO> GetAllAwards()
         {
             return bll.GetAllAwards();
