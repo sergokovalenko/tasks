@@ -12,30 +12,14 @@ namespace UsersAward.PLL.Web.Models
     {
         private static IAbstractBLL bll = new BasicBLL();
 
-        public static IEnumerable<UserVM> GetAllUsers()
+        public static IEnumerable<UserDTO> GetAllUsers()
         {
-            List<UserVM> usersVM = new List<UserVM>();
-            var usersDTO = bll.GetAllUsers();
-
-            foreach (var item in usersDTO)
-            {
-                usersVM.Add(item);
-            }
-
-            return usersVM;
+            return bll.GetAllUsers();
         }
 
-        public static IEnumerable<AwardVM> GetAllAwards()
+        public static IEnumerable<AwardDTO> GetAllAwards()
         {
-            List<AwardVM> awardsVM = new List<AwardVM>();
-            var awardsDTO = bll.GetAllAwards();
-
-            foreach (var item in awardsDTO)
-            {
-                awardsVM.Add(item);
-            }
-
-            return awardsVM;
+            return bll.GetAllAwards();
         }
 
     }

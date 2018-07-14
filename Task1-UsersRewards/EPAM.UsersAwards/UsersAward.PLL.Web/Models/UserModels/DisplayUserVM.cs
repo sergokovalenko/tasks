@@ -4,39 +4,36 @@ using System.Linq;
 using System.Web;
 using UsersAward.Entities;
 
-namespace UsersAward.PLL.Web.Models
+namespace UsersAward.PLL.Web.Models.UserModels
 {
-    public class UserVM
+    public class DisplayUserVM
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public DateTime BirthDate { get; set; }
         public int Age { get; set; }
-        public Guid ImageId { get; set; }
-        public List<AwardDTO> Awards { get; set; }
+        public DateTime BirthDate { get; set; }
+        //public List<AwardDTO> Awards { get; set; }
 
-        public static explicit operator UserDTO(UserVM vm)
+        public static explicit operator UserDTO(DisplayUserVM vm)
         {
             return new UserDTO()
             {
                 Id = vm.Id,
                 Name = vm.Name,
                 Age = vm.Age,
-                Awards = vm.Awards,
-                ImageId = vm.ImageId,
+                Awards = new List<AwardDTO>(),
+                ImageId = Guid.Empty,
                 BirthDate = vm.BirthDate
             };
         }
 
-        public static implicit operator UserVM(UserDTO vm)
+        public static implicit operator DisplayUserVM(UserDTO vm)
         {
-            return new UserVM()
+            return new DisplayUserVM()
             {
                 Id = vm.Id,
                 Name = vm.Name,
                 Age = vm.Age,
-                Awards = vm.Awards,
-                ImageId = vm.ImageId,
                 BirthDate = vm.BirthDate
             };
         }

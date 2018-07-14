@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UsersAward.PLL.Web.Models;
+using UsersAward.PLL.Web.Models.UserModels;
 
 namespace UsersAward.PLL.Web.Controllers
 {
@@ -12,16 +14,11 @@ namespace UsersAward.PLL.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(BLLManager.GetAllUsers());
+            var model = Mapper.Map<IEnumerable<DisplayUserVM>>(BLLManager.GetAllUsers());
+            return View(model);
         }
 
         public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(UserVM user)
         {
             return View();
         }
