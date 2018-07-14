@@ -40,7 +40,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == 1;
+                return countRow == -1;
             }
         }
 
@@ -85,7 +85,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == 1;
+                return countRow == -1;
             }
         }
 
@@ -102,7 +102,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == 1;
+                return countRow == -1;
             }
         }
 
@@ -228,7 +228,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == 1;
+                return countRow == -1;
             }
         }
 
@@ -254,7 +254,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == 1;
+                return countRow == -1;
             }
         }
     }
