@@ -32,15 +32,34 @@ namespace UsersAward.PLL.Web.Models
             return bll.UpdateUser(updatedUser);
         }
 
-        public static IEnumerable<AwardDTO> GetAllAwards()
-        {
-            return bll.GetAllAwards();
-        }
-
         public static UserDTO GetUserById(Guid id)
         {
             return bll.GetUserById(id);
         }
 
+        public static IEnumerable<AwardDTO> GetAllAwards()
+        {
+            return bll.GetAllAwards();
+        }
+
+        public static bool AddAward(AwardDTO user)
+        {
+            return bll.AddAward(user);
+        }
+
+        public static bool DeleteAward(Guid id)
+        {
+            return bll.DeleteAward(id);
+        }
+
+        public static bool UpdateAward(AwardDTO updatedAward)
+        {
+            return bll.UpdateAward(updatedAward);
+        }
+
+        public static AwardDTO GetAwardById(Guid id)
+        {
+            return bll.GetAwardById(id);
+        }
     }
 }

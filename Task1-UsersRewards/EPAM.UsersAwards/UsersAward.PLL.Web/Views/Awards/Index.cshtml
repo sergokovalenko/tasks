@@ -1,25 +1,39 @@
-﻿@model IEnumerable<UsersAward.PLL.Web.Models.AwardVM>
+﻿@model IEnumerable<UsersAward.PLL.Web.Models.AwardModels.DisplayAwardVM>
+
 @{
     ViewBag.Title = "Awards";
 }
 
 <h2>Awards</h2>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in @Model)
-        {
-            <tr>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-            </tr>
-        }
-    </tbody>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
 </table>

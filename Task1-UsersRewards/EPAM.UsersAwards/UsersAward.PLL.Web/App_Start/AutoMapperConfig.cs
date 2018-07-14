@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models.UserModels;
+using UsersAward.PLL.Web.Models.AwardModels;
 
 namespace UsersAward.PLL.Web
 {
@@ -19,6 +20,10 @@ namespace UsersAward.PLL.Web
                 cfg.CreateMap<CreateUserVM, UserDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.NewGuid()));
                 cfg.CreateMap<EditUserVM, UserDTO>();
 
+                cfg.CreateMap<AwardDTO, DisplayAwardVM>();
+                cfg.CreateMap<AwardDTO, CreateAwardVM>();
+                cfg.CreateMap<CreateAwardVM, AwardDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.NewGuid()));
+                cfg.CreateMap<EditUserVM, AwardDTO>();
             });
         }
     }

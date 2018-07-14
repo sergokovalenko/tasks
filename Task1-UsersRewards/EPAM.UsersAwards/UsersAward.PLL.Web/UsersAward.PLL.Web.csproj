@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Models\AwardModels\CreateAwardVM.cs" />
     <Compile Include="Models\AwardModels\DisplayAwardVM.cs" />
+    <Compile Include="Models\AwardModels\EditAwardVM.cs" />
     <Compile Include="Models\BLLManager.cs" />
     <Compile Include="Models\UserModels\CreateUserVM.cs" />
     <Compile Include="Models\UserModels\DisplayUserVM.cs" />
@@ -134,10 +135,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Awards\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Awards\Index.cshtml" />
+    <Content Include="Views\Awards\Create.cshtml" />
+    <Content Include="Views\Awards\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
