@@ -41,22 +41,77 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<AwardDTO> GetAllAwards()
         {
-            return dal.GetAllAwards();
+            return dal.GetAllAwards().ToArray();
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            return dal.GetAllUsers();
+            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, Awards = user.Awards, BirthDate = user.BirthDate, ImageId = user.ImageId, Name = user.Name, Age = CalculateAge(user.BirthDate)});
+        }
+
+        public AwardDTO GetAwardById(Guid id)
+        {
+            return dal.GetAwardById(id);
+        }
+
+        public UserDTO GetUserById(Guid id)
+        {
+            UserDTO user = dal.GetUserById(id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.Age = CalculateAge(user.BirthDate);
+            return user;
         }
 
         public bool UpdateAward(AwardDTO updatedAward)
         {
+            if (updatedAward == null || string.IsNullOrWhiteSpace(updatedAward.Title))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(updatedAward.Description))
+            {
+                updatedAward.Description = "";
+            }
+
             return dal.UpdateAward(updatedAward);
         }
 
         public bool UpdateUser(UserDTO updatedUser)
         {
+            if (updatedUser == null || string.IsNullOrWhiteSpace(updatedUser.Name))
+            {
+                return false;
+            }
+
+            if (CalculateAge(updatedUser.BirthDate) > 150)
+            {
+                return false;
+            }
+
+            if (updatedUser.Awards == null)
+            {
+                updatedUser.Awards = new List<AwardDTO>();
+            }
+
             return dal.UpdateUser(updatedUser);
+        }
+
+        private int CalculateAge(DateTime birthDate)
+        {
+            DateTime dateNow = DateTime.Now;
+            int age = dateNow.Year - birthDate.Year;
+
+            if (dateNow.Month < birthDate.Month || dateNow.Month == birthDate.Month && dateNow.Day < birthDate.Day)
+            {
+                age--;
+            }
+
+            return age;
         }
     }
 }

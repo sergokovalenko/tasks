@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UsersAward.DAL.AbstractDAL;
 using UsersAward.Entities;
 
@@ -70,7 +67,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == 1;
+                return countRow == -1;
             }
         }
 
@@ -141,24 +138,71 @@ namespace UsersAward.DAL.DBDAL
 
                 while (reader.Read())
                 {
-                    DateTime birthDate = (DateTime)reader["Birthdate"],
-                            dateNow = DateTime.Now;
-                    int age = dateNow.Year - birthDate.Year;
-
-                    if (dateNow.Month < birthDate.Month || dateNow.Month == birthDate.Month && dateNow.Day < birthDate.Day)
-                    {
-                        age--;
-                    }
-
                     yield return new UserDTO()
                     {
                         Id = (Guid)reader["Id"],
                         Name = (string)reader["Name"],
-                        BirthDate = birthDate,
-                        Awards = new List<AwardDTO>(),
-                        Age = age
+                        BirthDate = (DateTime)reader["Birthdate"],
+                        Awards = new List<AwardDTO>()
                     };
                 }
+            }
+        }
+
+        public AwardDTO GetAwardById(Guid id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Award.GetById]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", id)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new AwardDTO()
+                    {
+                        Id = (Guid)reader["Id"],
+                        Title = (string)reader["Title"],
+                        Description = (string)reader["Description"]
+                    };
+                }
+
+                return null;
+            }
+        }
+
+        public UserDTO GetUserById(Guid id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[User.GetById]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", id)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new UserDTO()
+                    {
+                        Id = (Guid)reader["Id"],
+                        Name = (string)reader["Name"],
+                        BirthDate = (DateTime)reader["Birthdate"],
+                        Awards = new List<AwardDTO>()
+                    };
+                }
+
+                return null;
             }
         }
 
