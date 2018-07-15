@@ -19,5 +19,6 @@ namespace UsersAward.BLL.AbstractBLL
         bool AddAward(AwardDTO award);
         bool UpdateUser(UserDTO updatedUser);
         bool UpdateAward(AwardDTO updatedAward);
+        (byte[] bytes, string type) GetFileWithUsers();
     }
 }

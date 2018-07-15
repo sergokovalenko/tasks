@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,39 @@ namespace UsersAward.BLL.BasicBLL
 
         public bool AddAward(AwardDTO award)
         {
-            return award == null ? false : dal.AddAward(award);
+            if (award == null || string.IsNullOrWhiteSpace(award.Title) || award.Title.Length > 50)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(award.Description))
+            {
+                award.Description = "";
+            }
+            award.Id = Guid.NewGuid();
+
+            return dal.AddAward(award);
         }
 
         public bool AddUser(UserDTO user)
         {
+            if (user == null || string.IsNullOrWhiteSpace(user.Name))
+            {
+                return false;
+            }
+
+            var age = CalculateAge(user.BirthDate);
+
+            if (age > 150 || age < 0)
+            {
+                return false;
+            }
+
+            if (user.Awards == null)
+            {
+                user.Awards = new List<AwardDTO>();
+            }
+
+            user.Id = Guid.NewGuid();
             return user == null ? false : dal.AddUser(user);
         }
 
@@ -88,7 +117,9 @@ namespace UsersAward.BLL.BasicBLL
                 return false;
             }
 
-            if (CalculateAge(updatedUser.BirthDate) > 150)
+            var age = CalculateAge(updatedUser.BirthDate);
+
+            if (age > 150 || age < 0)
             {
                 return false;
             }
@@ -99,6 +130,44 @@ namespace UsersAward.BLL.BasicBLL
             }
 
             return dal.UpdateUser(updatedUser);
+        }
+
+        public (byte[] bytes, string type) GetFileWithUsers()
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"AllUsers.txt");
+            string fileType = "text/plain";
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+            }
+
+            using (var writer = new StreamWriter(filePath, false))
+            {
+                var users = GetAllUsers();
+                string text = "";
+
+                foreach (var item in users)
+                {
+                    text = string.Format("{0}, {1:d}, {2} ", item.Name, item.BirthDate, item.Age);
+                    if (item.Awards == null || item.Awards.Count == 0)
+                    {
+                        text += "hasn't awards";
+                    }
+                    else
+                    {
+                        text += "has awards: ";
+                        foreach (var aw in item.Awards)
+                        {
+                            text += " " + aw.Title;
+                        }
+                    }
+                    writer.WriteLine(text);
+                }
+            }
+
+            byte[] bytes = File.ReadAllBytes(filePath);
+
+            return (bytes, fileType);
         }
 
         private int CalculateAge(DateTime birthDate)

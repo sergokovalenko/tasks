@@ -26,10 +26,14 @@ namespace UsersAward.PLL.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreateUserVM user)
         {
-            var newUser = Mapper.Map<UserDTO>(user);
-            if (BLLManager.AddUser(newUser))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                var newUser = Mapper.Map<UserDTO>(user);
+                if (BLLManager.AddUser(newUser))
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(user);
             }
 
             return View(user);
@@ -68,6 +72,12 @@ namespace UsersAward.PLL.Web.Controllers
                 return View(user);
             }
             return View(user);
+        }
+
+        public FileContentResult DownloadUsers()
+        {
+            var fileResult = BLLManager.GetFileWithUsers();
+            return File(fileResult.bytes, fileResult.type, "All Users");
         }
     }
 }

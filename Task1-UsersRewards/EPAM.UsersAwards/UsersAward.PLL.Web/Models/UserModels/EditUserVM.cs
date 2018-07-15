@@ -9,7 +9,7 @@ namespace UsersAward.PLL.Web.Models.UserModels
     public class EditUserVM
     {
         public Guid Id { get; set; }
-        [MaxLength(50)]
+        [StringLength(50)]
         public string Name { get; set; }
         [Required]
         [DataType(DataType.Date)]
