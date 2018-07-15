@@ -61,5 +61,10 @@ namespace UsersAward.PLL.Web.Models
         {
             return bll.GetAwardById(id);
         }
+
+        public static (byte[] bytes, string type) GetFileWithUsers()
+        {
+            return bll.GetFileWithUsers();
+        }
     }
 }

@@ -24,15 +24,19 @@ namespace UsersAward.PLL.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CreateAwardVM user)
+        public ActionResult Create(CreateAwardVM award)
         {
-            var newUser = Mapper.Map<AwardDTO>(user);
-            if (BLLManager.AddAward(newUser))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                var newUser = Mapper.Map<AwardDTO>(award);
+                if (BLLManager.AddAward(newUser))
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(award);
             }
 
-            return View(user);
+            return View(award);
         }
 
         public ActionResult Delete(Guid id)
