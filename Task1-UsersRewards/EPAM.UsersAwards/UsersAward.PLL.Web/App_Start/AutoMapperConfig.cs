@@ -17,12 +17,12 @@ namespace UsersAward.PLL.Web
             {
                 cfg.CreateMap<UserDTO, DisplayUserVM>();
                 cfg.CreateMap<UserDTO, CreateUserVM>();
-                cfg.CreateMap<CreateUserVM, UserDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.NewGuid()));
+                cfg.CreateMap<CreateUserVM, UserDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.Empty));
                 cfg.CreateMap<EditUserVM, UserDTO>();
 
                 cfg.CreateMap<AwardDTO, DisplayAwardVM>();
                 cfg.CreateMap<AwardDTO, CreateAwardVM>();
-                cfg.CreateMap<CreateAwardVM, AwardDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.NewGuid()));
+                cfg.CreateMap<CreateAwardVM, AwardDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.Empty));
                 cfg.CreateMap<EditUserVM, AwardDTO>();
             });
         }
