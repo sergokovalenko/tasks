@@ -13,7 +13,7 @@ namespace UsersAward.BLL.BasicBLL
 {
     public class BasicBLL : IAbstractBLL
     {
-        private static IAbstractDAL dal;
+        private IAbstractDAL dal;
 
         public BasicBLL()
         {

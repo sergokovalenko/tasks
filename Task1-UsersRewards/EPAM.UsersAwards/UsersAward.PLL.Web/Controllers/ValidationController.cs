@@ -11,7 +11,7 @@ namespace UsersAward.PLL.Web.Controllers
     {
         public JsonResult IsAwardAllowed(string title)
         {
-            return Json(BLLManager.GetAllAwards().Any(aw => (string.Compare(title, aw.Title, StringComparison.InvariantCultureIgnoreCase) != 0)), JsonRequestBehavior.AllowGet);
+            return Json(BllModel.GetAllAwards().Any(aw => (string.Compare(title, aw.Title, StringComparison.InvariantCultureIgnoreCase) != 0)), JsonRequestBehavior.AllowGet);
         }
     }
 }

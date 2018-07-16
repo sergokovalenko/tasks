@@ -12,7 +12,7 @@ namespace UsersAward.PLL.Web.Models.AwardModels
         public Guid Id { get; set; }
         [Required]
         [StringLength(50)]
-        [RegularExpression(@"[a-zA-Z0-9]([ -]?[0-9a-zA-Z]){0,249}", ErrorMessage = "Only letters, digits, spaces and -")]
+        [RegularExpression(@"[a-zA-Z0-9]([ -]?[0-9a-zA-Z]){0,49}", ErrorMessage = "Only letters, digits, spaces and -")]
         [Remote("IsAwardAllowed", "Validation")]
         public string Title { get; set; }
         [StringLength(250)]

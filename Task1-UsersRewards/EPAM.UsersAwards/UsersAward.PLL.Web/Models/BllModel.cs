@@ -8,7 +8,7 @@ using UsersAward.Entities;
 
 namespace UsersAward.PLL.Web.Models
 {
-    public static class BLLManager
+    public static class BllModel
     {
         private static IAbstractBLL bll = new BasicBLL();
 

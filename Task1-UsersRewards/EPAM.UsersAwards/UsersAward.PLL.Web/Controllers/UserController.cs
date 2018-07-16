@@ -14,7 +14,7 @@ namespace UsersAward.PLL.Web.Controllers
     {
         public ActionResult Index()
         {
-            var model = Mapper.Map<IEnumerable<DisplayUserVM>>(BLLManager.GetAllUsers());
+            var model = Mapper.Map<IEnumerable<DisplayUserVM>>(BllModel.GetAllUsers());
             return View(model);
         }
 
@@ -29,7 +29,7 @@ namespace UsersAward.PLL.Web.Controllers
             if (ModelState.IsValid)
             {
                 var newUser = Mapper.Map<UserDTO>(user);
-                if (BLLManager.AddUser(newUser))
+                if (BllModel.AddUser(newUser))
                 {
                     return RedirectToAction("Index");
                 }
@@ -41,17 +41,23 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            BLLManager.DeleteUser(id);
-            return RedirectToAction("Index");
+            if (BllModel.DeleteUser(id))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
         public ActionResult Edit(Guid id)
         {
-            var user = BLLManager.GetUserById(id);
+            var user = BllModel.GetUserById(id);
 
             if (user == null)
             {
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
 
             var userModel = Mapper.Map<EditUserVM>(user);
@@ -65,7 +71,7 @@ namespace UsersAward.PLL.Web.Controllers
             if (ModelState.IsValid)
             {
                 var updatedUser = Mapper.Map<UserDTO>(user);
-                if (BLLManager.UpdateUser(updatedUser))
+                if (BllModel.UpdateUser(updatedUser))
                 {
                     return RedirectToAction("Index");
                 }
@@ -76,7 +82,7 @@ namespace UsersAward.PLL.Web.Controllers
 
         public FileContentResult DownloadUsers()
         {
-            var fileResult = BLLManager.GetFileWithUsers();
+            var fileResult = BllModel.GetFileWithUsers();
             return File(fileResult.bytes, fileResult.type, "All Users");
         }
     }
