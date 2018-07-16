@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -186,14 +187,17 @@
       <Project>{a714f6f1-aae3-42be-b43b-ee6905ff9f93}</Project>
       <Name>UsersAward.BLL.AbstractBLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UsersAward.BLL.BasicBLL\UsersAward.BLL.BasicBLL.csproj">
-      <Project>{446edbab-a839-4a95-a6b7-deb9d6117f31}</Project>
-      <Name>UsersAward.BLL.BasicBLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UsersAward.Entities\UsersAward.Entities.csproj">
       <Project>{91EB9BB9-C8A2-466A-A9A6-F8FC498711A8}</Project>
       <Name>UsersAward.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UsersAward.NinjectConfig\UsersAward.NinjectConfig.csproj">
+      <Project>{70354eb9-db06-4869-89f8-3c633bb7d3f0}</Project>
+      <Name>UsersAward.NinjectConfig</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

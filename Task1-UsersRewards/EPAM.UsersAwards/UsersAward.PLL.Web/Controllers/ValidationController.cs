@@ -9,9 +9,16 @@ namespace UsersAward.PLL.Web.Controllers
 {
     public class ValidationController : Controller
     {
+        private BllModel bllModel;
+
+        public ValidationController(BllModel model)
+        {
+            this.bllModel = model;
+        }
+
         public JsonResult IsAwardAllowed(string title)
         {
-            return Json(BllModel.GetAllAwards().Any(aw => (string.Compare(title, aw.Title, StringComparison.InvariantCultureIgnoreCase) != 0)), JsonRequestBehavior.AllowGet);
+            return Json(bllModel.GetAllAwards().Any(aw => (string.Compare(title, aw.Title, StringComparison.InvariantCultureIgnoreCase) != 0)), JsonRequestBehavior.AllowGet);
         }
     }
 }

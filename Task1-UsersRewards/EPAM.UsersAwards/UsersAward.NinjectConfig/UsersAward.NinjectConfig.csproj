@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{70354EB9-DB06-4869-89F8-3C633BB7D3F0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UsersAward.NinjectConfig</RootNamespace>
+    <AssemblyName>UsersAward.NinjectConfig</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AbstractDLL\UsersAward.DAL.AbstractDAL.csproj">
+      <Project>{1d98f51f-7c5e-41e3-b337-392491d0db28}</Project>
+      <Name>UsersAward.DAL.AbstractDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBDAL\UsersAward.DAL.DBDAL.csproj">
+      <Project>{5da74d90-31cd-4b48-8b4d-7b7bdf51424e}</Project>
+      <Name>UsersAward.DAL.DBDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersAward.BLL.AbstractBLL\UsersAward.BLL.AbstractBLL.csproj">
+      <Project>{A714F6F1-AAE3-42BE-B43B-EE6905FF9F93}</Project>
+      <Name>UsersAward.BLL.AbstractBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersAward.BLL.BasicBLL\UsersAward.BLL.BasicBLL.csproj">
+      <Project>{446edbab-a839-4a95-a6b7-deb9d6117f31}</Project>
+      <Name>UsersAward.BLL.BasicBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersAward.BLL.BllProvider\UsersAward.BLL.BllProvider.csproj">
+      <Project>{3f617b11-fbb2-4142-9b0d-213860f15a7d}</Project>
+      <Name>UsersAward.BLL.BllProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersAward.Entities\UsersAward.Entities.csproj">
+      <Project>{91eb9bb9-c8a2-466a-a9a6-f8fc498711a8}</Project>
+      <Name>UsersAward.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

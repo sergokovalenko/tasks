@@ -48,6 +48,7 @@ namespace UsersAward.PLL.Web.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
                 RegisterServices(kernel);
+                NinjectConfig.Config.RegisterServices(kernel);
                 return kernel;
             }
             catch
@@ -55,20 +56,14 @@ namespace UsersAward.PLL.Web.App_Start
                 kernel.Dispose();
                 throw;
             }
-        }
+        }       
 
-        /// <summary>
-        /// Load your modules or register your services here!
-        /// </summary>
-        /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
             kernel
-                .Bind<IAbstractBLL>()
-                .To<BLL.BasicBLL.BasicBLL>()
+                .Bind<BllModel>()
+                .ToSelf()
                 .InSingletonScope();
-            
-
-        }        
+        }
     }
 }
