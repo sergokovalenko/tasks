@@ -20,7 +20,7 @@ namespace UsersAward.BLL.BllProvider
             switch (cfg)
             {
                 case "basic":
-                    Instance = new BasicBLL.BasicBLL();
+                    //Instance = new BasicBLL.BasicBLL();
                     break;
                 default:
                     break;

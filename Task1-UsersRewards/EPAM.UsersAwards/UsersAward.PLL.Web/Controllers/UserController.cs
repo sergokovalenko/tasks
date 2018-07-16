@@ -12,9 +12,16 @@ namespace UsersAward.PLL.Web.Controllers
 {
     public class UserController : Controller
     {
+        private BllModel bllModel;
+
+        public UserController(BllModel model)
+        {
+            this.bllModel = model;
+        }
+
         public ActionResult Index()
         {
-            var model = Mapper.Map<IEnumerable<DisplayUserVM>>(BllModel.GetAllUsers());
+            var model = Mapper.Map<IEnumerable<DisplayUserVM>>(bllModel.GetAllUsers());
             return View(model);
         }
 
@@ -29,7 +36,7 @@ namespace UsersAward.PLL.Web.Controllers
             if (ModelState.IsValid)
             {
                 var newUser = Mapper.Map<UserDTO>(user);
-                if (BllModel.AddUser(newUser))
+                if (bllModel.AddUser(newUser))
                 {
                     return RedirectToAction("Index");
                 }
@@ -41,7 +48,7 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            if (BllModel.DeleteUser(id))
+            if (bllModel.DeleteUser(id))
             {
                 return RedirectToAction("Index");
             }
@@ -53,7 +60,7 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            var user = BllModel.GetUserById(id);
+            var user = bllModel.GetUserById(id);
 
             if (user == null)
             {
@@ -71,7 +78,7 @@ namespace UsersAward.PLL.Web.Controllers
             if (ModelState.IsValid)
             {
                 var updatedUser = Mapper.Map<UserDTO>(user);
-                if (BllModel.UpdateUser(updatedUser))
+                if (bllModel.UpdateUser(updatedUser))
                 {
                     return RedirectToAction("Index");
                 }
@@ -82,7 +89,7 @@ namespace UsersAward.PLL.Web.Controllers
 
         public FileContentResult DownloadUsers()
         {
-            var fileResult = BllModel.GetFileWithUsers();
+            var fileResult = bllModel.GetFileWithUsers();
             return File(fileResult.bytes, fileResult.type, "All Users");
         }
     }

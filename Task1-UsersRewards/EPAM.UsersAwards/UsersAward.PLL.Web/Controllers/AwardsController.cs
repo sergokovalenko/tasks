@@ -12,9 +12,16 @@ namespace UsersAward.PLL.Web.Controllers
 {
     public class AwardsController : Controller
     {
+        private BllModel bllModel;
+
+        public AwardsController(BllModel model)
+        {
+            this.bllModel = model;
+        }
+
         public ActionResult Index()
         {
-            var model = Mapper.Map<IEnumerable<DisplayAwardVM>>(BllModel.GetAllAwards());
+            var model = Mapper.Map<IEnumerable<DisplayAwardVM>>(bllModel.GetAllAwards());
             return View(model);
         }
 
@@ -29,7 +36,7 @@ namespace UsersAward.PLL.Web.Controllers
             if (ModelState.IsValid)
             {
                 var newUser = Mapper.Map<AwardDTO>(award);
-                if (BllModel.AddAward(newUser))
+                if (bllModel.AddAward(newUser))
                 {
                     return RedirectToAction("Index");
                 }
@@ -41,13 +48,13 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            BllModel.DeleteAward(id);
+            bllModel.DeleteAward(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(Guid id)
         {
-            var user = BllModel.GetAwardById(id);
+            var user = bllModel.GetAwardById(id);
 
             if (user == null)
             {
@@ -65,7 +72,7 @@ namespace UsersAward.PLL.Web.Controllers
             if (ModelState.IsValid)
             {
                 var updatedAward = Mapper.Map<AwardDTO>(award);
-                if (BllModel.UpdateAward(updatedAward))
+                if (bllModel.UpdateAward(updatedAward))
                 {
                     return RedirectToAction("Index");
                 }

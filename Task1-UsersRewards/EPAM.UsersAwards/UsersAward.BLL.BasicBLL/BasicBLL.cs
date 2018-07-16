@@ -15,9 +15,9 @@ namespace UsersAward.BLL.BasicBLL
     {
         private IAbstractDAL dal;
 
-        public BasicBLL()
+        public BasicBLL(IAbstractDAL dal)
         {
-            dal = new DBDAL();
+            this.dal = dal;
         }
 
         public bool AddAward(AwardDTO award)
