@@ -14,5 +14,7 @@ namespace UsersAward.PLL.Web.Models.UserModels
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
+        [Required]
+        public HttpPostedFileBase Uploaded { get; set; }
     }
 }
