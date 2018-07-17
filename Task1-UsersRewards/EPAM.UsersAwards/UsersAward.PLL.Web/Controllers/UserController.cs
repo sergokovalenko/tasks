@@ -127,6 +127,16 @@ namespace UsersAward.PLL.Web.Controllers
             return View(user);
         }
 
+        public ActionResult GetImageById(Guid id)
+        {
+            ImageDTO img = bllModel.GetImageById(id);
+
+            if (img != null)
+                return File(img.Data, img.Type);
+
+            return null;
+        }
+
         public FileContentResult DownloadUsers()
         {
             var fileResult = bllModel.GetFileWithUsers();

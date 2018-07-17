@@ -13,6 +13,7 @@ namespace UsersAward.DAL.AbstractDAL
         IEnumerable<AwardDTO> GetAllAwards();
         UserDTO GetUserById(Guid id);
         AwardDTO GetAwardById(Guid id);
+        ImageDTO GetImageById(Guid id);
         bool DeleteUser(Guid userId);
         bool DeleteAward(Guid awardId);
         bool AddUser(UserDTO user);
