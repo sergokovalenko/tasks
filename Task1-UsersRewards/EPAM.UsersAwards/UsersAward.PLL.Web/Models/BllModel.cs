@@ -73,5 +73,10 @@ namespace UsersAward.PLL.Web.Models
         {
             return bll.GetFileWithUsers();
         }
+
+        internal ImageDTO GetImageById(Guid id)
+        {
+            return bll.GetImageById(id);
+        }
     }
 }

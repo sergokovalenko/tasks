@@ -16,15 +16,23 @@ namespace UsersAward.PLL.Web
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UserDTO, DisplayUserVM>();
-                cfg.CreateMap<UserDTO, CreateUserVM>();
-                cfg.CreateMap<CreateUserVM, UserDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.Empty));
-                cfg.CreateMap<EditUserVM, UserDTO>();
+                cfg.CreateMap<UserDTO, CreateUserVM>().ForMember(obj => obj.Uploaded, option => option.UseValue<object>(null));
+                cfg.CreateMap<CreateUserVM, UserDTO>()
+                    .ForMember(obj => obj.Id, option => option.UseValue(Guid.Empty))
+                    .ForMember(obj => obj.Awards, opt => opt.UseValue<object>(null))
+                    .ForMember(obj => obj.Age, opt => opt.UseValue(-1));
+                cfg.CreateMap<EditUserVM, UserDTO>()
+                    .ForMember(obj => obj.Id, option => option.UseValue(Guid.Empty))
+                    .ForMember(obj => obj.Awards, opt => opt.UseValue<object>(null))
+                    .ForMember(obj => obj.Age, opt => opt.UseValue(-1)); ;
 
                 cfg.CreateMap<AwardDTO, DisplayAwardVM>();
                 cfg.CreateMap<AwardDTO, CreateAwardVM>();
                 cfg.CreateMap<CreateAwardVM, AwardDTO>().ForMember(obj => obj.Id, option => option.UseValue(Guid.Empty));
-                cfg.CreateMap<EditUserVM, AwardDTO>();
+                cfg.CreateMap<EditAwardVM, AwardDTO>();
             });
+
+            Mapper.AssertConfigurationIsValid();
         }
     }
 }

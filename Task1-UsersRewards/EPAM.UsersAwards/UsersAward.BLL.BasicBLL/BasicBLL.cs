@@ -75,7 +75,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, Awards = user.Awards, BirthDate = user.BirthDate, ImageId = user.ImageId, Name = user.Name, Age = CalculateAge(user.BirthDate)});
+            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, Awards = user.Awards, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate)});
         }
 
         public AwardDTO GetAwardById(Guid id)
@@ -199,6 +199,11 @@ namespace UsersAward.BLL.BasicBLL
             }
 
             return age;
+        }
+
+        public ImageDTO GetImageById(Guid id)
+        {
+            return dal.GetImageById(id);
         }
     }
 }

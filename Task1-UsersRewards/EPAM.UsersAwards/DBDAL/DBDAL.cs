@@ -102,7 +102,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == -1;
+                return countRow > 0;
             }
         }
 
@@ -142,8 +142,7 @@ namespace UsersAward.DAL.DBDAL
                     {
                         Id = (Guid)reader["Id"],
                         Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"],
-                        Awards = new List<AwardDTO>()
+                        BirthDate = (DateTime)reader["Birthdate"]
                     };
                 }
             }
@@ -193,15 +192,39 @@ namespace UsersAward.DAL.DBDAL
 
                 if (reader.Read())
                 {
-                    Guid imageId = reader["ImageId"] == null ? Guid.Empty : (Guid)reader["ImageId"];
-
                     return new UserDTO()
                     {
                         Id = (Guid)reader["Id"],
                         Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"],
-                        ImageId = imageId,
-                        Awards = new List<AwardDTO>()
+                        BirthDate = (DateTime)reader["Birthdate"]
+                    };
+                }
+
+                return null;
+            }
+        }
+
+        public ImageDTO GetImageById(Guid id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Image.GetById]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@Id", id)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new ImageDTO()
+                    {
+                        OwnerId = (Guid)reader["OwnerId"],
+                        Data = (byte[])reader["Bytes"],
+                        Type = (string)reader["Type"]
                     };
                 }
 

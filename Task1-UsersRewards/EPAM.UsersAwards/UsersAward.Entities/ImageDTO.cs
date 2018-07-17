@@ -11,5 +11,6 @@ namespace UsersAward.Entities
         public byte[] Data { get; set; }
         public string Type { get; set; }
         public Guid OwnerId { get; set; }
+        public string Name { get; set; }
     }
 }
