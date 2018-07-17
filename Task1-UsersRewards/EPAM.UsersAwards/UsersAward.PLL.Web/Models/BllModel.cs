@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using UsersAward.BLL.AbstractBLL;
 using UsersAward.Entities;
 
@@ -44,6 +42,11 @@ namespace UsersAward.PLL.Web.Models
         public IEnumerable<AwardDTO> GetAllAwards()
         {
             return bll.GetAllAwards();
+        }
+
+        public bool Addimage(ImageDTO img)
+        {
+            return bll.AddImage(img);
         }
 
         public bool AddAward(AwardDTO user)

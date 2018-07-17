@@ -170,6 +170,24 @@ namespace UsersAward.BLL.BasicBLL
             return (bytes, fileType);
         }
 
+        public bool AddImage(ImageDTO img)
+        {
+            if (img == null)
+            {
+                throw new ArgumentNullException(nameof(img));
+            }
+            if (img.OwnerId == Guid.Empty)
+            {
+                throw new ArgumentException(nameof(img.OwnerId));
+            }
+            if (string.IsNullOrWhiteSpace(img.Type))
+            {
+                throw new ArithmeticException(nameof(img.Type));
+            }
+
+            return dal.AddImage(img);
+        }
+
         private int CalculateAge(DateTime birthDate)
         {
             DateTime dateNow = DateTime.Now;

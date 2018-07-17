@@ -40,7 +40,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == -1;
+                return countRow > 0;
             }
         }
 
@@ -67,7 +67,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == -1;
+                return countRow > 0;
             }
         }
 
@@ -85,7 +85,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == -1;
+                return countRow > 0;
             }
         }
 
@@ -193,11 +193,14 @@ namespace UsersAward.DAL.DBDAL
 
                 if (reader.Read())
                 {
+                    Guid imageId = reader["ImageId"] == null ? Guid.Empty : (Guid)reader["ImageId"];
+
                     return new UserDTO()
                     {
                         Id = (Guid)reader["Id"],
                         Name = (string)reader["Name"],
                         BirthDate = (DateTime)reader["Birthdate"],
+                        ImageId = imageId,
                         Awards = new List<AwardDTO>()
                     };
                 }
@@ -228,7 +231,7 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == -1;
+                return countRow > 0;
             }
         }
 
@@ -254,7 +257,33 @@ namespace UsersAward.DAL.DBDAL
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
-                return countRow == -1;
+                return countRow > 0;
+            }
+        }
+
+        public bool AddImage(ImageDTO img)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Image.AddImage]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@OwnerId", img.OwnerId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Bytes", img.Data)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@DataType", img.Type)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow > 0;
             }
         }
     }

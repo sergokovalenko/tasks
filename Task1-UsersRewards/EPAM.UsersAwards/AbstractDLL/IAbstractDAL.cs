@@ -19,5 +19,6 @@ namespace UsersAward.DAL.AbstractDAL
         bool AddAward(AwardDTO award);
         bool UpdateUser(UserDTO updatedUser);
         bool UpdateAward(AwardDTO updatedAward);
+        bool AddImage(ImageDTO img);
     }
 }
