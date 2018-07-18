@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DBDAL;
 using Ninject;
 using UsersAward.BLL.AbstractBLL;
+using UsersAward.BLL.BasicBLL;
+using UsersAward.Dal.DBDAL;
 using UsersAward.DAL.AbstractDAL;
 
 namespace UsersAward.NinjectConfig
@@ -18,18 +22,35 @@ namespace UsersAward.NinjectConfig
         public static void RegisterServices(IKernel kernel)
         {
             kernel
-                .Bind<IAbstractDAL>()
-                .To<DAL.DBDAL.DBDAL>();
-
+              .Bind<IAwardLogic>()
+              .To<AwardLogic>()
+              .InSingletonScope();
             kernel
-                .Bind<IAbstractBLL>()
-                .To<BLL.BasicBLL.BasicBLL>()
+                .Bind<IUserLogic>()
+                .To<UserLogic>()
                 .InSingletonScope();
+            kernel
+                .Bind<IPictureLogic>()
+                .To<PictureLogic>()
+                .InSingletonScope();
+            kernel
+                .Bind<IUserDal>()
+                .To<UserDao>()
+                .InSingletonScope();
+            kernel
+                .Bind<IAwardDal>()
+                .To<AwardDao>()
+                .InSingletonScope();
+            kernel
+                .Bind<IPictureDal>()
+                .To<PictureDao>()
+                .InSingletonScope();
+            kernel
+                .Bind<DBDalConfig>()
+                .ToSelf()
+                .InSingletonScope()
+                .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["UsersAwardsDB"].ConnectionString);
 
-            //kernel
-            //    .Bind<BllModel>()
-            //    .ToSelf()
-            //    .InSingletonScope();
         }
     }
 }

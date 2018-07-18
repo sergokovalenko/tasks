@@ -6,33 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using UsersAward.BLL.AbstractBLL;
 using UsersAward.DAL.AbstractDAL;
-using UsersAward.DAL.DBDAL;
 using UsersAward.Entities;
 
 namespace UsersAward.BLL.BasicBLL
 {
-    public class BasicBLL : IAbstractBLL
+    public class UserLogic : IUserLogic
     {
-        private IAbstractDAL dal;
+        private IUserDal dal;
 
-        public BasicBLL(IAbstractDAL dal)
+        public UserLogic(IUserDal dal)
         {
             this.dal = dal;
-        }
-
-        public bool AddAward(AwardDTO award)
-        {
-            if (award == null || string.IsNullOrWhiteSpace(award.Title) || award.Title.Length > 50)
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(award.Description))
-            {
-                award.Description = "";
-            }
-            award.Id = Guid.NewGuid();
-
-            return dal.AddAward(award);
         }
 
         public bool AddUser(UserDTO user)
@@ -58,29 +42,14 @@ namespace UsersAward.BLL.BasicBLL
             return user == null ? false : dal.AddUser(user);
         }
 
-        public bool DeleteAward(Guid awardId)
-        {
-            return awardId == Guid.Empty ? false : dal.DeleteAward(awardId);
-        }
-
         public bool DeleteUser(Guid userId)
         {
             return userId == Guid.Empty ? false : dal.DeleteUser(userId);
         }
 
-        public IEnumerable<AwardDTO> GetAllAwards()
-        {
-            return dal.GetAllAwards().ToArray();
-        }
-
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, Awards = user.Awards, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate)});
-        }
-
-        public AwardDTO GetAwardById(Guid id)
-        {
-            return dal.GetAwardById(id);
+            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, Awards = user.Awards, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate) });
         }
 
         public UserDTO GetUserById(Guid id)
@@ -93,21 +62,6 @@ namespace UsersAward.BLL.BasicBLL
 
             user.Age = CalculateAge(user.BirthDate);
             return user;
-        }
-
-        public bool UpdateAward(AwardDTO updatedAward)
-        {
-            if (updatedAward == null || string.IsNullOrWhiteSpace(updatedAward.Title))
-            {
-                return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(updatedAward.Description))
-            {
-                updatedAward.Description = "";
-            }
-
-            return dal.UpdateAward(updatedAward);
         }
 
         public bool UpdateUser(UserDTO updatedUser)
@@ -170,24 +124,6 @@ namespace UsersAward.BLL.BasicBLL
             return (bytes, fileType);
         }
 
-        public bool AddImage(ImageDTO img)
-        {
-            if (img == null)
-            {
-                throw new ArgumentNullException(nameof(img));
-            }
-            if (img.OwnerId == Guid.Empty)
-            {
-                throw new ArgumentException(nameof(img.OwnerId));
-            }
-            if (string.IsNullOrWhiteSpace(img.Type))
-            {
-                throw new ArithmeticException(nameof(img.Type));
-            }
-
-            return dal.AddImage(img);
-        }
-
         private int CalculateAge(DateTime birthDate)
         {
             DateTime dateNow = DateTime.Now;
@@ -199,11 +135,6 @@ namespace UsersAward.BLL.BasicBLL
             }
 
             return age;
-        }
-
-        public ImageDTO GetImageById(Guid id)
-        {
-            return dal.GetImageById(id);
         }
     }
 }

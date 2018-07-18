@@ -12,9 +12,9 @@ namespace UsersAward.PLL.Web.Controllers
 {
     public class AwardsController : Controller
     {
-        private BllModel bllModel;
+        private AwardPictureBllModel bllModel;
 
-        public AwardsController(BllModel model)
+        public AwardsController(AwardPictureBllModel model)
         {
             this.bllModel = model;
         }
