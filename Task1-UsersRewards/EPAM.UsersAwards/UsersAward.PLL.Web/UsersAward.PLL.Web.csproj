@@ -154,10 +154,11 @@
     <Compile Include="Models\AwardModels\CreateAwardVM.cs" />
     <Compile Include="Models\AwardModels\DisplayAwardVM.cs" />
     <Compile Include="Models\AwardModels\EditAwardVM.cs" />
-    <Compile Include="Models\BllModel.cs" />
+    <Compile Include="Models\AwardPictureBllModel.cs" />
     <Compile Include="Models\UserModels\CreateUserVM.cs" />
     <Compile Include="Models\UserModels\DisplayUserVM.cs" />
     <Compile Include="Models\UserModels\EditUserVM.cs" />
+    <Compile Include="Models\UserPictureBllModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

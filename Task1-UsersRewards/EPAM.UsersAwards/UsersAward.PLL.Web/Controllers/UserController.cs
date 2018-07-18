@@ -59,26 +59,11 @@ namespace UsersAward.PLL.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: разнести в логику
-                var newUser = Mapper.Map<UserDTO>(user);
-
-                if (bllModel.AddUser(newUser))
+                if (bllModel.CreateUser(user, Request))
                 {
-                    var uploaded = user.Uploaded;
-                    byte[] bytes = new byte[uploaded.ContentLength];
-                    uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
-
-                    var img = new ImageDTO()
-                    {
-                        OwnerId = newUser.Id,
-                        Data = bytes,
-                        Type = uploaded.ContentType
-                    };
-
-                    bllModel.Addimage(img);
-
                     return RedirectToAction("Index");
                 }
+                //сделать вывод об ошибке создания
 
                 return View(user);
             }
@@ -117,11 +102,12 @@ namespace UsersAward.PLL.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updatedUser = Mapper.Map<UserDTO>(user);
-                if (bllModel.UpdateUser(updatedUser))
+                if (bllModel.UpdateUser(user, Request))
                 {
                     return RedirectToAction("Index");
                 }
+
+                //сообщение об ошибке
                 return View(user);
             }
             return View(user);

@@ -19,18 +19,18 @@ namespace UsersAward.BLL.BasicBLL
             this.dal = dal;
         }
 
-        public bool AddUser(UserDTO user)
+        public Guid AddUser(UserDTO user)
         {
             if (user == null || string.IsNullOrWhiteSpace(user.Name))
             {
-                return false;
+                return Guid.Empty;
             }
 
             var age = CalculateAge(user.BirthDate);
 
             if (age > 150 || age < 0)
             {
-                return false;
+                return Guid.Empty;
             }
 
             if (user.Awards == null)
@@ -39,7 +39,13 @@ namespace UsersAward.BLL.BasicBLL
             }
 
             user.Id = Guid.NewGuid();
-            return user == null ? false : dal.AddUser(user);
+
+            if (dal.AddUser(user))
+            {
+                return user.Id;
+            }
+
+            return Guid.Empty;
         }
 
         public bool DeleteUser(Guid userId)

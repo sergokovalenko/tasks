@@ -44,5 +44,23 @@ namespace UsersAward.BLL.BasicBLL
 
             return img;
         }
+
+        public bool UpdateImage(ImageDTO img)
+        {
+            if (img == null)
+            {
+                throw new ArgumentNullException(nameof(img));
+            }
+            if (img.OwnerId == Guid.Empty)
+            {
+                throw new ArgumentException(nameof(img.OwnerId));
+            }
+            if (string.IsNullOrWhiteSpace(img.Type))
+            {
+                throw new ArithmeticException(nameof(img.Type));
+            }
+
+            return dal.UpdateImage(img);
+        }
     }
 }

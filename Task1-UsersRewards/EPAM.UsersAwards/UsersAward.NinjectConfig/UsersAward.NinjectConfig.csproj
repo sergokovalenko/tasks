@@ -64,10 +64,6 @@
       <Project>{446edbab-a839-4a95-a6b7-deb9d6117f31}</Project>
       <Name>UsersAward.BLL.BasicBLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UsersAward.BLL.BllProvider\UsersAward.BLL.BllProvider.csproj">
-      <Project>{3f617b11-fbb2-4142-9b0d-213860f15a7d}</Project>
-      <Name>UsersAward.BLL.BllProvider</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UsersAward.Entities\UsersAward.Entities.csproj">
       <Project>{91eb9bb9-c8a2-466a-a9a6-f8fc498711a8}</Project>
       <Name>UsersAward.Entities</Name>
