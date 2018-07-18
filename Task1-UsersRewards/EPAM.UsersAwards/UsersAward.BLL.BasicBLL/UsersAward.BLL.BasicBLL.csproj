@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicBLL.cs" />
+    <Compile Include="AwardLogic.cs" />
+    <Compile Include="PictureLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractDLL\UsersAward.DAL.AbstractDAL.csproj">

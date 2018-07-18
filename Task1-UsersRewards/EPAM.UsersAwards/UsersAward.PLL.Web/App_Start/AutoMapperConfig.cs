@@ -22,7 +22,6 @@ namespace UsersAward.PLL.Web
                     .ForMember(obj => obj.Awards, opt => opt.UseValue<object>(null))
                     .ForMember(obj => obj.Age, opt => opt.UseValue(-1));
                 cfg.CreateMap<EditUserVM, UserDTO>()
-                    .ForMember(obj => obj.Id, option => option.UseValue(Guid.Empty))
                     .ForMember(obj => obj.Awards, opt => opt.UseValue<object>(null))
                     .ForMember(obj => obj.Age, opt => opt.UseValue(-1)); ;
 

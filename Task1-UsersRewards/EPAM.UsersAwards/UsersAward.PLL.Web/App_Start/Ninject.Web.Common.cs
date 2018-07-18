@@ -61,7 +61,11 @@ namespace UsersAward.PLL.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel
-                .Bind<BllModel>()
+                .Bind<UserPictureBllModel>()
+                .ToSelf()
+                .InSingletonScope();
+            kernel
+                .Bind<AwardPictureBllModel>()
                 .ToSelf()
                 .InSingletonScope();
         }

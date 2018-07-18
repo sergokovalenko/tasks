@@ -7,19 +7,12 @@ using UsersAward.Entities;
 
 namespace UsersAward.DAL.AbstractDAL
 {
-    public interface IAbstractDAL
+    public interface IUserDal
     {
         IEnumerable<UserDTO> GetAllUsers();
-        IEnumerable<AwardDTO> GetAllAwards();
         UserDTO GetUserById(Guid id);
-        AwardDTO GetAwardById(Guid id);
-        ImageDTO GetImageById(Guid id);
         bool DeleteUser(Guid userId);
-        bool DeleteAward(Guid awardId);
         bool AddUser(UserDTO user);
-        bool AddAward(AwardDTO award);
         bool UpdateUser(UserDTO updatedUser);
-        bool UpdateAward(AwardDTO updatedAward);
-        bool AddImage(ImageDTO img);
     }
 }

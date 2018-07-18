@@ -11,7 +11,8 @@
 
 <h2>Add user</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "User", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -34,12 +35,7 @@
                 @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-10">
-                @using (Html.BeginForm("AddImage", "User", FormMethod.Post,
-                    new { enctype = "multipart/form-data" }))
-                {
-                    <input type="file" name="uploaded" />
-                    <button type="submit">Upload</button>
-                }
+                <input class="btn btn-default" type="file" name="Uploaded" />
             </div>
         </div>
 
