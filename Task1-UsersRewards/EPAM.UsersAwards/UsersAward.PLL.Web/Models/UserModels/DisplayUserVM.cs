@@ -15,6 +15,6 @@ namespace UsersAward.PLL.Web.Models.UserModels
         [Display(Name = "Birthday")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime BirthDate { get; set; }
-        //public List<AwardDTO> Awards { get; set; }
+        public List<AwardDTO> Awards { get; set; }
     }
 }
