@@ -128,5 +128,15 @@ namespace UsersAward.PLL.Web.Controllers
             var fileResult = bllModel.GetFileWithUsers();
             return File(fileResult.bytes, fileResult.type, "All Users");
         }
+
+        public ActionResult DeleteUserImage(Guid ownerId)
+        {
+            if (bllModel.DeleteUserImage(ownerId))
+            {
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

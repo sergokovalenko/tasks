@@ -13,8 +13,8 @@ namespace UsersAward.PLL.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
             AutoMapperConfig.Configurate();
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }
