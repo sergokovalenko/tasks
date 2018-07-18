@@ -9,9 +9,9 @@ namespace UsersAward.PLL.Web.Controllers
 {
     public class ValidationController : Controller
     {
-        private BllModel bllModel;
+        private AwardPictureBllModel bllModel;
 
-        public ValidationController(BllModel model)
+        public ValidationController(AwardPictureBllModel model)
         {
             this.bllModel = model;
         }

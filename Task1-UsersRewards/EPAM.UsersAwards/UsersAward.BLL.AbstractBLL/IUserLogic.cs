@@ -12,7 +12,7 @@ namespace UsersAward.BLL.AbstractBLL
         IEnumerable<UserDTO> GetAllUsers();
         UserDTO GetUserById(Guid id);
         bool DeleteUser(Guid userId);
-        bool AddUser(UserDTO user);
+        Guid AddUser(UserDTO user);
         bool UpdateUser(UserDTO updatedUser);
         (byte[] bytes, string type) GetFileWithUsers();
     }

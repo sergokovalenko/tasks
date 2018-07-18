@@ -73,5 +73,31 @@ namespace UsersAward.Dal.DBDAL
                 return null;
             }
         }
+
+        public bool UpdateImage(ImageDTO img)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Image.UpdateImage]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@OwnerId", img.OwnerId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@Data", img.Data)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@DataType", img.Type)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow > 0;
+            }
+        }
     }
 }
