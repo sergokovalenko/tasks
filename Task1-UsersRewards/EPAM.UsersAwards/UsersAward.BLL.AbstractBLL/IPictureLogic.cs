@@ -12,5 +12,6 @@ namespace UsersAward.BLL.AbstractBLL
         ImageDTO GetImageById(Guid id);
         bool AddImage(ImageDTO img);
         bool UpdateImage(ImageDTO img);
+        bool DeleteImage(Guid OwnerId);
     }
 }

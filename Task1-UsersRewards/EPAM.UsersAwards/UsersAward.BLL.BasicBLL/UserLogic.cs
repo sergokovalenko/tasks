@@ -33,11 +33,6 @@ namespace UsersAward.BLL.BasicBLL
                 return Guid.Empty;
             }
 
-            if (user.Awards == null)
-            {
-                user.Awards = new List<AwardDTO>();
-            }
-
             user.Id = Guid.NewGuid();
 
             if (dal.AddUser(user))
@@ -55,7 +50,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, Awards = user.Awards, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate) });
+            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate) });
         }
 
         public UserDTO GetUserById(Guid id)
@@ -84,11 +79,6 @@ namespace UsersAward.BLL.BasicBLL
                 return false;
             }
 
-            if (updatedUser.Awards == null)
-            {
-                updatedUser.Awards = new List<AwardDTO>();
-            }
-
             return dal.UpdateUser(updatedUser);
         }
 
@@ -106,23 +96,23 @@ namespace UsersAward.BLL.BasicBLL
                 var users = GetAllUsers();
                 string text = "";
 
-                foreach (var item in users)
-                {
-                    text = string.Format("{0}, {1:d}, {2} ", item.Name, item.BirthDate, item.Age);
-                    if (item.Awards == null || item.Awards.Count == 0)
-                    {
-                        text += "hasn't awards";
-                    }
-                    else
-                    {
-                        text += "has awards: ";
-                        foreach (var aw in item.Awards)
-                        {
-                            text += " " + aw.Title;
-                        }
-                    }
-                    writer.WriteLine(text);
-                }
+                //foreach (var item in users)
+                //{
+                //    text = string.Format("{0}, {1:d}, {2} ", item.Name, item.BirthDate, item.Age);
+                //    if (item.Awards == null || item.Awards.Count == 0)
+                //    {
+                //        text += "hasn't awards";
+                //    }
+                //    else
+                //    {
+                //        text += "has awards: ";
+                //        foreach (var aw in item.Awards)
+                //        {
+                //            text += " " + aw.Title;
+                //        }
+                //    }
+                //    writer.WriteLine(text);
+                //}
             }
 
             byte[] bytes = File.ReadAllBytes(filePath);

@@ -36,6 +36,16 @@ namespace UsersAward.BLL.BasicBLL
             return dal.AddImage(img);
         }
 
+        public bool DeleteImage(Guid OwnerId)
+        {
+            if (OwnerId == Guid.Empty)
+            {
+                throw new ArgumentException(nameof(OwnerId));
+            }
+
+            return dal.DeleteImage(OwnerId);
+        }
+
         public ImageDTO GetImageById(Guid id)
         {
             ImageDTO img = dal.GetImageById(id);

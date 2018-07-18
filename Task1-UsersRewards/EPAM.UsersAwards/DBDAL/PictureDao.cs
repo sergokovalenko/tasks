@@ -99,5 +99,22 @@ namespace UsersAward.Dal.DBDAL
                 return countRow > 0;
             }
         }
+
+        public bool DeleteImage(Guid OwnerId)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Image.Deleteimage]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@OwnerId", OwnerId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow > 0;
+            }
+        }
     }
 }

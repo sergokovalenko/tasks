@@ -129,5 +129,10 @@ namespace UsersAward.PLL.Web.Models
 
             return false;
         }
+
+        internal bool DeleteUserImage(Guid ownerId)
+        {
+            return pictureBll.DeleteImage(ownerId);
+        }
     }
 }
