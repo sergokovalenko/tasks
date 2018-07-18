@@ -48,6 +48,16 @@ namespace UsersAward.BLL.BasicBLL
             return dal.GetAwardById(id);
         }
 
+        public IEnumerable<AwardDTO> GetAwardsForUser(Guid userId)
+        {
+            if (userId == Guid.Empty)
+            {
+                throw new ArgumentException(nameof(userId));
+            }
+
+            return dal.GetAwardsForUser(userId);
+        }
+
         public bool UpdateAward(AwardDTO updatedAward)
         {
             if (updatedAward == null || string.IsNullOrWhiteSpace(updatedAward.Title))
