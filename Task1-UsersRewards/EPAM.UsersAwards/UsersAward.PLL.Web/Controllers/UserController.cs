@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
+using UsersAward.PLL.Web.Models.AwardModels;
 using UsersAward.PLL.Web.Models.UserModels;
 
 namespace UsersAward.PLL.Web.Controllers
@@ -45,7 +46,7 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Index()
         {
-            var model = Mapper.Map<IEnumerable<DisplayUserVM>>(bllModel.GetAllUsers());
+            var model = bllModel.GetAllUsersWithAwards();
             return View(model);
         }
 

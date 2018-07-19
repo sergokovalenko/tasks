@@ -55,7 +55,7 @@ namespace UsersAward.BLL.BasicBLL
                 throw new ArgumentException(nameof(userId));
             }
 
-            return dal.GetAwardsForUser(userId);
+            return dal.GetAwardsForUser(userId).ToArray();
         }
 
         public bool UpdateAward(AwardDTO updatedAward)

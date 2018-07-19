@@ -154,7 +154,7 @@ namespace UsersAward.Dal.DBDAL
                 connection.Open();
                 var reader = command.ExecuteReader();
 
-                if (reader.Read())
+                while (reader.Read())
                 {
                     yield return new AwardDTO()
                     {
