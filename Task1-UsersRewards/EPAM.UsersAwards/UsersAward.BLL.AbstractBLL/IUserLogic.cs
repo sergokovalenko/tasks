@@ -14,6 +14,6 @@ namespace UsersAward.BLL.AbstractBLL
         bool DeleteUser(Guid userId);
         Guid AddUser(UserDTO user);
         bool UpdateUser(UserDTO updatedUser);
-        (byte[] bytes, string type) GetFileWithUsers();
+        bool AddAwardToUser(Guid userId, Guid awardId);
     }
 }

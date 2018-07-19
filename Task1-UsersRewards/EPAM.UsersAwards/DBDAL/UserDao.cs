@@ -138,5 +138,27 @@ namespace UsersAward.Dal.DBDAL
                 return countRow > 0;
             }
         }
+
+        public bool AddAwardToUser(Guid userId, Guid awardId)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[UsersAwards.AddAwardToUser]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@UserId", userId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                command.Parameters.Add(new SqlParameter("@AwardId", awardId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                int countRow = command.ExecuteNonQuery();
+
+                return countRow > 0;
+            }
+        }
     }
 }

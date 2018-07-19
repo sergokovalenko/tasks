@@ -165,5 +165,31 @@ namespace UsersAward.Dal.DBDAL
                 }
             }
         }
+
+        public IEnumerable<AwardDTO> GetFreeAwardsForUser(Guid userId)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[UsersAwards.GetFreeUserAwards]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@UserId", userId)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new AwardDTO()
+                    {
+                        Id = (Guid)reader["Id"],
+                        Title = (string)reader["Title"],
+                        Description = (string)reader["Description"]
+                    };
+                }
+            }
+        }
     }
 }

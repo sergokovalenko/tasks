@@ -15,5 +15,6 @@ namespace UsersAward.DAL.AbstractDAL
         bool AddAward(AwardDTO award);
         bool UpdateAward(AwardDTO updatedAward);
         IEnumerable<AwardDTO> GetAwardsForUser(Guid userId);
+        IEnumerable<AwardDTO> GetFreeAwardsForUser(Guid userId);
     }
 }

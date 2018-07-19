@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using UsersAward.BLL.AbstractBLL;
 using UsersAward.Entities;
+using UsersAward.PLL.Web.Models.AwardModels;
 using UsersAward.PLL.Web.Models.UserModels;
 
 namespace UsersAward.PLL.Web.Models
@@ -144,6 +145,21 @@ namespace UsersAward.PLL.Web.Models
             return false;
         }
 
+        public DisplayUserVM GetDetailedUser(Guid id)
+        {
+            var user = userBll.GetUserById(id);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            var userModel = Mapper.Map<DisplayUserVM>(user);
+            userModel.Awards = awardBll.GetAwardsForUser(userModel.Id).ToList();
+
+            return userModel;
+        }
+
         internal bool UpdateUser(EditUserVM user, HttpRequestBase request)
         {
             var updatedUser = Mapper.Map<UserDTO>(user);
@@ -185,6 +201,23 @@ namespace UsersAward.PLL.Web.Models
         internal bool DeleteUserImage(Guid ownerId)
         {
             return pictureBll.DeleteImage(ownerId);
+        }
+
+        public RewardVM GetFreeAwardsForUser(Guid userId)
+        {
+            var awards = Mapper.Map<List<DisplayAwardVM>>(awardBll.GetFreeAwardsForUser(userId).ToList());
+
+            return new RewardVM()
+            {
+                UserId = userId,
+                Awards = awards
+            };
+        }
+
+        public bool AddAwardToUser(Guid userId, Guid awardId)
+        {
+            //TODO: ДОБАВИТЬ НОВУЮ
+            return userBll.AddAwardToUser( userId,  awardId);
         }
     }
 }

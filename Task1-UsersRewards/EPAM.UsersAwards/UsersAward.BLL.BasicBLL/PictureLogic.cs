@@ -49,6 +49,7 @@ namespace UsersAward.BLL.BasicBLL
         public ImageDTO GetImageById(Guid id)
         {
             ImageDTO img = dal.GetImageById(id);
+
             if (img == null)
                 return dal.GetImageById(Guid.Empty);
 

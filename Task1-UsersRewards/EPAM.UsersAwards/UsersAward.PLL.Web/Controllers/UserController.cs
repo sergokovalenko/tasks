@@ -114,14 +114,30 @@ namespace UsersAward.PLL.Web.Controllers
             return View(user);
         }
 
+        public ActionResult Details(Guid id)
+        {
+            var userModel = bllModel.GetDetailedUser(id);
+
+            if (userModel == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(userModel);
+        }
+
         public ActionResult GetImageById(Guid id)
         {
             ImageDTO img = bllModel.GetImageById(id);
 
-            if (img != null)
-                return File(img.Data, img.Type);
+            return File(img.Data, img.Type);
 
-            return null;
+        }
+
+        public ActionResult AddAwardToUser(Guid userId, Guid awardId)
+        {
+            bllModel.AddAwardToUser(userId, awardId);
+            return RedirectToAction("Details", "User", new { id = userId });
         }
 
         public FileContentResult DownloadUsers()

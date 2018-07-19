@@ -58,6 +58,16 @@ namespace UsersAward.BLL.BasicBLL
             return dal.GetAwardsForUser(userId).ToArray();
         }
 
+        public IEnumerable<AwardDTO> GetFreeAwardsForUser(Guid userId)
+        {
+            if (userId == Guid.Empty)
+            {
+                return null;
+            }
+
+            return dal.GetFreeAwardsForUser(userId).ToArray();
+        }
+
         public bool UpdateAward(AwardDTO updatedAward)
         {
             if (updatedAward == null || string.IsNullOrWhiteSpace(updatedAward.Title))
