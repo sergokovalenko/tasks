@@ -11,20 +11,34 @@ namespace UsersAward.PLL.Web.Controllers
 {
     public class AjaxController : Controller
     {
-        private AwardPictureBllModel bllModel;
+        private AwardPictureBllModel awardModel;
+        private UserPictureBllModel userModel;
 
-        public AjaxController(AwardPictureBllModel model)
+        public AjaxController(AwardPictureBllModel model, UserPictureBllModel model2)
         {
-            this.bllModel = model;
+            this.awardModel = model;
+            this.userModel = model2;
         }
 
         public ActionResult ShowModalForAward(Guid awardId)
         {
             if (Request.IsAjaxRequest())
             {
-                var model = Mapper.Map<DisplayAwardVM>(bllModel.GetAwardById(awardId));
+                var model = Mapper.Map<DisplayAwardVM>(awardModel.GetAwardById(awardId));
 
                 return PartialView("_AwardDescriptionModalPartial", model);
+            }
+
+            return null;
+        }
+
+        public ActionResult ShowModalForFreeAward(Guid userId)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var model = userModel.GetFreeAwardsForUser(userId);
+
+                return PartialView("_ShowModalForFreeAward", model);
             }
 
             return null;

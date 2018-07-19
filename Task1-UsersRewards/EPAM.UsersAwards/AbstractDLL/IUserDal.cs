@@ -14,5 +14,6 @@ namespace UsersAward.DAL.AbstractDAL
         bool DeleteUser(Guid userId);
         bool AddUser(UserDTO user);
         bool UpdateUser(UserDTO updatedUser);
+        bool AddAwardToUser(Guid userId, Guid awardId);
     }
 }

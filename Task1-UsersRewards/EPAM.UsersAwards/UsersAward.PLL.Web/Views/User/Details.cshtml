@@ -1,0 +1,65 @@
+﻿@model UsersAward.PLL.Web.Models.UserModels.DisplayUserVM
+
+@section scripts{
+    <script src="~/Scripts/showFreeAwardsScript.js"></script>
+}
+
+<div>
+    <h4>DisplayUserVM</h4>
+    <hr />
+
+    <div class="col-sm-2">
+        <img style="float: right" class="bordered-img award" width="80" height="80" src=@Url.Action("GetImageById", new { id = Model.Id }) title="@Model.Name" />
+    </div>
+
+    <div class="col-sm-10">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BirthDate)
+            </dd>
+
+        </dl>
+
+        <button class="btn btn-default" id="addAward" data-id="@Model.Id">Add award</button>
+    </div>
+    <div class="col-xs-12">
+        <table class="table table-bordered">
+            <tbody>
+
+                @foreach (var item in Model.Awards)
+                {
+                    <tr>
+                        <td> <img style="float: right" class="bordered-img award" width="40" height="40" src=@Url.Action("GetImageById", new { id = item.Id }) title="@item.Title" /></td>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
