@@ -17,5 +17,6 @@ namespace UsersAward.PLL.Web.Models.AwardModels
         public string Title { get; set; }
         [StringLength(250)]
         public string Description { get; set; }
+        public Guid ImageId { get; set; }
     }
 }

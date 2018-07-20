@@ -11,7 +11,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm("Create", "Award", FormMethod.Post,
+@using (Html.BeginForm("Create", "Awards", FormMethod.Post,
                     new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -33,6 +33,15 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input class="btn btn-default" type="file" name="Uploaded" />
+                <span class="text-danger field-validation-error" data-valmsg-for="Title" data-valmsg-replace="true">
+                    <span id="Input-error" class="">@ViewBag.ImageError</span>
+                </span>
             </div>
         </div>
 
