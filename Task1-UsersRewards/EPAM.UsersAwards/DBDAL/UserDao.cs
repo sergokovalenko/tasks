@@ -20,17 +20,13 @@ namespace UsersAward.Dal.DBDAL
             this.config = config;
         }
 
-        public bool AddUser(UserDTO user)
+        public int AddUser(UserDTO user)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
                 SqlCommand command = new SqlCommand("[dbo].[User.AddUser]", connection);
 
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", user.Id)
-                {
-                    Direction = ParameterDirection.Input
-                });
                 command.Parameters.Add(new SqlParameter("@Name", user.Name)
                 {
                     Direction = ParameterDirection.Input
@@ -39,15 +35,19 @@ namespace UsersAward.Dal.DBDAL
                 {
                     Direction = ParameterDirection.Input
                 });
+                command.Parameters.Add(new SqlParameter("@ImageId", user.ImageId)
+                {
+                    Direction = ParameterDirection.Input
+                });
 
                 connection.Open();
-                int countRow = command.ExecuteNonQuery();
+                int id = (int)(decimal)command.ExecuteScalar();
 
-                return countRow > 0;
+                return id;
             }
         }
 
-        public bool DeleteUser(Guid userId)
+        public bool DeleteUser(int userId)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
@@ -77,7 +77,7 @@ namespace UsersAward.Dal.DBDAL
                 {
                     yield return new UserDTO()
                     {
-                        Id = (Guid)reader["Id"],
+                        Id = (int)reader["Id"],
                         Name = (string)reader["Name"],
                         BirthDate = (DateTime)reader["Birthdate"]
                     };
@@ -85,7 +85,7 @@ namespace UsersAward.Dal.DBDAL
             }
         }
 
-        public UserDTO GetUserById(Guid id)
+        public UserDTO GetUserById(int id)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
@@ -103,7 +103,7 @@ namespace UsersAward.Dal.DBDAL
                 {
                     return new UserDTO()
                     {
-                        Id = (Guid)reader["Id"],
+                        Id = (int)reader["Id"],
                         Name = (string)reader["Name"],
                         BirthDate = (DateTime)reader["Birthdate"]
                     };
@@ -131,6 +131,10 @@ namespace UsersAward.Dal.DBDAL
                 {
                     Direction = ParameterDirection.Input
                 });
+                command.Parameters.Add(new SqlParameter("@ImageId", updatedUser.ImageId)
+                {
+                    Direction = ParameterDirection.Input
+                });
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -139,7 +143,7 @@ namespace UsersAward.Dal.DBDAL
             }
         }
 
-        public bool AddAwardToUser(Guid userId, Guid awardId)
+        public bool AddAwardToUser(int userId, int awardId)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {

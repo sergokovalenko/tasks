@@ -36,7 +36,7 @@ namespace UsersAward.PLL.Web.Controllers
             if (ModelState.IsValid)
             {
                 var newUser = Mapper.Map<AwardDTO>(award);
-                if (bllModel.AddAward(newUser))
+                if (bllModel.AddAward(newUser) > 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -46,13 +46,13 @@ namespace UsersAward.PLL.Web.Controllers
             return View(award);
         }
 
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
             bllModel.DeleteAward(id);
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(int id)
         {
             var user = bllModel.GetAwardById(id);
 

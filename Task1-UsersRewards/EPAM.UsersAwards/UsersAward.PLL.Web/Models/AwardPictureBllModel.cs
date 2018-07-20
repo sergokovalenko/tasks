@@ -23,17 +23,17 @@ namespace UsersAward.PLL.Web.Models
             return awardBll.GetAllAwards();
         }
 
-        public bool Addimage(ImageDTO img)
+        public Guid Addimage(ImageDTO img)
         {
             return pictureBll.AddImage(img);
         }
 
-        public bool AddAward(AwardDTO user)
+        public int AddAward(AwardDTO user)
         {
             return awardBll.AddAward(user);
         }
 
-        public bool DeleteAward(Guid id)
+        public bool DeleteAward(int id)
         {
             return awardBll.DeleteAward(id);
         }
@@ -43,7 +43,7 @@ namespace UsersAward.PLL.Web.Models
             return awardBll.UpdateAward(updatedAward);
         }
 
-        public AwardDTO GetAwardById(Guid id)
+        public AwardDTO GetAwardById(int id)
         {
             return awardBll.GetAwardById(id);
         }

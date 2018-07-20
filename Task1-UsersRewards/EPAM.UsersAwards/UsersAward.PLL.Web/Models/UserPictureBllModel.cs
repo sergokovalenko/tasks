@@ -30,12 +30,12 @@ namespace UsersAward.PLL.Web.Models
             return userBll.GetAllUsers();
         }
 
-        public Guid AddUser(UserDTO user)
+        public int AddUser(UserDTO user)
         {
             return userBll.AddUser(user);
         }
 
-        public bool DeleteUser(Guid id)
+        public bool DeleteUser(int id)
         {
             return userBll.DeleteUser(id);
         }
@@ -45,7 +45,7 @@ namespace UsersAward.PLL.Web.Models
             return userBll.UpdateUser(updatedUser);
         }
 
-        public UserDTO GetUserById(Guid id)
+        public UserDTO GetUserById(int id)
         {
             return userBll.GetUserById(id);
         }
@@ -55,10 +55,10 @@ namespace UsersAward.PLL.Web.Models
             var awards = awardBll.GetAllAwards().ToArray();
             List<DisplayUserVM> usersVM = Mapper.Map<IEnumerable<DisplayUserVM>>(userBll.GetAllUsers()).ToList();
 
-            for (int i = 0; i < usersVM.Count; i++)
-            {
-                usersVM[i].Awards = awardBll.GetAwardsForUser(usersVM[i].Id).ToList();
-            }
+            //for (int i = 0; i < usersVM.Count; i++)
+            //{
+            //    usersVM[i].Awards = awardBll.GetAwardsForUser(usersVM[i].Id).ToList();
+            //}
 
             return usersVM;
         }
@@ -109,7 +109,7 @@ namespace UsersAward.PLL.Web.Models
             return pictureBll.GetImageById(id);
         }
 
-        public bool Addimage(ImageDTO img)
+        public Guid Addimage(ImageDTO img)
         {
             return pictureBll.AddImage(img);
         }
@@ -118,34 +118,35 @@ namespace UsersAward.PLL.Web.Models
         {
             var newUser = Mapper.Map<UserDTO>(user);
 
-            Guid newUserId = AddUser(newUser);
+            int newUserId = AddUser(newUser);
 
-            if (newUserId != Guid.Empty)
-            {
-                var uploaded = request.Files["Uploaded"];
+            //TODO: загрузка картинки для пользователя. Сначала загрузить картинку, вернуть её гуид и потом создать пользователя
+            //if (newUserId != 0)
+            //{
+            //    var uploaded = request.Files["Uploaded"];
 
-                if (uploaded != null)
-                {
-                    byte[] bytes = new byte[uploaded.ContentLength];
-                    uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
+            //    if (uploaded != null)
+            //    {
+            //        byte[] bytes = new byte[uploaded.ContentLength];
+            //        uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
 
-                    var img = new ImageDTO()
-                    {
-                        OwnerId = newUserId,
-                        Data = bytes,
-                        Type = uploaded.ContentType
-                    };
+            //        var img = new ImageDTO()
+            //        {
+            //            OwnerId = newUserId,
+            //            Data = bytes,
+            //            Type = uploaded.ContentType
+            //        };
 
-                    Addimage(img);
-                }
+            //        Addimage(img);
+            //    }
 
-                return true;
-            }
+            //    return true;
+            //}
 
             return false;
         }
 
-        public DisplayUserVM GetDetailedUser(Guid id)
+        public DisplayUserVM GetDetailedUser(int id)
         {
             var user = userBll.GetUserById(id);
 
@@ -164,36 +165,36 @@ namespace UsersAward.PLL.Web.Models
         {
             var updatedUser = Mapper.Map<UserDTO>(user);
 
-            if (UpdateUser(updatedUser))
-            {
-                var uploaded = request.Files["Uploaded"];
+            //if (UpdateUser(updatedUser))
+            //{
+            //    var uploaded = request.Files["Uploaded"];
 
-                if (uploaded == null)
-                {
-                    return false;
-                }
+            //    if (uploaded == null)
+            //    {
+            //        return false;
+            //    }
 
-                byte[] bytes = new byte[uploaded.ContentLength];
-                uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
+            //    byte[] bytes = new byte[uploaded.ContentLength];
+            //    uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
 
-                var img = new ImageDTO()
-                {
-                    OwnerId = updatedUser.Id,
-                    Data = bytes,
-                    Type = uploaded.ContentType
-                };
+            //    var img = new ImageDTO()
+            //    {
+            //        OwnerId = updatedUser.Id,
+            //        Data = bytes,
+            //        Type = uploaded.ContentType
+            //    };
 
-                if (pictureBll.GetImageById(img.OwnerId).OwnerId == Guid.Empty)
-                {
-                    pictureBll.AddImage(img);
-                }
-                else
-                {
-                    pictureBll.UpdateImage(img);
-                }
+            //    if (pictureBll.GetImageById(img.OwnerId).OwnerId == Guid.Empty)
+            //    {
+            //        pictureBll.AddImage(img);
+            //    }
+            //    else
+            //    {
+            //        pictureBll.UpdateImage(img);
+            //    }
 
-                return true;
-            }
+            //    return true;
+            //}
 
             return false;
         }
@@ -203,7 +204,7 @@ namespace UsersAward.PLL.Web.Models
             return pictureBll.DeleteImage(ownerId);
         }
 
-        public RewardVM GetFreeAwardsForUser(Guid userId)
+        public RewardVM GetFreeAwardsForUser(int userId)
         {
             var awards = Mapper.Map<List<DisplayAwardVM>>(awardBll.GetFreeAwardsForUser(userId).ToList());
 
@@ -214,9 +215,8 @@ namespace UsersAward.PLL.Web.Models
             };
         }
 
-        public bool AddAwardToUser(Guid userId, Guid awardId)
+        public bool AddAwardToUser(int userId, int awardId)
         {
-            //TODO: ДОБАВИТЬ НОВУЮ
             return userBll.AddAwardToUser( userId,  awardId);
         }
     }

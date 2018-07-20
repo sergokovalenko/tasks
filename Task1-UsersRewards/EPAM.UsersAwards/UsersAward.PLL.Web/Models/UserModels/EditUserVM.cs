@@ -8,7 +8,7 @@ namespace UsersAward.PLL.Web.Models.UserModels
 {
     public class EditUserVM
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [StringLength(50)]
         public string Name { get; set; }
         [Required]

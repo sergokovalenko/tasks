@@ -20,7 +20,7 @@ namespace UsersAward.PLL.Web.Controllers
             this.userModel = model2;
         }
 
-        public ActionResult ShowModalForAward(Guid awardId)
+        public ActionResult ShowModalForAward(int awardId)
         {
             if (Request.IsAjaxRequest())
             {
@@ -32,7 +32,7 @@ namespace UsersAward.PLL.Web.Controllers
             return null;
         }
 
-        public ActionResult ShowModalForFreeAward(Guid userId)
+        public ActionResult ShowModalForFreeAward(int userId)
         {
             if (Request.IsAjaxRequest())
             {

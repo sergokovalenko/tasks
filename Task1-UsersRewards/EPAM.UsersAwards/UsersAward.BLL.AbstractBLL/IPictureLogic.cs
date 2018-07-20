@@ -10,7 +10,7 @@ namespace UsersAward.BLL.AbstractBLL
     public interface IPictureLogic
     {
         ImageDTO GetImageById(Guid id);
-        bool AddImage(ImageDTO img);
+        Guid AddImage(ImageDTO img);
         bool UpdateImage(ImageDTO img);
         bool DeleteImage(Guid OwnerId);
     }

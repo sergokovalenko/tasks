@@ -18,7 +18,7 @@ namespace UsersAward.BLL.BasicBLL
             this.dal = dal;
         }
 
-        public bool AddImage(ImageDTO img)
+        public Guid AddImage(ImageDTO img)
         {
             if (img == null)
             {
@@ -33,7 +33,14 @@ namespace UsersAward.BLL.BasicBLL
                 throw new ArithmeticException(nameof(img.Type));
             }
 
-            return dal.AddImage(img);
+            img.OwnerId = Guid.NewGuid();
+
+            if (dal.AddImage(img))
+            {
+                return img.OwnerId;
+            }
+
+            return Guid.Empty;
         }
 
         public bool DeleteImage(Guid OwnerId)
