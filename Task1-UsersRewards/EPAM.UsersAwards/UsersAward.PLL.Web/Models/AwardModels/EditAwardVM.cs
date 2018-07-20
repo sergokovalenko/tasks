@@ -9,7 +9,7 @@ namespace UsersAward.PLL.Web.Models.AwardModels
 {
     public class EditAwardVM
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
         [RegularExpression(@"[a-zA-Z0-9]([ -]?[0-9a-zA-Z]){0,49}", ErrorMessage = "Only letters, digits, spaces and -")]

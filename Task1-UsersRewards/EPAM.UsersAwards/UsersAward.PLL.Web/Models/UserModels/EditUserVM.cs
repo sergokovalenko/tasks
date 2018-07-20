@@ -14,5 +14,6 @@ namespace UsersAward.PLL.Web.Models.UserModels
         [Required]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+        public Guid ImageId { get; set; }
     }
 }
