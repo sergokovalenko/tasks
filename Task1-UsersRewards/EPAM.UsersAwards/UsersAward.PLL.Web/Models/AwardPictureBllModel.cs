@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using UsersAward.BLL.AbstractBLL;
 using UsersAward.Entities;
+using UsersAward.PLL.Web.Models.AwardModels;
 
 namespace UsersAward.PLL.Web.Models
 {
@@ -28,9 +30,33 @@ namespace UsersAward.PLL.Web.Models
             return pictureBll.AddImage(img);
         }
 
-        public int AddAward(AwardDTO user)
+        internal bool CreateAward(CreateAwardVM award, HttpRequestBase request)
         {
-            return awardBll.AddAward(user);
+            Guid imageId = Guid.Empty;
+            var newAward = Mapper.Map<AwardDTO>(award);
+            var uploaded = request.Files["Uploaded"];
+
+            if (uploaded == null || uploaded.ContentLength == 0)
+            {
+                return false;
+            }
+
+            byte[] bytes = new byte[uploaded.ContentLength];
+            uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
+
+            var img = new ImageDTO()
+            {
+                OwnerId = Guid.NewGuid(),
+                Data = bytes,
+                Type = uploaded.ContentType
+            };
+
+            imageId = Addimage(img);
+            newAward.ImageId = imageId;
+
+            int newAwardId = awardBll.AddAward(newAward);
+
+            return newAwardId != 0;
         }
 
         public bool DeleteAward(int id)

@@ -35,11 +35,13 @@ namespace UsersAward.PLL.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newUser = Mapper.Map<AwardDTO>(award);
-                if (bllModel.AddAward(newUser) > 0)
+                if (bllModel.CreateAward(award, Request))
                 {
                     return RedirectToAction("Index");
                 }
+
+                ViewBag.ImageError = "Image required";
+
                 return View(award);
             }
 
