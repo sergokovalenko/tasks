@@ -43,7 +43,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate) });
+            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
         }
 
         public UserDTO GetUserById(int id)

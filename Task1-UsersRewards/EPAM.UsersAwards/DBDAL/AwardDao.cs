@@ -76,11 +76,13 @@ namespace UsersAward.Dal.DBDAL
 
                 while (reader.Read())
                 {
+                    string description = reader["Description"] == DBNull.Value ? "" : (string)reader["Description"];
+
                     yield return new AwardDTO()
                     {
                         Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
-                        Description = (string)reader["Description"]
+                        Description = description
                     };
                 }
             }
@@ -102,11 +104,13 @@ namespace UsersAward.Dal.DBDAL
 
                 if (reader.Read())
                 {
+                    string description = reader["Description"] == DBNull.Value ? "" : (string)reader["Description"];
+
                     return new AwardDTO()
                     {
                         Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
-                        Description = (string)reader["Description"]
+                        Description = description
                     };
                 }
 

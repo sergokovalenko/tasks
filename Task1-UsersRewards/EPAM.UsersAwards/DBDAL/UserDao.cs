@@ -79,7 +79,8 @@ namespace UsersAward.Dal.DBDAL
                     {
                         Id = (int)reader["Id"],
                         Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"]
+                        BirthDate = (DateTime)reader["Birthdate"],
+                        ImageId = (Guid)reader["ImageId"]
                     };
                 }
             }
@@ -105,7 +106,8 @@ namespace UsersAward.Dal.DBDAL
                     {
                         Id = (int)reader["Id"],
                         Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"]
+                        BirthDate = (DateTime)reader["Birthdate"],
+                        ImageId = (Guid)reader["ImageId"]
                     };
                 }
 

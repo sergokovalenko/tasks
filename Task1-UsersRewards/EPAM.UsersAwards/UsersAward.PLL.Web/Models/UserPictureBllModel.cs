@@ -53,12 +53,13 @@ namespace UsersAward.PLL.Web.Models
         public IEnumerable<DisplayUserVM> GetAllUsersWithAwards()
         {
             var awards = awardBll.GetAllAwards().ToArray();
+            var users = userBll.GetAllUsers().ToList();
             List<DisplayUserVM> usersVM = Mapper.Map<IEnumerable<DisplayUserVM>>(userBll.GetAllUsers()).ToList();
 
-            //for (int i = 0; i < usersVM.Count; i++)
-            //{
-            //    usersVM[i].Awards = awardBll.GetAwardsForUser(usersVM[i].Id).ToList();
-            //}
+            for (int i = 0; i < usersVM.Count; i++)
+            {
+                usersVM[i].Awards = awardBll.GetAwardsForUser(usersVM[i].Id).ToList();
+            }
 
             return usersVM;
         }
@@ -116,32 +117,32 @@ namespace UsersAward.PLL.Web.Models
 
         internal bool CreateUser(CreateUserVM user, HttpRequestBase request)
         {
+            Guid imageId = Guid.Empty;
             var newUser = Mapper.Map<UserDTO>(user);
+            var uploaded = request.Files["Uploaded"];
+
+            if (uploaded != null)
+            {
+                byte[] bytes = new byte[uploaded.ContentLength];
+                uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
+
+                var img = new ImageDTO()
+                {
+                    OwnerId = Guid.NewGuid(),
+                    Data = bytes,
+                    Type = uploaded.ContentType
+                };
+
+                imageId = Addimage(img);
+                newUser.ImageId = imageId;
+            }
 
             int newUserId = AddUser(newUser);
 
-            //TODO: загрузка картинки для пользователя. Сначала загрузить картинку, вернуть её гуид и потом создать пользователя
-            //if (newUserId != 0)
-            //{
-            //    var uploaded = request.Files["Uploaded"];
-
-            //    if (uploaded != null)
-            //    {
-            //        byte[] bytes = new byte[uploaded.ContentLength];
-            //        uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
-
-            //        var img = new ImageDTO()
-            //        {
-            //            OwnerId = newUserId,
-            //            Data = bytes,
-            //            Type = uploaded.ContentType
-            //        };
-
-            //        Addimage(img);
-            //    }
-
-            //    return true;
-            //}
+            if (newUserId != 0)
+            {
+                return true;
+            }
 
             return false;
         }

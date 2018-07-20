@@ -55,7 +55,7 @@
             <td>
                 @foreach (var award in item.Awards)
                 {
-                    <img class="bordered-img award" width="40" height="40" src=@Url.Action("GetImageById", new { id = award.Id }) title="@award.Title" data-id="@award.Id" />
+                    <img class="bordered-img award" width="40" height="40" src=@Url.Action("GetImageById", new { id = award.ImageId }) title="@award.Title" data-id="@award.Id" />
                 }
             </td>
             <td>

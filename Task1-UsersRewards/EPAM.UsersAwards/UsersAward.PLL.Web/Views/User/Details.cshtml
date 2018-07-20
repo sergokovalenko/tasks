@@ -9,7 +9,7 @@
     <hr />
 
     <div class="col-sm-2">
-        <img style="float: right" class="bordered-img award" width="80" height="80" src=@Url.Action("GetImageById", new { id = Model.Id }) title="@Model.Name" />
+        <img style="float: right" class="bordered-img award" width="80" height="80" src=@Url.Action("GetImageById", new { id = Model.ImageId }) title="@Model.Name" />
     </div>
 
     <div class="col-sm-10">
@@ -38,9 +38,16 @@
                 @Html.DisplayFor(model => model.BirthDate)
             </dd>
 
+            <dt>
+                @Html.DisplayName("Awards")
+            </dt>
+
+            <dd>
+                <button class="btn btn-default" id="addAward" data-id="@Model.Id">Add award</button>
+            </dd>
         </dl>
 
-        <button class="btn btn-default" id="addAward" data-id="@Model.Id">Add award</button>
+        
     </div>
     <div class="col-xs-12">
         <table class="table table-bordered">
@@ -49,7 +56,7 @@
                 @foreach (var item in Model.Awards)
                 {
                     <tr>
-                        <td> <img style="float: right" class="bordered-img award" width="40" height="40" src=@Url.Action("GetImageById", new { id = item.Id }) title="@item.Title" /></td>
+                        <td> <img style="float: right" class="bordered-img award" width="40" height="40" src=@Url.Action("GetImageById", new { id = item.ImageId }) title="@item.Title" /></td>
                         <td>@item.Title</td>
                         <td>@item.Description</td>
                     </tr>

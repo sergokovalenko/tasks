@@ -15,7 +15,7 @@ namespace UsersAward.PLL.Web
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<UserDTO, Models.UserModels.DisplayUserVM>()
+                cfg.CreateMap<UserDTO, DisplayUserVM>()
                     .ForMember(obj => obj.Awards, (opt => opt.UseValue(new List<AwardDTO>())));
                 cfg.CreateMap<UserDTO, CreateUserVM>();
                 cfg.CreateMap<CreateUserVM, UserDTO>()
