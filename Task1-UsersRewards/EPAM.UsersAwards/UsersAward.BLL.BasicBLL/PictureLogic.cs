@@ -75,7 +75,7 @@ namespace UsersAward.BLL.BasicBLL
             }
             if (string.IsNullOrWhiteSpace(img.Type))
             {
-                throw new ArithmeticException(nameof(img.Type));
+                throw new ArgumentException(nameof(img.Type));
             }
 
             return dal.UpdateImage(img);

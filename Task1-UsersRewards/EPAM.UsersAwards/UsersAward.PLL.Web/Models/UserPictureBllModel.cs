@@ -121,7 +121,7 @@ namespace UsersAward.PLL.Web.Models
             var newUser = Mapper.Map<UserDTO>(user);
             var uploaded = request.Files["Uploaded"];
 
-            if (uploaded != null)
+            if (uploaded != null && uploaded.ContentLength != 0)
             {
                 byte[] bytes = new byte[uploaded.ContentLength];
                 uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
@@ -165,39 +165,38 @@ namespace UsersAward.PLL.Web.Models
         internal bool UpdateUser(EditUserVM user, HttpRequestBase request)
         {
             var updatedUser = Mapper.Map<UserDTO>(user);
+            var uploaded = request.Files["Uploaded"];
 
-            //if (UpdateUser(updatedUser))
-            //{
-            //    var uploaded = request.Files["Uploaded"];
+            if (uploaded != null && uploaded.ContentLength != 0)
+            {
+                bool hadImage = true;
+                byte[] bytes = new byte[uploaded.ContentLength];
+                uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
 
-            //    if (uploaded == null)
-            //    {
-            //        return false;
-            //    }
+                if (updatedUser.ImageId == Guid.Empty)
+                {
+                    updatedUser.ImageId = Guid.NewGuid();
+                    hadImage = false;
+                }
 
-            //    byte[] bytes = new byte[uploaded.ContentLength];
-            //    uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
+                var img = new ImageDTO()
+                {
+                    OwnerId = updatedUser.ImageId,
+                    Data = bytes,
+                    Type = uploaded.ContentType
+                };
 
-            //    var img = new ImageDTO()
-            //    {
-            //        OwnerId = updatedUser.Id,
-            //        Data = bytes,
-            //        Type = uploaded.ContentType
-            //    };
+                if (hadImage)
+                {
+                    pictureBll.UpdateImage(img);
+                }
+                else
+                {
+                    updatedUser.ImageId = pictureBll.AddImage(img);
+                }
+            }
 
-            //    if (pictureBll.GetImageById(img.OwnerId).OwnerId == Guid.Empty)
-            //    {
-            //        pictureBll.AddImage(img);
-            //    }
-            //    else
-            //    {
-            //        pictureBll.UpdateImage(img);
-            //    }
-
-            //    return true;
-            //}
-
-            return false;
+            return UpdateUser(updatedUser);
         }
 
         internal bool DeleteUserImage(Guid ownerId)
@@ -218,7 +217,7 @@ namespace UsersAward.PLL.Web.Models
 
         public bool AddAwardToUser(int userId, int awardId)
         {
-            return userBll.AddAwardToUser( userId,  awardId);
+            return userBll.AddAwardToUser(userId, awardId);
         }
     }
 }
