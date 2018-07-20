@@ -18,24 +18,24 @@ namespace UsersAward.BLL.BasicBLL
             this.dal = dal;
         }
 
-        public bool AddAward(AwardDTO award)
+        public int AddAward(AwardDTO award)
         {
             if (award == null || string.IsNullOrWhiteSpace(award.Title) || award.Title.Length > 50)
             {
-                return false;
+                throw new ArgumentException(nameof(award));
             }
             if (string.IsNullOrWhiteSpace(award.Description))
             {
                 award.Description = "";
             }
-            award.Id = Guid.NewGuid();
+            award.Id = -1;
 
             return dal.AddAward(award);
         }
 
-        public bool DeleteAward(Guid awardId)
+        public bool DeleteAward(int awardId)
         {
-            return awardId == Guid.Empty ? false : dal.DeleteAward(awardId);
+            return dal.DeleteAward(awardId);
         }
 
         public IEnumerable<AwardDTO> GetAllAwards()
@@ -43,24 +43,19 @@ namespace UsersAward.BLL.BasicBLL
             return dal.GetAllAwards().ToArray();
         }
 
-        public AwardDTO GetAwardById(Guid id)
+        public AwardDTO GetAwardById(int id)
         {
             return dal.GetAwardById(id);
         }
 
-        public IEnumerable<AwardDTO> GetAwardsForUser(Guid userId)
+        public IEnumerable<AwardDTO> GetAwardsForUser(int userId)
         {
-            if (userId == Guid.Empty)
-            {
-                throw new ArgumentException(nameof(userId));
-            }
-
             return dal.GetAwardsForUser(userId).ToArray();
         }
 
-        public IEnumerable<AwardDTO> GetFreeAwardsForUser(Guid userId)
+        public IEnumerable<AwardDTO> GetFreeAwardsForUser(int userId)
         {
-            if (userId == Guid.Empty)
+            if (userId <= 0)
             {
                 return null;
             }

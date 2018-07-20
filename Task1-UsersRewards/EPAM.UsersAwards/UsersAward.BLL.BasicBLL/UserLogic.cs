@@ -19,33 +19,26 @@ namespace UsersAward.BLL.BasicBLL
             this.dal = dal;
         }
 
-        public Guid AddUser(UserDTO user)
+        public int AddUser(UserDTO user)
         {
             if (user == null || string.IsNullOrWhiteSpace(user.Name))
             {
-                return Guid.Empty;
+                throw new ArgumentNullException(nameof(user));
             }
 
             var age = CalculateAge(user.BirthDate);
 
             if (age > 150 || age < 0)
             {
-                return Guid.Empty;
+                throw new ArgumentException("Error data");
             }
 
-            user.Id = Guid.NewGuid();
-
-            if (dal.AddUser(user))
-            {
-                return user.Id;
-            }
-
-            return Guid.Empty;
+            return dal.AddUser(user);
         }
 
-        public bool DeleteUser(Guid userId)
+        public bool DeleteUser(int userId)
         {
-            return userId == Guid.Empty ? false : dal.DeleteUser(userId);
+            return dal.DeleteUser(userId);
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
@@ -53,7 +46,7 @@ namespace UsersAward.BLL.BasicBLL
             return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate) });
         }
 
-        public UserDTO GetUserById(Guid id)
+        public UserDTO GetUserById(int id)
         {
             UserDTO user = dal.GetUserById(id);
             if (user == null)
@@ -82,7 +75,7 @@ namespace UsersAward.BLL.BasicBLL
             return dal.UpdateUser(updatedUser);
         }
 
-        public bool AddAwardToUser(Guid userId, Guid awardId)
+        public bool AddAwardToUser(int userId, int awardId)
         {
             return dal.AddAwardToUser(userId, awardId);
         }

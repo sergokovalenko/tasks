@@ -16,18 +16,24 @@ namespace UsersAward.PLL.Web
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UserDTO, Models.UserModels.DisplayUserVM>()
-                    .ForMember(obj => obj.Awards, (IMemberConfigurationExpression<UserDTO, Models.UserModels.DisplayUserVM, List<AwardDTO>> opt) => opt.UseValue(new List<AwardDTO>()));
+                    .ForMember(obj => obj.Awards, (opt => opt.UseValue(new List<AwardDTO>())));
                 cfg.CreateMap<UserDTO, CreateUserVM>();
                 cfg.CreateMap<CreateUserVM, UserDTO>()
-                    .ForMember(obj => obj.Id, (IMemberConfigurationExpression<CreateUserVM, UserDTO, Guid> option) => option.UseValue(Guid.Empty))
-                    .ForMember(obj => obj.Age, (IMemberConfigurationExpression<CreateUserVM, UserDTO, int> opt) => opt.UseValue(-1));
-                cfg.CreateMap<EditUserVM, UserDTO>()
-                    .ForMember(obj => obj.Age, (IMemberConfigurationExpression<EditUserVM, UserDTO, int> opt) => opt.UseValue(-1)); 
+                    .ForMember(obj => obj.Id, (opt => opt.UseValue(-1)))
+                    .ForMember(obj => obj.Age, (opt => opt.UseValue(-1)))
+                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
 
-                cfg.CreateMap<AwardDTO, Models.AwardModels.DisplayAwardVM>();
+                cfg.CreateMap<EditUserVM, UserDTO>()
+                    .ForMember(obj => obj.Age, (opt => opt.UseValue(-1)))
+                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
+
+                cfg.CreateMap<AwardDTO, DisplayAwardVM>();
                 cfg.CreateMap<AwardDTO, CreateAwardVM>();
-                cfg.CreateMap<CreateAwardVM, AwardDTO>().ForMember(obj => obj.Id, (IMemberConfigurationExpression<CreateAwardVM, AwardDTO, Guid> option) => option.UseValue(Guid.Empty));
-                cfg.CreateMap<EditAwardVM, AwardDTO>();
+                cfg.CreateMap<CreateAwardVM, AwardDTO>()
+                    .ForMember(obj => obj.Id, (opt => opt.UseValue(-1)))
+                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty))); ;
+                cfg.CreateMap<EditAwardVM, AwardDTO>()
+                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
             });
 
             Mapper.AssertConfigurationIsValid();

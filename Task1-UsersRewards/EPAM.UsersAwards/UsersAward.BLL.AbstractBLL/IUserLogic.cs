@@ -10,10 +10,10 @@ namespace UsersAward.BLL.AbstractBLL
     public interface IUserLogic
     {
         IEnumerable<UserDTO> GetAllUsers();
-        UserDTO GetUserById(Guid id);
-        bool DeleteUser(Guid userId);
-        Guid AddUser(UserDTO user);
+        UserDTO GetUserById(int id);
+        bool DeleteUser(int userId);
+        int AddUser(UserDTO user);
         bool UpdateUser(UserDTO updatedUser);
-        bool AddAwardToUser(Guid userId, Guid awardId);
+        bool AddAwardToUser(int userId, int awardId);
     }
 }

@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
-using UsersAward.PLL.Web.Models.AwardModels;
 using UsersAward.PLL.Web.Models.UserModels;
 
 namespace UsersAward.PLL.Web.Controllers
@@ -64,7 +63,6 @@ namespace UsersAward.PLL.Web.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                //сделать вывод об ошибке создания
 
                 return View(user);
             }
@@ -72,7 +70,7 @@ namespace UsersAward.PLL.Web.Controllers
             return View(user);
         }
 
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
             if (bllModel.DeleteUser(id))
             {
@@ -84,7 +82,7 @@ namespace UsersAward.PLL.Web.Controllers
             }
         }
 
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(int id)
         {
             var user = bllModel.GetUserById(id);
 
@@ -108,13 +106,12 @@ namespace UsersAward.PLL.Web.Controllers
                     return RedirectToAction("Index");
                 }
 
-                //сообщение об ошибке
                 return View(user);
             }
             return View(user);
         }
 
-        public ActionResult Details(Guid id)
+        public ActionResult Details(int id)
         {
             var userModel = bllModel.GetDetailedUser(id);
 
@@ -134,7 +131,7 @@ namespace UsersAward.PLL.Web.Controllers
 
         }
 
-        public ActionResult AddAwardToUser(Guid userId, Guid awardId)
+        public ActionResult AddAwardToUser(int userId, int awardId)
         {
             bllModel.AddAwardToUser(userId, awardId);
             return RedirectToAction("Details", "User", new { id = userId });

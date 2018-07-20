@@ -41,7 +41,7 @@
     {
         <tr>
             <td>
-                <img class="bordered-img" width="40" height="40" src=@Url.Action("GetImageById", new { id = item.Id }) />
+                <img class="bordered-img" width="40" height="40" src=@Url.Action("GetImageById", new { id = item.ImageId }) />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

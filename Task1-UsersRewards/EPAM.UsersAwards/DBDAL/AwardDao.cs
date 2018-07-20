@@ -20,17 +20,13 @@ namespace UsersAward.Dal.DBDAL
             this.config = config;
         }
 
-        public bool AddAward(AwardDTO award)
+        public int AddAward(AwardDTO award)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
                 SqlCommand command = new SqlCommand("[dbo].[Award.AddAward]", connection);
 
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", award.Id)
-                {
-                    Direction = ParameterDirection.Input
-                });
                 command.Parameters.Add(new SqlParameter("@Title", award.Title)
                 {
                     Direction = ParameterDirection.Input
@@ -39,15 +35,19 @@ namespace UsersAward.Dal.DBDAL
                 {
                     Direction = ParameterDirection.Input
                 });
+                command.Parameters.Add(new SqlParameter("@ImageId", award.ImageId)
+                {
+                    Direction = ParameterDirection.Input
+                });
 
                 connection.Open();
-                int countRow = command.ExecuteNonQuery();
+                int id = (int)(decimal)command.ExecuteScalar();
 
-                return countRow > 0;
+                return id;
             }
         }
 
-        public bool DeleteAward(Guid awardId)
+        public bool DeleteAward(int awardId)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
@@ -78,7 +78,7 @@ namespace UsersAward.Dal.DBDAL
                 {
                     yield return new AwardDTO()
                     {
-                        Id = (Guid)reader["Id"],
+                        Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
                         Description = (string)reader["Description"]
                     };
@@ -86,7 +86,7 @@ namespace UsersAward.Dal.DBDAL
             }
         }
 
-        public AwardDTO GetAwardById(Guid id)
+        public AwardDTO GetAwardById(int id)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
@@ -104,7 +104,7 @@ namespace UsersAward.Dal.DBDAL
                 {
                     return new AwardDTO()
                     {
-                        Id = (Guid)reader["Id"],
+                        Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
                         Description = (string)reader["Description"]
                     };
@@ -132,6 +132,10 @@ namespace UsersAward.Dal.DBDAL
                 {
                     Direction = ParameterDirection.Input
                 });
+                command.Parameters.Add(new SqlParameter("@ImageId", updatedAward.ImageId)
+                {
+                    Direction = ParameterDirection.Input
+                });
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -140,7 +144,7 @@ namespace UsersAward.Dal.DBDAL
             }
         }
 
-        public IEnumerable<AwardDTO> GetAwardsForUser(Guid userId)
+        public IEnumerable<AwardDTO> GetAwardsForUser(int userId)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
@@ -158,7 +162,7 @@ namespace UsersAward.Dal.DBDAL
                 {
                     yield return new AwardDTO()
                     {
-                        Id = (Guid)reader["Id"],
+                        Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
                         Description = (string)reader["Description"]
                     };
@@ -166,7 +170,7 @@ namespace UsersAward.Dal.DBDAL
             }
         }
 
-        public IEnumerable<AwardDTO> GetFreeAwardsForUser(Guid userId)
+        public IEnumerable<AwardDTO> GetFreeAwardsForUser(int userId)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
@@ -184,7 +188,7 @@ namespace UsersAward.Dal.DBDAL
                 {
                     yield return new AwardDTO()
                     {
-                        Id = (Guid)reader["Id"],
+                        Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
                         Description = (string)reader["Description"]
                     };
