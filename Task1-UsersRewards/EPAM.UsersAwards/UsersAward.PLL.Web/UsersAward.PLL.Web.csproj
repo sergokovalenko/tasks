@@ -182,6 +182,7 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Ajax\_ShowModalForFreeAward.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Awards\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

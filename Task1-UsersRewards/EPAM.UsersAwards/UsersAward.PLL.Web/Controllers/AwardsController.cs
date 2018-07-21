@@ -30,6 +30,7 @@ namespace UsersAward.PLL.Web.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Create(CreateAwardVM award)
         {
@@ -50,6 +51,19 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Delete(int id)
         {
+            var model = bllModel.GetAward(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+    
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult DeleteAward(int id)
+        {
             bllModel.DeleteAward(id);
             return RedirectToAction("Index");
         }
@@ -68,6 +82,7 @@ namespace UsersAward.PLL.Web.Controllers
             return View(userModel);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Edit(EditAwardVM award)
         {

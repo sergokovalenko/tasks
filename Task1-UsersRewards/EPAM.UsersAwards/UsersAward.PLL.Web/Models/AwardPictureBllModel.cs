@@ -30,6 +30,20 @@ namespace UsersAward.PLL.Web.Models
             return pictureBll.AddImage(img);
         }
 
+        public DisplayAwardVM GetAward(int id)
+        {
+            var award = awardBll.GetAwardById(id);
+
+            if (award == null)
+            {
+                return null;
+            }
+
+            var awardModel = Mapper.Map<DisplayAwardVM>(award);
+
+            return awardModel;
+        }
+
         public bool CreateAward(CreateAwardVM award, HttpRequestBase request)
         {
             Guid imageId = Guid.Empty;
