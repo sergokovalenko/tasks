@@ -184,6 +184,8 @@
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Awards\Delete.cshtml" />
     <Content Include="Views\Awards\Details.cshtml" />
+    <Content Include="Views\User\_DisplayUserInfo.cshtml" />
+    <Content Include="Views\Awards\_DisplayAwardInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,39 @@
+﻿@model UsersAward.PLL.Web.Models.UserModels.DeleteUserVM
+
+<div class="col-sm-2">
+    <img style="float: right" class="bordered-img award" width="80" height="80" src=@Url.Action("GetImageById", new { id = Model.ImageId }) title="@Model.Name" />
+</div>
+
+<div class="col-sm-10">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Awards")
+        </dt>
+
+           
+    </dl>
+</div>
