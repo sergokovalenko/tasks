@@ -72,6 +72,14 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult Delete(int id)
         {
+            var model = bllModel.GetUser(id);
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult DeleteUser(int id)
+        {
             if (bllModel.DeleteUser(id))
             {
                 return RedirectToAction("Index");
@@ -96,6 +104,7 @@ namespace UsersAward.PLL.Web.Controllers
             return View(userModel);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Edit(EditUserVM user)
         {

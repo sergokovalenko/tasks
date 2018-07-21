@@ -25,23 +25,23 @@ namespace UsersAward.PLL.Web
                 defaults: new { controller = "User", action = "Create" }
                 );
 
-            routes.MapRoute(
-                name: null,
-                url: "user/{id}",
-                defaults: new { controller = "User", action = "Details" }
-                );
+            //routes.MapRoute(
+            //    name: null,
+            //    url: "user/{id}",
+            //    defaults: new { controller = "User", action = "Details" }
+            //    );
 
-            routes.MapRoute(
-                name: null,
-                url: "user/{id}/edit",
-                defaults: new { controller = "User", action = "Edit" }
-                );
+            //routes.MapRoute(
+            //    name: null,
+            //    url: "user/{id}/edit",
+            //    defaults: new { controller = "User", action = "Edit" }
+            //    );
 
-            routes.MapRoute(
-                name: null,
-                url: "user/{id}/delete",
-                defaults: new { controller = "User", action = "Delete" }
-                );
+            //routes.MapRoute(
+            //    name: null,
+            //    url: "user/{id}/delete",
+            //    defaults: new { controller = "User", action = "Delete" }
+            //    );
 
             routes.MapRoute(
                 name: null,

@@ -162,6 +162,20 @@ namespace UsersAward.PLL.Web.Models
             return userModel;
         }
 
+        public DeleteUserVM GetUser(int id)
+        {
+            var user = userBll.GetUserById(id);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            var userModel = Mapper.Map<DeleteUserVM>(user);
+
+            return userModel;
+        }
+
         internal bool UpdateUser(EditUserVM user, HttpRequestBase request)
         {
             var updatedUser = Mapper.Map<UserDTO>(user);
