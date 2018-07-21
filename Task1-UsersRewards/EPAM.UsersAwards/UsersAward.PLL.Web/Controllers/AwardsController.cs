@@ -25,6 +25,18 @@ namespace UsersAward.PLL.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Details(int id)
+        {
+            var awardModel = bllModel.GetAward(id);
+
+            if (awardModel == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(awardModel);
+        }
+
         public ActionResult Create()
         {
             return View();
