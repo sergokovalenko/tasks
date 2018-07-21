@@ -8,47 +8,9 @@
     <h4>DisplayUserVM</h4>
     <hr />
 
-    <div class="col-sm-2">
-        <img style="float: right" class="bordered-img award" width="80" height="80" src=@Url.Action("GetImageById", new { id = Model.ImageId }) title="@Model.Name" />
-    </div>
+    @{ Html.RenderPartial("_DisplayUserInfo", AutoMapper.Mapper.Map<DeleteUserVM>( Model)); }
 
-    <div class="col-sm-10">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Age)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Age)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.BirthDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayName("Awards")
-            </dt>
-
-            <dd>
-                <button class="btn btn-default" id="addAward" data-id="@Model.Id">Add award</button>
-            </dd>
-        </dl>
-
-        
-    </div>
+    <button class="btn btn-default" id="addAward" data-id="@Model.Id">Add award</button>
     <div class="col-xs-12">
         <table class="table table-bordered">
             <tbody>
