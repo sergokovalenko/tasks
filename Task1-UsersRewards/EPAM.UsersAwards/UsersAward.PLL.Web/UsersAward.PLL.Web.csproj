@@ -159,6 +159,7 @@
     <Compile Include="Models\AwardModels\EditAwardVM.cs" />
     <Compile Include="Models\AwardPictureBllModel.cs" />
     <Compile Include="Models\UserModels\CreateUserVM.cs" />
+    <Compile Include="Models\UserModels\DeleteUserVM.cs" />
     <Compile Include="Models\UserModels\DisplayUserVM.cs" />
     <Compile Include="Models\UserModels\EditUserVM.cs" />
     <Compile Include="Models\UserModels\RewardVM.cs" />
@@ -180,6 +181,7 @@
     <Content Include="Views\Ajax\_AwardDescriptionModalPartial.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Ajax\_ShowModalForFreeAward.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

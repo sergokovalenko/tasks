@@ -18,6 +18,7 @@ namespace UsersAward.PLL.Web
                 cfg.CreateMap<UserDTO, DisplayUserVM>()
                     .ForMember(obj => obj.Awards, (opt => opt.UseValue(new List<AwardDTO>())));
                 cfg.CreateMap<UserDTO, CreateUserVM>();
+                cfg.CreateMap<UserDTO, DeleteUserVM>();
                 cfg.CreateMap<CreateUserVM, UserDTO>()
                     .ForMember(obj => obj.Id, (opt => opt.UseValue(-1)))
                     .ForMember(obj => obj.Age, (opt => opt.UseValue(-1)))
