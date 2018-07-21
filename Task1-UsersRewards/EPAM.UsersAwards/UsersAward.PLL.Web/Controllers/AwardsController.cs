@@ -73,8 +73,7 @@ namespace UsersAward.PLL.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updatedAward = Mapper.Map<AwardDTO>(award);
-                if (bllModel.UpdateAward(updatedAward))
+                if (bllModel.UpdateAward(award, Request))
                 {
                     return RedirectToAction("Index");
                 }

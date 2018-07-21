@@ -112,7 +112,7 @@ namespace UsersAward.Dal.DBDAL
                         Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
                         Description = description,
-                        ImageId = (Guid)reader["ImageId"],
+                        ImageId = (Guid)reader["ImageId"]
                     };
                 }
 
@@ -170,7 +170,8 @@ namespace UsersAward.Dal.DBDAL
                     {
                         Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
-                        Description = (string)reader["Description"]
+                        Description = (string)reader["Description"],
+                        ImageId = (Guid)reader["ImageId"]
                     };
                 }
             }
@@ -196,7 +197,8 @@ namespace UsersAward.Dal.DBDAL
                     {
                         Id = (int)reader["Id"],
                         Title = (string)reader["Title"],
-                        Description = (string)reader["Description"]
+                        Description = (string)reader["Description"],
+                        ImageId = (Guid)reader["ImageId"]
                     };
                 }
             }

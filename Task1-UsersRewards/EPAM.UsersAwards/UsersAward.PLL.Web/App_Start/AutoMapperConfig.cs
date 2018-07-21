@@ -32,8 +32,7 @@ namespace UsersAward.PLL.Web
                 cfg.CreateMap<CreateAwardVM, AwardDTO>()
                     .ForMember(obj => obj.Id, (opt => opt.UseValue(-1)))
                     .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty))); ;
-                cfg.CreateMap<EditAwardVM, AwardDTO>()
-                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
+                cfg.CreateMap<EditAwardVM, AwardDTO>();
             });
 
             Mapper.AssertConfigurationIsValid();

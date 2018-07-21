@@ -30,7 +30,7 @@ namespace UsersAward.PLL.Web.Models
             return pictureBll.AddImage(img);
         }
 
-        internal bool CreateAward(CreateAwardVM award, HttpRequestBase request)
+        public bool CreateAward(CreateAwardVM award, HttpRequestBase request)
         {
             Guid imageId = Guid.Empty;
             var newAward = Mapper.Map<AwardDTO>(award);
@@ -64,8 +64,26 @@ namespace UsersAward.PLL.Web.Models
             return awardBll.DeleteAward(id);
         }
 
-        public bool UpdateAward(AwardDTO updatedAward)
+        public bool UpdateAward(EditAwardVM award, HttpRequestBase request)
         {
+            var updatedAward = Mapper.Map<AwardDTO>(award);
+            var uploaded = request.Files["Uploaded"];
+
+            if (uploaded != null && uploaded.ContentLength != 0)
+            {
+                byte[] bytes = new byte[uploaded.ContentLength];
+                uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
+
+                var img = new ImageDTO()
+                {
+                    OwnerId = updatedAward.ImageId,
+                    Data = bytes,
+                    Type = uploaded.ContentType
+                };
+
+                pictureBll.UpdateImage(img);
+            }
+
             return awardBll.UpdateAward(updatedAward);
         }
 
