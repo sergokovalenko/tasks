@@ -16,32 +16,32 @@ namespace UsersAward.PLL.Web
             routes.MapRoute(
                 name: null,
                 url: "users/",
-                defaults: new { controller = "User", action = "Index" }
+                defaults: new { controller = "Users", action = "Index" }
                 );
 
             routes.MapRoute(
                 name: null,
                 url: "create-user/",
-                defaults: new { controller = "User", action = "Create" }
+                defaults: new { controller = "Users", action = "Create" }
                 );
 
-            //routes.MapRoute(
-            //    name: null,
-            //    url: "user/{id}",
-            //    defaults: new { controller = "User", action = "Details" }
-            //    );
+            routes.MapRoute(
+                name: null,
+                url: "user/{id}",
+                defaults: new { controller = "Users", action = "Details" }
+                );
 
-            //routes.MapRoute(
-            //    name: null,
-            //    url: "user/{id}/edit",
-            //    defaults: new { controller = "User", action = "Edit" }
-            //    );
+            routes.MapRoute(
+                name: null,
+                url: "user/{id}/edit",
+                defaults: new { controller = "Users", action = "Edit" }
+                );
 
-            //routes.MapRoute(
-            //    name: null,
-            //    url: "user/{id}/delete",
-            //    defaults: new { controller = "User", action = "Delete" }
-            //    );
+            routes.MapRoute(
+                name: null,
+                url: "user/{id}/delete",
+                defaults: new { controller = "Users", action = "Delete" }
+                );
 
             routes.MapRoute(
                 name: null,
@@ -76,7 +76,7 @@ namespace UsersAward.PLL.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Users", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

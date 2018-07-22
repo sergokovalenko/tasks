@@ -1,7 +1,7 @@
 ﻿@model UsersAward.PLL.Web.Models.AwardModels.DisplayAwardVM
 
 <div class="col-sm-2">
-    <img style="float: right" class="bordered-img award" width="80" height="80" src=@Url.Action("GetImageById", "User", new { id = Model.ImageId }) title="@Model.Title" />
+    <img style="float: right" class="bordered-img award" width="80" height="80" src=@Url.Action("GetImageById", "Users", new { id = Model.ImageId }) title="@Model.Title" />
 </div>
 
 <div class="col-sm-10">

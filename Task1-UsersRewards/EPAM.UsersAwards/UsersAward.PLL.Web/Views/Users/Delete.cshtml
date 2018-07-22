@@ -11,7 +11,7 @@
     <hr />
     @{ Html.RenderPartial("_DisplayUserInfo", Model); }
 
-    @using (Html.BeginForm("DeleteUser", "User", FormMethod.Post))
+    @using (Html.BeginForm("DeleteUser", "Users", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(x => x.Id)

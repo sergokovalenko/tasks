@@ -10,11 +10,11 @@ using UsersAward.PLL.Web.Models.UserModels;
 
 namespace UsersAward.PLL.Web.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private UserPictureBllModel bllModel;
 
-        public UserController(UserPictureBllModel model)
+        public UsersController(UserPictureBllModel model)
         {
             this.bllModel = model;
         }
