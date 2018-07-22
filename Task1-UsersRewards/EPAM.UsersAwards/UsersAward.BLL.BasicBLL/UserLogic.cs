@@ -77,6 +77,11 @@ namespace UsersAward.BLL.BasicBLL
 
         public bool AddAwardToUser(int userId, int awardId)
         {
+            if (userId < 0 || awardId < 0)
+            {
+                return false;
+            }
+
             return dal.AddAwardToUser(userId, awardId);
         }
 
@@ -91,6 +96,38 @@ namespace UsersAward.BLL.BasicBLL
             }
 
             return age;
+        }
+
+        public IEnumerable<UserDTO> GetUsersByFirstLetter(char letter)
+        {
+            if (char.IsSeparator(letter))
+            {
+                return null;
+            }
+
+            return dal.GetUsersByFirstLetter(letter).Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
+        }
+
+        public IEnumerable<UserDTO> GetUsersContains(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text) || text.Length > 50)
+            {
+                return null;
+            }
+            text = text.Trim();
+
+            return dal.GetUsersContains(text).Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
+        }
+
+        public UserDTO GetOldestUserByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name) || name.Length > 50)
+            {
+                return null;
+            }
+            name = name.Trim();
+
+            return dal.GetOldestUserByName(name);
         }
     }
 }

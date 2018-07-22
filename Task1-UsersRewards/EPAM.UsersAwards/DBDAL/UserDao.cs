@@ -166,5 +166,86 @@ namespace UsersAward.Dal.DBDAL
                 return countRow > 0;
             }
         }
+
+        public UserDTO GetOldestUserByName(string name)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[User.GetByName]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@name", name)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new UserDTO()
+                    {
+                        Id = (int)reader["Id"],
+                        Name = (string)reader["Name"],
+                        BirthDate = (DateTime)reader["Birthdate"],
+                        ImageId = (Guid)reader["ImageId"]
+                    };
+                }
+
+                return null;
+            }
+        }
+
+        public IEnumerable<UserDTO> GetUsersByFirstLetter(char letter)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[User.GetAllWithFirstLetter]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@symbol", letter)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new UserDTO()
+                    {
+                        Id = (int)reader["Id"],
+                        Name = (string)reader["Name"],
+                        BirthDate = (DateTime)reader["Birthdate"],
+                        ImageId = (Guid)reader["ImageId"]
+                    };
+                }
+            }
+        }
+
+        public IEnumerable<UserDTO> GetUsersContains(string text)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[User.GetAllWithText]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@text", text)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new UserDTO()
+                    {
+                        Id = (int)reader["Id"],
+                        Name = (string)reader["Name"],
+                        BirthDate = (DateTime)reader["Birthdate"],
+                        ImageId = (Guid)reader["ImageId"]
+                    };
+                }
+            }
+        }
     }
 }

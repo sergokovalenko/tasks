@@ -25,6 +25,26 @@ namespace UsersAward.PLL.Web.Models
             this.awardBll = awardBll;
         }
 
+        public object GetModelForHomePage(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return GetAllUsersWithAwards();
+            }
+
+            if (query.Length == 1)
+            {
+                return Mapper.Map<IEnumerable<DisplayUserVM>>(userBll.GetUsersByFirstLetter(query[0]));
+            }
+
+            return Mapper.Map<IEnumerable<DisplayUserVM>>(userBll.GetUsersContains(query));
+        }
+
+        public UserDTO GetOldestUserByName(string name)
+        {
+            return userBll.GetOldestUserByName(name);
+        }
+
         public IEnumerable<UserDTO> GetAllUsers()
         {
             return userBll.GetAllUsers();
@@ -147,16 +167,21 @@ namespace UsersAward.PLL.Web.Models
             return false;
         }
 
-        public DisplayUserVM GetDetailedUser(int id)
+        public DisplayUserVM GetDetailedUser(string id)
         {
-            var user = userBll.GetUserById(id);
+            int userId;
+            DisplayUserVM userModel = null;
+            bool isNumber = int.TryParse(id, out userId);
 
-            if (user == null)
+            if (isNumber)
             {
-                return null;
+                userModel = Mapper.Map<DisplayUserVM>(userBll.GetUserById(userId));
+            }
+            else
+            {
+                userModel = Mapper.Map<DisplayUserVM>(userBll.GetOldestUserByName(id));
             }
 
-            var userModel = Mapper.Map<DisplayUserVM>(user);
             userModel.Awards = awardBll.GetAwardsForUser(userModel.Id).ToList();
 
             return userModel;

@@ -43,9 +43,20 @@ namespace UsersAward.PLL.Web.Controllers
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string query = "")
         {
-            var model = bllModel.GetAllUsersWithAwards();
+            var model = bllModel.GetModelForHomePage(query);
+
+            if (model == null)
+            {
+                return View(new List<DisplayUserVM>());
+            }
+
+            if (model is IEnumerable<DisplayUserVM>)
+            {
+                model = (IEnumerable<DisplayUserVM>)model;
+            }
+
             return View(model);
         }
 
@@ -120,7 +131,7 @@ namespace UsersAward.PLL.Web.Controllers
             return View(user);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             var userModel = bllModel.GetDetailedUser(id);
 
