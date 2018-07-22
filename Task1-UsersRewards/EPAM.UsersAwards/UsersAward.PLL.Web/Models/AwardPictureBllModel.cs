@@ -25,6 +25,21 @@ namespace UsersAward.PLL.Web.Models
             return awardBll.GetAllAwards();
         }
 
+        public object GetModelForHomePage(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return Mapper.Map<IEnumerable<DisplayAwardVM>>(awardBll.GetAllAwards());
+            }
+
+            if (query.Length == 1)
+            {
+                return Mapper.Map<IEnumerable<DisplayAwardVM>>(awardBll.GetAwardsByFirstLetter(query[0]));
+            }
+
+            return Mapper.Map<IEnumerable<DisplayAwardVM>>(awardBll.GetAwardsContains(query));
+        }
+
         public Guid Addimage(ImageDTO img)
         {
             return pictureBll.AddImage(img);
@@ -32,14 +47,23 @@ namespace UsersAward.PLL.Web.Models
 
         public DisplayAwardVM GetAward(int id)
         {
-            var award = awardBll.GetAwardById(id);
+            return Mapper.Map<DisplayAwardVM>(awardBll.GetAwardById(id));
+        }
 
-            if (award == null)
+        public DisplayAwardVM GetAward(string id)
+        {
+            int awardId;
+            DisplayAwardVM awardModel = null;
+            bool isNumber = int.TryParse(id, out awardId);
+
+            if (isNumber)
             {
-                return null;
+                awardModel = Mapper.Map<DisplayAwardVM>(awardBll.GetAwardById(awardId));
             }
-
-            var awardModel = Mapper.Map<DisplayAwardVM>(award);
+            else
+            {
+                awardModel = Mapper.Map<DisplayAwardVM>(awardBll.GetAwardByName(id));
+            }
 
             return awardModel;
         }

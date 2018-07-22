@@ -19,13 +19,24 @@ namespace UsersAward.PLL.Web.Controllers
             this.bllModel = model;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string query = "")
         {
-            var model = Mapper.Map<IEnumerable<DisplayAwardVM>>(bllModel.GetAllAwards());
+            var model = bllModel.GetModelForHomePage(query);
+
+            if (model == null)
+            {
+                return View(new List<DisplayAwardVM>());
+            }
+
+            if (model is IEnumerable<DisplayAwardVM>)
+            {
+                model = (IEnumerable<DisplayAwardVM>)model;
+            }
+
             return View(model);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             var awardModel = bllModel.GetAward(id);
 
