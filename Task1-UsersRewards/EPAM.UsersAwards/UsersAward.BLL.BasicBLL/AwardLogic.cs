@@ -77,5 +77,37 @@ namespace UsersAward.BLL.BasicBLL
 
             return dal.UpdateAward(updatedAward);
         }
+
+        public IEnumerable<AwardDTO> GetAwardsByFirstLetter(char letter)
+        {
+            if (char.IsSeparator(letter))
+            {
+                return null;
+            }
+
+            return dal.GetAwardsByFirstLetter(letter).ToList();
+        }
+
+        public IEnumerable<AwardDTO> GetAwardsContains(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text) || text.Length > 50)
+            {
+                return null;
+            }
+            text = text.Trim();
+
+            return dal.GetAwardsContains(text).ToList();
+        }
+
+        public AwardDTO GetAwardByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name) || name.Length > 50)
+            {
+                return null;
+            }
+            name = name.Trim();
+
+            return dal.GetAwardByName(name);
+        }
     }
 }

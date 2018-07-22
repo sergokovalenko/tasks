@@ -203,5 +203,86 @@ namespace UsersAward.Dal.DBDAL
                 }
             }
         }
+
+        public AwardDTO GetAwardByName(string name)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[dbo].[Award.GetByName]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@title", name)
+                {
+                    Direction = ParameterDirection.Input
+                });
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new AwardDTO()
+                    {
+                        Id = (int)reader["Id"],
+                        Title = (string)reader["Title"],
+                        Description = (string)reader["Description"],
+                        ImageId = (Guid)reader["ImageId"]
+                    };
+                }
+
+                return null;
+            }
+        }
+
+        public IEnumerable<AwardDTO> GetAwardsByFirstLetter(char letter)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[Award.GetAllWithFirstLetter]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@symbol", letter)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new AwardDTO()
+                    {
+                        Id = (int)reader["Id"],
+                        Title = (string)reader["Title"],
+                        Description = (string)reader["Description"],
+                        ImageId = (Guid)reader["ImageId"]
+                    };
+                }
+            }
+        }
+
+        public IEnumerable<AwardDTO> GetAwardsContains(string text)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("[Award.GetAllWithText]", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@text", text)
+                {
+                    Direction = ParameterDirection.Input
+                });
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new AwardDTO()
+                    {
+                        Id = (int)reader["Id"],
+                        Title = (string)reader["Title"],
+                        Description = (string)reader["Description"],
+                        ImageId = (Guid)reader["ImageId"]
+                    };
+                }
+            }
+        }
     }
 }
