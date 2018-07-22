@@ -21,6 +21,12 @@ namespace UsersAward.PLL.Web
 
             routes.MapRoute(
                 name: null,
+                url: "users/{query}",
+                defaults: new { controller = "Users", action = "Index" }
+                );
+
+            routes.MapRoute(
+                name: null,
                 url: "create-user/",
                 defaults: new { controller = "Users", action = "Create" }
                 );
@@ -29,6 +35,12 @@ namespace UsersAward.PLL.Web
                 name: null,
                 url: "user/{id}",
                 defaults: new { controller = "Users", action = "Details" }
+                );
+
+            routes.MapRoute(
+                name: null,
+                url: "user/{str}",
+                defaults: new { controller = "Users", action = "DetailsByName" }
                 );
 
             routes.MapRoute(
