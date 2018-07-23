@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using UsersAward.Entities;
@@ -131,6 +132,18 @@ namespace UsersAward.PLL.Web.Controllers
         {
             bllModel.AddAwardToUser(userId, awardId);
             return RedirectToAction("Details", "Users", new { id = userId });
+        }
+
+        public ActionResult AwardUserByUrl(string userId_awardId)
+        {
+            var answer = bllModel.AwardUserByUrl(userId_awardId);
+
+            if (!answer)
+            {
+                return HttpNotFound();
+            }
+
+            return RedirectToAction("Index", "Users");
         }
 
         public FileContentResult DownloadUsers()

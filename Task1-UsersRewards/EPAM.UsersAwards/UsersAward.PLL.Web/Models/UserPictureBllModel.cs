@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using UsersAward.BLL.AbstractBLL;
@@ -123,6 +124,33 @@ namespace UsersAward.PLL.Web.Models
             File.Delete(filePath);
 
             return (bytes, fileType);
+        }
+
+        public bool AwardUserByUrl(string user_award)
+        {
+            var res = user_award.Split('_');
+
+            if (res == null || res.Length != 2)
+            {
+                return false;
+            }
+
+            int userId = 0,
+                awardId = 0;
+
+            int.TryParse(res[0], out userId);
+            int.TryParse(res[1], out awardId);
+
+            if (userId <= 0 || awardId <= 0)
+            {
+                return false;
+            }
+            if (userBll.GetUserById(userId) == null || awardBll.GetAwardById(awardId) == null)
+            {
+                return false;
+            }
+
+            return AddAwardToUser(userId, awardId);
         }
 
         public ImageDTO GetImageById(Guid id)
