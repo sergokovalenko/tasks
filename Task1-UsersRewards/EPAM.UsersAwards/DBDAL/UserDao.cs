@@ -14,31 +14,24 @@ namespace UsersAward.Dal.DBDAL
     public class UserDao : IUserDal
     {
         private DBDalConfig config;
+        private ConnectionHelper helper;
 
-        public UserDao(DBDalConfig config)
+        public UserDao(DBDalConfig config, ConnectionHelper con)
         {
             this.config = config;
+            this.helper = con;
         }
 
         public int AddUser(UserDTO user)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[User.AddUser]", connection);
-
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Name", user.Name)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Birthdate", user.BirthDate)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@ImageId", user.ImageId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[User.AddUser]",
+                    connection,
+                    new string[] { "@Name", "@Birthdate", "@ImageId" },
+                    new object[] { user.Name, user.BirthDate, user.ImageId }
+                    );
 
                 connection.Open();
                 int id = (int)(decimal)command.ExecuteScalar();
@@ -51,12 +44,13 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[User.DeleteUser]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", userId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[User.GetAllWithText]",
+                    connection,
+                    new string[] { "@Id" },
+                    new object[] { userId }
+                    );
+
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 
@@ -68,20 +62,14 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[Users.GetAll]", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = helper.IntializeCommand("[Users.GetAll]", connection);
+
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    yield return new UserDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    yield return helper.ReadUser(reader);
                 }
             }
         }
@@ -90,25 +78,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[User.GetById]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", id)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[User.GetById]",
+                    connection,
+                    new string[] { "@Id" },
+                    new object[] { id }
+                    );
 
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    return new UserDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    return helper.ReadUser(reader);
                 }
 
                 return null;
@@ -119,24 +101,12 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[User.UpdateUser]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", updatedUser.Id)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Name", updatedUser.Name)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Birthdate", updatedUser.BirthDate)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@ImageId", updatedUser.ImageId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[User.UpdateUser]",
+                    connection,
+                    new string[] { "@Id", "@Name", "@Birthdate", "@ImageId" },
+                    new object[] { updatedUser.Id, updatedUser.Name, updatedUser.BirthDate, updatedUser.ImageId }
+                    );
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -149,16 +119,12 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[UsersAwards.AddAwardToUser]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@UserId", userId)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@AwardId", awardId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[UsersAwards.AddAwardToUser]",
+                    connection,
+                    new string[] { "@UserId", "@AwardId" },
+                    new object[] { userId, awardId }
+                    );
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -171,25 +137,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[User.GetByName]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@name", name)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[User.GetByName]",
+                    connection,
+                    new string[] { "@name" },
+                    new object[] { name }
+                    );
 
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    return new UserDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    return helper.ReadUser(reader);
                 }
 
                 return null;
@@ -200,24 +160,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[User.GetAllWithFirstLetter]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@symbol", letter)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[User.GetAllWithFirstLetter]",
+                    connection,
+                    new string[] { "@symbol" },
+                    new object[] { letter }
+                    );
+
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    yield return new UserDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    yield return helper.ReadUser(reader);
                 }
             }
         }
@@ -226,24 +181,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[User.GetAllWithText]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@text", text)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[User.GetAllWithText]",
+                    connection,
+                    new string[] { "@text" },
+                    new object[] { text }
+                    );
+
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    yield return new UserDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Name = (string)reader["Name"],
-                        BirthDate = (DateTime)reader["Birthdate"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    yield return helper.ReadUser(reader);
                 }
             }
         }

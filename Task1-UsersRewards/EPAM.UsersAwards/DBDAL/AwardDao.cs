@@ -14,31 +14,24 @@ namespace UsersAward.Dal.DBDAL
     public class AwardDao : IAwardDal
     {
         private DBDalConfig config;
+        private ConnectionHelper helper;
 
-        public AwardDao(DBDalConfig config)
+        public AwardDao(DBDalConfig config, ConnectionHelper con)
         {
             this.config = config;
+            this.helper = con;
         }
 
         public int AddAward(AwardDTO award)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Award.AddAward]", connection);
-
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Title", award.Title)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Description", award.Description)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@ImageId", award.ImageId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[Image.Deleteimage]",
+                    connection,
+                    new string[] { "@Title", "@Description", "@ImageId" },
+                    new object[] { award.Title, award.Description, award.ImageId }
+                    );
 
                 connection.Open();
                 int id = (int)(decimal)command.ExecuteScalar();
@@ -51,12 +44,12 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Award.DeleteAward]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", awardId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                   "[dbo].[Award.DeleteAward]",
+                   connection,
+                   new string[] { "@Id" },
+                   new object[] { awardId }
+                   );
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -69,22 +62,13 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Awards.GetAll]", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = helper.IntializeCommand("[dbo].[Awards.GetAll]", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    string description = reader["Description"] == DBNull.Value ? "" : (string)reader["Description"];
-
-                    yield return new AwardDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Title = (string)reader["Title"],
-                        Description = description,
-                        ImageId = (Guid)reader["ImageId"],
-                    };
+                    yield return helper.ReadAward(reader);
                 }
             }
         }
@@ -93,27 +77,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Award.GetById]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", id)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                  "[dbo].[Award.GetById]",
+                  connection,
+                  new string[] { "@Id" },
+                  new object[] { id }
+                  );
 
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    string description = reader["Description"] == DBNull.Value ? "" : (string)reader["Description"];
-
-                    return new AwardDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Title = (string)reader["Title"],
-                        Description = description,
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    return helper.ReadAward(reader);
                 }
 
                 return null;
@@ -124,24 +100,12 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Award.UpdateAward]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", updatedAward.Id)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Title", updatedAward.Title)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Description", updatedAward.Description)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@ImageId", updatedAward.ImageId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                   "[dbo].[Award.UpdateAward]",
+                   connection,
+                   new string[] { "@Id", "@Title", "@Description", "@ImageId" },
+                   new object[] { updatedAward.Id, updatedAward.Title, updatedAward.Description, updatedAward.ImageId }
+                   );
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -154,25 +118,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[UsersAwards.GetUserAwards]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@UserId", userId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                  "[dbo].[UsersAwards.GetUserAwards]",
+                  connection,
+                  new string[] { "@UserId" },
+                  new object[] { userId }
+                  );
 
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    yield return new AwardDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Title = (string)reader["Title"],
-                        Description = (string)reader["Description"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    yield return helper.ReadAward(reader);
                 }
             }
         }
@@ -181,25 +139,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[UsersAwards.GetFreeUserAwards]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@UserId", userId)
-                {
-                    Direction = ParameterDirection.Input
-                });
-
+                SqlCommand command = helper.IntializeCommand(
+                 "[dbo].[UsersAwards.GetFreeUserAwards]",
+                  connection,
+                  new string[] { "@UserId" },
+                  new object[] { userId }
+                  );
+ 
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    yield return new AwardDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Title = (string)reader["Title"],
-                        Description = (string)reader["Description"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    yield return helper.ReadAward(reader);
                 }
             }
         }
@@ -208,25 +160,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Award.GetByName]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@title", name)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                 "[dbo].[UsersAwards.GetFreeUserAwards]",
+                  connection,
+                  new string[] { "@title" },
+                  new object[] { name }
+                  );
 
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    return new AwardDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Title = (string)reader["Title"],
-                        Description = (string)reader["Description"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    return helper.ReadAward(reader);
                 }
 
                 return null;
@@ -237,24 +183,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[Award.GetAllWithFirstLetter]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@symbol", letter)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                 "[dbo].[Award.GetAllWithFirstLetter]",
+                  connection,
+                  new string[] { "@symbol" },
+                  new object[] { letter }
+                  );
+
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    yield return new AwardDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Title = (string)reader["Title"],
-                        Description = (string)reader["Description"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    yield return helper.ReadAward(reader);
                 }
             }
         }
@@ -263,24 +204,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[Award.GetAllWithText]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@text", text)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                 "[dbo].[Award.GetAllWithText]",
+                  connection,
+                  new string[] { "@text" },
+                  new object[] { text }
+                  );
+
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    yield return new AwardDTO()
-                    {
-                        Id = (int)reader["Id"],
-                        Title = (string)reader["Title"],
-                        Description = (string)reader["Description"],
-                        ImageId = (Guid)reader["ImageId"]
-                    };
+                    yield return helper.ReadAward(reader);
                 }
             }
         }
