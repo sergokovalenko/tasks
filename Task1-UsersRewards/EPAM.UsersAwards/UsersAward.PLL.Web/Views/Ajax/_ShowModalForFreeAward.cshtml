@@ -12,7 +12,7 @@
                 @for (int i = 0; i < Model.Awards.Count; i++)
                 {
                     <div>
-                        @Html.ActionLink(Model.Awards[i].Title, "AddAwardToUser", "User", new { userId = Model.UserId, awardId = Model.Awards[i].Id }, new { @class = "award" })
+                        @Html.ActionLink(Model.Awards[i].Title, "AddAwardToUser", "Users", new { userId = Model.UserId, awardId = Model.Awards[i].Id }, new { @class = "award" })
                     </div>
                 }
             </div>

@@ -45,7 +45,7 @@ namespace UsersAward.Dal.DBDAL
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
                 SqlCommand command = helper.IntializeCommand(
-                    "[dbo].[User.GetAllWithText]",
+                    "[dbo].[User.DeleteUser]",
                     connection,
                     new string[] { "@Id" },
                     new object[] { userId }

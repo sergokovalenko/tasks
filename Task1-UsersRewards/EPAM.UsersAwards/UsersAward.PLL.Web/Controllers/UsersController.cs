@@ -19,30 +19,6 @@ namespace UsersAward.PLL.Web.Controllers
             this.bllModel = model;
         }
 
-        //LEGACY
-        public ActionResult AddImage()
-        {
-            return View();
-        }
-
-        //LEGACY
-        [HttpPost]
-        public ActionResult AddImage(HttpPostedFileBase uploaded)
-        {
-            byte[] bytes = new byte[uploaded.ContentLength];
-            uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
-            var img = new ImageDTO()
-            {
-                OwnerId = Guid.NewGuid(),
-                Data = bytes,
-                Type = uploaded.ContentType
-            };
-
-            bllModel.Addimage(img);
-
-            return View();
-        }
-
         public ActionResult Index(string query = "")
         {
             var model = bllModel.GetModelForHomePage(query);
@@ -154,7 +130,7 @@ namespace UsersAward.PLL.Web.Controllers
         public ActionResult AddAwardToUser(int userId, int awardId)
         {
             bllModel.AddAwardToUser(userId, awardId);
-            return RedirectToAction("Details", "User", new { id = userId });
+            return RedirectToAction("Details", "Users", new { id = userId });
         }
 
         public FileContentResult DownloadUsers()

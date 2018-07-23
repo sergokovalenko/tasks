@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('.award').each(function (ind, value) {
         value.addEventListener('click', function () {
             $.ajax({
-                url: 'Ajax/ShowModalForAward',
+                url: '/ShowModalForAward/Ajax/',
                 data: { awardId: value.dataset.id},
                 success: function (response) {
                     $('table.table:eq(0)').after(response);
