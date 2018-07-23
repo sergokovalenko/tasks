@@ -14,30 +14,24 @@ namespace UsersAward.Dal.DBDAL
     public class PictureDao : IPictureDal
     {
         private DBDalConfig config;
+        private ConnectionHelper helper;
 
-        public PictureDao(DBDalConfig config)
+        public PictureDao(DBDalConfig config, ConnectionHelper con)
         {
             this.config = config;
+            this.helper = con;
         }
 
         public bool AddImage(ImageDTO img)
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Image.AddImage]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@OwnerId", img.OwnerId)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Bytes", img.Data)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@DataType", img.Type)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[Image.AddImage]",
+                    connection,
+                    new string[] { "@OwnerId", "@Bytes", "@DataType" },
+                    new object[] { img.OwnerId, img.Data, img.Type }
+                    );
 
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
@@ -50,24 +44,19 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Image.GetById]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@Id", id)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[Image.GetById]",
+                    connection,
+                    new string[] { "@Id" },
+                    new object[] { id }
+                    );
 
                 connection.Open();
                 var reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    return new ImageDTO()
-                    {
-                        OwnerId = (Guid)reader["OwnerId"],
-                        Data = (byte[])reader["Bytes"],
-                        Type = (string)reader["Type"]
-                    };
+                    return helper.ReadImage(reader);
                 }
 
                 return null;
@@ -78,20 +67,12 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Image.UpdateImage]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@OwnerId", img.OwnerId)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@Data", img.Data)
-                {
-                    Direction = ParameterDirection.Input
-                });
-                command.Parameters.Add(new SqlParameter("@DataType", img.Type)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[Image.AddImage]",
+                    connection,
+                    new string[] { "@OwnerId", "@Data", "@DataType" },
+                    new object[] { img.OwnerId, img.Data, img.Type }
+                    );
                 connection.Open();
 
                 int countRow = command.ExecuteNonQuery();
@@ -104,12 +85,12 @@ namespace UsersAward.Dal.DBDAL
         {
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("[dbo].[Image.Deleteimage]", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@OwnerId", OwnerId)
-                {
-                    Direction = ParameterDirection.Input
-                });
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[Image.Deleteimage]",
+                    connection,
+                    new string[] { "@OwnerId" },
+                    new object[] { OwnerId }
+                    );
                 connection.Open();
                 int countRow = command.ExecuteNonQuery();
 

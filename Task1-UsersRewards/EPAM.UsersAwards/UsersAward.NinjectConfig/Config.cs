@@ -50,6 +50,10 @@ namespace UsersAward.NinjectConfig
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["UsersAwardsDB"].ConnectionString);
+            kernel
+                .Bind<ConnectionHelper>()
+                .ToSelf()
+                .InTransientScope();
         }
     }
 }
