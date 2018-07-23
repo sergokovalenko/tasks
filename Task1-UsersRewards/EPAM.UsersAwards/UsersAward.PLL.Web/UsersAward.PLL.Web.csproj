@@ -185,6 +185,7 @@
     <Content Include="Views\Awards\Details.cshtml" />
     <Content Include="Views\Users\_DisplayUserInfo.cshtml" />
     <Content Include="Views\Awards\_DisplayAwardInfo.cshtml" />
+    <Content Include="Views\Shared\_UsersLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

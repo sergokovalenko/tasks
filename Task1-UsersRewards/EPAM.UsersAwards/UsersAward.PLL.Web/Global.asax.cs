@@ -15,7 +15,6 @@ namespace UsersAward.PLL.Web
             AreaRegistration.RegisterAllAreas();
             AutoMapperConfig.Configurate();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
         }
     }
 }
