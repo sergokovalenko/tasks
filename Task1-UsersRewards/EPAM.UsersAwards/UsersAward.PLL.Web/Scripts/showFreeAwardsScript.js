@@ -5,7 +5,7 @@ $('document').ready(function () {
         var id = this.dataset.id;
 
         $.ajax({
-            url: '/Ajax/ShowModalForFreeAward',
+            url: '/ShowModalForFreeAward/Ajax/',
             data: {userId: id},
             success: function (response) {
                 $('table.table:eq(0)').after(response);

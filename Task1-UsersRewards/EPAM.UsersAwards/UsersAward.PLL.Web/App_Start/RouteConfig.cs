@@ -87,7 +87,7 @@ namespace UsersAward.PLL.Web
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{action}/{controller}/{id}",
                 defaults: new { controller = "Users", action = "Index", id = UrlParameter.Optional }
             );
         }
