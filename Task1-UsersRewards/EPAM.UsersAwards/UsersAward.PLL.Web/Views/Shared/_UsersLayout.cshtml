@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Footer = "Work";
 }
 
 @section scripts{
@@ -7,7 +8,7 @@
 }
 @section styles{
     @RenderSection("styles", required: false)
-    <link href="~/Content/bootstrap-override.css" rel="stylesheet" />
+    <link href="~/Content/userStyles.css" rel="stylesheet" />
 }
 
 <div class="jumbotron">
