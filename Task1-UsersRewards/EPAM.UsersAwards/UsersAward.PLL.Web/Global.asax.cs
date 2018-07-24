@@ -13,8 +13,9 @@ namespace UsersAward.PLL.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            AutoMapperConfig.Configurate();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            AutoMapperConfig.Configurate();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }
