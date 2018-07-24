@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DisplayUserVM>
+
+@{
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+    ViewBag.Title = "Users";
+}
+
+@section scripts{
+    <script src="~/Scripts/ajaxScript.js"></script>
+}
+<h2>Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Download File", "DownloadUsers", null, new { @class = "btn btn-default" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Photo")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Awards)
+        </th>
+        <th>
+            @Html.DisplayName("Actions")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img class="bordered-img" width="40" height="40" src=@Url.Action("GetImageById", new { id = item.ImageId }) />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @foreach (var award in item.Awards)
+                {
+                    <img class="bordered-img award" width="40" height="40" src=@Url.Action("GetImageById", new { id = award.ImageId }) title="@award.Title" data-id="@award.Id" />
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Footer = "Work";
+}
+
+@section scripts{
+    @RenderSection("scripts", required: false)
+}
+@section styles{
+    @RenderSection("styles", required: false)
+    <link href="~/Content/userStyles.css" rel="stylesheet" />
+}
+
+<div class="jumbotron">
+    @RenderBody()
+</div>
