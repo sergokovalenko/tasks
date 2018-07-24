@@ -27,7 +27,7 @@ namespace UsersAward.Dal.DBDAL
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
                 SqlCommand command = helper.IntializeCommand(
-                    "[dbo].[Image.Deleteimage]",
+                    "[dbo].[Award.AddAward]",
                     connection,
                     new string[] { "@Title", "@Description", "@ImageId" },
                     new object[] { award.Title, award.Description, award.ImageId }

@@ -286,5 +286,10 @@ namespace UsersAward.PLL.Web.Models
         {
             return userBll.AddAwardToUser(userId, awardId);
         }
+
+        public int CalculateAge(DateTime date)
+        {
+            return userBll.CalculateAge(date);
+        }
     }
 }

@@ -9,16 +9,19 @@ namespace UsersAward.PLL.Web.Controllers
 {
     public class ValidationController : Controller
     {
-        private AwardPictureBllModel bllModel;
+        private AwardPictureBllModel awardBllModel;
+        private UserPictureBllModel userBllModel;
 
-        public ValidationController(AwardPictureBllModel model)
+        public ValidationController(AwardPictureBllModel aw, UserPictureBllModel us)
         {
-            this.bllModel = model;
+            this.awardBllModel = aw;
+            this.userBllModel = us;
         }
 
         public JsonResult IsAwardAllowed(string title)
         {
-            return Json(bllModel.GetAllAwards().Any(aw => (string.Compare(title, aw.Title, StringComparison.InvariantCultureIgnoreCase) != 0)), JsonRequestBehavior.AllowGet);
+            var result = !awardBllModel.GetAllAwards().Any(aw => (string.Compare(title, aw.Title, StringComparison.InvariantCultureIgnoreCase) == 0));
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
