@@ -1,0 +1,9 @@
+﻿body {
+    font-family: "Monotype Corsiva", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+}
+
+.bordered-img{
+    border-radius: 50%;
+    border: 1px black solid;
+}

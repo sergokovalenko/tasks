@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-override.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
@@ -33,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Task 1</p>
+            <p>&copy; @DateTime.Now.Year - @ViewBag.Footer</p>
         </footer>
     </div>
     <script src="~/Scripts/jquery-1.10.1.min.js"></script>

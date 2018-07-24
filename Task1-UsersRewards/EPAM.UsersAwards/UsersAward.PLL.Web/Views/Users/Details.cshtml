@@ -10,14 +10,15 @@
 }
 
 <div>
-    <h4>DisplayUserVM</h4>
-    <hr />
+    <h4 class="text-center">User details</h4>
 
     @{ Html.RenderPartial("_DisplayUserInfo", AutoMapper.Mapper.Map<DeleteUserVM>( Model)); }
-
-    <button class="btn btn-default" id="addAward" data-id="@Model.Id">Add award</button>
+    <div class="col-xs-12 text-center">
+        <button class="btn btn-default" id="addAward" data-id="@Model.Id">Add award</button>
+    </div>
     <div class="col-xs-12">
-        <table class="table table-bordered">
+        <table class="table">
+            <caption class="text-center">Awards</caption>
             <tbody>
 
                 @foreach (var item in Model.Awards)
