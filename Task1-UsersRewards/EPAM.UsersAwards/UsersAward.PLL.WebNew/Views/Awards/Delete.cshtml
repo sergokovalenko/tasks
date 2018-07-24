@@ -1,0 +1,25 @@
+﻿@model UsersAward.PLL.Web.Models.AwardModels.DisplayAwardVM
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete confimation</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+
+    @{ Html.RenderPartial("_DisplayAwardInfo", Model); }
+
+    @using (Html.BeginForm("DeleteAward", "Awards"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.Id)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{C202C3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersAward.NinjectConfig", "UsersAward.NinjectConfig\UsersAward.NinjectConfig.csproj", "{70354EB9-DB06-4869-89F8-3C633BB7D3F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersAward.PLL.WebNew", "UsersAward.PLL.WebNew\UsersAward.PLL.WebNew.csproj", "{84058A96-4517-486F-9BF5-BDCE7E68BD63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{70354EB9-DB06-4869-89F8-3C633BB7D3F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70354EB9-DB06-4869-89F8-3C633BB7D3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70354EB9-DB06-4869-89F8-3C633BB7D3F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84058A96-4517-486F-9BF5-BDCE7E68BD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84058A96-4517-486F-9BF5-BDCE7E68BD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84058A96-4517-486F-9BF5-BDCE7E68BD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84058A96-4517-486F-9BF5-BDCE7E68BD63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{91EB9BB9-C8A2-466A-A9A6-F8FC498711A8} = {126C1C5C-0E75-47BA-B9C0-31DFC4805FDA}
 		{2CE235A0-E706-47A3-9253-623CA087076D} = {EC8D613A-6746-44A5-A77B-BCF73729324B}
 		{70354EB9-DB06-4869-89F8-3C633BB7D3F0} = {C202C394-C865-436F-ADCD-C70116734276}
+		{84058A96-4517-486F-9BF5-BDCE7E68BD63} = {EC8D613A-6746-44A5-A77B-BCF73729324B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EF0105B-E454-4B80-9344-2B7EDE92733F}

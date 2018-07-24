@@ -1,0 +1,17 @@
+﻿@model UsersAward.PLL.Web.Models.AwardModels.DisplayAwardVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DisplayAwardVM</h4>
+    <hr />
+    @{ Html.RenderPartial("_DisplayAwardInfo", Model); }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
