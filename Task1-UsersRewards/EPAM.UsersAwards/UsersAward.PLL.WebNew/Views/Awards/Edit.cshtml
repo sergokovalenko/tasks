@@ -1,7 +1,8 @@
 ﻿@model UsersAward.PLL.Web.Models.AwardModels.EditAwardVM
 
 @{
-    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AwardsLayout.cshtml";
+    ViewBag.Title = "Edit award";
 }
 
 @section scripts{
@@ -17,14 +18,13 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>EditAwardVM</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.ImageId)
 
     <div class="form-group">
-        <img class="bordered-img" width="100" height="100" src=@Url.Action("GetImageById", "Users", new { id = Model.ImageId }) />
+        <img class=" col-md-offset-3 bordered-img" width="100" height="100" src=@Url.Action("GetImageById", "Users", new { id = Model.ImageId }) />
     </div>
 
     <div class="form-group">
