@@ -68,7 +68,7 @@ namespace UsersAward.Dal.DBDAL
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
                 SqlCommand command = helper.IntializeCommand(
-                    "[dbo].[Image.AddImage]",
+                    "[dbo].[Image.UpdateImage]",
                     connection,
                     new string[] { "@OwnerId", "@Data", "@DataType" },
                     new object[] { img.OwnerId, img.Data, img.Type }

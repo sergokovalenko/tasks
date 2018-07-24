@@ -29,11 +29,11 @@ namespace UsersAward.PLL.Web
                     .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
 
                 cfg.CreateMap<EditUserVM, UserDTO>()
-                    .ForMember(obj => obj.Age, (opt => opt.UseValue(-1)))
-                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
+                    .ForMember(obj => obj.Age, (opt => opt.UseValue(-1)));
 
                 cfg.CreateMap<AwardDTO, DisplayAwardVM>();
-                cfg.CreateMap<AwardDTO, CreateAwardVM>();
+                cfg.CreateMap<AwardDTO, CreateAwardVM>()
+                    .ForMember(obj => obj.Uploaded, (opt => opt.UseValue<HttpPostedFileBase>(null)));
                 cfg.CreateMap<CreateAwardVM, AwardDTO>()
                     .ForMember(obj => obj.Id, (opt => opt.UseValue(-1)))
                     .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty))); ;

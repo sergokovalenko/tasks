@@ -85,7 +85,7 @@ namespace UsersAward.BLL.BasicBLL
             return dal.AddAwardToUser(userId, awardId);
         }
 
-        private int CalculateAge(DateTime birthDate)
+        public int CalculateAge(DateTime birthDate)
         {
             DateTime dateNow = DateTime.Now;
             int age = dateNow.Year - birthDate.Year;
