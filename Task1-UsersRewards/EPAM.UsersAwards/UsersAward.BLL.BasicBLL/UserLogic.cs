@@ -19,18 +19,19 @@ namespace UsersAward.BLL.BasicBLL
             this.dal = dal;
         }
 
+        //TODO: int?
         public int AddUser(UserDTO user)
         {
             if (user == null || string.IsNullOrWhiteSpace(user.Name))
             {
-                throw new ArgumentNullException(nameof(user));
+                return -1;
             }
 
             var age = CalculateAge(user.BirthDate);
 
             if (age > 150 || age < 0)
             {
-                throw new ArgumentException("Error data");
+                return -1;
             }
 
             return dal.AddUser(user);

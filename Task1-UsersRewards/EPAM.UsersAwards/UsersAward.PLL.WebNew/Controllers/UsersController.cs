@@ -78,7 +78,7 @@ namespace UsersAward.PLL.Web.Controllers
             }
         }
 
-        [Route("user/{id}/edit")]
+        [Route("api/user/{id}/edit")]
         public ActionResult Edit(int id)
         {
             var user = bllModel.GetUserById(id);
