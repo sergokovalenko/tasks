@@ -30,11 +30,6 @@ namespace UsersAward.PLL.Web.Controllers
                 return View(new List<DisplayAwardVM>());
             }
 
-            if (model is IEnumerable<DisplayAwardVM>)
-            {
-                model = (IEnumerable<DisplayAwardVM>)model;
-            }
-
             return View(model);
         }
 

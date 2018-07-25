@@ -32,11 +32,6 @@ namespace UsersAward.PLL.Web.Controllers
                 return View(new List<DisplayUserVM>());
             }
 
-            if (model is IEnumerable<DisplayUserVM>)
-            {
-                model = (IEnumerable<DisplayUserVM>)model;
-            }
-
             return View(model);
         }
 

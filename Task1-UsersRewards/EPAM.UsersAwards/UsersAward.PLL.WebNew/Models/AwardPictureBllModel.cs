@@ -25,7 +25,7 @@ namespace UsersAward.PLL.Web.Models
             return awardBll.GetAllAwards();
         }
 
-        public object GetModelForHomePage(string query)
+        public IEnumerable<DisplayAwardVM> GetModelForHomePage(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
             {
@@ -98,29 +98,43 @@ namespace UsersAward.PLL.Web.Models
             return newAwardId != 0;
         }
 
+        public int AddAward(AwardDTO awardDTO)
+        {
+            return awardBll.AddAward(awardDTO);
+        }
+
         public bool DeleteAward(int id)
         {
             return awardBll.DeleteAward(id);
         }
 
+        public bool UpdateAward(AwardDTO award)
+        {
+            return awardBll.UpdateAward(award);
+        }
+
         public bool UpdateAward(EditAwardVM award, HttpRequestBase request)
         {
             var updatedAward = Mapper.Map<AwardDTO>(award);
-            var uploaded = request.Files["Uploaded"];
 
-            if (uploaded != null && uploaded.ContentLength != 0)
+            if (request != null)
             {
-                byte[] bytes = new byte[uploaded.ContentLength];
-                uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
+                var uploaded = request.Files["Uploaded"];
 
-                var img = new ImageDTO()
+                if (uploaded != null && uploaded.ContentLength != 0)
                 {
-                    OwnerId = updatedAward.ImageId,
-                    Data = bytes,
-                    Type = uploaded.ContentType
-                };
+                    byte[] bytes = new byte[uploaded.ContentLength];
+                    uploaded.InputStream.Read(bytes, 0, uploaded.ContentLength);
 
-                pictureBll.UpdateImage(img);
+                    var img = new ImageDTO()
+                    {
+                        OwnerId = updatedAward.ImageId,
+                        Data = bytes,
+                        Type = uploaded.ContentType
+                    };
+
+                    pictureBll.UpdateImage(img);
+                }
             }
 
             return awardBll.UpdateAward(updatedAward);
