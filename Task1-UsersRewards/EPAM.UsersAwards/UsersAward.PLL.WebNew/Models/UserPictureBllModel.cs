@@ -122,12 +122,16 @@ namespace UsersAward.PLL.Web.Models
             byte[] bytes = File.ReadAllBytes(filePath);
 
             File.Delete(filePath);
-
+            //TODO: change to object
             return (bytes, fileType);
         }
 
         public bool AwardUserByUrl(string user_award)
         {
+            if (string.IsNullOrWhiteSpace(user_award))
+            {
+                return false;
+            }
             var res = user_award.Split('_');
 
             if (res == null || res.Length != 2)
@@ -135,8 +139,8 @@ namespace UsersAward.PLL.Web.Models
                 return false;
             }
 
-            int userId = 0,
-                awardId = 0;
+            int userId = 0;
+            int awardId = 0;
 
             int.TryParse(res[0], out userId);
             int.TryParse(res[1], out awardId);
@@ -163,7 +167,7 @@ namespace UsersAward.PLL.Web.Models
             return pictureBll.AddImage(img);
         }
 
-        internal bool CreateUser(CreateUserVM user, HttpRequestBase request)
+        public bool CreateUser(CreateUserVM user, HttpRequestBase request)
         {
             Guid imageId = Guid.Empty;
             var newUser = Mapper.Map<UserDTO>(user);

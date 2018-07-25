@@ -21,7 +21,7 @@ namespace UsersAward.PLL.Web.Controllers
         }
 
         [Route("api/users/")]
-        [Route("api/user/{query}")]
+        [Route("api/users/{query}")]
         [HttpGet]
         public IHttpActionResult Get(string query = "")
         {
@@ -79,31 +79,51 @@ namespace UsersAward.PLL.Web.Controllers
             }
             if (updatedUser.BirthDate != new DateTime())
             {
-                //TODO: валидация возраста
                 user.BirthDate = updatedUser.BirthDate;
             }
 
-            bllModel.UpdateUser(user);
-            return Ok();
+            if (bllModel.UpdateUser(user))
+            {
+                return Ok();
+
+            }
+
+            return BadRequest("We can't update user with this parametrs");
         }
 
-        [Route("api/user/{id}/create")]
+        [Route("api/create-user")]
         [HttpPost]
         public IHttpActionResult CreateUser([FromBody]CreateUserVM user)
         {
-            if (string.IsNullOrWhiteSpace(user.Name) || user.BirthDate == new DateTime())
+            if (ModelState.IsValid)
             {
-                return BadRequest("User should contains");
+                int id = bllModel.AddUser(Mapper.Map<UserDTO>(user));
+
+                if (id > 0)
+                {
+                    return Created($"api/user/{id}", bllModel.GetUserById(id));
+                }
+                else
+                {
+                    return BadRequest("We can't create user with this parametrs");
+                }
             }
 
-            if (bllModel.AddUser(Mapper.Map<UserDTO>(user)) > 0)
+            return BadRequest("Name and BirthDate is required");
+        }
+
+        [Route("api/award-user/{userId_awardId}")]
+        [HttpPost]
+        public IHttpActionResult Reward(string userId_awardId)
+        {
+            var answer = bllModel.AwardUserByUrl(userId_awardId);
+
+            if (!answer)
             {
-                return Ok();
+                return NotFound();
             }
-            else
-            {
-                return BadRequest("We can't create user with this parametrs");
-            }
+
+            return Ok();
         }
     }
 }

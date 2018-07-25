@@ -68,41 +68,24 @@ namespace UsersAward.PLL.Web.Controllers
                 return NotFound();
             }
 
-            if (!string.IsNullOrWhiteSpace(updatedAward.Title))
+            if (ModelState.IsValid)
             {
-                //TODO: валидация названия награды
-                award.Title = updatedAward.Title;
-            }
-            if (!string.IsNullOrWhiteSpace(updatedAward.Title))
-            {
-                updatedAward.Description = updatedAward.Description;
-            }
-            
-            if (bllModel.UpdateAward(award))
-            {
-                return Ok();
+                if (!string.IsNullOrWhiteSpace(updatedAward.Title))
+                {
+                    award.Title = updatedAward.Title;
+                }
+                if (!string.IsNullOrWhiteSpace(updatedAward.Title))
+                {
+                    updatedAward.Description = updatedAward.Description;
+                }
+
+                if (bllModel.UpdateAward(award))
+                {
+                    return Ok();
+                }
             }
 
             return BadRequest("We can't edit award with this parametrs");
-        }
-
-        [Route("api/award/{id}/create")]
-        [HttpPost]
-        public IHttpActionResult CreateUser([FromBody]CreateAwardVM user)
-        {
-            if (string.IsNullOrWhiteSpace(user.Title))
-            {
-                return BadRequest("User should contains Title");
-            }
-
-            if (bllModel.AddAward(Mapper.Map<AwardDTO>(user)) > 0)
-            {
-                return Ok();
-            }
-            else
-            {
-                return BadRequest("We can't create award with this parametrs");
-            }
         }
     }
 }
