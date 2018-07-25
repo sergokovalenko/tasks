@@ -26,7 +26,7 @@ namespace UsersAward.PLL.Web.Models
             this.awardBll = awardBll;
         }
 
-        public object GetModelForHomePage(string query)
+        public IEnumerable<DisplayUserVM> GetModelForHomePage(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
             {
@@ -211,7 +211,10 @@ namespace UsersAward.PLL.Web.Models
                 userModel = Mapper.Map<DisplayUserVM>(userBll.GetOldestUserByName(id));
             }
 
-            userModel.Awards = awardBll.GetAwardsForUser(userModel.Id).ToList();
+            if (userModel != null)
+            {
+                userModel.Awards = awardBll.GetAwardsForUser(userModel.Id).ToList();
+            }
 
             return userModel;
         }
