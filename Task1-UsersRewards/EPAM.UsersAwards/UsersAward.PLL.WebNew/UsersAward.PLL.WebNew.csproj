@@ -239,6 +239,10 @@
       <Project>{91EB9BB9-C8A2-466A-A9A6-F8FC498711A8}</Project>
       <Name>UsersAward.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UsersAward.Helpers\UsersAward.Helpers.csproj">
+      <Project>{af49c118-06d9-4cf7-a1bc-a4b8e4a09adf}</Project>
+      <Name>UsersAward.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UsersAward.NinjectConfig\UsersAward.NinjectConfig.csproj">
       <Project>{70354eb9-db06-4869-89f8-3c633bb7d3f0}</Project>
       <Name>UsersAward.NinjectConfig</Name>

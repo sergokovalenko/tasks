@@ -47,7 +47,7 @@ namespace UsersAward.PLL.Web.Controllers
             return Json(awardModel);
         }
 
-        [Route("award/{id}/delete")]
+        [Route("api/award/{id}/delete")]
         public IHttpActionResult Delete(int id)
         {
             if (bllModel.DeleteAward(id))

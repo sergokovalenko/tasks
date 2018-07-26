@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
@@ -120,7 +116,7 @@ namespace UsersAward.PLL.Web.Controllers
 
             if (!answer)
             {
-                return NotFound();
+                return BadRequest("User already has award");
             }
 
             return Ok();

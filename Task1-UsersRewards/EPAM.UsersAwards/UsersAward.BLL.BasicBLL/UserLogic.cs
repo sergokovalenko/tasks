@@ -173,6 +173,16 @@ namespace UsersAward.BLL.BasicBLL
             return dFile;
         }
 
+        public bool UserHasAward(int userId, int awardId)
+        {
+            if (userId < 0 || awardId < 0)
+            {
+                return false;
+            }
+
+            return userDal.UserHasAward(userId, awardId);
+        }
+
         private string GenerateTextForFile()
         {
             StringBuilder sb = new StringBuilder();
