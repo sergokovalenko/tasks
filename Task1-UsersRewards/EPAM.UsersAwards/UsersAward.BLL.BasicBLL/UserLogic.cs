@@ -147,7 +147,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public DownloadableFile GetFileWithUsers()
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Guid.NewGuid() + ".txt");
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Guid.NewGuid().ToString(), ".txt");
             DownloadableFile dFile = new DownloadableFile()
             {
                 Type = "text/plain",
@@ -159,29 +159,11 @@ namespace UsersAward.BLL.BasicBLL
                 File.Create(filePath).Close();
             }
 
+            var text = GenerateTextForFile();
+
             using (var writer = new StreamWriter(filePath, false))
             {
-                var users = GetAllUsers();
-                string text = "";
-
-                foreach (var item in users)
-                {
-                    text = string.Format("{0}, {1:d}, {2} ", item.Name, item.BirthDate, item.Age);
-                    var userAwards = awardDal.GetAwardsForUser(item.Id).ToList();
-                    if (userAwards == null || userAwards.Count == 0)
-                    {
-                        text += "hasn't awards";
-                    }
-                    else
-                    {
-                        text += "has awards: ";
-                        foreach (var aw in userAwards)
-                        {
-                            text += " " + aw.Title;
-                        }
-                    }
-                    writer.WriteLine(text);
-                }
+                writer.WriteLine(text);
             }
 
             dFile.Data = File.ReadAllBytes(filePath);
@@ -189,6 +171,33 @@ namespace UsersAward.BLL.BasicBLL
             File.Delete(filePath);
 
             return dFile;
+        }
+
+        private string GenerateTextForFile()
+        {
+            StringBuilder sb = new StringBuilder();
+            var users = GetAllUsers();
+
+            foreach (var item in users)
+            {
+                sb.AppendFormat("{0}, {1:d}, {2} ", item.Name, item.BirthDate, item.Age);
+                var userAwards = awardDal.GetAwardsForUser(item.Id).ToList();
+                if (userAwards == null || userAwards.Count == 0)
+                {
+                    sb.Append("hasn't awards");
+                }
+                else
+                {
+                    sb.Append("has awards: ");
+                    foreach (var aw in userAwards)
+                    {
+                        sb.AppendFormat(" {0}", aw.Title);
+                    }
+                }
+                sb.Append(Environment.NewLine);
+            }
+
+            return sb.ToString();
         }
     }
 }
