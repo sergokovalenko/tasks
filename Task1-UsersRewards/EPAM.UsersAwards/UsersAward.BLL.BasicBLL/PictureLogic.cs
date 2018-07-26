@@ -22,15 +22,15 @@ namespace UsersAward.BLL.BasicBLL
         {
             if (img == null)
             {
-                throw new ArgumentNullException(nameof(img));
+                return Guid.Empty;
             }
             if (img.OwnerId == Guid.Empty)
             {
-                throw new ArgumentException(nameof(img.OwnerId));
+                return Guid.Empty;
             }
             if (string.IsNullOrWhiteSpace(img.Type))
             {
-                throw new ArithmeticException(nameof(img.Type));
+                return Guid.Empty;
             }
 
             img.OwnerId = Guid.NewGuid();
@@ -47,7 +47,7 @@ namespace UsersAward.BLL.BasicBLL
         {
             if (OwnerId == Guid.Empty)
             {
-                throw new ArgumentException(nameof(OwnerId));
+                return false;
             }
 
             return dal.DeleteImage(OwnerId);
@@ -58,7 +58,9 @@ namespace UsersAward.BLL.BasicBLL
             ImageDTO img = dal.GetImageById(id);
 
             if (img == null)
+            {
                 return dal.GetImageById(Guid.Empty);
+            }
 
             return img;
         }
@@ -67,15 +69,15 @@ namespace UsersAward.BLL.BasicBLL
         {
             if (img == null)
             {
-                throw new ArgumentNullException(nameof(img));
+                return false;
             }
             if (img.OwnerId == Guid.Empty)
             {
-                throw new ArgumentException(nameof(img.OwnerId));
+                return false;
             }
             if (string.IsNullOrWhiteSpace(img.Type))
             {
-                throw new ArgumentException(nameof(img.Type));
+                return false;
             }
 
             return dal.UpdateImage(img);

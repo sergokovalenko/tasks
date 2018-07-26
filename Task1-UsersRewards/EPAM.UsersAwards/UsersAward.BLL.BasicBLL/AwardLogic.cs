@@ -12,6 +12,9 @@ namespace UsersAward.BLL.BasicBLL
     public class AwardLogic : IAwardLogic
     {
         private IAwardDal dal;
+        private const int lowerBoundOfId = 0;
+        private const int maxNameLength = 50;
+        private const int maxDescrLength = 250;
 
         public AwardLogic(IAwardDal dal)
         {
@@ -20,7 +23,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public int AddAward(AwardDTO award)
         {
-            if (award == null || string.IsNullOrWhiteSpace(award.Title) || award.Title.Length > 50)
+            if (award == null || string.IsNullOrWhiteSpace(award.Title) || award.Title.Length > maxNameLength)
             {
                 throw new ArgumentException(nameof(award));
             }
@@ -55,7 +58,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<AwardDTO> GetFreeAwardsForUser(int userId)
         {
-            if (userId <= 0)
+            if (userId <= lowerBoundOfId)
             {
                 return null;
             }
@@ -74,6 +77,10 @@ namespace UsersAward.BLL.BasicBLL
             {
                 updatedAward.Description = "";
             }
+            if (updatedAward.Description.Length > maxDescrLength)
+            {
+                return false;
+            }
 
             return dal.UpdateAward(updatedAward);
         }
@@ -90,7 +97,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<AwardDTO> GetAwardsContains(string text)
         {
-            if (string.IsNullOrWhiteSpace(text) || text.Length > 50)
+            if (string.IsNullOrWhiteSpace(text) || text.Length > maxNameLength)
             {
                 return null;
             }
@@ -101,7 +108,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public AwardDTO GetAwardByName(string name)
         {
-            if (string.IsNullOrWhiteSpace(name) || name.Length > 50)
+            if (string.IsNullOrWhiteSpace(name) || name.Length > maxNameLength)
             {
                 return null;
             }

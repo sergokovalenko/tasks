@@ -13,6 +13,10 @@ namespace UsersAward.BLL.BasicBLL
     public class UserLogic : IUserLogic
     {
         private IUserDal dal;
+        private const int lowerBoundOfId = 0;
+        private const int maxNameLength = 50;
+        private const int maxAge = 150;
+        private const int minAge = 0;
 
         public UserLogic(IUserDal dal)
         {
@@ -29,7 +33,7 @@ namespace UsersAward.BLL.BasicBLL
 
             var age = CalculateAge(user.BirthDate);
 
-            if (age > 150 || age < 0)
+            if (age > maxAge || age < minAge)
             {
                 return -1;
             }
@@ -39,6 +43,10 @@ namespace UsersAward.BLL.BasicBLL
 
         public bool DeleteUser(int userId)
         {
+            if (userId < lowerBoundOfId)
+            {
+                return false;
+            }
             return dal.DeleteUser(userId);
         }
 
@@ -49,6 +57,10 @@ namespace UsersAward.BLL.BasicBLL
 
         public UserDTO GetUserById(int id)
         {
+            if (id < lowerBoundOfId)
+            {
+                return null;
+            }
             UserDTO user = dal.GetUserById(id);
             if (user == null)
             {
@@ -68,7 +80,7 @@ namespace UsersAward.BLL.BasicBLL
 
             var age = CalculateAge(updatedUser.BirthDate);
 
-            if (age > 150 || age < 0)
+            if (age > maxAge || age < minAge)
             {
                 return false;
             }
@@ -78,7 +90,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public bool AddAwardToUser(int userId, int awardId)
         {
-            if (userId < 0 || awardId < 0)
+            if (userId < lowerBoundOfId || awardId < lowerBoundOfId)
             {
                 return false;
             }
@@ -111,7 +123,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<UserDTO> GetUsersContains(string text)
         {
-            if (string.IsNullOrWhiteSpace(text) || text.Length > 50)
+            if (string.IsNullOrWhiteSpace(text) || text.Length > maxNameLength)
             {
                 return null;
             }
@@ -122,7 +134,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public UserDTO GetOldestUserByName(string name)
         {
-            if (string.IsNullOrWhiteSpace(name) || name.Length > 50)
+            if (string.IsNullOrWhiteSpace(name) || name.Length > maxNameLength)
             {
                 return null;
             }
