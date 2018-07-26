@@ -38,7 +38,7 @@ namespace UsersAward.Dal.DBDAL
 
         public AwardDTO ReadAward(SqlDataReader reader)
         {
-            string description = reader["Description"] == DBNull.Value ? "" : (string)reader["Description"];
+            string description = reader["Description"] == DBNull.Value ? string.Empty : (string)reader["Description"];
 
             return new AwardDTO()
             {
