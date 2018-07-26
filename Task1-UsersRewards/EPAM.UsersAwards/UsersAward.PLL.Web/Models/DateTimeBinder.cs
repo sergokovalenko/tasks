@@ -6,17 +6,17 @@ namespace UsersAward.PLL.Web.Models
 {
     public class DateTimeBinder : IModelBinder
     {
-        private static CultureInfo _culture;
+        private static CultureInfo culture;
 
         static DateTimeBinder()
         {
-            _culture = CultureInfo.GetCultureInfo("en-US");
+            culture = CultureInfo.GetCultureInfo("en-US");
         }
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             var value = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-            var date = value.ConvertTo(typeof(DateTime), _culture);
+            var date = value.ConvertTo(typeof(DateTime), culture);
 
             return date;
         }

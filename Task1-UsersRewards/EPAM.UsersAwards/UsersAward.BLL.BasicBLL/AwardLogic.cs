@@ -22,10 +22,12 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return ModelRules.LowerBoundOfId - 1;
             }
+
             if (string.IsNullOrWhiteSpace(award.Description))
             {
-                award.Description = "";
+                award.Description = string.Empty;
             }
+
             award.Id = ModelRules.LowerBoundOfId - 1;
 
             return dal.AddAward(award);
@@ -37,6 +39,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return false;
             }
+
             return dal.DeleteAward(awardId);
         }
 
@@ -51,6 +54,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return null;
             }
+
             return dal.GetAwardById(id);
         }
 
@@ -78,8 +82,9 @@ namespace UsersAward.BLL.BasicBLL
 
             if (string.IsNullOrWhiteSpace(updatedAward.Description))
             {
-                updatedAward.Description = "";
+                updatedAward.Description = string.Empty;
             }
+
             if (updatedAward.Description.Length > ModelRules.MaxDescriptionLength)
             {
                 return false;
@@ -104,7 +109,7 @@ namespace UsersAward.BLL.BasicBLL
             if (string.IsNullOrWhiteSpace(text))
             {
                 return null;
-            };
+            }
 
             return dal.GetAwardsContains(text).ToList();
         }
@@ -126,6 +131,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return null;
             }
+
             return text.Trim();
         }
     }

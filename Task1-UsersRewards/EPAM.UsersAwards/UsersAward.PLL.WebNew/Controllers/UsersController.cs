@@ -106,6 +106,7 @@ namespace UsersAward.PLL.Web.Controllers
 
                 return View(user);
             }
+
             return View(user);
         }
 
@@ -132,7 +133,7 @@ namespace UsersAward.PLL.Web.Controllers
                 img = Image.FromStream(stream);
             }
 
-            var data = img.ResizeAndGetBytes(40, 40, true);
+            var data = img.ResizeAndGetBytes(100, 100, true);
 
             return File(data, imgDTO.Type);
         }

@@ -19,7 +19,7 @@ namespace UsersAward.PLL.Web
                 cfg.CreateMap<UserDTO, CreateUserVM>();
                 cfg.CreateMap<UserDTO, DeleteUserVM>();
 
-                //For using this VM as partial
+                // For using this VM as partial
                 cfg.CreateMap<DisplayUserVM, DeleteUserVM>();
 
                 cfg.CreateMap<CreateUserVM, UserDTO>()
@@ -35,7 +35,7 @@ namespace UsersAward.PLL.Web
                     .ForMember(obj => obj.Uploaded, (opt => opt.UseValue<HttpPostedFileBase>(null)));
                 cfg.CreateMap<CreateAwardVM, AwardDTO>()
                     .ForMember(obj => obj.Id, (opt => opt.UseValue(-1)))
-                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty))); ;
+                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
                 cfg.CreateMap<EditAwardVM, AwardDTO>();
             });
 

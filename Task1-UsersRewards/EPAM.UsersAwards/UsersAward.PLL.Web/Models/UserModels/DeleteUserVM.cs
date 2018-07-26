@@ -6,7 +6,9 @@ namespace UsersAward.PLL.Web.Models.UserModels
     public class DeleteUserVM
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
+
         public int Age { get; set; }
 
         [Display(Name = "Birthday")]

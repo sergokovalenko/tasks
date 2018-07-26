@@ -20,10 +20,12 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return Guid.Empty;
             }
+
             if (img.OwnerId == Guid.Empty)
             {
                 return Guid.Empty;
             }
+
             if (string.IsNullOrWhiteSpace(img.Type))
             {
                 return Guid.Empty;
@@ -39,14 +41,14 @@ namespace UsersAward.BLL.BasicBLL
             return Guid.Empty;
         }
 
-        public bool DeleteImage(Guid OwnerId)
+        public bool DeleteImage(Guid ownerId)
         {
-            if (OwnerId == Guid.Empty)
+            if (ownerId == Guid.Empty)
             {
                 return false;
             }
 
-            return dal.DeleteImage(OwnerId);
+            return dal.DeleteImage(ownerId);
         }
 
         public ImageDTO GetImageById(Guid id)
@@ -67,10 +69,12 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return false;
             }
+
             if (img.OwnerId == Guid.Empty)
             {
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(img.Type))
             {
                 return false;

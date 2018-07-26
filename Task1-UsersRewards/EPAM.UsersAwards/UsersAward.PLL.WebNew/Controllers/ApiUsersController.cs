@@ -1,9 +1,9 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Web.Http;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.UserModels;
+using AutoMapper;
 
 namespace UsersAward.PLL.Web.Controllers
 {

@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.AwardModels;
+using AutoMapper;
 
 namespace UsersAward.PLL.Web.Controllers
 {

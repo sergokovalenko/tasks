@@ -1,6 +1,6 @@
-﻿using DBDAL;
+﻿using System.Configuration;
+using DBDAL;
 using Ninject;
-using System.Configuration;
 using UsersAward.BLL.AbstractBLL;
 using UsersAward.BLL.BasicBLL;
 using UsersAward.Dal.DBDAL;

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +6,7 @@ using UsersAward.BLL.AbstractBLL;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models.AwardModels;
 using UsersAward.PLL.Web.Models.UserModels;
+using AutoMapper;
 
 namespace UsersAward.PLL.Web.Models
 {
@@ -92,6 +92,7 @@ namespace UsersAward.PLL.Web.Models
             {
                 return false;
             }
+
             var res = user_award.Split('_');
 
             if (res == null || res.Length != 2)
@@ -109,6 +110,7 @@ namespace UsersAward.PLL.Web.Models
             {
                 return false;
             }
+
             if (userBll.GetUserById(userId) == null || awardBll.GetAwardById(awardId) == null)
             {
                 return false;
@@ -197,7 +199,7 @@ namespace UsersAward.PLL.Web.Models
             return userModel;
         }
 
-        internal bool UpdateUser(EditUserVM user, HttpRequestBase request)
+        public bool UpdateUser(EditUserVM user, HttpRequestBase request)
         {
             var updatedUser = Mapper.Map<UserDTO>(user);
             var uploaded = request.Files["Uploaded"];
@@ -234,7 +236,7 @@ namespace UsersAward.PLL.Web.Models
             return UpdateUser(updatedUser);
         }
 
-        internal bool DeleteUserImage(Guid ownerId)
+        public bool DeleteUserImage(Guid ownerId)
         {
             return pictureBll.DeleteImage(ownerId);
         }

@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web;
 using UsersAward.BLL.AbstractBLL;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models.AwardModels;
+using AutoMapper;
 
 namespace UsersAward.PLL.Web.Models
 {
