@@ -6,7 +6,7 @@ $('document').ready(function () {
 
         $.ajax({
             url: '/ShowModalForFreeAward/Ajax/',
-            data: {userId: id},
+            data: { userId: id },
             success: function (response) {
                 $('table.table:eq(0)').after(response);
                 $('#awardModal').modal('show');

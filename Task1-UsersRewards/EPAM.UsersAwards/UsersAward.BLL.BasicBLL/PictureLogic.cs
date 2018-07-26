@@ -55,7 +55,7 @@ namespace UsersAward.BLL.BasicBLL
 
             if (img == null)
             {
-                return dal.GetImageById(Guid.Empty);
+                return dal.GetImageById(ModelRules.DefaultImageId);
             }
 
             return img;

@@ -105,7 +105,7 @@ namespace UsersAward.PLL.Web.Models
             int.TryParse(res[0], out userId);
             int.TryParse(res[1], out awardId);
 
-            if (userId <= 0 || awardId <= 0)
+            if (userId < ModelRules.LowerBoundOfId || awardId < ModelRules.LowerBoundOfId)
             {
                 return false;
             }
@@ -151,7 +151,7 @@ namespace UsersAward.PLL.Web.Models
 
             int newUserId = AddUser(newUser);
 
-            if (newUserId != 0)
+            if (newUserId >= ModelRules.LowerBoundOfId)
             {
                 return true;
             }

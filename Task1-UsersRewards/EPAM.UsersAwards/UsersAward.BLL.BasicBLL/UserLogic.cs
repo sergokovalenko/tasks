@@ -13,10 +13,6 @@ namespace UsersAward.BLL.BasicBLL
     {
         private IUserDal userDal;
         private IAwardDal awardDal;
-        private const int lowerBoundOfId = 0;
-        private const int maxNameLength = 50;
-        private const int maxAge = 150;
-        private const int minAge = 0;
 
         public UserLogic(IUserDal dal, IAwardDal awardDal)
         {
@@ -24,19 +20,11 @@ namespace UsersAward.BLL.BasicBLL
             this.awardDal = awardDal;
         }
 
-        //TODO: int?
         public int AddUser(UserDTO user)
         {
-            if (user == null || string.IsNullOrWhiteSpace(user.Name))
+            if (!IsUserValide(user))
             {
-                return -1;
-            }
-
-            var age = CalculateAge(user.BirthDate);
-
-            if (age > maxAge || age < minAge)
-            {
-                return -1;
+                return ModelRules.LowerBoundOfId - 1;
             }
 
             return userDal.AddUser(user);
@@ -44,7 +32,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public bool DeleteUser(int userId)
         {
-            if (userId < lowerBoundOfId)
+            if (userId < ModelRules.LowerBoundOfId)
             {
                 return false;
             }
@@ -53,12 +41,16 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            return userDal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
+            return userDal.GetAllUsers().Select(x =>
+            {
+                x.Age = CalculateAge(x.BirthDate);
+                return x;
+            }).ToList();
         }
 
         public UserDTO GetUserById(int id)
         {
-            if (id < lowerBoundOfId)
+            if (id < ModelRules.LowerBoundOfId)
             {
                 return null;
             }
@@ -74,14 +66,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public bool UpdateUser(UserDTO updatedUser)
         {
-            if (updatedUser == null || string.IsNullOrWhiteSpace(updatedUser.Name))
-            {
-                return false;
-            }
-
-            var age = CalculateAge(updatedUser.BirthDate);
-
-            if (age > maxAge || age < minAge)
+            if (!IsUserValide(updatedUser))
             {
                 return false;
             }
@@ -91,7 +76,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public bool AddAwardToUser(int userId, int awardId)
         {
-            if (userId < lowerBoundOfId || awardId < lowerBoundOfId)
+            if (userId < ModelRules.LowerBoundOfId || awardId < ModelRules.LowerBoundOfId)
             {
                 return false;
             }
@@ -124,7 +109,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public IEnumerable<UserDTO> GetUsersContains(string text)
         {
-            if (string.IsNullOrWhiteSpace(text) || text.Length > maxNameLength)
+            if (string.IsNullOrWhiteSpace(text) || text.Length > ModelRules.MaxNameLength)
             {
                 return null;
             }
@@ -135,7 +120,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public UserDTO GetOldestUserByName(string name)
         {
-            if (string.IsNullOrWhiteSpace(name) || name.Length > maxNameLength)
+            if (string.IsNullOrWhiteSpace(name) || name.Length > ModelRules.MaxNameLength)
             {
                 return null;
             }
@@ -146,7 +131,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public DownloadableFile GetFileWithUsers()
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Guid.NewGuid().ToString(), ".txt");
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Guid.NewGuid() + ".txt");
             DownloadableFile dFile = new DownloadableFile()
             {
                 Type = "text/plain",
@@ -164,6 +149,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 writer.WriteLine(text);
             }
+            //var dFile.Data = Encoding.ASCII.GetBytes(text);
 
             dFile.Data = File.ReadAllBytes(filePath);
 
@@ -207,6 +193,23 @@ namespace UsersAward.BLL.BasicBLL
             }
 
             return sb.ToString();
+        }
+
+        private bool IsUserValide(UserDTO user)
+        {
+            if (user == null || string.IsNullOrWhiteSpace(user.Name))
+            {
+                return false;
+            }
+
+            var age = CalculateAge(user.BirthDate);
+
+            if (age > ModelRules.MaxAge || age < ModelRules.MinAge)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

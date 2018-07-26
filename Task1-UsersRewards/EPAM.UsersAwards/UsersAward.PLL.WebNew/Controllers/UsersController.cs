@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Web.Mvc;
-using UsersAward.Helpers;
 using UsersAward.Entities;
+using UsersAward.Helpers;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.UserModels;
-using System.IO;
 
 namespace UsersAward.PLL.Web.Controllers
 {
@@ -135,7 +135,6 @@ namespace UsersAward.PLL.Web.Controllers
             var data = img.ResizeAndGetBytes(40, 40, true);
 
             return File(data, imgDTO.Type);
-
         }
 
         public ActionResult AddAwardToUser(int userId, int awardId)

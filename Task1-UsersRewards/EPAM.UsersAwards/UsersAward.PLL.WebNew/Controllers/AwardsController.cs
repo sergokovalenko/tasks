@@ -75,7 +75,7 @@ namespace UsersAward.PLL.Web.Controllers
             {
                 return HttpNotFound();
             }
-    
+
             return View(model);
         }
 
@@ -90,16 +90,16 @@ namespace UsersAward.PLL.Web.Controllers
         [Route("award/{id}/edit")]
         public ActionResult Edit(int id)
         {
-            var user = bllModel.GetAwardById(id);
+            var award = bllModel.GetAwardById(id);
 
-            if (user == null)
+            if (award == null)
             {
                 return RedirectToAction("Index");
             }
 
-            var userModel = Mapper.Map<EditAwardVM>(user);
+            var awardModel = Mapper.Map<EditAwardVM>(award);
 
-            return View(userModel);
+            return View(awardModel);
         }
 
         [ValidateAntiForgeryToken]

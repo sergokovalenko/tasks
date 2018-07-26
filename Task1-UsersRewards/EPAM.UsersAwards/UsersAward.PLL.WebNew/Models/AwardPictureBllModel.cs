@@ -94,7 +94,7 @@ namespace UsersAward.PLL.Web.Models
 
             int newAwardId = awardBll.AddAward(newAward);
 
-            return newAwardId != 0;
+            return newAwardId >= ModelRules.LowerBoundOfId;
         }
 
         public int AddAward(AwardDTO awardDTO)

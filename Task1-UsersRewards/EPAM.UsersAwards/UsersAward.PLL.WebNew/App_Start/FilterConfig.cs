@@ -8,7 +8,6 @@ namespace UsersAward.PLL.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             var errorFilter = new HandleErrorAttribute();
-            errorFilter.ExceptionType = typeof(Exception);
             errorFilter.View = "Error";
 
             filters.Add(errorFilter);
