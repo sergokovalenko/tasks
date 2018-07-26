@@ -68,6 +68,7 @@ namespace UsersAward.PLL.Web.Controllers
                 {
                     award.Title = updatedAward.Title;
                 }
+
                 if (!string.IsNullOrWhiteSpace(updatedAward.Title))
                 {
                     updatedAward.Description = updatedAward.Description;

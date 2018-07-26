@@ -8,14 +8,14 @@ namespace UsersAward.Dal.DBDAL
 {
     public class PictureDao : IPictureDal
     {
-        private DBDalConfig config;
-        private ConnectionHelper helper;
-
         public PictureDao(DBDalConfig config, ConnectionHelper con)
         {
             this.config = config;
             this.helper = con;
         }
+
+        private DBDalConfig config;
+        private ConnectionHelper helper;
 
         public bool AddImage(ImageDTO img)
         {

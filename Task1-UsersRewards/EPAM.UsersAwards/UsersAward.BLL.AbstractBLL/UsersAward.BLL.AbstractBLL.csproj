@@ -46,6 +46,7 @@
     <Compile Include="IAwardLogic.cs" />
     <Compile Include="IPictureLogic.cs" />
     <Compile Include="IUserLogic.cs" />
+    <Compile Include="ModelRules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

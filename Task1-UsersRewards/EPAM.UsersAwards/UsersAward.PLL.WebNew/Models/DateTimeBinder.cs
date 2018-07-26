@@ -6,7 +6,7 @@ namespace UsersAward.PLL.Web.Models
 {
     public class DateTimeBinder : IModelBinder
     {
-        private static CultureInfo _culture;
+        private static readonly CultureInfo _culture;
 
         static DateTimeBinder()
         {

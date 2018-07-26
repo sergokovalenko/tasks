@@ -19,7 +19,7 @@ namespace UsersAward.PLL.Web.Models.UserModels
             DateTime dateNow = DateTime.Now;
             int age = dateNow.Year - BirthDate.Year;
 
-            if (dateNow.Month < BirthDate.Month || dateNow.Month == BirthDate.Month && dateNow.Day < BirthDate.Day)
+            if (dateNow.Month < BirthDate.Month || (dateNow.Month == BirthDate.Month && dateNow.Day < BirthDate.Day))
             {
                 age--;
             }

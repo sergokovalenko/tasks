@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.UserModels;
+using AutoMapper;
 
 namespace UsersAward.PLL.Web.Controllers
 {
@@ -102,6 +102,7 @@ namespace UsersAward.PLL.Web.Controllers
 
                 return View(user);
             }
+
             return View(user);
         }
 

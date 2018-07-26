@@ -11,17 +11,19 @@ namespace UsersAward.PLL.Web.Models
             StringBuilder breadcrumb = new StringBuilder("<ol class='breadcrumb'><li>").Append(helper.ActionLink("Home", "Index", "Users").ToHtmlString()).Append("</li>");
 
             breadcrumb.Append("<li>");
-            breadcrumb.Append(helper.ActionLink(helper.ViewContext.RouteData.Values["controller"].ToString(),
-                                               "Index",
-                                               helper.ViewContext.RouteData.Values["controller"].ToString()));
+            breadcrumb.Append(helper.ActionLink(
+                                    helper.ViewContext.RouteData.Values["controller"].ToString(),
+                                    "Index",
+                                    helper.ViewContext.RouteData.Values["controller"].ToString()));
             breadcrumb.Append("</li>");
 
             if (helper.ViewContext.RouteData.Values["action"].ToString() != "Index")
             {
                 breadcrumb.Append("<li>");
-                breadcrumb.Append(helper.ActionLink(helper.ViewContext.RouteData.Values["action"].ToString(),
-                                                    helper.ViewContext.RouteData.Values["action"].ToString(),
-                                                    helper.ViewContext.RouteData.Values["controller"].ToString()));
+                breadcrumb.Append(helper.ActionLink(
+                                         helper.ViewContext.RouteData.Values["action"].ToString(),
+                                         helper.ViewContext.RouteData.Values["action"].ToString(),
+                                         helper.ViewContext.RouteData.Values["controller"].ToString()));
                 breadcrumb.Append("</li>");
             }
 

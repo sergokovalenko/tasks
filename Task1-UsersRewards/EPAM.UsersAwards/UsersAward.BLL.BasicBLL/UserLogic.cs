@@ -36,6 +36,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return false;
             }
+
             return userDal.DeleteUser(userId);
         }
 
@@ -54,6 +55,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return null;
             }
+
             UserDTO user = userDal.GetUserById(id);
             if (user == null)
             {
@@ -89,7 +91,7 @@ namespace UsersAward.BLL.BasicBLL
             DateTime dateNow = DateTime.Now;
             int age = dateNow.Year - birthDate.Year;
 
-            if (dateNow.Month < birthDate.Month || dateNow.Month == birthDate.Month && dateNow.Day < birthDate.Day)
+            if (dateNow.Month < birthDate.Month || (dateNow.Month == birthDate.Month && dateNow.Day < birthDate.Day))
             {
                 age--;
             }
@@ -113,6 +115,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return null;
             }
+
             text = text.Trim();
 
             return userDal.GetUsersContains(text).Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
@@ -124,6 +127,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return null;
             }
+
             name = name.Trim();
 
             return userDal.GetOldestUserByName(name);
@@ -131,7 +135,7 @@ namespace UsersAward.BLL.BasicBLL
 
         public DownloadableFile GetFileWithUsers()
         {
-            DownloadableFile dFile = new DownloadableFile()
+            DownloadableFile fileModel = new DownloadableFile()
             {
                 Type = "text/plain",
                 FileName = "All users"
@@ -139,9 +143,9 @@ namespace UsersAward.BLL.BasicBLL
 
             var text = GenerateTextForFile();
 
-            dFile.Data = Encoding.ASCII.GetBytes(text);
+            fileModel.Data = Encoding.ASCII.GetBytes(text);
 
-            return dFile;
+            return fileModel;
         }
 
         public bool UserHasAward(int userId, int awardId)
@@ -175,6 +179,7 @@ namespace UsersAward.BLL.BasicBLL
                         sb.AppendFormat(" {0}", aw.Title);
                     }
                 }
+
                 sb.Append(Environment.NewLine);
             }
 

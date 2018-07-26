@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.AwardModels;
+using AutoMapper;
 
 namespace UsersAward.PLL.Web.Controllers
 {
@@ -111,8 +111,10 @@ namespace UsersAward.PLL.Web.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+
                 return View(award);
             }
+
             return View(award);
         }
     }

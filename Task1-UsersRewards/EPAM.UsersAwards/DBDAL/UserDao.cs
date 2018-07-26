@@ -1,6 +1,6 @@
-﻿using DBDAL;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using DBDAL;
 using UsersAward.DAL.AbstractDAL;
 using UsersAward.Entities;
 
@@ -215,6 +215,7 @@ namespace UsersAward.Dal.DBDAL
                     }
                 }
             }
+
             return false;
         }
     }
