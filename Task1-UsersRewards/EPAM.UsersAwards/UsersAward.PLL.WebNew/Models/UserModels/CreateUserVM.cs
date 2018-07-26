@@ -12,6 +12,7 @@ namespace UsersAward.PLL.Web.Models.UserModels
         [StringLength(50)]
         [Required]
         public string Name { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }

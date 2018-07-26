@@ -188,6 +188,7 @@
     <Compile Include="Models\AwardModels\DisplayAwardVM.cs" />
     <Compile Include="Models\AwardModels\EditAwardVM.cs" />
     <Compile Include="Models\AwardPictureBllModel.cs" />
+    <Compile Include="Models\HtmlExtensions.cs" />
     <Compile Include="Models\DateTimeBinder.cs" />
     <Compile Include="Models\UserModels\CreateUserVM.cs" />
     <Compile Include="Models\UserModels\DeleteUserVM.cs" />

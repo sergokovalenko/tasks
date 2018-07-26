@@ -1,8 +1,8 @@
-﻿using DBDAL;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using UsersAward.DAL.AbstractDAL;
 using UsersAward.Entities;
+using DBDAL;
 
 namespace UsersAward.Dal.DBDAL
 {
