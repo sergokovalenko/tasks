@@ -197,5 +197,30 @@ namespace UsersAward.Dal.DBDAL
                 }
             }
         }
+
+        public bool UserHasAward(int userId, int awardId)
+        {
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = helper.IntializeCommand(
+                    "[dbo].[UsersAwards.UserHasAward]",
+                    connection,
+                    new string[] { "@UserId", "@AwardId" },
+                    new object[] { userId, awardId }
+                    );
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if ((int)reader["UserId"] > 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

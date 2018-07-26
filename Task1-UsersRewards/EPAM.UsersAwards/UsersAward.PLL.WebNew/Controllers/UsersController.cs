@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using UsersAward.Helpers;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.UserModels;
+using System.IO;
 
 namespace UsersAward.PLL.Web.Controllers
 {
@@ -78,7 +81,7 @@ namespace UsersAward.PLL.Web.Controllers
             }
         }
 
-        [Route("api/user/{id}/edit")]
+        [Route("user/{id}/edit")]
         public ActionResult Edit(int id)
         {
             var user = bllModel.GetUserById(id);
@@ -124,9 +127,17 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult GetImageById(Guid id)
         {
-            ImageDTO img = bllModel.GetImageById(id);
+            Image img;
+            ImageDTO imgDTO = bllModel.GetImageById(id);
 
-            return File(img.Data, img.Type);
+            using (var stream = new MemoryStream(imgDTO.Data))
+            {
+                img = Image.FromStream(stream);
+            }
+
+            var data = img.ResizeAndGetBytes(40, 40, true);
+
+            return File(data, imgDTO.Type);
 
         }
 

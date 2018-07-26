@@ -18,5 +18,6 @@ namespace UsersAward.DAL.AbstractDAL
         int AddUser(UserDTO user);
         bool UpdateUser(UserDTO updatedUser);
         bool AddAwardToUser(int userId, int awardId);
+        bool UserHasAward(int userId, int awardId);
     }
 }

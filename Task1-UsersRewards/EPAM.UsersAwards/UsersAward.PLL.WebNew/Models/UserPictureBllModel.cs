@@ -255,7 +255,12 @@ namespace UsersAward.PLL.Web.Models
 
         public bool AddAwardToUser(int userId, int awardId)
         {
-            return userBll.AddAwardToUser(userId, awardId);
+            if (!userBll.UserHasAward(userId, awardId))
+            {
+                return userBll.AddAwardToUser(userId, awardId);
+            }
+
+            return false;
         }
 
         public int CalculateAge(DateTime date)
