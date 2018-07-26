@@ -68,6 +68,10 @@
       <Project>{91eb9bb9-c8a2-466a-a9a6-f8fc498711a8}</Project>
       <Name>UsersAward.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UsersAward.Helpers\UsersAward.Helpers.csproj">
+      <Project>{af49c118-06d9-4cf7-a1bc-a4b8e4a09adf}</Project>
+      <Name>UsersAward.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
