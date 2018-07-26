@@ -131,29 +131,15 @@ namespace UsersAward.BLL.BasicBLL
 
         public DownloadableFile GetFileWithUsers()
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Guid.NewGuid() + ".txt");
             DownloadableFile dFile = new DownloadableFile()
             {
                 Type = "text/plain",
                 FileName = "All users"
             };
 
-            if (!File.Exists(filePath))
-            {
-                File.Create(filePath).Close();
-            }
-
             var text = GenerateTextForFile();
 
-            using (var writer = new StreamWriter(filePath, false))
-            {
-                writer.WriteLine(text);
-            }
-            //var dFile.Data = Encoding.ASCII.GetBytes(text);
-
-            dFile.Data = File.ReadAllBytes(filePath);
-
-            File.Delete(filePath);
+            dFile.Data = Encoding.ASCII.GetBytes(text);
 
             return dFile;
         }
