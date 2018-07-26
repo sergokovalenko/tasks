@@ -19,5 +19,6 @@ namespace UsersAward.BLL.AbstractBLL
         bool UpdateUser(UserDTO updatedUser);
         bool AddAwardToUser(int userId, int awardId);
         int CalculateAge(DateTime birthDate);
+        DownloadableFile GetFileWithUsers();
     }
 }

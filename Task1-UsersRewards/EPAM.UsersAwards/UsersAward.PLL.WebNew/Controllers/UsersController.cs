@@ -152,7 +152,7 @@ namespace UsersAward.PLL.Web.Controllers
         public FileContentResult DownloadUsers()
         {
             var fileResult = bllModel.GetFileWithUsers();
-            return File(fileResult.bytes, fileResult.type, "All Users");
+            return File(fileResult.Data, fileResult.Type, fileResult.FileName);
         }
 
         public ActionResult DeleteUserImage(Guid ownerId)
