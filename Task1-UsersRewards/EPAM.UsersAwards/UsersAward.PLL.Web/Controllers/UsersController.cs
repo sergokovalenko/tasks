@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
@@ -125,7 +122,6 @@ namespace UsersAward.PLL.Web.Controllers
             ImageDTO img = bllModel.GetImageById(id);
 
             return File(img.Data, img.Type);
-
         }
 
         public ActionResult AddAwardToUser(int userId, int awardId)

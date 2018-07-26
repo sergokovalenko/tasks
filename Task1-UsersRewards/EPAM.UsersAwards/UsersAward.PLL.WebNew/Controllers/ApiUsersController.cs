@@ -81,7 +81,6 @@ namespace UsersAward.PLL.Web.Controllers
             if (bllModel.UpdateUser(user))
             {
                 return Ok();
-
             }
 
             return BadRequest("We can't update user with this parametrs");

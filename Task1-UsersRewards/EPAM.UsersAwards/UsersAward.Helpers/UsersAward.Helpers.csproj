@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionHelper.cs" />
-    <Compile Include="HtmlHelper.cs" />
     <Compile Include="ImageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
