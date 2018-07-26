@@ -12,15 +12,17 @@ namespace UsersAward.BLL.BasicBLL
 {
     public class UserLogic : IUserLogic
     {
-        private IUserDal dal;
+        private IUserDal userDal;
+        private IAwardDal awardDal;
         private const int lowerBoundOfId = 0;
         private const int maxNameLength = 50;
         private const int maxAge = 150;
         private const int minAge = 0;
 
-        public UserLogic(IUserDal dal)
+        public UserLogic(IUserDal dal, IAwardDal awardDal)
         {
-            this.dal = dal;
+            this.userDal = dal;
+            this.awardDal = awardDal;
         }
 
         //TODO: int?
@@ -38,7 +40,7 @@ namespace UsersAward.BLL.BasicBLL
                 return -1;
             }
 
-            return dal.AddUser(user);
+            return userDal.AddUser(user);
         }
 
         public bool DeleteUser(int userId)
@@ -47,12 +49,12 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return false;
             }
-            return dal.DeleteUser(userId);
+            return userDal.DeleteUser(userId);
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            return dal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
+            return userDal.GetAllUsers().Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
         }
 
         public UserDTO GetUserById(int id)
@@ -61,7 +63,7 @@ namespace UsersAward.BLL.BasicBLL
             {
                 return null;
             }
-            UserDTO user = dal.GetUserById(id);
+            UserDTO user = userDal.GetUserById(id);
             if (user == null)
             {
                 return null;
@@ -85,7 +87,7 @@ namespace UsersAward.BLL.BasicBLL
                 return false;
             }
 
-            return dal.UpdateUser(updatedUser);
+            return userDal.UpdateUser(updatedUser);
         }
 
         public bool AddAwardToUser(int userId, int awardId)
@@ -95,7 +97,7 @@ namespace UsersAward.BLL.BasicBLL
                 return false;
             }
 
-            return dal.AddAwardToUser(userId, awardId);
+            return userDal.AddAwardToUser(userId, awardId);
         }
 
         public int CalculateAge(DateTime birthDate)
@@ -118,7 +120,7 @@ namespace UsersAward.BLL.BasicBLL
                 return null;
             }
 
-            return dal.GetUsersByFirstLetter(letter).Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
+            return userDal.GetUsersByFirstLetter(letter).Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
         }
 
         public IEnumerable<UserDTO> GetUsersContains(string text)
@@ -129,7 +131,7 @@ namespace UsersAward.BLL.BasicBLL
             }
             text = text.Trim();
 
-            return dal.GetUsersContains(text).Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
+            return userDal.GetUsersContains(text).Select(user => new UserDTO() { Id = user.Id, BirthDate = user.BirthDate, Name = user.Name, Age = CalculateAge(user.BirthDate), ImageId = user.ImageId });
         }
 
         public UserDTO GetOldestUserByName(string name)
@@ -140,7 +142,53 @@ namespace UsersAward.BLL.BasicBLL
             }
             name = name.Trim();
 
-            return dal.GetOldestUserByName(name);
+            return userDal.GetOldestUserByName(name);
+        }
+
+        public DownloadableFile GetFileWithUsers()
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Guid.NewGuid() + ".txt");
+            DownloadableFile dFile = new DownloadableFile()
+            {
+                Type = "text/plain",
+                FileName = "All users"
+            };
+
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+            }
+
+            using (var writer = new StreamWriter(filePath, false))
+            {
+                var users = GetAllUsers();
+                string text = "";
+
+                foreach (var item in users)
+                {
+                    text = string.Format("{0}, {1:d}, {2} ", item.Name, item.BirthDate, item.Age);
+                    var userAwards = awardDal.GetAwardsForUser(item.Id).ToList();
+                    if (userAwards == null || userAwards.Count == 0)
+                    {
+                        text += "hasn't awards";
+                    }
+                    else
+                    {
+                        text += "has awards: ";
+                        foreach (var aw in userAwards)
+                        {
+                            text += " " + aw.Title;
+                        }
+                    }
+                    writer.WriteLine(text);
+                }
+            }
+
+            dFile.Data = File.ReadAllBytes(filePath);
+
+            File.Delete(filePath);
+
+            return dFile;
         }
     }
 }

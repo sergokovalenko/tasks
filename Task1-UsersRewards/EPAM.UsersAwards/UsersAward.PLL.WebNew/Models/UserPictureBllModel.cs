@@ -73,7 +73,6 @@ namespace UsersAward.PLL.Web.Models
 
         public IEnumerable<DisplayUserVM> GetAllUsersWithAwards()
         {
-            var awards = awardBll.GetAllAwards().ToArray();
             var users = userBll.GetAllUsers().ToList();
             List<DisplayUserVM> usersVM = Mapper.Map<IEnumerable<DisplayUserVM>>(userBll.GetAllUsers()).ToList();
 
@@ -85,45 +84,9 @@ namespace UsersAward.PLL.Web.Models
             return usersVM;
         }
 
-        public (byte[] bytes, string type) GetFileWithUsers()
+        public DownloadableFile GetFileWithUsers()
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Guid.NewGuid() + ".txt");
-            string fileType = "text/plain";
-
-            if (!File.Exists(filePath))
-            {
-                File.Create(filePath).Close();
-            }
-
-            using (var writer = new StreamWriter(filePath, false))
-            {
-                var users = GetAllUsersWithAwards();
-                string text = "";
-
-                foreach (var item in users)
-                {
-                    text = string.Format("{0}, {1:d}, {2} ", item.Name, item.BirthDate, item.Age);
-                    if (item.Awards == null || item.Awards.Count == 0)
-                    {
-                        text += "hasn't awards";
-                    }
-                    else
-                    {
-                        text += "has awards: ";
-                        foreach (var aw in item.Awards)
-                        {
-                            text += " " + aw.Title;
-                        }
-                    }
-                    writer.WriteLine(text);
-                }
-            }
-
-            byte[] bytes = File.ReadAllBytes(filePath);
-
-            File.Delete(filePath);
-            //TODO: change to object
-            return (bytes, fileType);
+            return userBll.GetFileWithUsers();
         }
 
         public bool AwardUserByUrl(string user_award)
