@@ -8,6 +8,7 @@ namespace UsersAward.PLL.Web.Models.UserModels
     {
         [StringLength(50)]
         [Required]
+        [RegularExpression(@"[A-Za-zА-Яа-я].*", ErrorMessage = "Name must begin with a letter")]
         public string Name { get; set; }
 
         [Required]
