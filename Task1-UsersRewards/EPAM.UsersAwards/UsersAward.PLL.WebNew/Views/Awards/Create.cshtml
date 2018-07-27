@@ -38,7 +38,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input class="btn btn-default" type="file" name="Uploaded" />
+                <input class="btn btn-default" type="file" name="Uploaded" accept="image/*"/>
                 @Html.ValidationMessageFor(model => model.Uploaded, "", new { @class = "text-danger" })
             </div>
         </div>

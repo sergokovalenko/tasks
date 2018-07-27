@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Web.Mvc;
 using UsersAward.Entities;
-using UsersAward.Helpers;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.UserModels;
 
@@ -41,6 +38,7 @@ namespace UsersAward.PLL.Web.Controllers
             return View();
         }
 
+        [Route("create-user/")]
         [HttpPost]
         public ActionResult Create(CreateUserVM user)
         {
@@ -125,17 +123,9 @@ namespace UsersAward.PLL.Web.Controllers
 
         public ActionResult GetImageById(Guid id)
         {
-            Image img;
             ImageDTO imgDTO = bllModel.GetImageById(id);
 
-            using (var stream = new MemoryStream(imgDTO.Data))
-            {
-                img = Image.FromStream(stream);
-            }
-
-            var data = img.ResizeAndGetBytes(100, 100, true);
-
-            return File(data, imgDTO.Type);
+            return File(imgDTO.Data, imgDTO.Type);
         }
 
         public ActionResult AddAwardToUser(int userId, int awardId)

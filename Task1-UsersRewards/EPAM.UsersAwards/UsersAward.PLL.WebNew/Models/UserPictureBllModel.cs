@@ -4,9 +4,12 @@ using System.Linq;
 using System.Web;
 using UsersAward.BLL.AbstractBLL;
 using UsersAward.Entities;
+using UsersAward.Helpers;
 using UsersAward.PLL.Web.Models.AwardModels;
 using UsersAward.PLL.Web.Models.UserModels;
 using AutoMapper;
+using System.Drawing;
+using System.IO;
 
 namespace UsersAward.PLL.Web.Models
 {
@@ -121,7 +124,16 @@ namespace UsersAward.PLL.Web.Models
 
         public ImageDTO GetImageById(Guid id)
         {
-            return pictureBll.GetImageById(id);
+            Image img;
+            ImageDTO imgDTO = pictureBll.GetImageById(id);
+
+            using (var stream = new MemoryStream(imgDTO.Data))
+            {
+                img = Image.FromStream(stream);
+            }
+
+            imgDTO.Data = img.ResizeAndGetBytes(100, 100, true);
+            return imgDTO;
         }
 
         public Guid Addimage(ImageDTO img)

@@ -24,7 +24,7 @@
         @Html.HiddenFor(model => model.ImageId)
 
         <div class="form-group">
-            <img class="bordered-img" width="100" height="100" src=@Url.Action("GetImageById", new { id = Model.ImageId }) />
+            <img class="bordered-img col-md-offset-3" width="100" height="100" src=@Url.Action("GetImageById", new { id = Model.ImageId }) />
         </div>
 
         <div class="form-group">
@@ -44,8 +44,8 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-10">
-                <input class="btn btn-default" type="file" name="Uploaded" />
+            <div class="col-md-offset-2 col-md-10">
+                <input class="btn btn-default" type="file" name="Uploaded" accept="image/*" />
                 <a class="btn btn-default" href="@Url.Action("DeleteUserImage", new { ownerId = Model.ImageId })">Delete image</a>
             </div>
         </div>

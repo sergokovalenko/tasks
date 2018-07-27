@@ -23,7 +23,6 @@ namespace UsersAward.Helpers
 
         public static Image Resize(this Image sourceImage, int newWidth, int newHeight, bool reduceOnly)
         {
-            // Гарантия того, что не будет использована сохранённая внутри изображения миниатюра
             sourceImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
             sourceImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
