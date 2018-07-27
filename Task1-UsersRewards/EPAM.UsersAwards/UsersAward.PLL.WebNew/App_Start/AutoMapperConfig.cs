@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web;
+using UsersAward.BLL.AbstractBLL;
 using UsersAward.Entities;
 using UsersAward.PLL.Web.Models.AwardModels;
 using UsersAward.PLL.Web.Models.UserModels;
@@ -34,9 +35,13 @@ namespace UsersAward.PLL.Web
                 cfg.CreateMap<AwardDTO, CreateAwardVM>()
                     .ForMember(obj => obj.Uploaded, (opt => opt.UseValue<HttpPostedFileBase>(null)));
                 cfg.CreateMap<CreateAwardVM, AwardDTO>()
-                    .ForMember(obj => obj.Id, (opt => opt.UseValue(-1)))
+                    .ForMember(obj => obj.Id, (opt => opt.UseValue(ModelRules.LowerBoundOfId - 1)))
                     .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
                 cfg.CreateMap<EditAwardVM, AwardDTO>();
+
+                cfg.CreateMap<CreateApiAwardVM, AwardDTO>()
+                    .ForMember(obj => obj.Id, (opt => opt.UseValue(ModelRules.LowerBoundOfId - 1)))
+                    .ForMember(obj => obj.ImageId, (opt => opt.UseValue(Guid.Empty)));
             });
 
             Mapper.AssertConfigurationIsValid();

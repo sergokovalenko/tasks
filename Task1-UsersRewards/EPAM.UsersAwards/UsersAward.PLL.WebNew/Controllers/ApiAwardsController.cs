@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Http;
+using AutoMapper;
+using UsersAward.Entities;
 using UsersAward.PLL.Web.Models;
 using UsersAward.PLL.Web.Models.AwardModels;
 
@@ -16,7 +18,7 @@ namespace UsersAward.PLL.Web.Controllers
 
         [Route("api/awards/")]
         [Route("api/awards/{query}")]
-        public IHttpActionResult Get(string query)
+        public IHttpActionResult Get(string query = "")
         {
             var model = bllModel.GetModelForHomePage(query);
 
@@ -71,7 +73,7 @@ namespace UsersAward.PLL.Web.Controllers
 
                 if (!string.IsNullOrWhiteSpace(updatedAward.Title))
                 {
-                    updatedAward.Description = updatedAward.Description;
+                    award.Description = updatedAward.Description;
                 }
 
                 if (bllModel.UpdateAward(award))
@@ -81,6 +83,27 @@ namespace UsersAward.PLL.Web.Controllers
             }
 
             return BadRequest("We can't edit award with this parametrs");
+        }
+
+        [Route("api/create-award")]
+        [HttpPost]
+        public IHttpActionResult CreateAward([FromBody]CreateApiAwardVM award)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = bllModel.AddAward(Mapper.Map<AwardDTO>(award));
+
+                if (id > 0)
+                {
+                    return Created($"api/user/{id}", bllModel.GetAwardById(id));
+                }
+                else
+                {
+                    return BadRequest("We can't create award with this parametrs");
+                }
+            }
+
+            return BadRequest("Name and BirthDate is required");
         }
     }
 }
