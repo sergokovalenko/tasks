@@ -16,7 +16,7 @@ namespace UsersAward.PLL.Web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AutoMapperConfig.Configurate();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             ModelBinders.Binders.Add(typeof(DateTime), new DateTimeBinder());
         }
 
