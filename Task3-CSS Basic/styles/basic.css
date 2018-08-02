@@ -6,7 +6,7 @@ body {
     font-family: Arial;
 }
 
-header {
+.header {
     height: 524px;
     background-color: #98b318;
     background-image: url("../img/top_bg.jpg");
@@ -18,7 +18,7 @@ header {
     /* TEMPORARY */
 }
 
-footer {
+.footer {
     height: 122px;
     background-color: #98b318;
     background-image: url("../img/footer_bg.jpg");
@@ -30,19 +30,10 @@ footer {
     margin: 0 auto;
 }
 
-header>.container {
+.header>.container {
     height: 524px;
     /* TEMPORARY */
     background-color: #98b318;
     background-image: url("../img/header_bg.jpg");
     background-repeat: no-repeat;
-}
-
-.contacts {
-    text-align: right;
-}
-
-.info {
-    color: white;
-    line-height: 50px; 
 }
