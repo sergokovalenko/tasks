@@ -2,8 +2,12 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: Arial;
+}
+
 header {
-    height: 500px;
+    height: 524px;
     background-color: #98b318;
     background-image: url("../img/top_bg.jpg");
     background-repeat: repeat-x;
@@ -11,7 +15,7 @@ header {
 
 .main {
     height: 500px;
-    /* LEGACY */
+    /* TEMPORARY */
 }
 
 footer {
@@ -27,9 +31,18 @@ footer {
 }
 
 header>.container {
-    height: 500px;
-    /* LEGACY */
+    height: 524px;
+    /* TEMPORARY */
     background-color: #98b318;
     background-image: url("../img/header_bg.jpg");
     background-repeat: no-repeat;
+}
+
+.contacts {
+    text-align: right;
+}
+
+.info {
+    color: white;
+    line-height: 50px; 
 }
