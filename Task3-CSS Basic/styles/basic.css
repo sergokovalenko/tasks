@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-header {
+.header {
     height: 500px;
     background-color: #98b318;
     background-image: url("../img/top_bg.jpg");
@@ -11,10 +11,10 @@ header {
 
 .main {
     height: 500px;
-    /* LEGACY */
+    /* TEMPORARY */
 }
 
-footer {
+.footer {
     height: 122px;
     background-color: #98b318;
     background-image: url("../img/footer_bg.jpg");
@@ -26,9 +26,9 @@ footer {
     margin: 0 auto;
 }
 
-header>.container {
+.header>.container {
     height: 500px;
-    /* LEGACY */
+    /* TEMPORARY */
     background-color: #98b318;
     background-image: url("../img/header_bg.jpg");
     background-repeat: no-repeat;
