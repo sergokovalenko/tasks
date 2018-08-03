@@ -31,7 +31,7 @@
 
 .home-link {
     padding: 13px 21px;
-    margin-right: 15px;
+    margin-right: 11px;
 }
 
 .about-link {
@@ -41,7 +41,7 @@
 
 .services-link {
     padding: 13px 18px;
-    margin-right: 7px;
+    margin-right: 5px;
 }
 
 .solutions-link {
@@ -60,14 +60,15 @@
 }
 
 .menu-item-link:hover,
-.menu-item-link:active {
+.menu-item-link.active {
     color: white;
     background-image: url("../img/contact_hover.jpg");
+    background-repeat: no-repeat;
 }
 
-.home-link,
 .home-link:hover,
-.home-link:active {
+.home-link.active {
     color: white;
     background-image: url("../img/home_hover.jpg");
+    background-repeat: no-repeat;
 }
