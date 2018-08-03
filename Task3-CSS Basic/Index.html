@@ -7,7 +7,9 @@
     <title>Task 2 HTML</title>
     <link rel="stylesheet" type="text/css" href="styles/reset.css">
     <link rel="stylesheet" type="text/css" href="styles/basic.css">
+    <link rel="stylesheet" type="text/css" href="styles/common.css">
     <link rel="stylesheet" type="text/css" href="styles/header.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
 </head>
 
 <body>
@@ -17,15 +19,31 @@
                 <span class="info">Call us now: 800-567-8888</span>
             </div>
             <div class="navbar">
-                <div class="company-logo"></div>
-                <nav class="nav-menu">
-                    <ul>
-                        <li class="menu-item"></li>
-                        <li class="menu-item"></li>
-                        <li class="menu-item"></li>
-                        <li class="menu-item"></li>
-                        <li class="menu-item"></li>
-                        <li class="menu-item"></li>
+                <div class="company-logo inline v-center">
+                    <a href="#logo">
+                        <img src="img/logo.jpg" alt="Company logo" title="Company name" class="logo">
+                    </a>
+                </div>
+                <nav class="nav-menu inline v-center">
+                    <ul class="list-unstyled">
+                        <li class="menu-item">
+                            <a class="menu-item-link active home-link" href="#">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-item-link about-link" href="#">About Us</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-item-link services-link" href="#">Services</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-item-link solutions-link" href="#">Solutions</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-item-link support-link" href="#">Support</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-item-link contact-link" href="#">Contact Us</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
