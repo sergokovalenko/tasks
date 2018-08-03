@@ -4,5 +4,10 @@
 
 .info {
     color: white;
-    line-height: 50px; 
+    line-height: 50px;
+}
+
+.v-center {
+    line-height: 108px;
+    vertical-align: middle;
 }

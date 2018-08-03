@@ -1,0 +1,7 @@
+.inline {
+    display: inline-block;
+}
+
+.list-unstyled {
+    list-style: none;
+}
