@@ -5,3 +5,7 @@
 .list-unstyled {
     list-style: none;
 }
+
+.uppercase {
+    text-transform: uppercase;
+}
