@@ -1,0 +1,23 @@
+.content {
+    margin-left: 30px;
+}
+
+.welcome-article {
+    margin-top: 1px;
+}
+
+.welcome-article-title {
+    font-size: 22px;
+    color: #88898b;
+}
+
+.title-welcome {
+    font-size: 30px;
+    color: #000;
+}
+
+.welcome-article-description {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #8d950c;
+}
