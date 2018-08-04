@@ -6,6 +6,10 @@
     list-style: none;
 }
 
-.uppercase {
+.text-uppercase {
     text-transform: uppercase;
+}
+
+.text-bold {
+    font-weight: bold;
 }
