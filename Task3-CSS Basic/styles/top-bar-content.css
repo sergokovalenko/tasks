@@ -9,10 +9,16 @@
     padding-top: 47px;
     font-size: 24px;
     font-weight: bold;
-    text-transform: uppercase;
     color: #5e6874;
 }
 
 .pf-letter{
     letter-spacing: 0.3px;
+}
+
+.top-bar-content{
+    margin-left: 32px;
+    padding-top: 2px;
+    font-size: 16px;
+    color: #9fa6ae;
 }
