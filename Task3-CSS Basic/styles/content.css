@@ -1,11 +1,11 @@
 .content {
-    margin-left: 30px;
     width: 655px;
+    margin-left: 30px;
 }
 
 .welcome-article {
-    margin-top: 1px;
     height: 200px;
+    margin-top: 1px;
 }
 
 .welcome-article-title {
@@ -33,10 +33,11 @@
 }
 
 .full-article-link {
+    display: inline-block;
     margin-top: 17px;
-    color: #d47302;
     font-size: 11px;
     text-decoration: none;
+    color: #d47302;
 }
 
 .full-article-link:before {
