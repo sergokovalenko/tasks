@@ -24,13 +24,17 @@
     color: #8d950c;
 }
 
-.welcome-article-content {
-    height: 93px;
-    margin-top: 16px;
+.article-content {
     font-size: 13px;
     line-height: 18px;
-    color: #88898b;
+    color: #71707e;
 }
+
+.welcome-article > .article-content {
+    height: 93px;
+    margin-top: 15px;
+}
+
 
 .full-article-link {
     display: inline-block;
@@ -48,4 +52,16 @@
 
 .full-article-link:hover:before {
     content: url(../img/green_dot.jpg);
+}
+
+.about-article {
+    margin-top: 40px;
+}
+
+.about-article-title {
+    font-size: 24px;
+}
+
+.about-article > .article-content {
+    margin-top: 29px;
 }

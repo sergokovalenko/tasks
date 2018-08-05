@@ -14,11 +14,6 @@ body {
     background-repeat: repeat-x;
 }
 
-.main {
-    height: 500px;
-    /* TEMPORARY */
-}
-
 .footer {
     height: 122px;
     background-color: #98b318;
@@ -32,8 +27,6 @@ body {
 }
 
 .header>.container {
-    height: 524px;
-    /* TEMPORARY */
     background-color: #98b318;
     background-image: url("../img/header_bg.jpg");
     background-repeat: no-repeat;
