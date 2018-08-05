@@ -1,9 +1,11 @@
 .content {
     margin-left: 30px;
+    width: 655px;
 }
 
 .welcome-article {
     margin-top: 1px;
+    height: 200px;
 }
 
 .welcome-article-title {
@@ -20,4 +22,29 @@
     margin-top: 20px;
     font-size: 12px;
     color: #8d950c;
+}
+
+.welcome-article-content {
+    height: 93px;
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #88898b;
+}
+
+.full-article-link {
+    margin-top: 17px;
+    color: #d47302;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.full-article-link:before {
+    content: url(../img/orange_dot.jpg);
+    display: inline-block;
+    margin-right: 7px;
+}
+
+.full-article-link:hover:before {
+    content: url(../img/green_dot.jpg);
 }
