@@ -30,11 +30,10 @@
     color: #71707e;
 }
 
-.welcome-article > .article-content {
+.welcome-article>.article-content {
     height: 93px;
     margin-top: 15px;
 }
-
 
 .full-article-link {
     display: inline-block;
@@ -62,6 +61,17 @@
     font-size: 24px;
 }
 
-.about-article > .article-content {
-    margin-top: 29px;
+.about-article>.article-content {
+    margin-top: 9px;
+    height: 95px;
+    overflow: hidden;
+}
+
+.about-article>.article-content:before {
+    content: "";
+    display: block;
+    height: 20px;
+    position: relative;
+    top: 75px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
 }
