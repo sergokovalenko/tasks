@@ -40,7 +40,6 @@
 
 .full-article-link {
     display: inline-block;
-    margin-top: 17px;
     font-size: 11px;
     text-decoration: none;
     color: #d47302;
@@ -58,6 +57,7 @@
 
 .about-article {
     margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .about-article-title {
@@ -65,19 +65,10 @@
 }
 
 .about-article>.article-content {
-    margin-top: 9px;
-    height: 95px;
+    margin-top: 29px;
     overflow: hidden;
 }
 
-.about-article>.article-content:before {
-    content: "";
-    display: block;
-    height: 20px;
-    position: relative;
-    top: 75px;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
-}
 
 .preview-img {
     display: inline-block;
@@ -103,6 +94,17 @@
 }
 
 .benefits-about >.article-content {
-    padding-top: 14px;
-    height: 73px;
+    margin-top: -6px;
+    height: 95px;
+    overflow: hidden;
+}
+
+
+.benefits-about>.article-content:before {
+    content: "";
+    display: block;
+    height: 20px;
+    position: relative;
+    top: 75px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
 }
