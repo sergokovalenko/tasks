@@ -2,7 +2,65 @@
   width: 255px;
   height: 286px;
   margin-left: 26px;
-  border: 1px solid grey;
-  border-radius: 5px;
-  background-color: grey;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  background-color: #f6f6f6;
+  background-image: url(../img/login_top.jpg);
+  background-repeat: no-repeat;
+}
+
+.form-name {
+  margin-top: 33px;
+  margin-left: 20px;
+  color: #95a34e;
+  font-size: 24px;
+}
+
+.form-wrapper {
+  margin-top: 16px;
+  margin-left: 36px;
+}
+
+#authorization > label{
+  display: block;
+  font-size: 11px;
+  margin-left: 12px;
+  margin-bottom: 7px;
+  color: #838592;
+}
+
+.label-required:after{
+  color: red;
+  content: " *";
+}
+
+.input-wrapper {
+  display: block;
+  width: 185px;
+  height: 26px;
+  margin-bottom: 9px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: inset 1px 1px 0px 0px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
+}
+
+.input-wrapper > input {
+  width: 160px;
+  margin-top: 5px;
+  margin-left: 11px;
+  font-size: 11px;
+  border: none;
+  color: #b8b5ae;
+}
+
+.btn-submit {
+  width: 70px;
+  height: 25px;
+  margin-top: 4px;
+  padding-bottom: 5px;
+  border: none;
+  border-radius: 15px;
+  background-color: #ed8a15;
+  color: white;
+  background-image: linear-gradient(to bottom, #ea8712, #edaa5b 80%, #c7761a)
 }

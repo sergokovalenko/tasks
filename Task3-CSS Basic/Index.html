@@ -111,13 +111,22 @@
 
             <section class="right-bar">
                 <div class="authorization-block">
-                    <form action="#">
-                        <label for="name" class="label-required">username</label>
-                        <input type="text" id="name" placeholder="enter your name" required>
-                        <label for="password">password</label>
-                        <input type="password" id="password" placeholder="*******" required>
-                        <input type="submit" class="btn-submit">
-                    </form>
+                    <h3 class="form-name text-bold text-uppercase">User login</h3>
+                    <div class="form-wrapper">
+                        <form action="#" id="authorization">
+                            <label for="name" class="label-required">username</label>
+                            <div class="input-wrapper">
+                                <input type="text" name="name" id="name" placeholder="enter your name" required>
+                            </div>
+                            <label for="password" class="label-required">password</label>
+                            <div class="input-wrapper">
+                                <input type="password" name="password" id="password" placeholder="value" required>
+                            </div>
+                            <input type="submit" class="btn-submit" value="Login">
+                        </form>
+                        <a href="#" class="form-link">Create new account</a>
+                        <a href="#" class="form-link">Request new password</a>
+                    </div>
                 </div>
                 <div class="news-block"></div>
             </section>
