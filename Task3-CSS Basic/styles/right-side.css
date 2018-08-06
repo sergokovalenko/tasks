@@ -34,33 +34,43 @@
   content: " *";
 }
 
-.input-wrapper {
+#authorization > input {
   display: block;
   width: 185px;
   height: 26px;
   margin-bottom: 9px;
   border-radius: 10px;
-  background-color: #fff;
-  box-shadow: inset 1px 1px 0px 0px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
-}
-
-.input-wrapper > input {
-  width: 160px;
-  margin-top: 5px;
-  margin-left: 11px;
+  padding-top: 2px;
+  padding-left: 13px;
   font-size: 11px;
   border: none;
-  color: #b8b5ae;
+  color: #b0b5b8;
+  box-shadow: inset 1px 1px 0px 0px  rgba(0,0,0,.5), inset 0 0 0 60px rgba(0,0,0,0), 0 1px rgba(255,255,255,.08);
 }
 
 .btn-submit {
   width: 70px;
   height: 25px;
   margin-top: 4px;
+  margin-bottom: 14px;
   padding-bottom: 5px;
   border: none;
   border-radius: 15px;
   background-color: #ed8a15;
   color: white;
   background-image: linear-gradient(to bottom, #ea8712, #edaa5b 80%, #c7761a)
+}
+
+.form-link {
+  display: inline-block;
+  margin-bottom: 8px;
+  text-decoration: none;
+  font-size: 11px;
+  color: #756a68;
+}
+
+.form-link:before {
+  content: url("../img/orange_dot.jpg");
+  display: inline-block;
+  margin-right: 7px;
 }
