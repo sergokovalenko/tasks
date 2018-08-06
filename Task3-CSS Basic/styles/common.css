@@ -5,3 +5,11 @@
 .list-unstyled {
     list-style: none;
 }
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-bold {
+    font-weight: bold;
+}
