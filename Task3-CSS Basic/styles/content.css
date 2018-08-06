@@ -1,6 +1,14 @@
 .content {
+    display: inline-block;
     width: 655px;
     margin-left: 30px;
+    vertical-align: top;
+}
+
+.right-bar {
+    display: inline-block;
+    width: 312px;
+    vertical-align: top;
 }
 
 .welcome-article {
