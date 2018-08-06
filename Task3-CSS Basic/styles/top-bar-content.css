@@ -1,0 +1,18 @@
+.top-bar {
+    height: 145px;
+    background-image: url("../img/growth_bg.jpg");
+    background-repeat: no-repeat;
+}
+
+.top-bar-title {
+    margin-left: 30px;
+    padding-top: 47px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #5e6874;
+}
+
+.pf-letter{
+    letter-spacing: 0.3px;
+}
