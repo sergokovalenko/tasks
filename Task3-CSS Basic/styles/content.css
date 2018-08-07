@@ -94,13 +94,24 @@
     letter-spacing: 0.56px;
 }
 
-.benefits-about >.article-content {
-    margin-top: -6px;
-    height: 95px;
+.benefits-about .article-content {
+    margin-top: 16px;
+    height: 75px;
     overflow: hidden;
 }
 
+.blur-block {
+    position: relative;
+}
 
+.blur-element {
+    position: absolute;
+    bottom: 0;
+    height: 20px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%);
+}
+
+/* 
 .benefits-about>.article-content:before {
     content: "";
     display: block;
@@ -108,4 +119,4 @@
     position: relative;
     top: 75px;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
-}
+} */
