@@ -26,6 +26,7 @@
 .menu-item-link {
     color: black;
     text-decoration: none;
+    padding: 0 0px;
 }
 
 .home-link {
@@ -58,15 +59,15 @@
     margin-right: 21px;
 }
 
-.menu-item-link:hover,
-.menu-item-link.active {
+.nav-menu .menu-item-link:hover,
+.nav-menu .active {
     color: white;
     background-image: url("../img/contact_hover.jpg");
     background-repeat: no-repeat;
 }
 
 .home-link:hover,
-.home-link.active {
+.nav-menu .home-link.active {
     color: white;
     background-image: url("../img/home_hover.jpg");
     background-repeat: no-repeat;
