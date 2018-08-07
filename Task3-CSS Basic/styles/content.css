@@ -87,11 +87,16 @@
 }
 
 .benefits-description {
-    margin-top:7px;
+    display: block;
+    margin-top: 7px;
     font-size: 12px;
     text-decoration: none;
     color: #d47302;
-    letter-spacing: 0.56px;
+    letter-spacing: 0.6px;
+}
+
+.benefits-description:hover {
+    color: #8d950c;
 }
 
 .benefits-about .article-content {
@@ -107,16 +112,8 @@
 .blur-element {
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
     height: 20px;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%);
 }
-
-/* 
-.benefits-about>.article-content:before {
-    content: "";
-    display: block;
-    height: 20px;
-    position: relative;
-    top: 75px;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
-} */
