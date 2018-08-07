@@ -6,7 +6,7 @@
 
 .nav-footer .menu-item-link {
   color: #dc9553;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 .nav-footer .menu-item-link:hover {
@@ -27,4 +27,13 @@
 
 .nav-footer .active{
   color: #94a636;
+}
+
+.copyrights {
+  margin-top: 4px;
+  margin-left: 85px;
+  line-height: 110px;
+  vertical-align: middle;
+  font-size: 12px;
+  color: #71707e;
 }
