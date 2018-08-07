@@ -18,13 +18,12 @@
 }
 
 .banner-content {
-    width: 430px;
+    width: 436px;
     height: 87px;
     margin-bottom: 6px;
     color: white;
     font-size: 10px;
     line-height: 1.8;
-    letter-spacing: 0.3px;
 }
 
 .banner-content.blur-block::before {
@@ -43,4 +42,8 @@
     border-radius: 7px;
     border: none;
     background: linear-gradient(to bottom, #ffffff, #a6aa93);
+}
+
+.btn-banner:hover {
+    color: #d47302;
 }
