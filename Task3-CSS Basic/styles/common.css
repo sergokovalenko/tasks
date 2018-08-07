@@ -27,6 +27,13 @@
     letter-spacing: 0.3px;
 }
 
+.article-content {
+    font-size: 13px;
+    line-height: 18px;
+    color: #71707e;
+    letter-spacing: 0.2px;
+}
+
 .blur-block {
     position: relative;
 }
@@ -41,3 +48,30 @@
     height: 20px;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%);
 }
+
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative; 
+    text-align: justify;  
+    margin-right: -1em;
+    padding-right: 1em;
+  }
+
+  .text-ellipsis:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .text-ellipsis:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white;
+  }

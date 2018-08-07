@@ -42,9 +42,10 @@
 }
 
 .welcome-article>.article-content {
-    height: 93px;
+    height: 108px;
     margin-top: 15px;
-    margin-bottom: 17px;
+    margin-bottom: 2px;
+    overflow: hidden;
 }
 
 .full-article-link {
@@ -109,6 +110,10 @@
 
 .benefits-about .article-content {
     margin-top: 16px;
-    height: 75px;
+    height: 54px;
     overflow: hidden;
+}
+
+.benefits-about .full-article-link {
+    margin-top: 20px;
 }
