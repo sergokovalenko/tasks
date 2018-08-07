@@ -120,15 +120,27 @@
 }
 
 .news-content-wrapper {
-  width: 176px;
+  width: 180px;
 }
 
 .news-content-wrapper>.article-content {
-  margin-top: 13px;
+  width: 178px;
+  height: 61px;
+  margin-top: 3px;
   margin-left: 8px;
   font-size: 11px;
   line-height: 17px;
+  letter-spacing: 1.1px;
   overflow: hidden;
+}
+
+.news-content-wrapper>.article-content:before {
+  content: "";
+  display: block;
+  position: relative;
+  height: 10px;
+  top: 53px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f6f6f6 75%)
 }
 
 .news-content-wrapper>.full-article-link {
