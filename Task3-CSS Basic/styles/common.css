@@ -14,3 +14,18 @@
 .text-bold {
     font-weight: bold;
 }
+
+.blur-block {
+    position: relative;
+}
+
+.blur-block:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%);
+}
