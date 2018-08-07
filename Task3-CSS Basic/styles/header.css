@@ -1,13 +1,16 @@
 .contacts {
+    margin-right: 17px;
     text-align: right;
 }
 
 .info {
     color: white;
     line-height: 50px;
+    font-size: 12px;
+    letter-spacing: 1.6px;
 }
 
 .v-center {
-    line-height: 108px;
+    line-height: 107px;
     vertical-align: middle;
 }
