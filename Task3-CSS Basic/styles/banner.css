@@ -19,10 +19,17 @@
 
 .banner-content {
     width: 430px;
+    height: 87px;
+    margin-bottom: 6px;
     color: white;
     font-size: 10px;
     line-height: 1.8;
-    margin-bottom: 21px;
+    letter-spacing: 0.3px;
+}
+
+.banner-content.blur-block::before {
+    height: 15px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #7f9d07 75%);
 }
 
 .btn {
