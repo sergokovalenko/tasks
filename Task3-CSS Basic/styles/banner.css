@@ -26,6 +26,7 @@
 }
 
 .btn {
+    cursor: pointer;
     text-transform: capitalize;
 }
 
