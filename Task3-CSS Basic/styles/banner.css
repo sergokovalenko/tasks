@@ -13,6 +13,7 @@
 }
 
 .banner-title-bottom {
+    display: block;
     font-size: 38px;
     margin-bottom: 2px;
 }
