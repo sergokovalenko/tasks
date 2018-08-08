@@ -7,22 +7,29 @@
 }
 
 .banner-title-top {
-    color: white;
+    color: #fff;
     font-size: 44px;
     margin-bottom: 5px;
 }
 
 .banner-title-bottom {
+    display: block;
     font-size: 38px;
     margin-bottom: 2px;
 }
 
 .banner-content {
-    width: 430px;
-    color: white;
+    width: 436px;
+    height: 87px;
+    margin-bottom: 6px;
+    color: #fff;
     font-size: 10px;
     line-height: 1.8;
-    margin-bottom: 21px;
+}
+
+.banner-content.blur-block::before {
+    height: 15px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #7f9d07 75%);
 }
 
 .btn {
@@ -35,5 +42,9 @@
     padding: 5px 0px 8px 0px;
     border-radius: 7px;
     border: none;
-    background: linear-gradient(to bottom, #ffffff, #a6aa93);
+    background: linear-gradient(to bottom, #fff, #a6aa93);
+}
+
+.btn-banner:hover {
+    color: #d47302;
 }

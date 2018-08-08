@@ -60,9 +60,8 @@
   padding-bottom: 5px;
   border: none;
   border-radius: 15px;
-  background-color: #ed8a15;
-  color: white;
   background-color: #b4b4b4;
+  color: #fff;
   background-image: linear-gradient(to bottom, #b4b4b4, #858585);
 }
 
@@ -114,7 +113,7 @@
   padding-top: 40px;
   padding-left: 65px;
   font-size: 24px;
-  color: orange;
+  color: #d47302;
 }
 
 .news-block-article {

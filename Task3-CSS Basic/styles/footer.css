@@ -5,8 +5,8 @@
 }
 
 .nav-footer .menu-item-link {
-  color: #dc9553;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.7px;
+  color: #d47302;
 }
 
 .nav-footer .menu-item-link:hover {
@@ -16,9 +16,9 @@
 .nav-footer .menu-item:after {
   content: "|";
   display: inline-block;
-  padding: 0px 9px;
-  color: #dc9553;
   font-weight: bold;
+  padding-left: 8px;
+  padding-right: 12px;
 }
 
 .nav-footer .menu-item:nth-last-child(1):after {
