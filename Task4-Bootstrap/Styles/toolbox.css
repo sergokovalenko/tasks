@@ -1,0 +1,9 @@
+.toolbox {
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #418bca;
+}
+
+.toolbox>li {
+    margin-bottom: 20px;
+}
