@@ -54,14 +54,14 @@
 
 .nav-menu .menu-item-link:hover,
 .nav-menu .active {
-    color: white;
+    color: #fff;
     background-image: url("../img/contact_hover.jpg");
     background-repeat: no-repeat;
 }
 
 .home-link:hover,
 .nav-menu .home-link.active {
-    color: white;
+    color: #fff;
     background-image: url("../img/home_hover.jpg");
     background-repeat: no-repeat;
 }
