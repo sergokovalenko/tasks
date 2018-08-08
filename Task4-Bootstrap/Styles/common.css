@@ -16,3 +16,11 @@ html {
 .menu-link:hover {
     text-decoration: none;
 }
+
+.progress-status {
+    font-size: 12px;
+}
+
+.progress-status +div{
+    margin-bottom: 10px;
+}
