@@ -1,0 +1,67 @@
+.navbar {
+    margin-left: auto;
+    height: 108px;
+}
+
+.company-logo {
+    height: 108px;
+}
+
+.logo {
+    margin-top: 20px;
+    margin-left: 17px;
+}
+
+.v-center {
+    line-height: 107px;
+    vertical-align: middle;
+}
+
+.nav-menu {
+    float: right;
+    height: 108px;
+}
+
+.home-link {
+    padding: 13px 21px;
+    margin-right: 13px;
+}
+
+.about-link {
+    padding: 13px 17px;
+    margin-right: 10px;
+}
+
+.services-link {
+    padding: 13px 18px;
+    margin-right: 5px;
+}
+
+.solutions-link {
+    padding: 13px 16px;
+    margin-right: 9px;
+}
+
+.support-link {
+    padding: 13px 20px;
+    margin-right: 14px;
+}
+
+.contact-link {
+    padding: 13px 12px;
+    margin-right: 18px;
+}
+
+.nav-menu .menu-item-link:hover,
+.nav-menu .active {
+    color: #fff;
+    background-image: url("../img/contact_hover.jpg");
+    background-repeat: no-repeat;
+}
+
+.home-link:hover,
+.nav-menu .home-link.active {
+    color: #fff;
+    background-image: url("../img/home_hover.jpg");
+    background-repeat: no-repeat;
+}
