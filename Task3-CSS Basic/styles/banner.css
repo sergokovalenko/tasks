@@ -7,7 +7,7 @@
 }
 
 .banner-title-top {
-    color: white;
+    color: #fff;
     font-size: 44px;
     margin-bottom: 5px;
 }
@@ -21,7 +21,7 @@
     width: 436px;
     height: 87px;
     margin-bottom: 6px;
-    color: white;
+    color: #fff;
     font-size: 10px;
     line-height: 1.8;
 }
@@ -41,7 +41,7 @@
     padding: 5px 0px 8px 0px;
     border-radius: 7px;
     border: none;
-    background: linear-gradient(to bottom, #ffffff, #a6aa93);
+    background: linear-gradient(to bottom, #fff, #a6aa93);
 }
 
 .btn-banner:hover {
