@@ -34,6 +34,10 @@
     letter-spacing: 0.2px;
 }
 
+.-color-orange {
+    color: #d47302;
+}
+
 .blur-block {
     position: relative;
 }
@@ -46,7 +50,7 @@
     left: 0;
     right: 0;
     height: 20px;
-    background-image: linear-gradient(to bottom, rgb(255,255,255,0), #fff 75%);
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255, 0), #fff 75%);
 }
 
 .hidden-outline {
