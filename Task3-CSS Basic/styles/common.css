@@ -46,5 +46,13 @@
     left: 0;
     right: 0;
     height: 20px;
-    background-image: linear-gradient(to bottom, #000, #fff 75%);
+    background-image: linear-gradient(to bottom, rgb(255,255,255,0), #fff 75%);
+}
+
+.hidden-outline {
+    outline: 0;
+}
+
+.hidden-outline:focus {
+    outline: 0;
 }
