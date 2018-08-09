@@ -9,6 +9,10 @@
     font-size: 12px;
 }
 
+.fa.fa-fw.d-block {
+    font-size: 24px;
+}
+
 .badged {
     position: relative;
     display: inline-block;
@@ -20,4 +24,5 @@
     top: 2px;
     left: 15px;
     font-size: 10px;
+    opacity: 0.9;
 }
