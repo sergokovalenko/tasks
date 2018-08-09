@@ -3,24 +3,20 @@ html {
 }
 
 .title {
-    margin-bottom: 20px;
     font-size: 22px;
 }
 
 .hr-block {
     width: 100%;
+    margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eeeeee;
-}
-
-.menu-link:hover {
-    text-decoration: none;
 }
 
 .progress-status {
     font-size: 12px;
 }
 
-.progress-status +div{
+.progress-status+div {
     margin-bottom: 10px;
 }
