@@ -8,3 +8,16 @@
 .progress-status {
     font-size: 12px;
 }
+
+.badged {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.badged > .badge {
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    font-size: 10px;
+}
