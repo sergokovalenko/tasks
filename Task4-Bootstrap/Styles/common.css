@@ -1,0 +1,27 @@
+.hr-block {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.progress-status {
+    font-size: 12px;
+}
+
+.fa.fa-fw.d-block {
+    font-size: 24px;
+}
+
+.badged {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.badged > .badge {
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    font-size: 10px;
+    opacity: 0.9;
+}
