@@ -60,3 +60,7 @@ a:hover {
 .nav-item:hover {
   background-color: #f8f9fa;
 }
+
+img.rounded-circle:hover {
+  filter: invert(0.30);
+}
