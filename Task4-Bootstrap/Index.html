@@ -16,14 +16,14 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark p-0 mb-4">
             <div class="container">
                 <a class="navbar-brand" href="#">Control Panel</a>
                 <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapse" aria-controls="collapse"
-                    aria-expanded="false" aria-label="Toggle navigation"></button>
+                    aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars fa-1x"></i></button>
                 <div class="collapse navbar-collapse" id="collapse">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown p-2">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i> Admin</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
@@ -39,11 +39,11 @@
     </header>
 
     <main class="container">
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <h5 class="hr-block">
+        <div class="row hr-block">
+            <div class="col-md-3">
+                <h4 class="hr-block">
                     <i class="fa fa-briefcase fa-fw" aria-hidden="true"></i>Toolbox
-                </h5>
+                </h4>
                 <ul class="nav nav-pills flex-column hr-block">
                     <li class="list-group-item-action">
                         <a href="#" class="nav-link">
@@ -89,87 +89,93 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-md-8">
+            <div class="col-md-9 hr-block">
                 <h4 class="hr-block">
                     <i class="fa fa-globe fa-fw" aria-hidden="true"></i>Dashboard
                 </h4>
-                <div class="col-12 hr-block">
-                    <div class="card">
-                        <span class="card-header d-flex justify-content-between align-items-center">Inbox Messages
-                            <span class="badge badge-secondary badge-pill">3</span>
-                        </span>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hr-block">
+                            <div class="card">
+                                <span class="card-header d-flex justify-content-between align-items-center">Inbox Messages
+                                    <span class="badge badge-secondary badge-pill">3</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <span class="card-header">Processing Status</span>
+                            <div class="card-body">
+                                <div class="small">Complete</div>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="small">In Progress</div>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="small">At Risk</div>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="card">
-                        <span class="card-header">Processing Status</span>
-                        <div class="card-body">
-                            <div class="small">Complete</div>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="small">In Progress</div>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="small">At Risk</div>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="col-lg-6">
+                        <div class="col-12 hr-block">
+                            <ul class="nav nav-pills nav-fill flex-column flex-md-row">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fa fa-heart fa-fw" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <div class="badged">
+                                            <i class="fa fa-comment fa-fw" aria-hidden="true"></i>
+                                            <span class="badge badge-success rounded-circle">3</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 hr-block">
+                            <p>This is a responsive dashboard-style layout that uses
+                                <a href="https://getbootstrap.com/docs/3.3/" target="_blank">Bootstrap 3</a>. You can use this template as a starting point to create something more unique.</p>
+                            <p>Visit the Bootstrap Playground at
+                                <a href="#">Link</a> to tweak this layout, or discover 1000's of Bootstrap code examples and snippets.</p>
+                        </div>
+                        <div class="col-12">
+                            <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info w-25">
+                                    <i class="fa fa-plus fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Service</button>
+                                <button type="button" class="btn btn-info w-25">
+                                    <i class="fa fa-cloud fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Cloud</button>
+                                <button type="button" class="btn btn-info w-25">
+                                    <i class="fa fa-cog fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Tools</button>
+                                <button type="button" class="btn btn-info w-25">
+                                    <i class="fa fa-question-circle fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Help</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 hr-block">
-                    <ul class="nav nav-pills nav-fill flex-column flex-md-row">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-heart fa-fw" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <div class="badged">
-                                    <i class="fa fa-comment fa-fw" aria-hidden="true"></i>
-                                    <span class="badge badge-success rounded-circle">3</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-user fa-fw" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 hr-block">
-                    <p>This is a responsive dashboard-style layout that uses
-                        <a href="https://getbootstrap.com/docs/3.3/" target="_blank">Bootstrap 3</a>. You can use this template as a starting point to create something more unique.</p>
-                    <p>Visit the Bootstrap Playground at
-                        <a href="#">Link</a> to tweak this layout, or discover 1000's of Bootstrap code examples and snippets.</p>
-                </div>
-                <div class="col-12 hr-block">
-                    <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info w-25">
-                            <i class="fa fa-plus fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Service</button>
-                        <button type="button" class="btn btn-info w-25">
-                            <i class="fa fa-cloud fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Cloud</button>
-                        <button type="button" class="btn btn-info w-25">
-                            <i class="fa fa-cog fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Tools</button>
-                        <button type="button" class="btn btn-info w-25">
-                            <i class="fa fa-question-circle fa-lg fa-fw d-block mx-auto mt-1" aria-hidden="true"></i>Help</button>
-                    </div>
-                </div>
             </div>
+
+            <div class="row"></div>
 
             <div class="col-12 hr-block">
                 <a href="#" class="nav-link">
