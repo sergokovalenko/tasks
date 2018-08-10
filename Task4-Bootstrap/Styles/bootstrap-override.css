@@ -1,3 +1,14 @@
+.nav-item.dropdown:hover,
+.nav-item.show {
+  background-color: #1d1d1d;
+}
+
+.dropdown-menu {
+  top: 53px;
+  right: 0;
+  left: auto;
+}
+
 a {
   color: #418bca;
 }
