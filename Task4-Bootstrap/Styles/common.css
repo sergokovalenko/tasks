@@ -4,14 +4,6 @@
     border-bottom: 1px solid #eeeeee;
 }
 
-.progress-status {
-    font-size: 12px;
-}
-
-.fa.fa-fw.d-block {
-    font-size: 24px;
-}
-
 .badged {
     position: relative;
     display: inline-block;
