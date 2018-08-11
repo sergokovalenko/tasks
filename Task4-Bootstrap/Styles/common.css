@@ -1,7 +1,7 @@
 .hr-block {
-    margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
 }
 
 .badged {
@@ -14,5 +14,5 @@
     top: 7px;
     right: 12px;
     font-size: 10px;
-    opacity: 0.9;
+    opacity: .9;
 }
