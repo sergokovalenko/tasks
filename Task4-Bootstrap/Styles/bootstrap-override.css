@@ -3,7 +3,7 @@
   background-color: #1d1d1d;
 }
 
-.dropdown-menu {
+.dropdown-menu-right {
   top: 53px;
   right: 0;
   left: auto;
@@ -62,5 +62,5 @@ a:hover {
 }
 
 img.rounded-circle:hover {
-  filter: invert(0.30);
+  opacity: .6;
 }
