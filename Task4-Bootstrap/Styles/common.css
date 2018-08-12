@@ -1,19 +1,24 @@
 .hr-block {
-    margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.hr-block-tb {
+    padding-top: 15px;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
 }
 
 .badged {
     position: relative;
     display: inline-block;
-    font-size: 20px;
 }
 
 .badged > .badge {
     position: absolute;
-    top: 2px;
-    left: 15px;
+    top: 7px;
+    right: 12px;
     font-size: 10px;
-    opacity: 0.9;
+    opacity: .9;
 }
