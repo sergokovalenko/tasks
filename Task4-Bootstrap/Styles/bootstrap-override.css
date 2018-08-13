@@ -1,0 +1,66 @@
+.nav-item.dropdown:hover,
+.nav-item.show {
+  background-color: #1d1d1d;
+}
+
+.dropdown-menu-right {
+  top: 53px;
+  right: 0;
+  left: auto;
+}
+
+a {
+  color: #418bca;
+}
+
+a:hover {
+  color: #2b6597;
+}
+
+.list-group-item.active {
+  background-color: #418bca;
+  border-color: #4b78a1;
+}
+
+.btn-primary {
+  background-color: #418bca;
+  border-color: #4b78a1;
+}
+
+.btn-info {
+  background-color: #5bc0de;
+}
+
+.bg-success {
+  background-color: #5bb85d !important;
+}
+
+.bg-info {
+  background-color: #5bc0de !important;
+}
+
+.bg-danger {
+  background-color: #d9544f !important;
+}
+
+.alert-primary {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.close {
+  opacity: 0.2;
+}
+
+.close:hover {
+  opacity: 0.5;
+}
+
+.nav-item:hover {
+  background-color: #f8f9fa;
+}
+
+img.rounded-circle:hover {
+  opacity: .6;
+}
