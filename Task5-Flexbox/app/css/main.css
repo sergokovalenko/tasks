@@ -1,9 +1,155 @@
+/*! normalize.sass v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
 body {
-  font-family: ff-tisa-web-pro, Georgia, sans-serif; }
+  margin: 0; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+audio, canvas, progress, video {
+  display: inline-block;
+  vertical-align: baseline; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden], template {
+  display: none; }
+
+a {
+  background-color: transparent; }
+  a:active, a:hover {
+    outline: 0; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b, strong {
+  font-weight: bold; }
+
+dfn {
+  font-style: italic; }
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+small {
+  font-size: 80%; }
+
+sub {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+figure {
+  margin: 1em 40px; }
+
+hr {
+  box-sizing: content-box;
+  height: 0; }
+
+pre {
+  overflow: auto; }
+
+code, kbd, pre, samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0; }
+
+button {
+  overflow: visible;
+  text-transform: none; }
+
+select {
+  text-transform: none; }
+
+button, html input[type="button"] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled], html input[disabled] {
+  cursor: default; }
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+input {
+  line-height: normal; }
+  input::-moz-focus-inner {
+    border: 0;
+    padding: 0; }
+  input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0; }
+  input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    height: auto; }
+  input[type="search"] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box; }
+    input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+      -webkit-appearance: none; }
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+legend {
+  border: 0;
+  padding: 0; }
+
+textarea {
+  overflow: auto; }
+
+optgroup {
+  font-weight: bold; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td, th {
+  padding: 0; }
 
 nav {
   border-bottom: 1px solid #E5E5E5;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 15px;
   font-size: .75em; }
 
@@ -34,3 +180,64 @@ nav {
 
 .logo:hover {
   opacity: .7; }
+
+.slider .wrapper {
+  height: 363px;
+  position: relative; }
+
+.slider .slider-img {
+  width: 100%;
+  height: 293px;
+  position: absolute; }
+
+.slider .slider-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  position: absolute;
+  bottom: 0; }
+  .slider .slider-links .slider-links-frst {
+    width: 100%;
+    height: 18px;
+    padding: 10px 10px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #222;
+    font-size: 0.875em; }
+    .slider .slider-links .slider-links-frst:hover {
+      opacity: .8; }
+  .slider .slider-links .slider-links-scnd {
+    display: block;
+    padding: 9px 10px;
+    font-size: 0.625em;
+    color: #E9E9E9;
+    background: #111; }
+    .slider .slider-links .slider-links-scnd:hover {
+      opacity: .8; }
+  .slider .slider-links .slider-links-credit {
+    display: block;
+    padding: 0;
+    align-self: flex-end;
+    font-size: .5em;
+    color: #555;
+    background: white;
+    border-radius: 3px; }
+    .slider .slider-links .slider-links-credit a {
+      text-decoration: none;
+      color: #555; }
+  .slider .slider-links .slider-links-credit:before {
+    content: '* '; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: ff-tisa-web-pro, Georgia, sans-serif; }
+
+.container {
+  margin: 0 auto; }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 320px; }
