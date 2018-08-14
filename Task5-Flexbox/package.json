@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "mytask": "./node_modules/.bin/gulp mytask",
+    "build": "./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watch",
     "sass": "./node_modules/.bin/gulp sass"
   },

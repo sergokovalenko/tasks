@@ -1,41 +1,44 @@
-var gulp = require('gulp'), // Подключаем Gulp
-    sass = require('gulp-sass'), //Подключаем Sass пакет,
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
     browserSync = require('browser-sync');
 
-gulp.task('sass', function () { // Создаем таск Sass
-    return gulp.src('app/sass/**/*.sass') // Берем источник
-        .pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
-        .pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
+gulp.task('sass', function () {
+    return gulp.src('app/sass/**/*.sass')
+        .pipe(sass())
+        .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
             stream: true
-        })) // Обновляем CSS на странице при изменении
+        }));
 });
 
-gulp.task('browser-sync', function () { // Создаем таск browser-sync
-    browserSync({ // Выполняем browserSync
-        server: { // Определяем параметры сервера
-            baseDir: 'app' // Директория для сервера - app
+gulp.task('browser-sync', function () {
+    browserSync({
+        server: {
+            baseDir: 'app'
         },
-        notify: false // Отключаем уведомления
+        notify: false
     });
 });
 
 gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch('app/sass/**/*.sass', ['sass']); // Наблюдение за sass файлами в папке sass
-    gulp.watch('app/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
+    gulp.watch('app/sass/**/*.sass', ['sass']);
+    gulp.watch('app/*.html', browserSync.reload);
 });
 
 gulp.task('build', ['sass'], function () {
 
-    var buildCss = gulp.src([ // Переносим библиотеки в продакшен
+    var buildCss = gulp.src([
             'app/css/main.css'
         ])
-        .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest('dist/css'));
 
-    var buildFonts = gulp.src('app/fonts/**/*') // Переносим шрифты в продакшен
-        .pipe(gulp.dest('dist/fonts'))
+    var buildFonts = gulp.src('app/fonts/**/*')
+        .pipe(gulp.dest('dist/fonts'));
 
-    var buildHtml = gulp.src('app/*.html') // Переносим HTML в продакшен
+    var buildHtml = gulp.src('app/*.html')
+        .pipe(gulp.dest('dist'));
+
+    var buildImg = gulp.src('app/img/**/*.*')
         .pipe(gulp.dest('dist'));
 
 });
