@@ -27,18 +27,16 @@ gulp.task('watch', ['browser-sync'], function () {
 
 gulp.task('build', ['sass'], function () {
 
-    var buildCss = gulp.src([
-            'app/css/main.css'
-        ])
+    gulp.src('app/css/main.css')
         .pipe(gulp.dest('dist/css'));
 
-    var buildFonts = gulp.src('app/fonts/**/*')
+    gulp.src('app/fonts/**/*')
         .pipe(gulp.dest('dist/fonts'));
 
-    var buildHtml = gulp.src('app/*.html')
+    gulp.src('app/*.html')
         .pipe(gulp.dest('dist'));
 
-    var buildImg = gulp.src('app/img/**/*.*')
+    gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
         .pipe(gulp.dest('dist'));
 
 });
