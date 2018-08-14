@@ -20,3 +20,17 @@ nav {
     font-style: italic; }
     .top-nav-menu a:hover {
       color: #EC6635; }
+
+.header {
+  display: flex;
+  flex-direction: column; }
+
+.logo {
+  display: block;
+  margin: 20px auto;
+  width: 120px;
+  height: 120px;
+  background: url(../img/logo-mini.png) no-repeat 0 0; }
+
+.logo:hover {
+  opacity: .7; }
