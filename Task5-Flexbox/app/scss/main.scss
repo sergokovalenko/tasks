@@ -10,6 +10,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #34AC98;
 }
 
 .container {}
@@ -24,3 +25,4 @@ a {
 @import "components/_logo";
 @import "components/_slider";
 @import "components/_newsletter";
+@import "components/_articles";

@@ -1,4 +1,3 @@
-/*! normalize.sass v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -154,7 +153,8 @@ body {
   font-family: ff-tisa-web-pro, Georgia, sans-serif; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #34AC98; }
 
 .content {
   display: flex;
@@ -165,7 +165,7 @@ nav {
   border-bottom: 1px solid #E5E5E5;
   padding-top: 20px;
   padding-bottom: 15px;
-  font-size: .75em; }
+  font-size: 0.75em; }
 
 .top-nav-menu {
   display: flex;
@@ -178,8 +178,8 @@ nav {
     color: #34AC98;
     font-style: italic; }
     .top-nav-menu a:hover {
-      opacity: 1;
-      color: #EC6635; }
+      color: #EC6635;
+      opacity: 1; }
 
 .header {
   display: flex;
@@ -193,8 +193,8 @@ nav {
   height: 120px;
   background: url(../img/logo-mini.png) no-repeat 0 0; }
   .logo:hover {
-    opacity: 0.8;
-    color: inherit; }
+    color: inherit;
+    opacity: 0.8; }
 
 .slider .wrapper {
   height: 363px;
@@ -219,8 +219,8 @@ nav {
     color: #222;
     font-size: 0.875em; }
     .slider .slider-links .slider-links-frst:hover {
-      opacity: 0.8;
-      color: inherit; }
+      color: inherit;
+      opacity: 0.8; }
   .slider .slider-links .slider-links-scnd {
     display: block;
     padding: 9px 10px;
@@ -228,13 +228,13 @@ nav {
     color: #E9E9E9;
     background: #111; }
     .slider .slider-links .slider-links-scnd:hover {
-      opacity: 0.8;
-      color: #E9E9E9; }
+      color: #E9E9E9;
+      opacity: 0.8; }
   .slider .slider-links .slider-links-credit {
     display: block;
     padding: 0;
     align-self: flex-end;
-    font-size: .5em;
+    font-size: 0.5em;
     color: #555;
     background: white;
     border-radius: 3px; }
@@ -242,7 +242,7 @@ nav {
       text-decoration: none;
       color: #555; }
   .slider .slider-links .slider-links-credit:before {
-    content: '* '; }
+    content: "* "; }
 
 .newsletter {
   display: flex;
@@ -263,6 +263,8 @@ nav {
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: stretch; }
+    .newsletter .newsletter-form .newsletter-form-label {
+      display: none; }
     .newsletter .newsletter-form .newsletter-form-input {
       background-color: #fff;
       border: 1px solid;
@@ -271,15 +273,55 @@ nav {
       outline: 0;
       padding: 2px 3px;
       font-size: 13px;
-      font-family: Arial, 'Liberation Sans', FreeSans, sans-serif; }
+      font-family: Arial, "Liberation Sans", FreeSans, sans-serif; }
     .newsletter .newsletter-form .newsletter-form-submit {
       border-radius: 4px;
       border: 1px solid #ddd;
       border-color: #ddd #bbb #999;
       cursor: pointer;
       color: #333;
-      font: bold 12px/1.3 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+      font: bold 12px / 1.3 "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif;
       margin-left: 10px;
       text-shadow: #fff 0 1px 1px;
       width: auto;
       background: #ddd url(../img/button.png) repeat-x; }
+
+.article {
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center; }
+  .article .article-link {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%; }
+    .article .article-link:hover {
+      color: #EC6635;
+      opacity: 0.8; }
+    .article .article-link .article-link-img {
+      padding: 9px;
+      background: #FFF;
+      border: 1px solid #E5E5E5; }
+    .article .article-link p {
+      width: 100%;
+      padding-left: 40px;
+      font-size: 100%;
+      font-weight: inherit;
+      font-style: normal; }
+  .article p {
+    padding-left: 20px;
+    margin: 5px 0;
+    font-size: .875em;
+    line-height: 1.45em; }
+  .article .article-meta {
+    width: 100%;
+    padding-left: 40px;
+    color: #AAA;
+    font-size: .875em;
+    border: 0; }
+    .article .article-meta .article-meta-link:hover {
+      color: #EC6635;
+      opacity: 1; }
