@@ -13,3 +13,10 @@
 
   @content;
 }
+
+@mixin link-hover($h-color: inherit, $opacity: 1) {
+  &:hover{
+    color: $h-color;
+    opacity: $opacity;
+  }
+}
