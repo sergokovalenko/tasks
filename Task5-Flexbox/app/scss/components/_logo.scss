@@ -11,7 +11,7 @@
   background: url(../img/logo-mini.png) no-repeat 0 0;
 }
 
-@include media-higher-than($xs+1) {
+@include media-higher-than($xs) {
   .header {
     flex-direction: row-reverse;
     align-items: stretch;
@@ -22,7 +22,7 @@
   }
 }
 
-@include media-higher-than($sm+1) {
+@include media-higher-than($sm) {
   .header {
     flex-direction: row-reverse;
     align-items: stretch;
@@ -33,7 +33,7 @@
   }
 }
 
-@include media-higher-than($md+1) {
+@include media-higher-than($md) {
   .header {
     flex-direction: column-reverse;
     justify-content: space-between;
