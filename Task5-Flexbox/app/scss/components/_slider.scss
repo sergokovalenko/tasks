@@ -1,6 +1,6 @@
 .slider {
   .wrapper {
-    height: 222px;
+    height: 218px;
     position: relative;
   }
   .slider-img {
@@ -24,21 +24,21 @@
       @include link-hover(#E9E9E9, 0.8);
       display: block;
       padding: 9px 10px;
-      font-size: 10px;
-      color: #E9E9E9;
       background: #111;
+      color: #E9E9E9;
+      font-size: 10px;
     }
     .slider-links-credit {
       display: block;
-      padding: 0;
       align-self: flex-end;
+      padding: 0;
       font-size: 6px;
-      color: #555;
+      color: $credits-color;
       background: rgb(255, 255, 255);
       border-radius: 3px;
       a {
-        color: #555;
-        @include link-hover(#EC6635);
+        color: $credits-color;
+        @include link-hover($link-h-color);
       }
     }
     .slider-links-credit:before {
@@ -84,8 +84,8 @@
         margin-right: 10px;
         background: rgba(255, 255, 255, .5);
         border-radius: 3px;
+        color: $credits-color;
         font-size: 6px;
-        color: #555;
       }
     }
   }
@@ -101,9 +101,9 @@
       li {
         width: 25%;
         height: 30px;
-        color: #34AC98;
         background: #eff8f7;
         text-shadow: 0 1px 0 #FAFDFC;
+        color: $link-color;
         a {
           @include flex-container($jc: center) {
             align-items: center;

@@ -7,7 +7,7 @@
             align-items: center;
         }
         .article-link {
-            @include link-hover(#EC6635, .8);
+            @include link-hover($link-h-color, .8);
             @include flex-container(column, nowrap) {
                 align-content: center;
             }
@@ -32,11 +32,11 @@
         }
         .article-meta {
             width: 100%;
-            color: #AAA;
+            color: $meta-color;
             font-size: 14px;
             border: 0;
             .article-meta-link {
-                @include link-hover(#EC6635);
+                @include link-hover($link-h-color);
             }
         }
     }

@@ -8,6 +8,11 @@ $xs: 480px;
 $sm: 768px;
 $md: 992px;
 $lg: 1176px;
+$link-color: #34AC98;
+$link-h-color: #EC6635;
+$meta-color: #AAA;
+$credits-color: #555;
+
 body {
   display: flex;
   flex-direction: column;
@@ -17,8 +22,8 @@ body {
 
 a {
   text-decoration: none;
-  color: #34AC98;
-  @include link-hover(#EC6635);
+  color: $link-color;
+  @include link-hover($link-h-color);
 }
 
 .container {
