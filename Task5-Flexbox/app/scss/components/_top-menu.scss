@@ -1,5 +1,5 @@
 nav {
-  @include flex-container();
+  @include flex-container($jc: space-around);
   align-items: center;
   border-bottom: 1px solid #E5E5E5;
   padding-top: 20px;
@@ -9,6 +9,7 @@ nav {
 
 .top-nav-menu {
   @include flex-container($jc: space-around);
+  width: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
