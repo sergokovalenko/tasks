@@ -16,7 +16,7 @@ nav {
   a {
     font-style: italic;
   }
-  .icon{
+  .icon {
     display: none;
   }
 }
@@ -39,9 +39,9 @@ nav {
       @include flex-container(column);
       align-items: center;
     }
-  }
-  .icon {
-    display: block;
+    .icon {
+      display: block;
+    }
   }
 }
 
@@ -97,16 +97,4 @@ nav {
       }
     }
   }
-  // %icon-sm {
-  //   width: 16px;
-  //   height: 16px;
-  // }
-  // .icon-twitter-sm {
-  //   @extend %icon-sm;
-  //   background: url(../img/icon-twitter-16.png) no-repeat;
-  // }
-  // .icon-facebook-sm {
-  //   @extend %icon-sm;
-  //   background: url(../img/icon-facebook-16.png) no-repeat;
-  // }
 }
