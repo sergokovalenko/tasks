@@ -161,15 +161,16 @@ nav {
   padding: 0;
   margin: 0; }
   .top-nav-menu a {
-    text-decoration: none;
     color: #34AC98;
     font-style: italic; }
     .top-nav-menu a:hover {
+      opacity: 1;
       color: #EC6635; }
 
 .header {
   display: flex;
-  flex-direction: column; }
+  flex-flow: column nowrap;
+  justify-content: flex-start; }
 
 .logo {
   display: block;
@@ -177,9 +178,9 @@ nav {
   width: 120px;
   height: 120px;
   background: url(../img/logo-mini.png) no-repeat 0 0; }
-
-.logo:hover {
-  opacity: .7; }
+  .logo:hover {
+    opacity: 0.8;
+    color: inherit; }
 
 .slider .wrapper {
   height: 363px;
@@ -192,7 +193,7 @@ nav {
 
 .slider .slider-links {
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   justify-content: flex-end;
   height: 100%;
   position: absolute;
@@ -205,7 +206,8 @@ nav {
     color: #222;
     font-size: 0.875em; }
     .slider .slider-links .slider-links-frst:hover {
-      opacity: .8; }
+      opacity: 0.8;
+      color: inherit; }
   .slider .slider-links .slider-links-scnd {
     display: block;
     padding: 9px 10px;
@@ -213,7 +215,8 @@ nav {
     color: #E9E9E9;
     background: #111; }
     .slider .slider-links .slider-links-scnd:hover {
-      opacity: .8; }
+      opacity: 0.8;
+      color: #E9E9E9; }
   .slider .slider-links .slider-links-credit {
     display: block;
     padding: 0;
@@ -233,6 +236,9 @@ body {
   flex-direction: column;
   align-items: center;
   font-family: ff-tisa-web-pro, Georgia, sans-serif; }
+
+a {
+  text-decoration: none; }
 
 .container {
   margin: 0 auto; }
