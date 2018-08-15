@@ -21,8 +21,11 @@ a {
   width: 310px;
 }
 
-@import "components/_top-menu";
-@import "components/_logo";
-@import "components/_slider";
-@import "components/_newsletter";
-@import "components/_articles";
+//TODO: make mixin for font-size
+
+@import "components/top-menu";
+@import "components/logo";
+@import "components/slider";
+@import "components/newsletter";
+@import "components/articles";
+@import "components/footer";
