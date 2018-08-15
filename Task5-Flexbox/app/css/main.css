@@ -627,20 +627,11 @@ nav {
     padding: 0;
     list-style: none;
     width: 100%; }
-    .footer .footer-social-list li .twitter, .footer .footer-social-list li .facebook, .footer .footer-social-list li .rss {
-      display: block;
-      width: 32px;
-      height: 32px;
-      margin-right: 2px;
+    .footer .footer-social-list li .icon {
+      margin-right: 5px;
       opacity: .4; }
-      .footer .footer-social-list li .twitter:hover, .footer .footer-social-list li .facebook:hover, .footer .footer-social-list li .rss:hover {
+      .footer .footer-social-list li .icon:hover {
         opacity: 1; }
-    .footer .footer-social-list li .twitter {
-      background: url(../img/icon-twitter-mini.png) no-repeat; }
-    .footer .footer-social-list li .facebook {
-      background: url(../img/icon-facebook-mini.png) no-repeat; }
-    .footer .footer-social-list li .rss {
-      background: url(../img/icon-rss-mini.png) no-repeat; }
 
 @media all and (min-width: 769px) {
   .footer .footer-actions {
