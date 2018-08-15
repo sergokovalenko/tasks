@@ -42,11 +42,20 @@
     }
 }
 
-@include media-range($xs+1, $sm) {
+@include media-higher-than($xs+1) {
     .articles {
         flex-flow: row wrap;
         .article {
             flex: 0 0 50%;
+        }
+    }
+}
+
+@include media-higher-than($sm+1) {
+    .articles {
+        flex-flow: row wrap;
+        .article {
+            flex: 1 0 25%;
         }
     }
 }

@@ -7,8 +7,9 @@
   border-bottom: 1px dashed #E5E5E5;
   background: url(../img/letter-icon.png) no-repeat 18px 7px;
   .newsletter-text {
-    font-size: 0.7em;
+    font-size: 11px;
     padding-left: 66px;
+    font-style: italic;
     margin-top: 10px;
     margin-bottom: 0;
   }
@@ -50,6 +51,19 @@
     .newsletter-form {
       .newsletter-form-input {
         width: 300px;
+      }
+    }
+  }
+}
+
+@include media-higher-than($sm+1) {
+  .newsletter {
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 60px;
+    .newsletter-form {
+      .newsletter-form-input {
+        width: 200px;
       }
     }
   }
