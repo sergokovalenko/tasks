@@ -8,89 +8,180 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">Tastemakers</a>
-                </li>
-                <li>
-                    <a href="#">Blog</a>
-                </li>
-                <li>
-                    <a href="#">The A-List</a>
-                </li>
-                <li>
-                    <a href="#">Contribute</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-            </ul>
-            <img src="img/food-sense.png" alt="Food sence" class="logo">
-        </nav>
-    </header>
-    <main class="content">
-        <section class="slider">
-            <img src="img/foodsense.jpg" alt="Share your Food Sense">
-            <a href="#">
-                <h1>Share your Food Sense</h1>
-                <h2>Submit your favorite recipes, become a contributor, or get interviewed.</h2>
-            </a>
-            <p class="credit">photo by
-                <a href="#">Clare Barboza</a>
-            </p>
-        </section>
-        <section class="subscribe">
-            <p>Sign up for our newsletter to receive a handpicked selection of the best stories, recipes, and news, delivered
-                weekly to your inbox.</p>
-            <form action="#" method="post" name="subscribe-form">
-                <fieldset>
-                    <label for="email" class="hide">Email</label>
-                    <input id="email" name="email" placeholder="Email" type="email">
-                </fieldset>
-                <fieldset class="submit">
-                    <input value="Subscribe" name="subscribe" type="submit">
-                </fieldset>
-            </form>
-        </section>
-        <section class="articles">
-            <article>
-                <a href="http://foodsense.is/blog/2012s-best-summer-cookbooks">
-                    <img src="http://foodsense.is/uploads/post-images/cookbooks_blog.jpg" class="border" alt="image">
-                    <h1>2012’s Best Summer Cookbooks</h1>
-                </a>
-                <p>With the best of the season coming from “orchards, farms and gardens,” NPR has put together an impressive
-                    collection of 10 summer cookbooks.</p>
-                <p class="meta">
-                    <time datetime="2012-05-23T02:41-05:00" pubdate="">May 23, 2012</time> /
-                    <a href="http://foodsense.is/blog/2012s-best-summer-cookbooks">Read »</a>
-                </p>
-            </article>
-        </section>
-    </main>
-    <footer class="footer">
-        <p>
-            <a href="#">Privacy Policy</a> |
-            <a href="#">Terms of Use</a> |
-            <span class="contact">
+    <div class="container">
+        <header class="header">
+            <aside class="social-side">
+                <section class="social-side-twitter">
+                    <h3 class="social-side-title">Latest Tweet</h3>
+                    <a href="http://twitter.com/" class="social-button">
+                        <span class="icon icon-twitter-sm"></span>
+                        Join the Conversation
+                    </a>
+                </section>
+                <section class="social-side-facebook">
+                    <h3 class="social-side-title">Let's be friends!</h3>
+                    <p class="social-side-description">For weekly finds, community recommendations, and more, like us on Facebook.</p>
+                    <a href="http://www.facebook.com/" class="social-button">
+                        <span class="icon icon-facebook-sm"></span>
+                        Join the Community
+                    </a>
+                </section>
+            </aside>
+            <nav>
+                <ul class="top-nav-menu">
+                    <li>
+                        <span class="icon icon-fork"></span>
+                        <a href="#">Tastemakers</a>
+                    </li>
+                    <li>
+                        <span class="icon icon-book"></span>
+                        <a href="#">Blog</a>
+                    </li>
+                    <li>
+                        <span class="icon icon-list"></span>
+                        <a href="#">The A-List</a>
+                    </li>
+                    <li>
+                        <span class="icon icon-camera"></span>
+                        <a href="#">Contribute</a>
+                    </li>
+                    <li>
+                        <span class="icon icon-notebook"></span>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </nav>
+            <a class="logo" href="#"></a>
+        </header>
+        <main class="content">
+            <section class="slider">
+                <div class="wrapper">
+                    <img class="slider-img" src="img/foodsense.jpg" alt="Share your Food Sense">
+                    <div class="slider-links">
+                        <a class="slider-links-frst" href="#">Share your Food Sense</a>
+                        <a class="slider-links-scnd" href="#">Submit your favorite recipes, become a contributor, or get interviewed.</a>
+                        <p class="slider-links-credit">photo by
+                            <a href="#">Clare Barboza</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <nav class="underslider-nav">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <h3>Tastemakers</h3>
+                            <p>Feast your eyes &amp; get recipes!</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>Blog</h3>
+                            <p>News, how-tos, stories, and more</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>The A-List</h3>
+                            <p>Handpicked, absolute favorites</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="active" href="#">
+                            <h3>Contribute</h3>
+                            <p>We want to hear from you!</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <section class="newsletter">
+                <span class="icon icon-letter"></span>
+                <p class="newsletter-text">Sign up for our newsletter to receive a handpicked selection of the best stories, recipes, and news, delivered
+                    weekly to your inbox.</p>
+                <form class="newsletter-form" action="#" method="post" name="newsletter-form">
+                    <label class="newsletter-form-label" for="email">Email</label>
+                    <input class="newsletter-form-input" id="email" name="email" placeholder="Email" type="email">
+                    <input class="newsletter-form-submit" value="Subscribe" name="subscribe" type="submit">
+                </form>
+            </section>
+            <section class="articles">
+                <article class="article">
+                    <a class="article-link" href="#">
+                        <img class="article-link-img" src="img/cookbook.jpg" class="border" alt="image">
+                        <p>2012’s Best Summer Cookbooks</p>
+                    </a>
+                    <p>With the best of the season coming from “orchards, farms and gardens,” NPR has put together an impressive
+                        collection of 10 summer cookbooks.</p>
+                    <p class="article-meta">
+                        <time datetime="2012-05-23T02:41-05:00" pubdate="">May 23, 2012</time> /
+                        <a class="article-meta-link" href="#">Read »</a>
+                    </p>
+                </article>
+                <article class="article">
+                    <a class="article-link" href="#">
+                        <img class="article-link-img" src="img/chips.jpg" class="border" alt="image">
+                        <p>How to Make Vegetable Chips</p>
+                    </a>
+                    <p>About a month ago, I ate almost an entire box of kale chips. My brother and I were visiting our cousin
+                        in Brooklyn, and before a very thoughtfully prepared vegan…</p>
+                    <p class="article-meta">
+                        <time datetime="2012-05-17T08:35-05:00" pubdate="">May 17, 2012</time> /
+                        <a class="article-meta-link" href="#">Read »</a>
+                    </p>
+                </article>
+                <article class="article">
+                    <a class="article-link" href="#">
+                        <img class="article-link-img" src="img/pinterest.png" class="border" alt="image">
+                        <p>Join us on Pinterest!</p>
+                    </a>
+                    <p>If I could curate a cookbook for you, this would be it.</p>
+                    <p class="article-meta">
+                        <time datetime="2012-05-16T09:59-05:00" pubdate="">May 16, 2012</time> /
+                        <a class="article-meta-link" href="#">Read »</a>
+                    </p>
+                </article>
+                <article class="article">
+                    <a class="article-link" href="#">
+                        <img class="article-link-img" src="img/supper.jpg" class="border" alt="image">
+                        <p>Recipes from a Sunday</p>
+                    </a>
+                    <p>Supper I could not figure out what to do with the delectable slices of Pear Cake that I brought home
+                        from this wonderful Sunday supper - eat them slowly, a little bit at…</p>
+                    <p class="article-meta">
+                        <time datetime="2012-05-15T09:42-05:00" pubdate="">May 15, 2012</time> /
+                        <a class="article-meta-link" href="#">Read »</a>
+                    </p>
+                </article>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer-actions">
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Terms of Use</a> |
                 <a href="#">Contact</a>
-            </span>
-            <br>© 2018 Food Sense, all rights reserved.</p>
-        <div class="social">
-            <ul>
-                <li class="twitter">
-                    <a href="http://twitter.com/"></a>
-                </li>
-                <li class="facebook">
-                    <a href="http://www.facebook.com/"></a>
-                </li>
-                <li class="rss">
-                    <a href="#"></a>
-                </li>
-            </ul>
-        </div>
-    </footer>
+                <span class="footer-actions-rights">© 2018 Food Sense, all rights reserved.</span>
+            </p>
+            <div class="footer-social">
+                <ul class="footer-social-list">
+                    <li>
+                        <a href="http://twitter.com/">
+                            <span class="icon icon-twitter"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.facebook.com/">
+                            <span class="icon icon-facebook"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon icon-rss"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>
