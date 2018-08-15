@@ -68,3 +68,13 @@
     }
   }
 }
+
+@include media-higher-than($lg+1) {
+  .newsletter {
+    .newsletter-form {
+      .newsletter-form-input {
+        width: 300px;
+      }
+    }
+  }
+}

@@ -185,6 +185,15 @@ a {
     justify-content: space-between;
     padding: 50px; } }
 
+@media all and (min-width: 1177px) {
+  .content {
+    width: 900px; }
+  .container {
+    width: 1170px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 50px; } }
+
 nav {
   display: flex;
   flex-flow: row nowrap;
@@ -355,8 +364,7 @@ nav {
   justify-content: flex-end;
   width: 100%;
   height: 100%;
-  position: absolute;
-  bottom: 0; }
+  position: absolute; }
   .slider .slider-links .slider-links-frst {
     height: 36px;
     padding: 10px 10px;
@@ -432,9 +440,8 @@ nav {
       flex-flow: row nowrap;
       justify-content: flex-start; }
       .underslider-nav ul li {
-        width: 178px;
+        width: 25%;
         height: 30px;
-        padding: 2px 0;
         color: #34AC98;
         background: #eff8f7;
         text-shadow: 0 1px 0 #FAFDFC; }
@@ -452,6 +459,22 @@ nav {
           .underslider-nav ul li a h3 {
             margin: 0;
             font-weight: inherit; } }
+
+@media all and (min-width: 1177px) {
+  .slider .wrapper {
+    height: 445px;
+    position: relative; }
+  .underslider-nav ul li {
+    height: 100%; }
+    .underslider-nav ul li a {
+      height: 100%;
+      flex-direction: column;
+      align-items: initial;
+      padding: 20px 30px; }
+      .underslider-nav ul li a p {
+        display: block;
+        margin: 0;
+        font-size: 10px; } }
 
 .newsletter {
   display: flex;
@@ -509,6 +532,10 @@ nav {
     height: 60px; }
     .newsletter .newsletter-form .newsletter-form-input {
       width: 200px; } }
+
+@media all and (min-width: 1177px) {
+  .newsletter .newsletter-form .newsletter-form-input {
+    width: 300px; } }
 
 .articles {
   display: flex;
