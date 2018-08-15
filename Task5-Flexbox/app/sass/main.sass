@@ -1,9 +1,6 @@
+@import 'components/_normalize'
 @import 'components/_mixins'
 @import 'components/_inherits'
-@import 'components/_normalize'
-@import 'components/_top-menu'
-@import 'components/_logo'
-@import 'components/_slider'
 
 body
     display: flex
@@ -15,9 +12,14 @@ a
     text-decoration: none    
 
 .container
-    margin: 0 auto
+    
 
 .content
     display: flex
     flex-direction: column
-    width: 320px
+    width: 310px
+
+@import 'components/_top-menu'
+@import 'components/_logo'
+@import 'components/_slider'
+@import 'components/_newsletter'
