@@ -38,18 +38,25 @@ a {
 }
 
 @include media-range($md+1, $lg) {
-  .content {
-    
-  }
   .container {
     width: 990px;
     flex-flow: row wrap;
     justify-content: space-between;
     padding: 50px;
   }
-  
-} 
+}
 
+@include media-higher-than($lg+1) {
+  .content {
+    width: 900px;
+  }
+  .container {
+    width: 1170px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 50px;
+  }
+}
 
 //TODO: make mixin for font-size
 @import "components/top-menu";
