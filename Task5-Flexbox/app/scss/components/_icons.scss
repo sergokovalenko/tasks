@@ -1,0 +1,48 @@
+%icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+}
+
+.icon {
+    &.icon-fork {
+        background: url(../img/nav-tastemakers.png) no-repeat;
+    }
+    &.icon-book {
+        background: url(../img/nav-blog.png) no-repeat;
+    }
+    &.icon-camera {
+        background: url(../img/nav-contribute.png) no-repeat;
+    }
+    &.icon-notebook {
+        background: url(../img/nav-about.png) no-repeat;
+    }
+    &.icon-list {
+        background: url(../img/nav-alist.png) no-repeat;
+    }
+    &.icon-letter {
+        background: url(../img/letter-icon.png) no-repeat;
+    }
+    &.icon-twitter {
+        background: url(../img/icon-twitter-mini.png) no-repeat;
+    }
+    &.icon-facebook {
+        background: url(../img/icon-facebook-mini.png) no-repeat;
+    }
+    &.icon-rss {
+        background: url(../img/icon-rss-mini.png) no-repeat;
+    }
+    &.icon-twitter-sm {
+        @extend %icon-sm;
+        background: url(../img/icon-twitter-16.png) no-repeat;
+    }
+    &.icon-facebook-sm {
+        @extend %icon-sm;
+        background: url(../img/icon-facebook-16.png) no-repeat;
+    }
+}
