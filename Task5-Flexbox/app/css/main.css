@@ -210,7 +210,8 @@ nav {
       color: #EC6635;
       opacity: 1; }
 
-.icon {
+.icon,
+.social-side {
   display: none; }
 
 @media all and (min-width: 481px) {
@@ -252,7 +253,50 @@ nav {
       flex-direction: row;
       align-items: center; }
     .top-nav-menu .icon {
-      margin-right: 10px; } }
+      margin-right: 10px; }
+  .social-side {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 180px; }
+    .social-side .social-side-title {
+      margin: 0 0 9px;
+      padding-bottom: 5px;
+      text-transform: uppercase;
+      font-size: .75em;
+      font-weight: inherit;
+      border-bottom: 1px dashed #E5E5E5; }
+    .social-side .social-side-description {
+      width: 140px;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 15px;
+      line-height: 12px;
+      font-size: 9px;
+      font-style: italic; }
+    .social-side .social-button {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      width: 140px;
+      height: 24px;
+      padding: 4px 0 0 10px;
+      border: 1px solid #E5E5E5;
+      border-radius: 5px;
+      font-size: 10px;
+      font-style: italic;
+      font-weight: inherit; }
+  .icon-twitter-sm, .icon-facebook-sm {
+    width: 16px;
+    height: 16px; }
+  .icon-twitter-sm,
+  .icon-facebook-sm {
+    width: 16px;
+    height: 16px; }
+  .icon-twitter-sm {
+    background: url(../img/icon-twitter-16.png) no-repeat; }
+  .icon-facebook-sm {
+    background: url(../img/icon-facebook-16.png) no-repeat; } }
 
 .header {
   display: flex;
