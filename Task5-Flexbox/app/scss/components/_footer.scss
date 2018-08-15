@@ -5,19 +5,19 @@
     border-top: 1px solid #E5E5E5;
     @include flex-container($jc: space-between);
     .footer-actions {
-        font-size: 10px;
+        font-size: $f-s-10;
     }
     .footer-actions-rights {
         display: block;
         color: $meta-color;
-        font-size: 10px;
+        font-size: $f-s-10;
         margin: 0;
     }
     .footer-social-list {
         @include flex-container(row);
         margin: 0;
         padding: 0;
-        list-style: none;
+        
         width: 100%;
         li {
             .icon {
@@ -34,10 +34,10 @@
 @include media-higher-than($sm) {
     .footer {
         .footer-actions {
-            font-size: 12px;
+            font-size: $f-s-12;
         }
         .footer-actions-rights {
-            font-size: 12px;
+            font-size: $f-s-12;
         }
     }
 }
