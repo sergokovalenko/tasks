@@ -194,6 +194,48 @@ a {
     justify-content: space-between;
     padding: 50px; } }
 
+.icon.icon-twitter-sm, .icon.icon-facebook-sm {
+  width: 16px;
+  height: 16px; }
+
+.icon {
+  display: block;
+  width: 32px;
+  height: 32px; }
+
+.icon.icon-fork {
+  background: url(../img/nav-tastemakers.png) no-repeat; }
+
+.icon.icon-book {
+  background: url(../img/nav-blog.png) no-repeat; }
+
+.icon.icon-camera {
+  background: url(../img/nav-contribute.png) no-repeat; }
+
+.icon.icon-notebook {
+  background: url(../img/nav-about.png) no-repeat; }
+
+.icon.icon-list {
+  background: url(../img/nav-alist.png) no-repeat; }
+
+.icon.icon-letter {
+  background: url(../img/letter-icon.png) no-repeat; }
+
+.icon.icon-twitter {
+  background: url(../img/icon-twitter-mini.png) no-repeat; }
+
+.icon.icon-facebook {
+  background: url(../img/icon-facebook-mini.png) no-repeat; }
+
+.icon.icon-rss {
+  background: url(../img/icon-rss-mini.png) no-repeat; }
+
+.icon.icon-twitter-sm {
+  background: url(../img/icon-twitter-16.png) no-repeat; }
+
+.icon.icon-facebook-sm {
+  background: url(../img/icon-facebook-16.png) no-repeat; }
+
 nav {
   display: flex;
   flex-flow: row nowrap;
@@ -233,19 +275,7 @@ nav {
       justify-content: flex-start;
       align-items: center; }
   .icon {
-    display: block;
-    width: 32px;
-    height: 32px; }
-    .icon.icon-fork {
-      background: url(../img/nav-tastemakers.png) no-repeat; }
-    .icon.icon-book {
-      background: url(../img/nav-blog.png) no-repeat; }
-    .icon.icon-camera {
-      background: url(../img/nav-contribute.png) no-repeat; }
-    .icon.icon-notebook {
-      background: url(../img/nav-about.png) no-repeat; }
-    .icon.icon-list {
-      background: url(../img/nav-alist.png) no-repeat; } }
+    display: block; } }
 
 @media all and (min-width: 993px) {
   nav {
@@ -293,18 +323,7 @@ nav {
       font-style: italic;
       font-weight: inherit; }
       .social-side .social-button .icon {
-        margin-right: 5px; }
-  .icon-twitter-sm, .icon-facebook-sm {
-    width: 16px;
-    height: 16px; }
-  .icon-twitter-sm,
-  .icon-facebook-sm {
-    width: 16px;
-    height: 16px; }
-  .icon-twitter-sm {
-    background: url(../img/icon-twitter-16.png) no-repeat; }
-  .icon-facebook-sm {
-    background: url(../img/icon-facebook-16.png) no-repeat; } }
+        margin-right: 5px; } }
 
 .header {
   display: flex;
@@ -567,7 +586,7 @@ nav {
     .articles .article .article-meta {
       width: 100%;
       color: #AAA;
-      font-size: .875em;
+      font-size: 14px;
       border: 0; }
       .articles .article .article-meta .article-meta-link:hover {
         color: #EC6635;
