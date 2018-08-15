@@ -1,0 +1,13 @@
+.header {
+    @include flex-container(column);
+  }
+  
+  .logo {
+    @include link-hover(inherit, 0.8);
+  
+    display: block;
+    margin: 20px auto;
+    width: 120px;
+    height: 120px;
+    background: url(../img/logo-mini.png) no-repeat 0 0;
+  }
