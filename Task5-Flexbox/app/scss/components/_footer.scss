@@ -1,0 +1,43 @@
+.footer {
+    width: 100%;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #E5E5E5;
+    @include flex-container($jc: space-between);
+    .footer-actions {
+        font-size: $f-s-10;
+    }
+    .footer-actions-rights {
+        display: block;
+        color: $meta-color;
+        font-size: $f-s-10;
+        margin: 0;
+    }
+    .footer-social-list {
+        @include flex-container(row);
+        margin: 0;
+        padding: 0;
+        
+        width: 100%;
+        li {
+            .icon {
+                margin-right: 5px;
+                opacity: .4;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@include media-higher-than($sm) {
+    .footer {
+        .footer-actions {
+            font-size: $f-s-12;
+        }
+        .footer-actions-rights {
+            font-size: $f-s-12;
+        }
+    }
+}
