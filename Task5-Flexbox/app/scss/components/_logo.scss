@@ -36,10 +36,11 @@
 @include media-higher-than($md+1) {
   .header {
     flex-direction: column-reverse;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 160px;
+    height: 660px;
     .logo {
-      margin: 20px;
+      margin: 0;
     }
   }
 }
