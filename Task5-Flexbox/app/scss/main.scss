@@ -1,6 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
 @import "components/_normalize";
 @import "components/_mixins";
-
+$xs: 480px;
+$sm: 768px;
+$md: 992px;
+$lg: 1176px;
 body {
   display: flex;
   flex-direction: column;
@@ -19,10 +26,12 @@ a {
   display: flex;
   flex-direction: column;
   width: 310px;
+  @include media-range($xs+1, $sm) {
+    width: 480px;
+  }
 }
 
 //TODO: make mixin for font-size
-
 @import "components/top-menu";
 @import "components/logo";
 @import "components/slider";

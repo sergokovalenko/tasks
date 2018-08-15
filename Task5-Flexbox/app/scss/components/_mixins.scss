@@ -19,3 +19,21 @@
     opacity: $opacity;
   }
 }
+
+@mixin media-lower-than($point) {
+  @media all and (max-width: $point) {
+      @content;
+  }
+}
+
+@mixin media-higher-than($point) {
+  @media all and (min-width: $point) {
+      @content;
+  }
+}
+
+@mixin media-range($point-from, $point-to) {
+  @media all and (min-width: $point-from) and (max-width: $point-to) {
+      @content;
+  }
+}

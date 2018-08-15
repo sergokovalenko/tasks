@@ -1,13 +1,23 @@
 .header {
-    @include flex-container(column);
+  @include flex-container(column);
+}
+
+.logo {
+  @include link-hover(inherit, 0.8);
+  display: block;
+  margin: 20px auto;
+  width: 120px;
+  height: 120px;
+  background: url(../img/logo-mini.png) no-repeat 0 0;
+}
+
+@include media-range($xs+1, $sm) {
+  .header {
+    flex-direction: row-reverse;
+    align-items: stretch;
+    justify-content: flex-end;
+    .logo {
+      margin: 20px;
+    }
   }
-  
-  .logo {
-    @include link-hover(inherit, 0.8);
-  
-    display: block;
-    margin: 20px auto;
-    width: 120px;
-    height: 120px;
-    background: url(../img/logo-mini.png) no-repeat 0 0;
-  }
+}

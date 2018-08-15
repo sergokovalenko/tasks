@@ -1,41 +1,52 @@
-.article {
-    margin-bottom: 20px;
-    @include flex-container(column, nowrap) {
-        align-items: center;
-    }
-    .article-link {
-        @include link-hover(#EC6635, .8);
+.articles {
+    @include flex-container(column, nowrap);
+    .article {
+        margin-bottom: 20px;
+        padding: 10px;
         @include flex-container(column, nowrap) {
             align-items: center;
         }
-        width: 100%;
-        .article-link-img {
-            padding: 9px;
-            background: #FFF;
-            border: 1px solid #E5E5E5;
+        .article-link {
+            @include link-hover(#EC6635, .8);
+            @include flex-container(column, nowrap) {
+                align-content: center;
+            }
+            width: 100%;
+            .article-link-img {
+                width: 100%;
+                padding: 9px;
+                background: #FFF;
+                border: 1px solid #E5E5E5;
+            }
+            p {
+                width: 100%;
+                font-size: 100%;
+                font-weight: inherit;
+                font-style: normal;
+            }
         }
         p {
+            margin: 5px 0;
+            font-size: .875em;
+            line-height: 1.45em;
+        }
+        .article-meta {
             width: 100%;
-            padding-left: 40px;
-            font-size: 100%;
-            font-weight: inherit;
-            font-style: normal;
+            color: #AAA;
+            font-size: .875em;
+            border: 0;
+            .article-meta-link {
+                @include link-hover(#EC6635);
+            }
         }
     }
-    p {
-        padding-left: 20px;
-        margin: 5px 0;
-        font-size: .875em;
-        line-height: 1.45em;
-    }
-    .article-meta {
-        width: 100%;
-        padding-left: 40px;
-        color: #AAA;
-        font-size: .875em;
-        border: 0;
-        .article-meta-link {
-            @include link-hover(#EC6635);
+}
+
+@include media-range($xs+1, $sm) {
+    .articles {
+        flex-flow: row wrap;
+        .article {
+            flex: 1 0 50%;
         }
     }
 }
