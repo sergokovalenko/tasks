@@ -1,0 +1,45 @@
+.footer {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #E5E5E5;
+    @include flex-container($jc: space-between);
+    .footer-actions {
+        font-size: 10px;
+    }
+    .footer-actions-rights {
+        display: block;
+        color: #AAA;
+        font-size: 10px;
+        margin: 0;
+    }
+    .footer-social-list {
+        @include flex-container(row);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        width: 100%;
+        li {
+            %footer-icon {
+                display: block;
+                width: 32px;
+                height: 32px;
+                opacity: .4;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            .twitter {
+                @extend %footer-icon;
+                background: url(../img/icon-twitter-mini.png) no-repeat;
+            }
+            .facebook {
+                @extend %footer-icon;
+                background: url(../img/icon-facebook-mini.png) no-repeat;
+            }
+            .rss {
+                @extend %footer-icon;
+                background: url(../img/icon-rss-mini.png) no-repeat;
+            }
+        }
+    }
+}

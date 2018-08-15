@@ -10,12 +10,11 @@
   display: flex;
   flex-flow: $fd $fw;
   justify-content: $jc;
-
   @content;
 }
 
 @mixin link-hover($h-color: inherit, $opacity: 1) {
-  &:hover{
+  &:hover {
     color: $h-color;
     opacity: $opacity;
   }
