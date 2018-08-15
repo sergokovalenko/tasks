@@ -29,6 +29,9 @@ a {
   @include media-range($xs+1, $sm) {
     width: 480px;
   }
+  @include media-range($sm+1, $md) {
+    width: 712px;
+  }
 }
 
 //TODO: make mixin for font-size

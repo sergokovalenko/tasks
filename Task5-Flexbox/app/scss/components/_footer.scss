@@ -44,3 +44,14 @@
         }
     }
 }
+
+@include media-higher-than($sm+1) {
+    .footer {
+        .footer-actions {
+            font-size: 12px;
+        }
+        .footer-actions-rights {
+            font-size: 12px;
+        }
+    }
+}

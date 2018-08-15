@@ -11,11 +11,22 @@
   background: url(../img/logo-mini.png) no-repeat 0 0;
 }
 
-@include media-range($xs+1, $sm) {
+@include media-higher-than($xs+1) {
   .header {
     flex-direction: row-reverse;
     align-items: stretch;
     justify-content: flex-end;
+    .logo {
+      margin: 20px;
+    }
+  }
+}
+
+@include media-higher-than($xs+1) {
+  .header {
+    flex-direction: row-reverse;
+    align-items: stretch;
+    justify-content: space-between;
     .logo {
       margin: 20px;
     }

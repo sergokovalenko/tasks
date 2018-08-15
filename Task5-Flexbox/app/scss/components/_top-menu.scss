@@ -20,8 +20,43 @@ nav {
   }
 }
 
-@include media-range($xs+1, $sm) {
+.icon {
+  display: none;
+}
+
+@include media-higher-than($xs+1) {
   .top-nav-menu {
     width: 300px;
+  }
+}
+
+@include media-higher-than($sm+1) {
+  .top-nav-menu {
+    width: 500px;
+    font-size: 16px;
+    li {
+      @include flex-container(column);
+      align-items: center;
+    }
+  }
+  .icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+  .icon-fork {
+    background: url(../img/nav-tastemakers.png) no-repeat;
+  }
+  .icon-book {
+    background: url(../img/nav-blog.png) no-repeat;
+  }
+  .icon-camera {
+    background: url(../img/nav-contribute.png) no-repeat;
+  }
+  .icon-notebook {
+    background: url(../img/nav-about.png) no-repeat;
+  }
+  .icon-list {
+    background: url(../img/nav-alist.png) no-repeat;
   }
 }
