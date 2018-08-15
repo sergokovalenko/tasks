@@ -1,4 +1,6 @@
 nav {
+  @include flex-container();
+  align-items: center;
   border-bottom: 1px solid #E5E5E5;
   padding-top: 20px;
   padding-bottom: 15px;
@@ -6,17 +8,19 @@ nav {
 }
 
 .top-nav-menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  @include flex-container($jc: space-around);
   list-style: none;
   padding: 0;
   margin: 0;
-
   a {
     @include link-hover(#EC6635);
-
     color: #34AC98;
     font-style: italic;
+  }
+}
+
+@include media-range($xs+1, $sm) {
+  .top-nav-menu {
+    width: 300px;
   }
 }
