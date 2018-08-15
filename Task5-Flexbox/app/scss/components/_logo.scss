@@ -22,11 +22,22 @@
   }
 }
 
-@include media-higher-than($xs+1) {
+@include media-higher-than($sm+1) {
   .header {
     flex-direction: row-reverse;
     align-items: stretch;
     justify-content: space-between;
+    .logo {
+      margin: 20px;
+    }
+  }
+}
+
+@include media-higher-than($md+1) {
+  .header {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    width: 160px;
     .logo {
       margin: 20px;
     }

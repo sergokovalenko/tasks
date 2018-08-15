@@ -43,20 +43,38 @@ nav {
     display: block;
     width: 32px;
     height: 32px;
+    &.icon-fork {
+      background: url(../img/nav-tastemakers.png) no-repeat;
+    }
+    &.icon-book {
+      background: url(../img/nav-blog.png) no-repeat;
+    }
+    &.icon-camera {
+      background: url(../img/nav-contribute.png) no-repeat;
+    }
+    &.icon-notebook {
+      background: url(../img/nav-about.png) no-repeat;
+    }
+    &.icon-list {
+      background: url(../img/nav-alist.png) no-repeat;
+    }
   }
-  .icon-fork {
-    background: url(../img/nav-tastemakers.png) no-repeat;
+}
+
+@include media-higher-than($md+1) {
+  nav {
+    border: none;
   }
-  .icon-book {
-    background: url(../img/nav-blog.png) no-repeat;
-  }
-  .icon-camera {
-    background: url(../img/nav-contribute.png) no-repeat;
-  }
-  .icon-notebook {
-    background: url(../img/nav-about.png) no-repeat;
-  }
-  .icon-list {
-    background: url(../img/nav-alist.png) no-repeat;
+  .top-nav-menu {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 230px;
+    li {
+      flex-direction: row;
+      align-items: center;
+    }
+    .icon {
+      margin-right: 10px;
+    }
   }
 }

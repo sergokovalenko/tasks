@@ -18,9 +18,12 @@ body {
 a {
   text-decoration: none;
   color: #34AC98;
+  @include link-hover(#EC6635);
 }
 
-.container {}
+.container {
+  @include flex-container(column);
+}
 
 .content {
   display: flex;
@@ -29,10 +32,24 @@ a {
   @include media-range($xs+1, $sm) {
     width: 480px;
   }
-  @include media-range($sm+1, $md) {
+  @include media-higher-than($sm+1) {
     width: 712px;
   }
 }
+
+@include media-range($md+1, $lg) {
+  .content {
+    
+  }
+  .container {
+    width: 990px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 50px;
+  }
+  
+} 
+
 
 //TODO: make mixin for font-size
 @import "components/top-menu";
