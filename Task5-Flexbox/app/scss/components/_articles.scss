@@ -27,13 +27,13 @@
         }
         p {
             margin: 5px 0;
-            font-size: .875em;
-            line-height: 1.45em;
+            font-size: 14px;
+            line-height: 22px;
         }
         .article-meta {
             width: 100%;
             color: #AAA;
-            font-size: .875em;
+            font-size: 14px;
             border: 0;
             .article-meta-link {
                 @include link-hover(#EC6635);

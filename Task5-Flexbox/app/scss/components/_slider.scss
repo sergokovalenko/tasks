@@ -18,13 +18,13 @@
       padding: 10px 10px;
       background: rgba(255, 255, 255, 0.8);
       color: #222;
-      font-size: 1em * 7 / 8;
+      font-size: 13px;
     }
     .slider-links-scnd {
       @include link-hover(#E9E9E9, 0.8);
       display: block;
       padding: 9px 10px;
-      font-size: 1em * 5 / 8;
+      font-size: 10px;
       color: #E9E9E9;
       background: #111;
     }
@@ -32,13 +32,13 @@
       display: block;
       padding: 0;
       align-self: flex-end;
-      font-size: 0.5em;
+      font-size: 6px;
       color: #555;
       background: rgb(255, 255, 255);
       border-radius: 3px;
       a {
-        @include link-hover(#EC6635);
         color: #555;
+        @include link-hover(#EC6635);
       }
     }
     .slider-links-credit:before {
@@ -105,7 +105,6 @@
         background: #eff8f7;
         text-shadow: 0 1px 0 #FAFDFC;
         a {
-          @include link-hover(#EC6635);
           @include flex-container($jc: center) {
             align-items: center;
           }
