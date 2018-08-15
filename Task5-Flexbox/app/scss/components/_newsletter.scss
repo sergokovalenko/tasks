@@ -1,14 +1,14 @@
 .newsletter {
-  @include flex-container(row, wrap);
+  @include flex-container(row, wrap,space-around);
+  align-items: center;
   height: 120px;
   margin-bottom: 29px;
   line-height: 16px;
   border-top: 1px dashed #E5E5E5;
   border-bottom: 1px dashed #E5E5E5;
-  background: url(../img/letter-icon.png) no-repeat 18px 7px;
   .newsletter-text {
+    width: 250px;
     font-size: 11px;
-    padding-left: 66px;
     font-style: italic;
     margin-top: 10px;
     margin-bottom: 0;
@@ -48,6 +48,9 @@
 
 @include media-range($xs+1, $sm) {
   .newsletter {
+    .newsletter-text {
+      width: 400px;
+    }
     .newsletter-form {
       .newsletter-form-input {
         width: 300px;
@@ -61,6 +64,9 @@
     flex-wrap: nowrap;
     align-items: center;
     height: 60px;
+    .newsletter-text {
+      width: 330px;
+    }
     .newsletter-form {
       .newsletter-form-input {
         width: 200px;
@@ -71,9 +77,12 @@
 
 @include media-higher-than($lg+1) {
   .newsletter {
+    .newsletter-text {
+      width: 420px;
+    }
     .newsletter-form {
       .newsletter-form-input {
-        width: 300px;
+        width: 280px;
       }
     }
   }
