@@ -158,6 +158,14 @@ body {
 a {
   text-decoration: none;
   color: #34AC98; }
+  a:hover {
+    color: #EC6635;
+    opacity: 1; }
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start; }
 
 .content {
   display: flex;
@@ -166,9 +174,16 @@ a {
   @media all and (min-width: 481px) and (max-width: 768px) {
     .content {
       width: 480px; } }
-  @media all and (min-width: 769px) and (max-width: 992px) {
+  @media all and (min-width: 769px) {
     .content {
       width: 712px; } }
+
+@media all and (min-width: 993px) and (max-width: 1176px) {
+  .container {
+    width: 990px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 50px; } }
 
 nav {
   display: flex;
@@ -215,16 +230,29 @@ nav {
     display: block;
     width: 32px;
     height: 32px; }
-  .icon-fork {
-    background: url(../img/nav-tastemakers.png) no-repeat; }
-  .icon-book {
-    background: url(../img/nav-blog.png) no-repeat; }
-  .icon-camera {
-    background: url(../img/nav-contribute.png) no-repeat; }
-  .icon-notebook {
-    background: url(../img/nav-about.png) no-repeat; }
-  .icon-list {
-    background: url(../img/nav-alist.png) no-repeat; } }
+    .icon.icon-fork {
+      background: url(../img/nav-tastemakers.png) no-repeat; }
+    .icon.icon-book {
+      background: url(../img/nav-blog.png) no-repeat; }
+    .icon.icon-camera {
+      background: url(../img/nav-contribute.png) no-repeat; }
+    .icon.icon-notebook {
+      background: url(../img/nav-about.png) no-repeat; }
+    .icon.icon-list {
+      background: url(../img/nav-alist.png) no-repeat; } }
+
+@media all and (min-width: 993px) {
+  nav {
+    border: none; }
+  .top-nav-menu {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 230px; }
+    .top-nav-menu li {
+      flex-direction: row;
+      align-items: center; }
+    .top-nav-menu .icon {
+      margin-right: 10px; } }
 
 .header {
   display: flex;
@@ -249,11 +277,19 @@ nav {
     .header .logo {
       margin: 20px; } }
 
-@media all and (min-width: 481px) {
+@media all and (min-width: 769px) {
   .header {
     flex-direction: row-reverse;
     align-items: stretch;
     justify-content: space-between; }
+    .header .logo {
+      margin: 20px; } }
+
+@media all and (min-width: 993px) {
+  .header {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    width: 160px; }
     .header .logo {
       margin: 20px; } }
 
