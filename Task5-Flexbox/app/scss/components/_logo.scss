@@ -1,0 +1,46 @@
+.header {
+  @include flex-container(column);
+}
+
+.logo {
+  @include link-hover(inherit, 0.8);
+  display: block;
+  margin: 20px auto;
+  width: 120px;
+  height: 120px;
+  background: url(../img/logo-mini.png) no-repeat 0 0;
+}
+
+@include media-higher-than($xs) {
+  .header {
+    flex-direction: row-reverse;
+    align-items: stretch;
+    justify-content: flex-end;
+    .logo {
+      margin: 20px;
+    }
+  }
+}
+
+@include media-higher-than($sm) {
+  .header {
+    flex-direction: row-reverse;
+    align-items: stretch;
+    justify-content: space-between;
+    .logo {
+      margin: 20px;
+    }
+  }
+}
+
+@include media-higher-than($md) {
+  .header {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    width: 160px;
+    height: 660px;
+    .logo {
+      margin: 0;
+    }
+  }
+}

@@ -2,9 +2,9 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync');
 
-gulp.task('sass', function () {
-    return gulp.src('app/sass/**/*.sass')
-        .pipe(sass())
+gulp.task('scss', function () {
+    return gulp.src('app/scss/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
             stream: true
@@ -21,24 +21,22 @@ gulp.task('browser-sync', function () {
 });
 
 gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch('app/sass/**/*.sass', ['sass']);
+    gulp.watch('app/scss/**/*.scss', ['scss']);
     gulp.watch('app/*.html', browserSync.reload);
 });
 
-gulp.task('build', ['sass'], function () {
+gulp.task('build', ['scss'], function () {
 
-    var buildCss = gulp.src([
-            'app/css/main.css'
-        ])
+    gulp.src('app/css/main.css')
         .pipe(gulp.dest('dist/css'));
 
-    var buildFonts = gulp.src('app/fonts/**/*')
+    gulp.src('app/fonts/**/*')
         .pipe(gulp.dest('dist/fonts'));
 
-    var buildHtml = gulp.src('app/*.html')
+    gulp.src('app/*.html')
         .pipe(gulp.dest('dist'));
 
-    var buildImg = gulp.src('app/img/**/*.*')
+    gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
         .pipe(gulp.dest('dist'));
 
 });
