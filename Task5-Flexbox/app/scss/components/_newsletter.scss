@@ -45,7 +45,7 @@
   }
 }
 
-@include media-range($xs, $sm) {
+@include media-higher-than($xs) {
   .newsletter {
     .newsletter-text {
       width: 400px;

@@ -421,7 +421,7 @@ nav {
   .underslider-nav p {
     display: none; }
 
-@media all and (min-width: 481px) and (max-width: 768px) {
+@media all and (min-width: 481px) {
   .slider .wrapper {
     height: 263px; } }
 
@@ -533,7 +533,7 @@ nav {
       color: #333;
       font: bold 11px "Helvetica Neue", Arial, "Liberation Sans", sans-serif; }
 
-@media all and (min-width: 481px) and (max-width: 768px) {
+@media all and (min-width: 481px) {
   .newsletter .newsletter-text {
     width: 400px; }
   .newsletter .newsletter-form .newsletter-form-input {

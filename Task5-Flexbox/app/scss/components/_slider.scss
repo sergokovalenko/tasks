@@ -54,7 +54,7 @@
   }
 }
 
-@include media-range($xs, $sm) {
+@include media-higher-than($xs) {
   .slider {
     .wrapper {
       height: 263px;
