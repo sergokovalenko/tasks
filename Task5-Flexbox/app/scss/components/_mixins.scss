@@ -12,20 +12,8 @@
   }
 }
 
-@mixin media-lower-than($point) {
-  @media all and (max-width: $point+1) {
-    @content;
-  }
-}
-
 @mixin media-higher-than($point) {
   @media all and (min-width: $point+1) {
-    @content;
-  }
-}
-
-@mixin media-range($point-from, $point-to) {
-  @media all and (min-width: $point-from+1) and (max-width: $point-to) {
     @content;
   }
 }
