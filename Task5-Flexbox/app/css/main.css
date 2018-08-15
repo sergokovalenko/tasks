@@ -150,10 +150,7 @@ td, th {
   padding: 0; }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: ff-tisa-web-pro, Georgia, sans-serif; }
+  font-family: Georgia, sans-serif; }
 
 a {
   text-decoration: none;
@@ -165,18 +162,21 @@ a {
 .container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  align-items: center; }
 
 .content {
   display: flex;
   flex-direction: column;
   width: 310px; }
-  @media all and (min-width: 481px) and (max-width: 768px) {
-    .content {
-      width: 480px; } }
-  @media all and (min-width: 769px) {
-    .content {
-      width: 712px; } }
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+  .content {
+    width: 480px; } }
+
+@media all and (min-width: 769px) {
+  .content {
+    width: 712px; } }
 
 @media all and (min-width: 993px) and (max-width: 1176px) {
   .container {

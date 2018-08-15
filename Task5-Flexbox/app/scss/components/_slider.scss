@@ -54,7 +54,7 @@
   }
 }
 
-@include media-range($xs+1, $sm) {
+@include media-range($xs, $sm) {
   .slider {
     .wrapper {
       height: 263px;
@@ -62,7 +62,7 @@
   }
 }
 
-@include media-higher-than($sm+1) {
+@include media-higher-than($sm) {
   .slider {
     .wrapper {
       height: 350px;
@@ -123,7 +123,7 @@
   }
 }
 
-@include media-higher-than($lg+1) {
+@include media-higher-than($lg) {
   .slider {
     .wrapper {
       height: 445px;

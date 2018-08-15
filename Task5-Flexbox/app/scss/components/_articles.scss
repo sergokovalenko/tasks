@@ -42,7 +42,7 @@
     }
 }
 
-@include media-higher-than($xs+1) {
+@include media-higher-than($xs) {
     .articles {
         flex-flow: row wrap;
         .article {
@@ -51,7 +51,7 @@
     }
 }
 
-@include media-higher-than($sm+1) {
+@include media-higher-than($sm) {
     .articles {
         flex-flow: row wrap;
         .article {
