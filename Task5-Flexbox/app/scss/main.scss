@@ -1,72 +1,8 @@
-* {
-  box-sizing: border-box;
-}
-
-@import "components/_normalize";
-@import "components/_mixins";
-$xs: 480px;
-$sm: 768px;
-$md: 992px;
-$lg: 1176px;
-$link-color: #34AC98;
-$link-h-color: #EC6635;
-$meta-color: #AAA;
-$credits-color: #555;
-body {
-  font-family: Georgia, sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: $link-color;
-  @include link-hover($link-h-color);
-}
-
-.container {
-  @include flex-container(column);
-  align-items: center;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  width: 310px;
-}
-
-@include media-range($xs, $sm) {
-  .content {
-    width: 480px;
-  }
-}
-
-@include media-higher-than($sm) {
-  .content {
-    width: 712px;
-  }
-}
-
-@include media-range($md, $lg) {
-  .container {
-    width: 990px;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding: 50px;
-  }
-}
-
-@include media-higher-than($lg) {
-  .content {
-    width: 900px;
-  }
-  .container {
-    width: 1170px;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding: 50px;
-  }
-}
-
+@import "components/normalize";
+@import "components/mixins";
 @import "components/icons";
+@import "components/variables";
+@import "components/common";
 @import "components/top-menu";
 @import "components/logo";
 @import "components/slider";

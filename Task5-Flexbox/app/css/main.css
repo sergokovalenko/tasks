@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box; }
-
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -149,51 +146,6 @@ table {
 td, th {
   padding: 0; }
 
-body {
-  font-family: Georgia, sans-serif; }
-
-a {
-  text-decoration: none;
-  color: #34AC98; }
-  a:hover {
-    color: #EC6635;
-    opacity: 1; }
-
-.container {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center; }
-
-.content {
-  display: flex;
-  flex-direction: column;
-  width: 310px; }
-
-@media all and (min-width: 481px) and (max-width: 768px) {
-  .content {
-    width: 480px; } }
-
-@media all and (min-width: 769px) {
-  .content {
-    width: 712px; } }
-
-@media all and (min-width: 993px) and (max-width: 1176px) {
-  .container {
-    width: 990px;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding: 50px; } }
-
-@media all and (min-width: 1177px) {
-  .content {
-    width: 900px; }
-  .container {
-    width: 1170px;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding: 50px; } }
-
 .icon.icon-twitter-sm, .icon.icon-facebook-sm {
   width: 16px;
   height: 16px; }
@@ -236,6 +188,56 @@ a {
 .icon.icon-facebook-sm {
   background: url(../img/icon-facebook-16.png) no-repeat; }
 
+* {
+  box-sizing: border-box; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Georgia, sans-serif; }
+
+a {
+  text-decoration: none;
+  color: #34AC98; }
+  a:hover {
+    color: #EC6635;
+    opacity: 1; }
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start; }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 310px; }
+
+@media all and (min-width: 481px) {
+  .content {
+    width: 480px; } }
+
+@media all and (min-width: 769px) {
+  .content {
+    width: 712px; } }
+
+@media all and (min-width: 993px) {
+  .container {
+    width: 990px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 50px; } }
+
+@media all and (min-width: 1177px) {
+  .content {
+    width: 900px; }
+  .container {
+    width: 1170px; } }
+
+.list-unstyled {
+  list-style: none; }
+
 nav {
   display: flex;
   flex-flow: row nowrap;
@@ -251,7 +253,6 @@ nav {
   flex-flow: row nowrap;
   justify-content: space-around;
   width: 100%;
-  list-style: none;
   padding: 0;
   margin: 0; }
   .top-nav-menu a {
@@ -449,7 +450,6 @@ nav {
     padding: 0;
     margin-bottom: 40px; }
     .underslider-nav ul {
-      list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
@@ -631,7 +631,6 @@ nav {
     justify-content: flex-start;
     margin: 0;
     padding: 0;
-    list-style: none;
     width: 100%; }
     .footer .footer-social-list li .icon {
       margin-right: 5px;
