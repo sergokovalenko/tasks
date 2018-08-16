@@ -1,0 +1,5 @@
+@mixin media-higher-than($point) {
+    @media all and (min-width: $point+1) {
+        @content;
+    }
+}
