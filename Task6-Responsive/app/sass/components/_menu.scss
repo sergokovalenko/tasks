@@ -1,45 +1,48 @@
-.nav {
-    position: absolute;
-    top: 60px;
-    bottom: 0;
-    display: none;
-    background-color: #333333;
-    .nav-list {
-        margin: 0;
-        padding: 0;
+.left-side {
+    .nav {
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        display: none;
+        width: 400px;
         background-color: #333333;
-        .nav-list-item {
-            height: 50px;
-            a {
-                display: block;
-                height: 100%;
-                line-height: 50px;
-                padding-left: 10px;
-                color: $menu-color;
-                &:hover {
-                    color: $menu-color-active;
-                    background-color: $menu-bg-color;
-                }
-            }
-            &.active {
-                background-color: $menu-bg-color;
+        .nav-list {
+            margin: 0;
+            padding: 0;
+            background-color: #333333;
+            .nav-list-item {
+                height: 50px;
                 a {
-                    color: $menu-color-active;
+                    display: block;
+                    height: 100%;
+                    line-height: 50px;
+                    padding-left: 10px;
+                    color: $menu-color;
+                    &:hover {
+                        color: $menu-color-active;
+                        background-color: $menu-bg-color;
+                    }
                 }
-            }
-            .wrapper {
-                padding-top: 5px;
-                margin-left: 20px;
-                line-height: 1em;
-            }
-            .welcome-text {
-                display: inline-block;
-                margin: 0;
-                font-size: 12px;
-            }
-            .user-name {
-                display: block;
-                font-size: 11px;
+                &.active {
+                    background-color: $menu-bg-color;
+                    a {
+                        color: $menu-color-active;
+                    }
+                }
+                .wrapper {
+                    padding-top: 5px;
+                    margin-left: 20px;
+                    line-height: 1em;
+                }
+                .welcome-text {
+                    display: inline-block;
+                    margin: 0;
+                    font-size: 12px;
+                }
+                .user-name {
+                    display: block;
+                    font-size: 11px;
+                }
             }
         }
     }

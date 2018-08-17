@@ -1,0 +1,20 @@
+.back-to-list {
+    display: block;
+    color: $text-color-grey;
+    .fa {
+        margin-right: 5px;
+    }
+    .back-to-list-text {
+        font-size: 16px;
+    }
+}
+
+.project {
+    margin: 20px 0;
+    .project-name {
+        margin: 0;
+    }
+    .btn {
+        display: none;
+    }
+}

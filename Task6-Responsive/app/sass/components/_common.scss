@@ -2,12 +2,49 @@
     box-sizing: border-box;
 }
 
-%height100 {
-    height: 100%;
+.content {
+    background-color: $content-bg-color;
+    padding: 2%;
 }
 
 .container {
-    width: 98%;
+    width: 96%;
+}
+
+.header {
+    height: 60px;
+}
+
+a {
+    color: $text-color-black;
+    text-decoration: none;
+}
+
+.btn {
+    padding: 0 15px;
+    height: 40px;
+    border: 1px solid $tab-bg-color;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, #f1f1f1, #e1e1e1);
+    font-size: 14px;
+}
+
+.icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.icon-excel {
+    background: url("../img/excel.png");
+}
+
+.hiding-checkbox {
+    display: none;
+}
+
+.hiding-checkbox:checked~.nav {
+    display: block;
 }
 
 .list-unstyled {
@@ -34,10 +71,19 @@
     text-transform: uppercase;
 }
 
-a {
-    text-decoration: none;
+.text-capitalize {
+    text-transform: capitalize;
 }
 
-.header {
-    height: 60px;
+.d-inline-b {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.d-block {
+    display: block;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
