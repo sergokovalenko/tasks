@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync');
 
 gulp.task('scss', function () {
-    return gulp.src('app/scss/**/*.scss')
+    return gulp.src('app/sass/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
@@ -21,7 +21,7 @@ gulp.task('browser-sync', function () {
 });
 
 gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch('app/scss/**/*.scss', ['scss']);
+    gulp.watch('app/sass/**/*.scss', ['scss']);
     gulp.watch('app/*.html', browserSync.reload);
 });
 
