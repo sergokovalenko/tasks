@@ -39,6 +39,12 @@ a {
     background: url("../img/excel.png");
 }
 
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .hiding-checkbox {
     display: none;
 }

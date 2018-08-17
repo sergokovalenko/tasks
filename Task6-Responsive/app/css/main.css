@@ -179,6 +179,11 @@ a {
 .icon-excel {
   background: url("../img/excel.png"); }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 .hiding-checkbox {
   display: none; }
 
@@ -278,7 +283,26 @@ a {
 
 .project {
   margin: 20px 0; }
+  .project .project-header {
+    margin-bottom: 10px; }
   .project .project-name {
     margin: 0; }
   .project .btn {
     display: none; }
+  .project .nav {
+    display: none;
+    clear: both; }
+    .project .nav .nav-list {
+      margin: 0;
+      padding: 0; }
+      .project .nav .nav-list .list-item {
+        border-top: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+        padding: 10px 0; }
+        .project .nav .nav-list .list-item .field-name {
+          font-weight: bold; }
+        .project .nav .nav-list .list-item .field-value {
+          float: right;
+          width: 200px;
+          text-align: right;
+          color: #7f7f7f; }
