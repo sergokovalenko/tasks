@@ -6,8 +6,8 @@
     height: 100%;
 }
 
-html, body, .left-side, .nav, .nav-list {
-    @extend %height100;
+.container {
+    width: 98%;
 }
 
 .list-unstyled {
