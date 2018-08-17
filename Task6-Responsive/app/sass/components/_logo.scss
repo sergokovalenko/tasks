@@ -4,3 +4,22 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.burger {
+    display: none;
+}
+
+.hamburger {
+    margin-top: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+    color: $text-color;
+    font-size: 30px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.burger:checked~.nav {
+    display: block;
+}
+
