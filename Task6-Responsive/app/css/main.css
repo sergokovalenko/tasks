@@ -149,8 +149,8 @@ td, th {
 * {
   box-sizing: border-box; }
 
-html, body, .left-side, .nav, .nav-list {
-  height: 100%; }
+.container {
+  width: 98%; }
 
 .list-unstyled {
   list-style: none; }
@@ -199,7 +199,11 @@ a {
   width: 400px; }
 
 .nav {
-  display: none; }
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  display: none;
+  background-color: #333333; }
   .nav .nav-list {
     margin: 0;
     padding: 0;

@@ -1,5 +1,9 @@
 .nav {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
     display: none;
+    background-color: #333333;
     .nav-list {
         margin: 0;
         padding: 0;
