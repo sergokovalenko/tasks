@@ -149,6 +149,9 @@ td, th {
 * {
   box-sizing: border-box; }
 
+html, body, .left-side, .nav, .nav-list {
+  height: 100%; }
+
 .list-unstyled {
   list-style: none; }
 
@@ -192,4 +195,27 @@ a {
   vertical-align: middle; }
 
 .burger:checked ~ .nav {
-  display: block; }
+  display: block;
+  width: 400px; }
+
+.nav {
+  display: none; }
+  .nav .nav-list {
+    margin: 0;
+    padding: 0;
+    background-color: #333333; }
+    .nav .nav-list .nav-list-item {
+      height: 50px; }
+      .nav .nav-list .nav-list-item a {
+        display: block;
+        height: 100%;
+        line-height: 50px;
+        padding-left: 10px;
+        color: #727272; }
+        .nav .nav-list .nav-list-item a:hover {
+          color: #dddddd;
+          background-color: #000000; }
+      .nav .nav-list .nav-list-item.active {
+        background-color: #000000; }
+        .nav .nav-list .nav-list-item.active a {
+          color: #dddddd; }

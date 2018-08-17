@@ -21,5 +21,34 @@
 
 .burger:checked~.nav {
     display: block;
+    width: 400px;
 }
 
+.nav {
+    display: none;
+    .nav-list {
+        margin: 0;
+        padding: 0;
+        background-color: #333333;
+        .nav-list-item {
+            height: 50px;
+            a {
+                display: block;
+                height: 100%;
+                line-height: 50px;
+                padding-left: 10px;
+                color: $menu-color;
+                &:hover {
+                    color: $menu-color-active;
+                    background-color: $menu-bg-color;
+                }
+            }
+            &.active {
+                background-color: $menu-bg-color;
+                a {
+                    color: $menu-color-active;
+                }
+            }
+        }
+    }
+}
