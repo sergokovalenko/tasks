@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+.list-unstyled {
+    list-style: none;
+}
+
+.hidden-outline {
+    outline: 0;
+}
+
+.hidden-outline:focus {
+    outline: 0;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    height: 60px;
+}
