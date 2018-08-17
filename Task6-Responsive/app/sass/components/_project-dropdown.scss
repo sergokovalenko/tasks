@@ -11,10 +11,35 @@
 
 .project {
     margin: 20px 0;
+    .project-header {
+        margin-bottom: 10px;
+    }
     .project-name {
         margin: 0;
     }
     .btn {
         display: none;
     }
+    .nav {
+        display: none;
+        clear: both;
+        .nav-list {
+            margin: 0;
+            padding: 0;
+            .list-item {
+                border-top: 1px solid $border-color;
+                border-bottom: 1px solid $border-color;
+                padding: 10px 0;
+                .field-name {
+                    font-weight: bold;
+                }
+                .field-value {
+                    float: right;
+                    width: 200px;
+                    text-align: right;
+                    color: $text-color-grey;
+                }
+            }
+        }
+    } 
 }
