@@ -189,6 +189,11 @@ a {
 
 .hiding-checkbox:checked ~ .nav {
   display: block; }
+  .hiding-checkbox:checked ~ .nav.nav-interactive {
+    visibility: visible;
+    z-index: 1;
+    transform: translateX(0%);
+    transition-delay: 0s, 0s, 400ms; }
 
 .list-unstyled {
   list-style: none; }
@@ -228,10 +233,9 @@ a {
   background-position: center; }
 
 .hamburger {
-  margin-top: 5px;
+  margin-top: 12px;
   margin-left: 20px;
   color: #cb012f;
-  font-size: 30px;
   font-weight: bold;
   vertical-align: middle; }
 
@@ -239,9 +243,12 @@ a {
   position: absolute;
   top: 60px;
   bottom: 0;
-  display: none;
   width: 400px;
-  background-color: #333333; }
+  background-color: #333333;
+  transform: translateX(-400em);
+  transition: all 0.3s ease-in-out 0s, visibility 1s linear 0s, z-index 1s linear 0.5s;
+  visibility: hidden;
+  z-index: -1; }
   .left-side .nav .nav-list {
     margin: 0;
     padding: 0;
@@ -306,3 +313,21 @@ a {
           width: 200px;
           text-align: right;
           color: #7f7f7f; }
+
+.tabs {
+  width: 100%; }
+  .tabs .tab {
+    width: 49%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #d7d7d7;
+    border: 1px solid #e8e8e8;
+    border-bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
+    .tabs .tab .fa {
+      color: #cb012f; }
+    .tabs .tab.active {
+      background-color: #f2f2f2; }

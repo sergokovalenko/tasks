@@ -26,7 +26,7 @@ a {
     border: 1px solid $tab-bg-color;
     border-radius: 5px;
     background-image: linear-gradient(to bottom, #f1f1f1, #e1e1e1);
-    font-size: 14px;
+    font-size: $f-s-14;
 }
 
 .icon {
@@ -51,6 +51,12 @@ a {
 
 .hiding-checkbox:checked~.nav {
     display: block;
+    &.nav-interactive{
+        visibility: visible;
+        z-index: 1;
+        transform: translateX(0%);
+        transition-delay: 0s, 0s, 400ms;
+    }
 }
 
 .list-unstyled {

@@ -3,9 +3,12 @@
         position: absolute;
         top: 60px;
         bottom: 0;
-        display: none;
         width: 400px;
         background-color: #333333;
+        transform: translateX(-400em);
+        transition: all 0.3s ease-in-out 0s, visibility 1s linear 0s, z-index 1s linear 0.5s;
+        visibility: hidden;
+        z-index: -1;
         .nav-list {
             margin: 0;
             padding: 0;
@@ -37,11 +40,11 @@
                 .welcome-text {
                     display: inline-block;
                     margin: 0;
-                    font-size: 12px;
+                    font-size: $f-s-12;
                 }
                 .user-name {
                     display: block;
-                    font-size: 11px;
+                    font-size: $f-s-11;
                 }
             }
         }
