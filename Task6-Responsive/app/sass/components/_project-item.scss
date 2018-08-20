@@ -23,4 +23,14 @@
         font-weight: bold;
         margin-top: 10px;
     }
+    .project-item-company {
+        margin-top: 10px;
+        .project-item-company-name {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .badge {
+            font-size: $f-s-12;
+        }
+    }
 }
