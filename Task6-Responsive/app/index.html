@@ -78,7 +78,7 @@
                         <label for="circle" class="circle cursor-pointer d-inline-b">
                             <i class="fa fa-plus-circle"></i>
                         </label>
-                        <button class="btn btn-export text-uppercase fr">
+                        <button class="btn btn-export text-uppercase fr" name="export">
                             <i class="icon icon-excel d-inline-b"></i>
                             <span class="d-inline-b">Export</span>
                         </button>
@@ -132,7 +132,29 @@
                         <i class="fa fa-phone"></i>
                     </a>
                 </div>
-                <div class="filter"></div>
+                <div class="filter">
+                    <button class="btn btn-expand text-uppercase fl" name="expand-all">
+                        <span class="d-inline-b">Expand all</span>
+                    </button>
+                    <div class="btn-filter">
+                        <button class="btn text-uppercase fr" name="filter">
+                            <i class="icon icon-excel d-inline-b"></i>
+                            <span class="d-inline-b">Filters</span>
+                        </button>
+                    </div>
+                    <button class="btn btn-export text-uppercase" name="export">
+                        <i class="icon icon-excel d-inline-b"></i>
+                        <span class="d-inline-b">Export</span>
+                    </button>
+                    <div class="dropdown-select">
+                        <select class="selector" name="filter-selector">
+                            <option selected>Sort by Status</option>
+                            <option>Sort by Name</option>
+                            <option>Sort by Date</option>
+                            <option>Sort by Company</option>
+                        </select>
+                    </div>
+                </div>
                 <section class="project-item">
                     <div class="project-item-speciality"></div>
                     <div class="project-item-name"></div>

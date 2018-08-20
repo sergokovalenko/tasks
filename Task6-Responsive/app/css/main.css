@@ -150,11 +150,12 @@ td, th {
   box-sizing: border-box; }
 
 .content {
-  background-color: #f2f2f2;
-  padding: 2%; }
+  padding: 2%;
+  min-width: 350px;
+  background-color: #f2f2f2; }
 
 .container {
-  width: 96%; }
+  width: 100%; }
 
 .header {
   height: 60px; }
@@ -168,6 +169,7 @@ a {
   height: 40px;
   border: 1px solid #d7d7d7;
   border-radius: 5px;
+  background-color: #e9e9e9;
   background-image: linear-gradient(to bottom, #f1f1f1, #e1e1e1);
   font-size: 14px; }
 
@@ -303,8 +305,8 @@ a {
       margin: 0;
       padding: 0; }
       .project .nav .nav-list .list-item {
-        border-top: 1px solid #e8e8e8;
-        border-bottom: 1px solid #e8e8e8;
+        border-top: 1px solid #e4e4e4;
+        border-bottom: 1px solid #e4e4e4;
         padding: 10px 0; }
         .project .nav .nav-list .list-item .field-name {
           font-weight: bold; }
@@ -317,13 +319,13 @@ a {
 .tabs {
   width: 100%; }
   .tabs .tab {
-    width: 49%;
+    width: 50%;
     height: 40px;
     line-height: 40px;
     text-align: center;
     vertical-align: middle;
     background-color: #d7d7d7;
-    border: 1px solid #e8e8e8;
+    border: 1px solid #e4e4e4;
     border-bottom: 0;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px; }
@@ -331,3 +333,48 @@ a {
       color: #cb012f; }
     .tabs .tab.active {
       background-color: #f2f2f2; }
+
+.filter {
+  padding: 15px 10px;
+  border: 1px solid #e4e4e4;
+  border-top: none; }
+  .filter .btn-expand {
+    width: 32%;
+    margin-right: 2%; }
+  .filter .btn-export {
+    width: 32%;
+    margin-right: 1%; }
+  .filter .dropdown-select {
+    margin-top: 15px; }
+    .filter .dropdown-select .selector {
+      width: 100%;
+      padding: 10px;
+      color: #848484;
+      border: 1px solid #d7d7d7;
+      border-radius: 5px;
+      font-size: 14px; }
+      .filter .dropdown-select .selector > option:hover {
+        background-color: #848484; }
+
+.btn-filter {
+  float: right;
+  position: relative;
+  width: 27%; }
+  .btn-filter::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: -14px;
+    display: block;
+    width: 27px;
+    height: 27px;
+    transform: rotate(45deg);
+    border: 1px solid #d7d7d7;
+    background-color: #e9e9e9;
+    background-image: linear-gradient(to bottom, #f1f1f1, #e1e1e1); }
+  .btn-filter .btn {
+    position: relative;
+    width: 100%;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
