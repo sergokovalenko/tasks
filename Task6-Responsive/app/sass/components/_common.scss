@@ -61,6 +61,15 @@ a {
     }
 }
 
+.badge {
+    display: inline;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #cb012f;
+    color: #ffffff;
+    font-weight: bold;
+}
+
 .list-unstyled {
     list-style: none;
 }
