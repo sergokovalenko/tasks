@@ -197,6 +197,14 @@ a {
     transform: translateX(0%);
     transition-delay: 0s, 0s, 400ms; }
 
+.badge {
+  display: inline;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: #cb012f;
+  color: #ffffff;
+  font-weight: bold; }
+
 .list-unstyled {
   list-style: none; }
 
@@ -378,3 +386,20 @@ a {
     border-left: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
+
+.project-item {
+  margin-top: 15px;
+  border: 1px solid #e4e4e4; }
+
+.project-item-content {
+  padding: 15px 10px; }
+  .project-item-content .project-item-date {
+    float: right;
+    font-size: 12px;
+    color: #7f7f7f; }
+    .project-item-content .project-item-date .badge {
+      margin: 0 10px; }
+  .project-item-content .project-item-speciality {
+    text-transform: uppercase;
+    color: #cb012f;
+    font-size: 14px; }

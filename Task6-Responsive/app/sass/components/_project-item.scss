@@ -1,0 +1,21 @@
+.project-item {
+    margin-top: 15px;
+    border: 1px solid $border-color;
+}
+
+.project-item-content {
+    padding: 15px 10px;
+    .project-item-date {
+        float: right;
+        font-size: $f-s-12;
+        color: $text-color-grey;
+        .badge {
+            margin: 0 10px;
+        }
+    }
+    .project-item-speciality {
+        text-transform: uppercase;
+        color: $text-color;
+        font-size: $f-s-14;
+    }
+}
