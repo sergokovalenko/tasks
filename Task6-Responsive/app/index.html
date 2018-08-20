@@ -71,59 +71,55 @@
                     <i class="fa fa-chevron-left"></i>
                     <span class="back-to-list-text">Projects List</span>
                 </a>
-                <div class="project">
-                    <input type="checkbox" id="circle" class="hiding-checkbox">
-                    <div class="project-header">
-                        <h2 class="project-name d-inline-b">Test Project last</h2>
-                        <label for="circle" class="circle cursor-pointer d-inline-b">
-                            <i class="fa fa-plus-circle"></i>
-                        </label>
-                        <button class="btn btn-export text-uppercase fr" name="export">
-                            <i class="icon icon-excel d-inline-b"></i>
-                            <span class="d-inline-b">Export</span>
-                        </button>
-                    </div>
-                    <nav class="nav">
-                        <ul class="nav-list list-unstyled">
-                            <li class="list-item clearfix">
-                                <span class="field-name">Create date</span>
-                                <span class="field-value">01/20/2015</span>
-                            </li>
-                            <li class="list-item clearfix">
-                                <span class="field-name">Target industries</span>
-                                <span class="field-value">Wireline telephone enuipment</span>
-                            </li>
-                            <li class="list-item clearfix">
-                                <span class="field-name">Bios sent</span>
-                                <span class="field-value">10</span>
-                            </li>
-                            <li class="list-item clearfix">
-                                <span class="field-name">Calls sheduled</span>
-                                <span class="field-value">2</span>
-                            </li>
-                        </ul>
-                        <ul class="nav-list list-unstyled">
-                            <li class="list-item clearfix">
-                                <span class="field-name">Requested consultations</span>
-                                <span class="field-value">10</span>
-                            </li>
-                            <li class="list-item clearfix">
-                                <span class="field-name">Target companies</span>
-                                <span class="field-value">Frontier communications Corporation [FTR]</span>
-                            </li>
-                            <li class="list-item clearfix">
-                                <span class="field-name">Calls completed</span>
-                                <span class="field-value">2</span>
-                            </li>
-                            <li class="list-item clearfix">
-                                <span class="field-name">Calls in sheduling</span>
-                                <span class="field-value">1</span>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
-            <div class="projects">
+            <div class="project">
+                <input type="checkbox" id="circle-conceal" class="hiding-checkbox">
+                <div class="project-header">
+                    <label for="circle-conceal" class="circle cursor-pointer d-inline-b">
+                        <h2 class="project-name d-inline-b">Test Project last</h2>
+                        <i class="fa fa-plus-circle"></i>
+                    </label>
+                </div>
+                <section class="project-info">
+                    <ul class="description-list list-unstyled">
+                        <li class="list-item clearfix">
+                            <span class="field-name">Create date</span>
+                            <span class="field-value">01/20/2015</span>
+                        </li>
+                        <li class="list-item clearfix">
+                            <span class="field-name">Target industries</span>
+                            <span class="field-value">Wireline telephone enuipment</span>
+                        </li>
+                        <li class="list-item clearfix">
+                            <span class="field-name">Bios sent</span>
+                            <span class="field-value">10</span>
+                        </li>
+                        <li class="list-item clearfix">
+                            <span class="field-name">Calls sheduled</span>
+                            <span class="field-value">2</span>
+                        </li>
+                    </ul>
+                    <ul class="description-list list-unstyled">
+                        <li class="list-item clearfix">
+                            <span class="field-name">Requested consultations</span>
+                            <span class="field-value">10</span>
+                        </li>
+                        <li class="list-item clearfix">
+                            <span class="field-name">Target companies</span>
+                            <span class="field-value">Frontier communications Corporation [FTR]</span>
+                        </li>
+                        <li class="list-item clearfix">
+                            <span class="field-name">Calls completed</span>
+                            <span class="field-value">2</span>
+                        </li>
+                        <li class="list-item clearfix">
+                            <span class="field-name">Calls in sheduling</span>
+                            <span class="field-value">1</span>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="action-block">
                 <div class="tabs">
                     <a class="tab d-inline-b active text-uppercase" href="#">Experts
                         <i class="fa fa-flag"></i>
@@ -155,6 +151,8 @@
                         </select>
                     </div>
                 </div>
+            </div>
+            <div class="projects">
                 <section class="project-item">
                     <div class="project-item-content">
                         <div class="project-item-date">
@@ -167,7 +165,7 @@
                             <span class="project-item-company-name">EPAM</span>
                             <span class="badge badge-reverse text-uppercase">Public</span>
                         </div>
-                        <div class="project-itemjob-title"></div>
+                        <div class="project-item-job-title"></div>
                         <div class="project-item-additional"></div>
                         <div class="project-item-availability"></div>
                     </div>

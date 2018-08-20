@@ -189,9 +189,9 @@ a {
 .hiding-checkbox {
   display: none; }
 
-.hiding-checkbox:checked ~ .nav {
+.hiding-checkbox:checked ~ .nav, .hiding-checkbox:checked ~ .project-info {
   display: block; }
-  .hiding-checkbox:checked ~ .nav.nav-interactive {
+  .hiding-checkbox:checked ~ .nav.nav-interactive, .hiding-checkbox:checked ~ .project-info.nav-interactive {
     visibility: visible;
     z-index: 1;
     transform: translateX(0%);
@@ -313,19 +313,19 @@ a {
     margin: 0; }
   .project .btn {
     display: none; }
-  .project .nav {
+  .project .project-info {
     display: none;
     clear: both; }
-    .project .nav .nav-list {
+    .project .project-info .description-list {
       margin: 0;
       padding: 0; }
-      .project .nav .nav-list .list-item {
+      .project .project-info .description-list .list-item {
         border-top: 1px solid #e4e4e4;
         border-bottom: 1px solid #e4e4e4;
         padding: 10px 0; }
-        .project .nav .nav-list .list-item .field-name {
+        .project .project-info .description-list .list-item .field-name {
           font-weight: bold; }
-        .project .nav .nav-list .list-item .field-value {
+        .project .project-info .description-list .list-item .field-value {
           float: right;
           width: 200px;
           text-align: right;
