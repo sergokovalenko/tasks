@@ -68,6 +68,12 @@ a {
     background-color: #cb012f;
     color: #ffffff;
     font-weight: bold;
+    &.badge-reverse {
+        background-color: transparent;
+        border: 1px solid #cb012f;
+        color: #cb012f;
+        padding: 3px 15px;
+    }
 }
 
 .list-unstyled {
