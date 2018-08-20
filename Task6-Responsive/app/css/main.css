@@ -151,7 +151,7 @@ td, th {
 
 .content {
   padding: 2%;
-  min-width: 350px;
+  min-width: 300px;
   background-color: #f2f2f2; }
 
 .container {
@@ -305,6 +305,9 @@ a {
   .back-to-list .back-to-list-text {
     font-size: 16px; }
 
+.hiding-checkbox:checked ~ .project-header .fa-plus-circle::before {
+  content: "\f056"; }
+
 .project {
   margin: 20px 0; }
   .project .project-header {
@@ -409,11 +412,13 @@ a {
   .project-item-content .project-item-speciality {
     text-transform: uppercase;
     color: #cb012f;
-    font-size: 14px; }
+    font-size: 14px;
+    margin-top: 0; }
   .project-item-content .project-item-name {
     font-size: 23px;
     font-weight: bold;
-    margin-top: 10px; }
+    margin-top: 10px;
+    margin-bottom: 0; }
   .project-item-content .project-item-company {
     margin-top: 10px; }
     .project-item-content .project-item-company .project-item-company-name {

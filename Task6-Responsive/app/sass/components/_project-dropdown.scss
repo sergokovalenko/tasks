@@ -9,6 +9,10 @@
     }
 }
 
+.hiding-checkbox:checked~.project-header .fa-plus-circle::before {
+    content: "\f056";
+}
+
 .project {
     margin: 20px 0;
     .project-header {
@@ -41,5 +45,5 @@
                 }
             }
         }
-    } 
+    }
 }

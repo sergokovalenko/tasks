@@ -17,11 +17,13 @@
         text-transform: uppercase;
         color: $text-color;
         font-size: $f-s-14;
+        margin-top: 0;
     }
     .project-item-name {
         font-size: $f-s-23;
         font-weight: bold;
         margin-top: 10px;
+        margin-bottom: 0;
     }
     .project-item-company {
         margin-top: 10px;
