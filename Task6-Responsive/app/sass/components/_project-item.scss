@@ -1,6 +1,7 @@
 .project-item {
     margin-top: 15px;
     border: 1px solid $border-color;
+    background-color: #fff;
 }
 
 .project-item-content {
@@ -41,6 +42,13 @@
         margin-top: 10px;
         .timespan {
             color: $text-color-grey;
+        }
+    }
+    .project-item-additional {
+        margin-top: 10px;
+        p {
+            line-height: 1.5rem;
+            color: $text-color;
         }
     }
 }
