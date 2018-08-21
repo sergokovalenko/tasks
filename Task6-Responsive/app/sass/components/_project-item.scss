@@ -71,3 +71,18 @@
         line-height: 1.5rem;
     }
 }
+
+.project-item-actions {
+    .action-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-top: 1px  solid $border-color;
+        background-color: $content-bg-color;
+        text-align: start;
+        &:hover {
+            background-color: $border-color;
+        }
+    }
+}
