@@ -163,6 +163,20 @@ td, th {
   background-color: #fff;
   z-index: 1; }
 
+@media all and (min-width: 751px) {
+  body {
+    height: 100vh;
+    overflow: hidden; }
+  .header {
+    height: 100px; }
+  .content {
+    display: inline-block;
+    padding: 10px 50px;
+    width: 75%;
+    height: 100vh;
+    margin: 0;
+    overflow-y: auto; } }
+
 a {
   color: #000000;
   text-decoration: none; }
@@ -288,9 +302,11 @@ a {
         background-color: #000000; }
         .left-side .nav .nav-list .nav-list-item.active a {
           color: #dddddd; }
-      .left-side .nav .nav-list .nav-list-item .fa.fa-user {
+      .left-side .nav .nav-list .nav-list-item .fa-user {
         margin-left: 10px;
         line-height: 30px; }
+      .left-side .nav .nav-list .nav-list-item .fa-phone {
+        display: none; }
       .left-side .nav .nav-list .nav-list-item .wrapper {
         padding-top: 5px;
         margin-left: 30px;
@@ -305,6 +321,31 @@ a {
         color: #727272; }
         .left-side .nav .nav-list .nav-list-item .user-name:hover {
           text-decoration: underline; }
+
+@media all and (min-width: 751px) {
+  .left-side {
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    height: 100vh; }
+    .left-side .header {
+      position: static; }
+      .left-side .header .hamburger {
+        display: none; }
+    .left-side nav.nav {
+      width: 100%;
+      height: 100%;
+      position: static;
+      display: block;
+      transform: translateX(0%);
+      visibility: visible; }
+      .left-side nav.nav .nav-list .nav-list-item .fa-flag {
+        display: none; }
+      .left-side nav.nav .nav-list .nav-list-item .fa-sign-out {
+        color: #cb012f; }
+      .left-side nav.nav .nav-list .nav-list-item .fa-phone {
+        display: inline;
+        color: #cb012f; } }
 
 .back-to-list {
   display: block;
