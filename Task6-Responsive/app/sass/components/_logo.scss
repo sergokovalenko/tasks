@@ -1,6 +1,7 @@
 .header-logo {
     display: block;
-    width: 100%;
+    margin: 0 auto;
+    width: 200px;
     height: 100%;
     background-image: url("../img/epam-logo.png");
     background-repeat: no-repeat;
@@ -8,9 +9,9 @@
 }
 
 .hamburger {
-    margin-top: 12px;
-    margin-left: 20px;
+    display: block;
+    height: 60px;
+    width: 60px;
+    padding: 15px;
     color: $text-color;
-    font-weight: bold;
-    vertical-align: middle;
 }

@@ -9,6 +9,10 @@
     }
 }
 
+.hiding-checkbox:checked~.project-info {
+    display: block;
+}
+
 .hiding-checkbox:checked~.project-header .fa-plus-circle::before {
     content: "\f056";
 }
