@@ -5,6 +5,9 @@
 
 .project-item-content {
     padding: 15px 10px;
+    p {
+        margin: 0;
+    }
     .project-item-date {
         float: right;
         font-size: $f-s-12;
@@ -17,7 +20,6 @@
         text-transform: uppercase;
         color: $text-color;
         font-size: $f-s-14;
-        margin-top: 0;
     }
     .project-item-name {
         font-size: $f-s-23;
@@ -33,6 +35,12 @@
         }
         .badge {
             font-size: $f-s-12;
+        }
+    }
+    .project-item-job-title {
+        margin-top: 10px;
+        .timespan {
+            color: $text-color-grey;
         }
     }
 }
