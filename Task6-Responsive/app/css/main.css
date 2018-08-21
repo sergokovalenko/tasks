@@ -179,9 +179,8 @@ a {
   display: inline-block;
   width: 20px;
   height: 20px; }
-
-.icon-excel {
-  background: url("../img/excel.png"); }
+  .icon.icon-excel {
+    background: url("../img/excel.png"); }
 
 .clearfix:after {
   content: "";
@@ -215,12 +214,6 @@ a {
 
 .list-unstyled {
   list-style: none; }
-
-.hidden-outline {
-  outline: 0; }
-
-.hidden-outline:focus {
-  outline: 0; }
 
 .fl {
   float: left; }
@@ -344,7 +337,7 @@ a {
           font-weight: bold; }
         .project .project-info .description-list .list-item .field-value {
           float: right;
-          width: 200px;
+          width: 50%;
           text-align: right;
           color: #7f7f7f; }
 
@@ -376,17 +369,16 @@ a {
   .filter .btn-export {
     width: 32%;
     margin-right: 1%; }
-  .filter .dropdown-select {
-    margin-top: 15px; }
-    .filter .dropdown-select .selector {
-      width: 100%;
-      padding: 10px;
-      color: #848484;
-      border: 1px solid #d7d7d7;
-      border-radius: 5px;
-      font-size: 14px; }
-      .filter .dropdown-select .selector > option:hover {
-        background-color: #848484; }
+  .filter .selector {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    color: #848484;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+    font-size: 14px; }
+    .filter .selector > option:hover {
+      background-color: #848484; }
 
 .btn-filter {
   float: right;
@@ -465,4 +457,5 @@ a {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 10px;
+    padding: 0;
     line-height: 1.5rem; }

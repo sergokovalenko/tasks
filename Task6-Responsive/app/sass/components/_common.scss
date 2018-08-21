@@ -36,11 +36,11 @@ a {
     display: inline-block;
     width: 20px;
     height: 20px;
+    &.icon-excel {
+        background: url("../img/excel.png");
+    }
 }
 
-.icon-excel {
-    background: url("../img/excel.png");
-}
 
 .clearfix:after {
     content: "";
@@ -80,14 +80,6 @@ a {
 
 .list-unstyled {
     list-style: none;
-}
-
-.hidden-outline {
-    outline: 0;
-}
-
-.hidden-outline:focus {
-    outline: 0;
 }
 
 .fl {
