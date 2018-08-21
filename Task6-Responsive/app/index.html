@@ -65,21 +65,22 @@
     </div><!--
 --><main class="content">
         <div class="container">
-            <div class="return">
-                <a href="#" class="back-to-list">
-                    <i class="fa fa-chevron-left"></i>
-                    <span class="back-to-list-text">Projects List</span>
-                </a>
-            </div>
-            <div class="project">
-                <input type="checkbox" id="circle-conceal" class="hiding-checkbox">
-                <div class="project-header">
-                    <label for="circle-conceal" class="circle cursor-pointer d-inline-b">
-                        <h2 class="project-name d-inline-b">Test Project last</h2>
-                        <i class="fa fa-plus-circle"></i>
-                    </label>
+            <div class="wrapper">
+                <div class="return">
+                    <a href="#" class="back-to-list">
+                        <i class="fa fa-chevron-left"></i>
+                        <span class="back-to-list-text">Projects List</span>
+                    </a>
                 </div>
-                <section class="project-info">
+                <div class="project">
+                    <input type="checkbox" id="circle-conceal" class="hiding-checkbox">
+                    <div class="project-header">
+                        <label for="circle-conceal" class="circle cursor-pointer d-inline-b">
+                            <h2 class="project-name d-inline-b">Test Project last</h2>
+                            <i class="fa fa-plus-circle"></i>
+                        </label>
+                    </div>
+                    <section class="project-info">
                     <ul class="description-list list-unstyled">
                         <li class="list-item clearfix">
                             <span class="field-name">Create date</span>
@@ -116,39 +117,41 @@
                             <span class="field-value">1</span>
                         </li>
                     </ul>
-                </section>
-            </div>
-            <div class="action-block">
-                <div class="tabs">
-                    <a class="tab d-inline-b active text-uppercase" href="#">Experts
-                        <i class="fa fa-flag"></i>
-                    </a><!--
-                --><a class="tab d-inline-b text-uppercase" href="#">Consultations
-                        <i class="fa fa-phone"></i>
-                    </a>
+                    </section>
                 </div>
-                <div class="filter">
-                    <button class="btn btn-expand text-uppercase fl" name="expand-all">
-                        <span class="d-inline-b">Expand all</span>
-                    </button>
-                    <div class="btn-filter">
-                        <button class="btn text-uppercase fr" name="filter">
-                            <span class="fa fa-filter d-inline-b"></span>
-                            <span class="d-inline-b">Filters</span>
-                        </button>
+            
+                <div class="action-block">
+                    <div class="tabs">
+                        <a class="tab d-inline-b active text-uppercase" href="#">Experts
+                            <i class="fa fa-flag"></i>
+                        </a><!--
+                    --><a class="tab d-inline-b text-uppercase" href="#">Consultations
+                            <i class="fa fa-phone"></i>
+                        </a>
                     </div>
-                    <button class="btn btn-export text-uppercase" name="export">
-                        <span class="icon icon-excel d-inline-b"></span>
-                        <span class="d-inline-b">Export</span>
-                    </button>
-                    
-                        <select class="selector" name="filter-selector">
-                            <option selected>Sort by Status</option>
-                            <option>Sort by Name</option>
-                            <option>Sort by Date</option>
-                            <option>Sort by Company</option>
-                        </select>
-                    
+                    <div class="filter">
+                        <button class="btn btn-expand text-uppercase fl" name="expand-all">
+                            <span class="d-inline-b">Expand all</span>
+                        </button>
+                        <div class="btn-filter">
+                            <button class="btn text-uppercase fr" name="filter">
+                                <span class="fa fa-filter d-inline-b"></span>
+                                <span class="d-inline-b">Filters</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-export text-uppercase" name="export">
+                            <span class="icon icon-excel d-inline-b"></span>
+                            <span class="d-inline-b">Export</span>
+                        </button>
+                        
+                            <select class="selector" name="filter-selector">
+                                <option selected>Sort by Status</option>
+                                <option>Sort by Name</option>
+                                <option>Sort by Date</option>
+                                <option>Sort by Company</option>
+                            </select>
+                        
+                    </div>
                 </div>
             </div>
             <div class="projects">

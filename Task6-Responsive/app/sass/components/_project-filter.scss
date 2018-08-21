@@ -71,3 +71,22 @@
         border-bottom-left-radius: 0;
     }
 }
+
+@include media-higher-than($sm) {
+    .wrapper {
+        position: relative;
+    }
+    .filter {
+        .btn-export {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            width: 120px;
+            width: 30%;
+        }
+        .selector {
+            width: 34%;
+            margin: 0 auto;
+        }
+    }
+}
