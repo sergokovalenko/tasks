@@ -207,6 +207,7 @@ a {
   .badge.badge-reverse {
     background-color: transparent;
     border: 1px solid #cb012f;
+    border-radius: 8px;
     color: #cb012f;
     padding: 3px 15px; }
 
@@ -403,6 +404,8 @@ a {
 
 .project-item-content {
   padding: 15px 10px; }
+  .project-item-content p {
+    margin: 0; }
   .project-item-content .project-item-date {
     float: right;
     font-size: 12px;
@@ -412,8 +415,7 @@ a {
   .project-item-content .project-item-speciality {
     text-transform: uppercase;
     color: #cb012f;
-    font-size: 14px;
-    margin-top: 0; }
+    font-size: 14px; }
   .project-item-content .project-item-name {
     font-size: 23px;
     font-weight: bold;
@@ -426,3 +428,7 @@ a {
       font-weight: bold; }
     .project-item-content .project-item-company .badge {
       font-size: 12px; }
+  .project-item-content .project-item-job-title {
+    margin-top: 10px; }
+    .project-item-content .project-item-job-title .timespan {
+      color: #7f7f7f; }
