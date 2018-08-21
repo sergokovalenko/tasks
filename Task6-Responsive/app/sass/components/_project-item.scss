@@ -1,7 +1,9 @@
 .project-item {
+    display: block;
     margin-top: 15px;
     border: 1px solid $border-color;
     background-color: #fff;
+    box-shadow: 4px 4px 2px 0px $tab-bg-color;
 }
 
 .project-item-content {

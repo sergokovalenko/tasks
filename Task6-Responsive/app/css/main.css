@@ -203,7 +203,7 @@ a {
   display: inline;
   padding: 5px 10px;
   border-radius: 10px;
-  background-color: #cb012f;
+  background-color: transparent;
   color: #ffffff;
   font-weight: bold; }
   .badge.badge-reverse {
@@ -212,6 +212,10 @@ a {
     border-radius: 8px;
     color: #cb012f;
     padding: 3px 15px; }
+  .badge.badge-danger {
+    background-color: #cb012f; }
+  .badge.badge-default {
+    background-color: #808080; }
 
 .list-unstyled {
   list-style: none; }
@@ -405,9 +409,11 @@ a {
     border-bottom-left-radius: 0; }
 
 .project-item {
+  display: block;
   margin-top: 15px;
   border: 1px solid #e4e4e4;
-  background-color: #fff; }
+  background-color: #fff;
+  box-shadow: 4px 4px 2px 0px #d7d7d7; }
 
 .project-item-content {
   padding: 15px 10px; }
