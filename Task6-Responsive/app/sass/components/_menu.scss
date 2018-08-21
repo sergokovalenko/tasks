@@ -1,24 +1,25 @@
 .left-side {
     .nav {
-        position: absolute;
+        position: fixed;
         top: 60px;
         bottom: 0;
         width: 400px;
         background-color: #333333;
         transform: translateX(-400em);
-        transition: all 0.3s ease-in-out 0s, visibility 1s linear 0s, z-index 1s linear 0.5s;
+        transition: all 0.3s ease-in-out 0s, visibility 0s linear 0s, z-index 0s linear 0.35s;
         visibility: hidden;
-        z-index: -1;
+        z-index: 1;
         .nav-list {
             margin: 0;
             padding: 0;
             background-color: #333333;
             .nav-list-item {
+                line-height: 50px;
+                color: $menu-color;
                 height: 50px;
-                a {
+                &>a {
                     display: block;
                     height: 100%;
-                    line-height: 50px;
                     padding-left: 10px;
                     color: $menu-color;
                     &:hover {
@@ -32,19 +33,27 @@
                         color: $menu-color-active;
                     }
                 }
+                .fa.fa-user {
+                    margin-left: 10px;
+                    line-height: 30px;
+                }
                 .wrapper {
                     padding-top: 5px;
-                    margin-left: 20px;
+                    margin-left: 30px;
                     line-height: 1em;
                 }
                 .welcome-text {
                     display: inline-block;
                     margin: 0;
-                    font-size: $f-s-12;
+                    font-size: $f-s-11;
                 }
                 .user-name {
                     display: block;
-                    font-size: $f-s-11;
+                    font-size: $f-s-12;
+                    color: $menu-color;
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
         }

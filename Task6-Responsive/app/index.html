@@ -11,13 +11,13 @@
 
 <body>
     <div class="left-side">
+        <input type="checkbox" id="burger" class="hiding-checkbox">
         <header class="header">
             <label for="burger" class="hamburger cursor-pointer fl">
                 <i class="fa fa-bars fa-2x"></i>
             </label>
             <a href="#" class="header-logo"></a>
         </header>
-        <input type="checkbox" id="burger" class="hiding-checkbox">
         <nav class="nav nav-interactive">
             <ul class="nav-list list-unstyled text-uppercase">
                 <li class="nav-list-item">
@@ -52,14 +52,12 @@
                         Logout
                     </a>
                 </li>
-                <li class="nav-list-item">
-                    <a href="#">
-                        <span class="fa fa-user fl"></span>
-                        <div class="wrapper">
-                            <h2 class="welcome-text">Logged in as</h2>
-                            <span class="user-name">Girish Goplan</span>
-                        </div>
-                    </a>
+                <li class="nav-list-item ">
+                    <span class="fa fa-user fl"></span>
+                    <div class="wrapper">
+                        <h2 class="welcome-text">Logged in as</h2>
+                        <a class="user-name" href="#">Girish Goplan</a>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -123,8 +121,10 @@
                 <div class="tabs">
                     <a class="tab d-inline-b active text-uppercase" href="#">Experts
                         <i class="fa fa-flag"></i>
-                    </a><!--
-                --><a class="tab d-inline-b text-uppercase" href="#">Consultations
+                    </a>
+                    <!--
+                -->
+                    <a class="tab d-inline-b text-uppercase" href="#">Consultations
                         <i class="fa fa-phone"></i>
                     </a>
                 </div>
@@ -167,7 +167,8 @@
                         </p>
                         <p class="project-item-job-title">
                             <span class="title">FE developer</span>
-                            <span class="timespan">(<time>12/01/11</time> - Present)</span>
+                            <span class="timespan">(
+                                <time>12/01/11</time> - Present)</span>
                         </p>
                         <p class="project-item-additional"></p>
                         <p class="project-item-availability"></p>

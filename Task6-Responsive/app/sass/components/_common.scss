@@ -3,17 +3,18 @@
 }
 
 .content {
-    padding: 2%;
+    margin-top: 60px;
+    padding: 10px;
     min-width: 300px;
     background-color: $content-bg-color;
 }
 
-.container {
-    width: 100%;
-}
-
 .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
     height: 60px;
+    background-color: #fff;
 }
 
 a {
@@ -51,7 +52,7 @@ a {
     display: none;
 }
 
-.hiding-checkbox:checked~.nav, .hiding-checkbox:checked~.project-info {
+.hiding-checkbox:checked~.nav {
     display: block;
     &.nav-interactive{
         visibility: visible;
