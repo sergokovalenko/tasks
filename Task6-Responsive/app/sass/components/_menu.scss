@@ -4,6 +4,7 @@
     bottom: 0;
     width: 400px;
     background-color: #333333;
+    color: $menu-color;
     transform: translateX(-400px);
     transition: all 0.3s ease-in-out 0s;
     visibility: hidden;
@@ -13,6 +14,7 @@
             line-height: 50px;
             color: $menu-color;
             height: 50px;
+            border-bottom: 1px solid #000000;
             &>a {
                 display: block;
                 height: 100%;
@@ -29,31 +31,34 @@
                     color: $menu-color-active;
                 }
             }
-            .fa-user {
-                margin-left: 10px;
-                line-height: 30px;
-            }
             .fa-phone {
                 display: none;
             }
-            .list-item-wrapper {
-                padding-top: 5px;
-                margin-left: 30px;
-                line-height: 1em;
-            }
-            .welcome-text {
-                display: inline-block;
-                margin: 0;
-                font-size: $f-s-11;
-            }
-            .user-name {
-                display: block;
-                font-size: $f-s-12;
-                color: $menu-color;
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
+        }
+    }
+}
+
+.authozirization-info {
+    .fa-user {
+        margin-left: 10px;
+        line-height: 30px;
+    }
+    .list-item-wrapper {
+        padding-top: 5px;
+        margin-left: 30px;
+        line-height: 1em;
+    }
+    .welcome-text {
+        display: inline-block;
+        margin: 0;
+        font-size: $f-s-11;
+    }
+    .user-name {
+        display: block;
+        font-size: $f-s-12;
+        color: $menu-color;
+        &:hover {
+            text-decoration: underline;
         }
     }
 }
