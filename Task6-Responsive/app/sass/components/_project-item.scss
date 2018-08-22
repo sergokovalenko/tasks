@@ -88,3 +88,21 @@
         }
     }
 }
+
+@include media-higher-than($sm) { 
+    .project-item-actions {
+        direction: rtl;
+        
+        .action-button {
+            display: inline-block;
+            width: 33.3333%;
+            direction: ltr;
+            text-align: center;
+            border-top: 2px solid $border-color;
+            border-right: 2px solid $border-color;
+            &:nth-child(3n+1) {
+                border-right: none;
+            }
+        }
+    }
+}
