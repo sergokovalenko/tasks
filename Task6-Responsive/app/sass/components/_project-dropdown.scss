@@ -28,22 +28,34 @@
     }
     .project-info {
         display: none;
-        .description-list {
-            margin: 0;
-            padding: 0;
-            .list-item {
-                border-top: 1px solid $border-color;
-                padding: 10px 0;
-                .field-name {
-                    font-weight: bold;
-                }
-                .field-value {
-                    float: right;
-                    width: 50%;
-                    text-align: right;
-                    color: $text-color-grey;
-                }
-            }
+    }
+}
+
+.description-list {
+    margin: 0;
+    padding: 0;
+    .list-item {
+        border-top: 1px solid $border-color;
+        padding: 10px 0;
+        .field-name {
+            font-weight: bold;
+        }
+        .field-value {
+            float: right;
+            width: 50%;
+            text-align: right;
+            color: $text-color-grey;
+        }
+    }
+}
+
+@include media-higher-than($md) {
+    .description-list {
+        display: inline-block;
+        width: 49%;
+        vertical-align: top;
+        &:nth-child(1){
+            margin-right: 2%;
         }
     }
 }

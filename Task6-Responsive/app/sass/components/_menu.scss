@@ -1,61 +1,59 @@
-.left-side {
-    .nav {
-        position: fixed;
-        top: 60px;
-        bottom: 0;
-        width: 400px;
-        background-color: #333333;
-        transform: translateX(-400px);
-        transition: all 0.3s ease-in-out 0s;
-        visibility: hidden;
-        z-index: 1;
-        .nav-list {
-            margin: 0;
-            padding: 0;
-            .nav-list-item {
-                line-height: 50px;
+.nav {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    width: 400px;
+    background-color: #333333;
+    transform: translateX(-400px);
+    transition: all 0.3s ease-in-out 0s;
+    visibility: hidden;
+    z-index: 1;
+    .nav-list {
+        margin: 0;
+        padding: 0;
+        .nav-list-item {
+            line-height: 50px;
+            color: $menu-color;
+            height: 50px;
+            &>a {
+                display: block;
+                height: 100%;
+                padding-left: 10px;
                 color: $menu-color;
-                height: 50px;
-                &>a {
-                    display: block;
-                    height: 100%;
-                    padding-left: 10px;
-                    color: $menu-color;
-                    &:hover {
-                        color: $menu-color-active;
-                        background-color: $menu-bg-color;
-                    }
-                }
-                &.active {
+                &:hover {
+                    color: $menu-color-active;
                     background-color: $menu-bg-color;
-                    a {
-                        color: $menu-color-active;
-                    }
                 }
-                .fa-user {
-                    margin-left: 10px;
-                    line-height: 30px;
+            }
+            &.active {
+                background-color: $menu-bg-color;
+                a {
+                    color: $menu-color-active;
                 }
-                .fa-phone {
-                    display: none;
-                }
-                .list-item-wrapper {
-                    padding-top: 5px;
-                    margin-left: 30px;
-                    line-height: 1em;
-                }
-                .welcome-text {
-                    display: inline-block;
-                    margin: 0;
-                    font-size: $f-s-11;
-                }
-                .user-name {
-                    display: block;
-                    font-size: $f-s-12;
-                    color: $menu-color;
-                    &:hover {
-                        text-decoration: underline;
-                    }
+            }
+            .fa-user {
+                margin-left: 10px;
+                line-height: 30px;
+            }
+            .fa-phone {
+                display: none;
+            }
+            .list-item-wrapper {
+                padding-top: 5px;
+                margin-left: 30px;
+                line-height: 1em;
+            }
+            .welcome-text {
+                display: inline-block;
+                margin: 0;
+                font-size: $f-s-11;
+            }
+            .user-name {
+                display: block;
+                font-size: $f-s-12;
+                color: $menu-color;
+                &:hover {
+                    text-decoration: underline;
                 }
             }
         }
@@ -63,37 +61,31 @@
 }
 
 @include media-higher-than($sm) {
-    .left-side {
-        display: inline-block;
-        vertical-align: top;
-        width: 25%;
-        height: 100vh;
-        .header {
-            position: static;
-            .hamburger {
-                display: none;
-            }
+    .header {
+        position: static;
+        .hamburger {
+            display: none;
         }
-        nav.nav {
-            width: 100%;
-            height: 100%;
-            position: static;
-            display: block;
-            transform: translateX(0%);
-            visibility: visible;
-            transition: none;
-            .nav-list {
-                .nav-list-item {
-                    .fa-flag {
-                        display: none;
-                    }
-                    .fa-sign-out {
-                        color: $text-color;
-                    }
-                    .fa-phone {
-                        display: inline;
-                        color: $text-color;
-                    }
+    }
+    .nav {
+        width: 100%;
+        height: 100%;
+        position: static;
+        display: block;
+        transform: translateX(0%);
+        visibility: visible;
+        transition: none;
+        .nav-list {
+            .nav-list-item {
+                .fa-flag {
+                    display: none;
+                }
+                .fa-sign-out {
+                    color: $text-color;
+                }
+                .fa-phone {
+                    display: inline;
+                    color: $text-color;
                 }
             }
         }

@@ -38,6 +38,32 @@
         margin: 0;
         overflow-y: auto;
     }
+    .left-side {
+        display: inline-block;
+        vertical-align: top;
+        width: 25%;
+        height: 100vh;
+    }
+}
+
+@include media-higher-than($md) {
+    .left-side {
+        float: left;
+        width: 200px;
+    }
+    .content {
+        display: block;
+        width: unset;
+        height: 100vh;
+        padding: 0;
+        padding-top: 10px;
+        margin-left: 200px;
+        overflow-y: auto;
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    }
 }
 
 a {
