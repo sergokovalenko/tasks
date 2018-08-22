@@ -31,15 +31,12 @@
                     color: $menu-color-active;
                 }
             }
-            .fa-phone {
-                display: none;
-            }
         }
     }
 }
 
 .authozirization-info {
-    .fa-user {
+    i {
         margin-left: 10px;
         line-height: 30px;
     }
@@ -80,14 +77,7 @@
         transition: none;
         .nav-list {
             .nav-list-item {
-                .fa-flag {
-                    display: none;
-                }
-                .fa-sign-out {
-                    color: $text-color;
-                }
-                .fa-phone {
-                    display: inline;
+                i {
                     color: $text-color;
                 }
             }
