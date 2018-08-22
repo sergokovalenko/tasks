@@ -26,16 +26,14 @@ gulp.task('watch', ['browser-sync'], function () {
 });
 
 gulp.task('build', ['scss'], function () {
-
-    gulp.src('app/css/main.css')
+    gulp.src('app/css/*.css')
         .pipe(gulp.dest('dist/css'));
-
     gulp.src('app/*.html')
         .pipe(gulp.dest('dist'));
-
     gulp.src(['app/img/**/*.jpg', 'app/img/**/*.png'])
         .pipe(gulp.dest('dist/img'));
-
+    gulp.src('app/fonts/*.*')
+        .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('default', ['watch']);
