@@ -5,14 +5,13 @@
         bottom: 0;
         width: 400px;
         background-color: #333333;
-        transform: translateX(-400em);
-        transition: all 0.3s ease-in-out 0s, visibility 0s linear 0s, z-index 0s linear 0.35s;
+        transform: translateX(-400px);
+        transition: all 0.3s ease-in-out 0s;
         visibility: hidden;
         z-index: 1;
         .nav-list {
             margin: 0;
             padding: 0;
-            background-color: #333333;
             .nav-list-item {
                 line-height: 50px;
                 color: $menu-color;
@@ -40,7 +39,7 @@
                 .fa-phone {
                     display: none;
                 }
-                .wrapper {
+                .list-item-wrapper {
                     padding-top: 5px;
                     margin-left: 30px;
                     line-height: 1em;
@@ -82,6 +81,7 @@
             display: block;
             transform: translateX(0%);
             visibility: visible;
+            transition: none;
             .nav-list {
                 .nav-list-item {
                     .fa-flag {

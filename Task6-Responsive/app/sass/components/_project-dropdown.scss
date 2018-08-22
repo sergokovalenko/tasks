@@ -1,5 +1,6 @@
 .back-to-list {
     display: block;
+    width: 110px;
     color: $text-color-grey;
     .fa {
         margin-right: 5px;
@@ -25,18 +26,13 @@
     .project-name {
         margin: 0;
     }
-    .btn {
-        display: none;
-    }
     .project-info {
         display: none;
-        clear: both;
         .description-list {
             margin: 0;
             padding: 0;
             .list-item {
                 border-top: 1px solid $border-color;
-                border-bottom: 1px solid $border-color;
                 padding: 10px 0;
                 .field-name {
                     font-weight: bold;
