@@ -155,6 +155,9 @@ td, th {
   min-width: 300px;
   background-color: #f2f2f2; }
 
+.container {
+  padding-bottom: 10px; }
+
 .header {
   position: fixed;
   top: 0;
@@ -531,3 +534,16 @@ a {
   text-align: start; }
   .project-item-actions .action-button:hover {
     background-color: #e4e4e4; }
+
+@media all and (min-width: 751px) {
+  .project-item-actions {
+    direction: rtl; }
+    .project-item-actions .action-button {
+      display: inline-block;
+      width: 33.3333%;
+      direction: ltr;
+      text-align: center;
+      border-top: 2px solid #e4e4e4;
+      border-right: 2px solid #e4e4e4; }
+      .project-item-actions .action-button:nth-child(3n+1) {
+        border-right: none; } }
