@@ -307,6 +307,7 @@ a {
   bottom: 0;
   width: 400px;
   background-color: #333333;
+  color: #727272;
   transform: translateX(-400px);
   transition: all 0.3s ease-in-out 0s;
   visibility: hidden;
@@ -314,7 +315,8 @@ a {
   .nav .nav-list .nav-list-item {
     line-height: 50px;
     color: #727272;
-    height: 50px; }
+    height: 50px;
+    border-bottom: 1px solid #000000; }
     .nav .nav-list .nav-list-item > a {
       display: block;
       height: 100%;
@@ -327,25 +329,29 @@ a {
       background-color: #000000; }
       .nav .nav-list .nav-list-item.active a {
         color: #dddddd; }
-    .nav .nav-list .nav-list-item .fa-user {
-      margin-left: 10px;
-      line-height: 30px; }
     .nav .nav-list .nav-list-item .fa-phone {
       display: none; }
-    .nav .nav-list .nav-list-item .list-item-wrapper {
-      padding-top: 5px;
-      margin-left: 30px;
-      line-height: 1em; }
-    .nav .nav-list .nav-list-item .welcome-text {
-      display: inline-block;
-      margin: 0;
-      font-size: 11px; }
-    .nav .nav-list .nav-list-item .user-name {
-      display: block;
-      font-size: 12px;
-      color: #727272; }
-      .nav .nav-list .nav-list-item .user-name:hover {
-        text-decoration: underline; }
+
+.authozirization-info .fa-user {
+  margin-left: 10px;
+  line-height: 30px; }
+
+.authozirization-info .list-item-wrapper {
+  padding-top: 5px;
+  margin-left: 30px;
+  line-height: 1em; }
+
+.authozirization-info .welcome-text {
+  display: inline-block;
+  margin: 0;
+  font-size: 11px; }
+
+.authozirization-info .user-name {
+  display: block;
+  font-size: 12px;
+  color: #727272; }
+  .authozirization-info .user-name:hover {
+    text-decoration: underline; }
 
 @media all and (min-width: 751px) {
   .header {
