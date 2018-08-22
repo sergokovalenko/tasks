@@ -259,6 +259,9 @@ a {
 .cursor-pointer {
   cursor: pointer; }
 
+.outline-hidden {
+  outline-width: 0; }
+
 .header-logo {
   display: block;
   margin: 0 auto;
@@ -281,14 +284,13 @@ a {
   bottom: 0;
   width: 400px;
   background-color: #333333;
-  transform: translateX(-400em);
-  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0s, z-index 0s linear 0.35s;
+  transform: translateX(-400px);
+  transition: all 0.3s ease-in-out 0s;
   visibility: hidden;
   z-index: 1; }
   .left-side .nav .nav-list {
     margin: 0;
-    padding: 0;
-    background-color: #333333; }
+    padding: 0; }
     .left-side .nav .nav-list .nav-list-item {
       line-height: 50px;
       color: #727272;
@@ -310,7 +312,7 @@ a {
         line-height: 30px; }
       .left-side .nav .nav-list .nav-list-item .fa-phone {
         display: none; }
-      .left-side .nav .nav-list .nav-list-item .wrapper {
+      .left-side .nav .nav-list .nav-list-item .list-item-wrapper {
         padding-top: 5px;
         margin-left: 30px;
         line-height: 1em; }
@@ -341,7 +343,8 @@ a {
       position: static;
       display: block;
       transform: translateX(0%);
-      visibility: visible; }
+      visibility: visible;
+      transition: none; }
       .left-side nav.nav .nav-list .nav-list-item .fa-flag {
         display: none; }
       .left-side nav.nav .nav-list .nav-list-item .fa-sign-out {
@@ -352,6 +355,7 @@ a {
 
 .back-to-list {
   display: block;
+  width: 110px;
   color: #7f7f7f; }
   .back-to-list .fa {
     margin-right: 5px; }
@@ -370,17 +374,13 @@ a {
     margin-bottom: 10px; }
   .project .project-name {
     margin: 0; }
-  .project .btn {
-    display: none; }
   .project .project-info {
-    display: none;
-    clear: both; }
+    display: none; }
     .project .project-info .description-list {
       margin: 0;
       padding: 0; }
       .project .project-info .description-list .list-item {
         border-top: 1px solid #e4e4e4;
-        border-bottom: 1px solid #e4e4e4;
         padding: 10px 0; }
         .project .project-info .description-list .list-item .field-name {
           font-weight: bold; }
@@ -390,23 +390,20 @@ a {
           text-align: right;
           color: #7f7f7f; }
 
-.tabs {
-  width: 100%; }
-  .tabs .tab {
-    width: 50%;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #d7d7d7;
-    border: 1px solid #e4e4e4;
-    border-bottom: 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px; }
-    .tabs .tab .fa {
-      color: #cb012f; }
-    .tabs .tab.active {
-      background-color: #f2f2f2; }
+.tab {
+  width: 50%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #d7d7d7;
+  border: 1px solid #e4e4e4;
+  border-bottom: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+  .tab .fa {
+    color: #cb012f; }
+  .tab.active {
+    background-color: #f2f2f2; }
 
 .filter {
   padding: 15px 10px;
@@ -432,17 +429,21 @@ a {
 .btn-filter {
   float: right;
   position: relative;
-  width: 27%; }
+  width: 27%;
+  border-left: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0; }
   .btn-filter::before {
     content: "";
     position: absolute;
-    top: 6px;
+    top: 5px;
     left: -14px;
     display: block;
-    width: 27px;
-    height: 27px;
+    width: 26px;
+    height: 26px;
     transform: rotate(45deg);
-    border: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+    border-left: 1px solid #d7d7d7;
     background-color: #e9e9e9;
     background-image: linear-gradient(to bottom right, #f1f1f1, #e1e1e1); }
   .btn-filter .btn {
