@@ -3,3 +3,7 @@
         @content;
     }
 }
+
+@mixin bg-gradient($direction: "to bottom") {
+    background-image: linear-gradient(#{$direction}, #f1f1f1, #e1e1e1);
+}

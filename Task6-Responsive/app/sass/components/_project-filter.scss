@@ -8,8 +8,12 @@
     border-bottom: 0;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    .fa {
+    i {
         color: $text-color;
+    }
+    &:hover,
+    &:active {
+        background-color: $content-bg-color;
     }
     &.active {
         background-color: $content-bg-color;
@@ -61,14 +65,11 @@
         border-bottom: 1px solid $tab-bg-color;
         border-left: 1px solid $tab-bg-color;
         background-color: #e9e9e9;
-        background-image: linear-gradient(to bottom right, #f1f1f1, #e1e1e1);
+        @include bg-gradient("to bottom right");
     }
-    .btn {
-        position: relative;
-        width: 100%;
-        border-left: none;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+    &:hover::before{
+        background-color: #e1e1e1;
+        @include bg-gradient("to top left");
     }
 }
 

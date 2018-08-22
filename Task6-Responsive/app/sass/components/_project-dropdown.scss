@@ -2,32 +2,43 @@
     display: block;
     width: 110px;
     color: $text-color-grey;
-    .fa {
+    i {
         margin-right: 5px;
     }
     .back-to-list-text {
         font-size: $f-s-16;
     }
+    &:hover {
+        color: $text-color;
+    }
 }
 
-.hiding-checkbox:checked~.project-info {
-    display: block;
-}
-
-.hiding-checkbox:checked~.project-header .fa-plus-circle::before {
-    content: "\f056";
+.hiding-checkbox:checked {
+    &~.project-info {
+        display: block;
+    }
+    &~.project-header .fa-plus-circle::before{
+        content: "\f056";
+    }
 }
 
 .project {
     margin: 20px 0;
     .project-header {
         margin-bottom: 10px;
+        .circle:hover {
+            opacity: .7;
+        }
+        i {
+            vertical-align: middle;
+        }
     }
     .project-name {
         margin: 0;
     }
     .project-info {
         display: none;
+        margin-top: 10px;
     }
 }
 
@@ -52,7 +63,7 @@
         display: inline-block;
         width: 49%;
         vertical-align: top;
-        &:nth-child(1){
+        &:nth-child(1) {
             margin-right: 2%;
         }
     }
