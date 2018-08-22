@@ -5,11 +5,8 @@
     i {
         margin-right: 5px;
     }
-    .back-to-list-text {
-        font-size: $f-s-16;
-    }
     &:hover {
-        color: $text-color;
+        color: $color-red-default;
     }
 }
 
@@ -17,7 +14,7 @@
     &~.project-info {
         display: block;
     }
-    &~.project-header .fa-plus-circle::before{
+    &~.project-header .fa-plus-circle::before {
         content: "\f056";
     }
 }
@@ -25,9 +22,11 @@
 .project {
     margin: 20px 0;
     .project-header {
-        margin-bottom: 10px;
-        .circle:hover {
-            opacity: .7;
+        .circle {
+            font: $f-s-16;
+            &:hover {
+                opacity: .7;
+            }
         }
         i {
             vertical-align: middle;
@@ -38,7 +37,6 @@
     }
     .project-info {
         display: none;
-        margin-top: 10px;
     }
 }
 

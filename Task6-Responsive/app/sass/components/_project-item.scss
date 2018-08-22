@@ -8,9 +8,6 @@
 
 .project-item-content {
     padding: 15px 10px;
-    p {
-        margin: 0;
-    }
     .project-item-date {
         float: right;
         font-size: $f-s-12;
@@ -21,17 +18,14 @@
     }
     .project-item-speciality {
         text-transform: uppercase;
-        color: $text-color;
-        font-size: $f-s-14;
+        color: $color-red-default;
+        font-size: $f-s-default;
     }
     .project-item-name {
         font-size: $f-s-23;
         font-weight: bold;
-        margin-top: 10px;
-        margin-bottom: 0;
     }
     .project-item-company {
-        margin-top: 10px;
         .project-item-company-name {
             font-size: 15px;
             font-weight: bold;
@@ -41,16 +35,14 @@
         }
     }
     .project-item-job-title {
-        margin-top: 10px;
         .timespan {
             color: $text-color-grey;
         }
     }
     .project-item-additional {
-        margin-top: 10px;
         p {
             line-height: 1.5rem;
-            color: $text-color;
+            color: $color-red-default;
         }
     }
 }
@@ -58,18 +50,14 @@
 .project-item-availabilities {
     padding: 15px 10px;
     border-top: 1px solid $border-color;
-    color: $text-color;
+    color: $color-red-default;
     .title {
         margin: 0;
-        margin-bottom: 10px;
-        font-size: $f-s-16;
+        font-size: $f-s-default;
         text-decoration: underline;
     }
     .availability {
-        margin-top: 0;
-        margin-bottom: 0;
         margin-left: 10px;
-        padding: 0;
         line-height: 1.5rem;
     }
 }
