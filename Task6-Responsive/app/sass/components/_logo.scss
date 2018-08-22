@@ -13,5 +13,8 @@
     height: 60px;
     width: 60px;
     padding: 15px;
-    color: $text-color;
+    color: $color-red-default;
+    &:hover {
+        color: #ff0000;
+    }
 }
