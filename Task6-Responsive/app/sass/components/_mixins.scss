@@ -1,0 +1,9 @@
+@mixin media-higher-than($point) {
+    @media all and (min-width: $point+1) {
+        @content;
+    }
+}
+
+@mixin bg-gradient($direction: "to bottom") {
+    background-image: linear-gradient(#{$direction}, #f1f1f1, #e1e1e1);
+}

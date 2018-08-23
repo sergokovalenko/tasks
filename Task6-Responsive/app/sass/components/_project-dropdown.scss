@@ -1,0 +1,68 @@
+.back-to-list {
+    display: block;
+    width: 110px;
+    color: $text-color-grey;
+    i {
+        margin-right: 5px;
+    }
+    &:hover {
+        color: $color-red-default;
+    }
+}
+
+.hiding-checkbox:checked {
+    &~.project-info {
+        display: block;
+    }
+    &~.project-header .fa-plus-circle::before {
+        content: "\f056";
+    }
+}
+
+.project {
+    margin: 20px 0;
+    .project-header {
+        .circle {
+            font: $f-s-16;
+            &:hover {
+                opacity: .7;
+            }
+        }
+        i {
+            vertical-align: middle;
+        }
+    }
+    .project-name {
+        margin: 0;
+    }
+    .project-info {
+        display: none;
+    }
+}
+
+.description-list {
+    .list-item {
+        border-top: 1px solid $border-color;
+        padding: 10px 0;
+        .field-name {
+            font-weight: bold;
+        }
+        .field-value {
+            float: right;
+            width: 50%;
+            text-align: right;
+            color: $text-color-grey;
+        }
+    }
+}
+
+@include media-higher-than($md) {
+    .description-list {
+        display: inline-block;
+        width: 49%;
+        vertical-align: top;
+        &:nth-child(1) {
+            margin-right: 2%;
+        }
+    }
+}
