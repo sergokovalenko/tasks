@@ -1,0 +1,20 @@
+.header-logo {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 100%;
+    background-image: url("../img/epam-logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hamburger {
+    display: block;
+    height: 60px;
+    width: 60px;
+    padding: 15px;
+    color: $color-red-default;
+    &:hover {
+        color: #ff0000;
+    }
+}

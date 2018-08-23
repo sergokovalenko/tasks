@@ -1,0 +1,95 @@
+.project-item {
+    display: block;
+    margin-top: 15px;
+    border: 1px solid $border-color;
+    background-color: #fff;
+    box-shadow: 4px 4px 2px 0px $tab-bg-color;
+}
+
+.project-item-content {
+    padding: 15px 10px;
+    .project-item-date {
+        float: right;
+        font-size: $f-s-12;
+        color: $text-color-grey;
+        .badge {
+            margin: 0 10px;
+        }
+    }
+    .project-item-speciality {
+        text-transform: uppercase;
+        color: $color-red-default;
+        font-size: $f-s-default;
+    }
+    .project-item-name {
+        font-size: $f-s-23;
+        font-weight: bold;
+    }
+    .project-item-company {
+        .project-item-company-name {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .badge {
+            font-size: $f-s-12;
+        }
+    }
+    .project-item-job-title {
+        .timespan {
+            color: $text-color-grey;
+        }
+    }
+    .project-item-additional {
+        p {
+            line-height: 1.5rem;
+            color: $color-red-default;
+        }
+    }
+}
+
+.project-item-availabilities {
+    padding: 15px 10px;
+    border-top: 1px solid $border-color;
+    color: $color-red-default;
+    .title {
+        margin: 0;
+        font-size: $f-s-default;
+        text-decoration: underline;
+    }
+    .availability {
+        margin-left: 10px;
+        line-height: 1.5rem;
+    }
+}
+
+.project-item-actions {
+    .action-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-top: 1px  solid $border-color;
+        background-color: $content-bg-color;
+        text-align: start;
+        &:hover {
+            background-color: $border-color;
+        }
+    }
+}
+
+@include media-higher-than($sm) { 
+    .project-item-actions {
+        direction: rtl;
+        .action-button {
+            display: inline-block;
+            width: 33.3333%;
+            direction: ltr;
+            text-align: center;
+            border-top: 2px solid $border-color;
+            border-right: 2px solid $border-color;
+            &:nth-child(3n+1) {
+                border-right: none;
+            }
+        }
+    }
+}
