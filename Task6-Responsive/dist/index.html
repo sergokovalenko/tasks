@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive CSS</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="left-side">
+        <input type="checkbox" id="burger" class="hiding-checkbox">
+        <header class="header">
+            <label for="burger" class="hamburger cursor-pointer fl">
+                <i class="fa fa-bars fa-2x"></i>
+            </label>
+            <a href="#" class="header-logo"></a>
+        </header>
+        <nav class="nav nav-interactive">
+            <ul class="nav-list list-unstyled text-uppercase">
+                <li class="nav-list-item">
+                    <a href="#">
+                        Expert search
+                    </a>
+                </li>
+                <li class="nav-list-item">
+                    <a href="#">
+                        Saved experts
+                    </a>
+                </li>
+                <li class="nav-list-item active">
+                    <a class="active" href="#">
+                        Projects
+                        <i class="fa fa-flag"></i>
+                    </a>
+                </li>
+                <li class="nav-list-item">
+                    <a href="#">
+                        Consultations
+                        <i class="fa fa-phone"></i>
+                    </a>
+                </li>
+                <li class="nav-list-item">
+                    <a href="#">
+                        Events
+                    </a>
+                </li>
+                <li class="nav-list-item">
+                    <a href="#">
+                        <i class="fa fa-sign-out"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+            <div class="authozirization-info">
+                <i class="fa fa-user fl"></i>
+                <div class="list-item-wrapper">
+                    <span class="welcome-text text-uppercase">Logged in as</span>
+                    <a class="user-name" href="#">Girish Goplan</a>
+                </div>
+            </div>
+        </nav>
+    </div><!--
+--><main class="content">
+        <div class="container">
+            <div class="wrapper">
+                <a href="#" class="back-to-list">
+                    <i class="fa fa-chevron-left"></i>
+                    <span class="back-to-list-text">Projects List</span>
+                </a>
+                <div class="project">
+                    <input type="checkbox" id="circle-conceal" class="hiding-checkbox">
+                    <div class="project-header">
+                        <label for="circle-conceal" class="circle cursor-pointer d-inline-b">
+                            <h2 class="project-name d-inline-b">Test Project last</h2>
+                            <i class="fa fa-plus-circle"></i>
+                        </label>
+                    </div>
+                    <section class="project-info mt-10p">
+                        <ul class="description-list list-unstyled">
+                            <li class="list-item clearfix">
+                                <span class="field-value">01/20/2015</span>
+                                <span class="field-name">Create date</span>
+                            </li>
+                            <li class="list-item clearfix">
+                                <span class="field-value">Wireline telephone enuipment</span>
+                                <span class="field-name">Target industries</span>
+                            </li>
+                            <li class="list-item clearfix">
+                                <span class="field-value">10</span>
+                                <span class="field-name">Bios sent</span>
+                            </li>
+                            <li class="list-item clearfix">
+                                <span class="field-value">2</span>
+                                <span class="field-name">Calls sheduled</span>
+                            </li>
+                        </ul><!--
+                     --><ul class="description-list list-unstyled">
+                            <li class="list-item clearfix">
+                                <span class="field-value">10</span>
+                                <span class="field-name">Requested consultations</span>
+                            </li>
+                            <li class="list-item clearfix">
+                                <span class="field-value">Frontier communications Corporation [FTR]</span>
+                                <span class="field-name">Target companies</span>
+                            </li>
+                            <li class="list-item clearfix">
+                                <span class="field-value">2</span>
+                                <span class="field-name">Calls completed</span>
+                            </li>
+                            <li class="list-item clearfix">
+                                <span class="field-value">1</span>
+                                <span class="field-name">Calls in sheduling</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="action-block">
+                    <div class="tabs">
+                        <a class="tab d-inline-b active text-uppercase" href="#">Experts
+                            <i class="fa fa-flag"></i>
+                        </a><!--
+                    --><a class="tab d-inline-b text-uppercase" href="#">Consultations
+                            <i class="fa fa-phone"></i>
+                        </a>
+                    </div>
+                    <div class="filter">
+                        <button class="btn btn-expand text-uppercase outline-hidden fl" name="expand-all">
+                            <span class="d-inline-b">Expand all</span>
+                        </button>
+                        <button class="btn btn-filter text-uppercase outline-hidden fr" name="filter">
+                            <i class="fa fa-filter d-inline-b"></i>
+                            <span class="d-inline-b">Filters</span>
+                        </button>
+                        <button class="btn btn-export text-uppercase outline-hidden" name="export">
+                            <i class="icon icon-excel d-inline-b"></i>
+                            <span class="d-inline-b">Export</span>
+                        </button>
+                        <select class="selector" name="filter-selector">
+                            <option selected>Sort by Status</option>
+                            <option>Sort by Name</option>
+                            <option>Sort by Date</option>
+                            <option>Sort by Company</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="projects">
+                <section class="project-item">
+                    <article class="project-item-content">
+                        <div class="project-item-date">
+                            <time>07/13/14</time>
+                            <span class="badge badge-danger">New</span>
+                        </div>
+                        <p class="project-item-speciality">Industry expert</p>
+                        <h3 class="project-item-name mt-10p">Mikhail Semichev</h3>
+                        <p class="project-item-company mt-10p">
+                            <span class="project-item-company-name">EPAM</span>
+                            <span class="badge badge-reverse text-uppercase">Public</span>
+                        </p>
+                        <p class="project-item-job-title mt-10p">
+                            <span class="title">FE developer</span>
+                            <span class="timespan">
+                                (<time>12/01/11</time> - Present)</span>
+                        </p>
+                        <div class="project-item-additional mt-10p">
+                            <p>Premium Rate: This Expert's hourly consulting rate exceeds our standard rate and would require
+                                an additional call debit.</p>
+                            <p>Translator Required: This Expert requires a translator, which we can coordinate for one additional
+                                call debit.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="project-item-availabilities">
+                        <h5 class="title">Confirmed Availability</h5>
+                        <ul class="availability list-unstyled mt-10p">
+                            <li class="availability-item">
+                                <time>Tuesday 07/21/15 11:00 AM</time> -
+                                <time>07:13 AM (UTC-05:00)</time> Eastern Time (US &amp; Canada)</li>
+                            <li class="availability-item">
+                                <time>Monday 07/20/15 07:00 AM</time> -
+                                <time>10:00 AM (UTC-05:00)</time> Eastern Time (US &amp; Canada)</li>
+                        </ul>
+                    </article>
+                    <div class="project-item-actions">
+                        <button class="action-button text-uppercase">
+                            <i class="fa fa-phone"></i>
+                            Schedule
+                        </button><!--
+                    --><button class="action-button text-uppercase">
+                            <i class="fa fa-info-circle"></i>
+                            Request info
+                        </button><!--
+                    --><button class="action-button text-uppercase">
+                            <i class="fa fa-times"></i>
+                            Decline
+                        </button>
+                    </div>
+                </section>
+                <section class="project-item">
+                    <article class="project-item-content">
+                        <div class="project-item-date">
+                            <time>07/13/14</time>
+                            <span class="badge badge-default">Viewed</span>
+                        </div>
+                        <p class="project-item-speciality">Competitor</p>
+                        <h3 class="project-item-name mt-10p">Mikhail Kuznetsov</h3>
+                        <p class="project-item-company mt-10p">
+                            <span class="project-item-company-name">Yandex</span>
+                            <span class="badge badge-reverse text-uppercase">Public parent</span>
+                        </p>
+                        <p class="project-item-job-title mt-10p">
+                            <span class="title">FE developer</span>
+                            <span class="timespan">
+                                (<time>12/01/11</time> -
+                                <time>06/05/13</time>)</span>
+                        </p>
+                    </article>
+                    <div class="project-item-actions">
+                        <button class="action-button text-uppercase">
+                            <i class="fa fa-phone"></i>
+                            Schedule
+                        </button><!--
+                    --><button class="action-button text-uppercase">
+                            <i class="fa fa-info-circle"></i>
+                            Request info
+                        </button><!--
+                    --><button class="action-button text-uppercase">
+                            <i class="fa fa-times"></i>
+                            Decline
+                        </button>
+                    </div>
+                </section>
+                <section class="project-item">
+                    <article class="project-item-content">
+                        <div class="project-item-date">
+                            <time>07/13/14</time>
+                            <span class="badge badge-default">Viewed</span>
+                        </div>
+                        <p class="project-item-speciality">Customer</p>
+                        <h3 class="project-item-name mt-10p">Nikita Reshetnikov</h3>
+                        <p class="project-item-company mt-10p">
+                            <span class="project-item-company-name">Google</span>
+                            <span class="badge badge-reverse text-uppercase">Public</span>
+                        </p>
+                        <p class="project-item-job-title mt-10p">
+                            <span class="title">FE developer</span>
+                            <span class="timespan">
+                                (<time>12/01/11</time> -
+                                <time>06/05/13</time>)</span>
+                        </p>
+                    </article>
+                    <div class="project-item-actions">
+                        <button class="action-button text-uppercase">
+                            <i class="fa fa-phone"></i>
+                            Schedule
+                        </button><!--
+                    --><button class="action-button text-uppercase">
+                            <i class="fa fa-info-circle"></i>
+                            Request info
+                        </button><!--
+                    --><button class="action-button text-uppercase">
+                            <i class="fa fa-times"></i>
+                            Decline
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
