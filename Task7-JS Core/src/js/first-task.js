@@ -1,1 +1,0 @@
-document.getElementsByClassName("class")[0].innerHTML = "js text";
