@@ -20,8 +20,8 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch('src/css/**/*.css');
     gulp.watch('src/js/**/*.js', ['scripts']);
+    gulp.watch('src/css/**/*.css', browserSync.reload);
     gulp.watch('src/*.html', browserSync.reload);
 });
 
