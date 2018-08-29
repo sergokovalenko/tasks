@@ -29,62 +29,57 @@ APP.tasks.first = (function () {
         submitBtn = {};
 
     function getResultForFirstTask() {
-        var str = [],
+        var str = '',
             i = 0,
             j = 0,
-            ind = 0,
-            parsedNumber = 0;
+            parsedNumber = 0,
+            numbers = [],
+            operators = [];
         inputVal = document.getElementsByClassName("first-task-val")[0].value;
         str = inputVal.replace(/[^0-9\.+\-*/=]/g, '');
-        result = parseFloat(str);
-        ind = str.search(/[-+*/]/);
+        numbers = str.match(/[0-9]+(\.[0-9]+)?/g);
+        operators = str.match(/[-+/*]/g);
+        console.log(numbers);
+        console.log(operators);
 
-        if (ind == -1) {
-            return result;
+        if (numbers.length <= operators.length) {
+            return "Invalid value";
         }
+        result = +numbers[0];
 
-        str = str.substring(ind + 1);
-
-        for (i = 0, j = 0; i < str.length; i++) {
-            var a = str[i];
-
-            if (/[-+*/=]/.test(a)) {
-                parsedNumber = parseFloat(str.substring(j, i));
-
-                switch (a) {
-                    case '+':
-                        result += parsedNumber;
-                        break;
-                    case '-':
-                        result -= parsedNumber;
-                        break;
-                    case '*':
-                        result *= parsedNumber;
-                        break;
-                    case '/':
-                        result /= parsedNumber;
-                        break;
-                    case '=':
-                        return result;
-                        break;
-                    default:
-                        break;
-                }
-
-                j = i;
+        for (i = 1; i < numbers.length; i += 1) {
+            switch (operators[i - 1]) {
+                case '+':
+                    result += +numbers[i];
+                    break;
+                case '-':
+                    result -= +numbers[i];
+                    break;
+                case '*':
+                    result *= +numbers[i];
+                    break;
+                case '/':
+                    result /= +numbers[i];
+                    break;
+                default:
+                    break;
             }
         }
 
-        return result + parseFloat(str.substring(j));
+        return result;
     }
 
     function validate(value) {
+        if (!value || !/={2,}|[^0-9]+|[^-+/*]*/g.test(value)) {
+            return false;
+        }
 
+        return true;
     }
 
     function showResult() {
         var result = getResultForFirstTask();
-        document.getElementsByClassName('result-value')[0].innerText += result;
+        resultBlock.innerText = result;
     }
 
     function init() {
