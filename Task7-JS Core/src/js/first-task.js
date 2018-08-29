@@ -31,21 +31,33 @@ APP.tasks.first = (function () {
     function getResultForFirstTask() {
         var str = '',
             i = 0,
-            j = 0,
-            parsedNumber = 0,
+            errorMessage = "Invalid value",
             numbers = [],
             operators = [];
         inputVal = document.getElementsByClassName("first-task-val")[0].value;
+
+        if (!validate(inputVal)) {
+            return errorMessage;
+        }
+
         str = inputVal.replace(/[^0-9\.+\-*/=]/g, '');
+
         numbers = str.match(/[0-9]+(\.[0-9]+)?/g);
         operators = str.match(/[-+/*]/g);
-        console.log(numbers);
-        console.log(operators);
 
-        if (numbers.length <= operators.length) {
-            return "Invalid value";
+        if (!numbers) {
+            return errorMessage;
         }
+
         result = +numbers[0];
+
+        if (!operators) {
+            return result;
+        }
+
+        if ( numbers.length <= operators.length) {
+            return errorMessage;
+        }
 
         for (i = 1; i < numbers.length; i += 1) {
             switch (operators[i - 1]) {
@@ -66,11 +78,11 @@ APP.tasks.first = (function () {
             }
         }
 
-        return result;
+        return Math.round( result*100)/100;
     }
 
     function validate(value) {
-        if (!value || !/={2,}|[^0-9]+|[^-+/*]*/g.test(value)) {
+        if (!value || !/[0-9]|[-/*+]|={1}/g.test(value)) {
             return false;
         }
 

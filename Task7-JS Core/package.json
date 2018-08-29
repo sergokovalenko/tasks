@@ -12,6 +12,7 @@
     "gulp-uglifyjs": "0.6.2"
   },
   "scripts": {
+    "scripts": "./node_modules/.bin/gulp scripts",
     "build": "./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watch"
   },
