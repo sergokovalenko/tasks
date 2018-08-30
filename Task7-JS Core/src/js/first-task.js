@@ -1,3 +1,4 @@
+"use strict";
 APP.createNamespace("APP.tasks.first");
 
 APP.tasks.first = (function () {
@@ -7,13 +8,13 @@ APP.tasks.first = (function () {
         resultBlock = {},
         submitBtn = {};
 
-    function getResultForFirstTask() {
+    function calculate() {
         var str = '',
             i = 0,
             errorMessage = "Invalid value",
             numbers = [],
-            operators = [];
-        inputVal = document.getElementsByClassName("first-task-val")[0].value;
+            operators = [],
+            inputVal = document.getElementsByClassName("first-task-val")[0].value;
 
         if (!validate(inputVal)) {
             return errorMessage;
@@ -34,7 +35,7 @@ APP.tasks.first = (function () {
             return result;
         }
 
-        if ( numbers.length <= operators.length) {
+        if (numbers.length <= operators.length) {
             return errorMessage;
         }
 
@@ -52,24 +53,24 @@ APP.tasks.first = (function () {
                 case '/':
                     result /= +numbers[i];
                     break;
-                default:
-                    break;
             }
         }
 
-        return Math.round( result*100)/100;
+        return roundNumber(result, 2);
+    }
+
+    function roundNumber(number, count) {
+        count = Math.pow(10, count);
+
+        return Math.round(number * count) / count;
     }
 
     function validate(value) {
-        if (!value || !/[0-9]|[-/*+]|={1}/g.test(value)) {
-            return false;
-        }
-
-        return true;
+        return (!value || /[0-9]+.*={1}|[-/*+]/g.test(value));
     }
 
     function showResult() {
-        var result = getResultForFirstTask();
+        var result = calculate();
         resultBlock.innerText = result;
     }
 
@@ -83,8 +84,7 @@ APP.tasks.first = (function () {
     }
 
     return {
-        getResultForFirstTask: getResultForFirstTask,
-        showResult: showResult,
+        calculate: calculate,
         init: init
     }
 }());
