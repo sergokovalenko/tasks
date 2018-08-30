@@ -17,19 +17,19 @@ APP.tasks.second = (function () {
 
         inputVal = input.value;
         result = inputVal.split('');
-
         words = inputVal.split(/[\.?,;:!]|\s/g).filter(function (n) {
             return n != ''
         });;
+
+        if (words.length === 0) {
+            return inputVal;
+        }
 
         if (words.length === 1) {
             return words[0];
         }
 
         letters = words[0].split('');
-
-        console.log(letters);
-
         letters = letters.filter(function (el, ind) {
             var i = 0,
                 j = 0,
@@ -55,28 +55,22 @@ APP.tasks.second = (function () {
             return true;
         })
 
-        console.log(letters);
+        result = removeDuplicatedLetters(letters, result);
 
-        for (i = 0; i < result.length; i++) {
-            flag = false;
+        return result.join('');
+    }
 
+    function removeDuplicatedLetters(letters, str) {
+        for (i = 0; i < str.length; i++) {
             for (j = 0; j < letters.length; j++) {
-                if (result[i] == letters[j]) {
-                    result[i] = '';
+                if (str[i] == letters[j]) {
+                    str[i] = '';
                     break;
                 }
             }
         }
 
-        return result.join('');
-    }
-
-    function validate(value) {
-        if (!value || !/[0-9]|[-/*+]|={1}/g.test(value)) {
-            return false;
-        }
-
-        return true;
+        return str;
     }
 
     function showResult() {
