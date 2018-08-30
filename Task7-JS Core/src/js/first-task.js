@@ -88,8 +88,3 @@ APP.tasks.first = (function () {
         init: init
     }
 }());
-
-window.onload = function () {
-    var calculator = APP.tasks.first;
-    calculator.init();
-}
