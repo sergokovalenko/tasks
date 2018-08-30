@@ -15,6 +15,7 @@ APP.tasks.calculator = (function () {
         }
 
         str = inputValue.replace(/[^0-9\.+\-*/=]/g, '');
+        str = str.substring(0, str.indexOf('=') + 1);
 
         numbers = str.match(/[0-9]+(\.[0-9]+)?/g);
         operators = str.match(/[-+/*]/g);
@@ -60,7 +61,7 @@ APP.tasks.calculator = (function () {
     }
 
     function validate(value) {
-        return !value || /^[0-9]+[^=]*={1}[^=]*$/g.test(value);
+        return value || /^[^=]*[0-9][^=]*=[^=]*$/.test(value);
     }
 
     return {
@@ -73,7 +74,7 @@ window.onload = function () {
         models = APP.models;
 
     models.init();
-    models.buttons.submitFirstTask.addEventListener('click', function(){
+    models.buttons.submitFirstTask.addEventListener('click', function () {
         var result = calculator.calculate(models.inputs.firstInput.value);
         models.outputs.firstResultBlock.innerHTML = result;
     });
