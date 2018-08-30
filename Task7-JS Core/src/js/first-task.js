@@ -1,26 +1,20 @@
 "use strict";
-APP.createNamespace("APP.tasks.first");
+APP.createNamespace("APP.tasks.calculator");
 
-APP.tasks.first = (function () {
-    var result = 0,
-        inputVal = "",
-        input = {},
-        resultBlock = {},
-        submitBtn = {};
-
-    function calculate() {
-        var str = '',
+APP.tasks.calculator = (function () {
+    function calculate(inputValue) {
+        var result = 0,
+            str = '',
             i = 0,
             errorMessage = "Invalid value",
             numbers = [],
-            operators = [],
-            inputVal = document.getElementsByClassName("first-task-val")[0].value;
+            operators = [];
 
-        if (!validate(inputVal)) {
+        if (!validate(inputValue)) {
             return errorMessage;
         }
 
-        str = inputVal.replace(/[^0-9\.+\-*/=]/g, '');
+        str = inputValue.replace(/[^0-9\.+\-*/=]/g, '');
 
         numbers = str.match(/[0-9]+(\.[0-9]+)?/g);
         operators = str.match(/[-+/*]/g);
@@ -66,30 +60,21 @@ APP.tasks.first = (function () {
     }
 
     function validate(value) {
-        return (!value || /[0-9]+.*={1}|[-/*+]/g.test(value));
-    }
-
-    function showResult() {
-        var result = calculate();
-        resultBlock.innerText = result;
-    }
-
-    function init() {
-        resultBlock = document.getElementsByClassName('result-value')[0];
-        input = document.getElementsByClassName("first-task-val")[0];
-        submitBtn = document.getElementsByClassName("submit-first-task")[0];
-        submitBtn.addEventListener('click', function () {
-            showResult();
-        });
+        return (!value || /^[0-9]+[^=]*={1}[^=]*$/g.test(value));
     }
 
     return {
-        calculate: calculate,
-        init: init
+        calculate: calculate
     }
 }());
 
 window.onload = function () {
-    var calculator = APP.tasks.first;
-    calculator.init();
+    var calculator = APP.tasks.calculator,
+        models = APP.models;
+
+    models.init();
+    models.buttons.submitFirstTask.addEventListener('click', function(){
+        var result = calculator.calculate(models.inputs.firstInput.value);
+        models.outputs.firstResultBlock.innerHTML = result;
+    });
 }
