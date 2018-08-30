@@ -25,16 +25,23 @@ APP.models = (function () {
             btnArr = document.getElementsByClassName('submit-task'),
             outputArr = document.getElementsByClassName('result-value');
 
-        firstInput = inputArr[0];
-        secondInput = inputArr[1];
-        thirdInput = inputArr[2];
+        inputs.firstInput = inputArr[0];
+        inputs.secondInput = inputArr[1];
+        inputs.thirdInput = inputArr[2];
 
-        submitFirstTask = btnArr[0];
-        submitSecnodTask = btnArr[1];
-        submitThirdTask = btnArr[2];
+        buttons.submitFirstTask = btnArr[0];
+        buttons.submitSecnodTask = btnArr[1];
+        buttons.submitThirdTask = btnArr[2];
 
-        firstResultBlock = outputArr[0];
-        secondResultBlock = outputArr[1];
-        thirdResultBlock = outputArr[2];
-    }    
+        outputs.firstResultBlock = outputArr[0];
+        outputs.secondResultBlock = outputArr[1];
+        outputs.thirdResultBlock = outputArr[2];
+    }
+
+    return {
+        inputs: inputs,
+        outputs: outputs,
+        buttons: buttons,
+        init: init
+    }
 }());
