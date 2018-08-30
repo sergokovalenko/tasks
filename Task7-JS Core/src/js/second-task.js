@@ -18,8 +18,8 @@ APP.tasks.second = (function () {
         inputVal = input.value;
         result = inputVal.split('');
         words = inputVal.split(/[\.?,;:!]|\s/g).filter(function (n) {
-            return n != ''
-        });;
+            return n !== '';
+        });
 
         if (words.length === 0) {
             return inputVal;
@@ -42,7 +42,7 @@ APP.tasks.second = (function () {
                 flag = false;
 
                 for (j = 0; j < otherLetters.length; j++) {
-                    if (el == otherLetters[j]) {
+                    if (el === otherLetters[j]) {
                         flag = true;
                         break;
                     }
@@ -53,7 +53,7 @@ APP.tasks.second = (function () {
             }
 
             return true;
-        })
+        });
 
         result = removeDuplicatedLetters(letters, result);
 
@@ -63,7 +63,7 @@ APP.tasks.second = (function () {
     function removeDuplicatedLetters(letters, str) {
         for (i = 0; i < str.length; i++) {
             for (j = 0; j < letters.length; j++) {
-                if (str[i] == letters[j]) {
+                if (str[i] === letters[j]) {
                     str[i] = '';
                     break;
                 }
@@ -90,7 +90,7 @@ APP.tasks.second = (function () {
     return {
         getResultForSecondTask: getResultForSecondTask,
         init: init
-    }
+    };
 })();
 
 window.onload = function () {
@@ -99,4 +99,4 @@ window.onload = function () {
 
     calculator.init();
     replacer.init();
-}
+};

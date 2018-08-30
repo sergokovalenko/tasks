@@ -22,11 +22,11 @@ APP.tasks.third = (function () {
             MM: function (date) {
                 return withZero(date.getMonth() + 1);
             },
-            MMM: function (date, i18n) {
-                return i18n.monthNamesShort[date.getMonth()];
+            MMM: function (date, localization) {
+                return date.getMonth();
             },
-            MMMM: function (date, i18n) {
-                return i18n.monthNames[date.getMonth()];
+            MMMM: function (date, localization) {
+                return date.getMonth();
             },
             d: function (date) {
                 return date.getDay();
@@ -40,10 +40,10 @@ APP.tasks.third = (function () {
             HH: function (date) {
                 return withZero(date.getHours());
             },
-            h: function (date) {
+            h: function (date, localization) {
                 return date.getHours();
             },
-            hh: function (date) {
+            hh: function (date, localization) {
                 return withZero(date.getHours());
             },
             m: function (date) {
