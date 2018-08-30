@@ -23,5 +23,5 @@ APP.tasks.second = (function () {
     return {
         getResultForSecondTask: getResultForSecondTask,
         init: init
-    }
+    };
 })();

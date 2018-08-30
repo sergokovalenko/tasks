@@ -60,12 +60,12 @@ APP.tasks.calculator = (function () {
     }
 
     function validate(value) {
-        return (!value || /^[0-9]+[^=]*={1}[^=]*$/g.test(value));
+        return !value || /^[0-9]+[^=]*={1}[^=]*$/g.test(value);
     }
 
     return {
         calculate: calculate
-    }
+    };
 }());
 
 window.onload = function () {
@@ -77,4 +77,4 @@ window.onload = function () {
         var result = calculator.calculate(models.inputs.firstInput.value);
         models.outputs.firstResultBlock.innerHTML = result;
     });
-}
+};

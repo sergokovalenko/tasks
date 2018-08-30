@@ -43,5 +43,5 @@ APP.models = (function () {
         outputs: outputs,
         buttons: buttons,
         init: init
-    }
+    };
 }());
