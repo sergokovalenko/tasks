@@ -5,10 +5,17 @@ APP.tasks.third = (function () {
         inputVal = "",
         input = {},
         resultBlock = {},
-        submitBtn = {};
+        regexp = /M{1,4}|yy(?:yy)?|([HMhmsd])\1?/g,
+        submitBtn = {},
+        dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     function getResultForThirdTask() {
-        
+
+    }
+
+    function shorten(value, length) {
+        return value.substr(0, length);
     }
 
     function showResult() {
@@ -23,12 +30,13 @@ APP.tasks.third = (function () {
         submitBtn.addEventListener('click', function () {
             showResult();
         });
+        
     }
 
     return {
         getResultForThirdTask: getResultForThirdTask,
         init: init
-    }
+    };
 })();
 
 window.onload = function () {
@@ -39,4 +47,4 @@ window.onload = function () {
     calculator.init();
     replacer.init();
     dateWorker.init();
-}
+};
