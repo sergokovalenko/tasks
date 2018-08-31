@@ -59,9 +59,9 @@ APP.tasks.calculator = (function () {
     }
 
     function roundNumber(number, count) {
-        count = Math.pow(10, count);
+        var pow = Math.pow(10, count);
 
-        return Math.round(number * count) / count;
+        return Math.round(number * pow) / pow;
     }
 
     function validate(value) {
