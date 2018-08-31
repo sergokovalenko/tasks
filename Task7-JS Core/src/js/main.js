@@ -13,7 +13,7 @@ window.onload = function () {
     });
 
     models.buttons.submitSecondTask.addEventListener('click', function () {
-        var result = replacer.replaceDublicatedLetters(models.inputs.secondInput.value);
+        var result = replacer.replaceDublicatedLettersInString(models.inputs.secondInput.value);
 
         models.outputs.secondResultBlock.innerHTML = result;
     });

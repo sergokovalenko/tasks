@@ -5,7 +5,7 @@ APP.createNamespace('APP.tasks.stringReplacer');
 APP.tasks.stringReplacer = (function () {
     var inputVal = '';
 
-    function replaceDublicatedLetters(str) {
+    function replaceDublicatedLettersInString(str) {
         var words = [],
             letters = [],
             result = '';
@@ -24,7 +24,8 @@ APP.tasks.stringReplacer = (function () {
             return words[0];
         }
 
-        letters = words[0].split('');
+        letters = getShortestWord(words).split('');
+
         letters = letters.filter(function (el) {
             var i = 0,
                 j = 0,
@@ -55,6 +56,20 @@ APP.tasks.stringReplacer = (function () {
         return result.join('');
     }
 
+    function getShortestWord(words) {
+        var i = 1,
+            result = words[0];
+
+        for (i = 1; i < words.length; i++) {
+            if (result.length > words[i].length) {
+                result = words[i];
+                result.length = words[i].length;
+            }
+        }
+
+        return result;
+    }
+
     function removeDuplicatedLetters(letters, str) {
         var i = 0,
             j = 0;
@@ -72,6 +87,6 @@ APP.tasks.stringReplacer = (function () {
     }
 
     return {
-        replaceDublicatedLetters: replaceDublicatedLetters
+        replaceDublicatedLettersInString: replaceDublicatedLettersInString
     };
 }());
