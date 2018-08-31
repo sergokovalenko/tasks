@@ -1,13 +1,12 @@
-APP.createNamespace("APP.tasks.third");
+var APP = APP || {};
+
+APP.createNamespace('APP.tasks.third');
 
 APP.tasks.third = (function () {
-    var result = 0,
-        inputVal = "",
-        input = {},
+    var input = {},
         resultBlock = {},
-        regexp = /M{1,4}|yy(?:yy)?|([HMhmsd])\1?/g,
         submitBtn = {},
-        dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        regexp = /M{1,4}|yy(?:yy)?|([HMhmsd])\1?/g,
         monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         formatFlags = {
             yy: function (date) {
@@ -23,16 +22,16 @@ APP.tasks.third = (function () {
                 return withZero(date.getMonth() + 1);
             },
             MMM: function (date, localization) {
-                return date.getMonth();
+                return shorten(monthNames[date.getMonth()], 3);
             },
             MMMM: function (date, localization) {
-                return date.getMonth();
+                return monthNames[date.getMonth()];
             },
             d: function (date) {
-                return date.getDay();
+                return date.getDay() + 1;
             },
             dd: function (date) {
-                return withZero(date.getDay());
+                return withZero(date.getDay() + 1);
             },
             H: function (date) {
                 return date.getHours();
@@ -61,16 +60,24 @@ APP.tasks.third = (function () {
         };
 
     function withZero(val, len) {
-        val = String(val);
-        len = len || 2;
-        while (val.length < len) {
-            val = '0' + val;
+        var value = String(val),
+            length = len || 2;
+
+        while (value.length < length) {
+            value = '0' + value.toString();
         }
-        return val;
+        return value;
     }
 
     function getResultForThirdTask() {
+        var value = input.value,
+            date = new Date(2015, 2, 4, 5, 7, 8);
 
+        value = value.replace(regexp, function (match) {
+            return formatFlags[match](date);
+        });
+
+        return value;
     }
 
     function shorten(value, length) {
@@ -79,24 +86,24 @@ APP.tasks.third = (function () {
 
     function showResult() {
         var result = getResultForThirdTask();
+
         resultBlock.innerText = result;
     }
 
     function init() {
         resultBlock = document.getElementsByClassName('result-value')[2];
-        input = document.getElementsByClassName("third-task-val")[0];
-        submitBtn = document.getElementsByClassName("submit-third-task")[0];
+        input = document.getElementsByClassName('third-task-val')[0];
+        submitBtn = document.getElementsByClassName('submit-third-task')[0];
         submitBtn.addEventListener('click', function () {
             showResult();
         });
-
     }
 
     return {
         getResultForThirdTask: getResultForThirdTask,
         init: init
     };
-})();
+}());
 
 window.onload = function () {
     var calculator = APP.tasks.first,
