@@ -24,7 +24,7 @@ APP.tasks.stringReplacer = (function () {
             return words[0];
         }
 
-        letters = getShortestWord(words).split('');
+        letters = getShortestWord(words).toLowerCase().split('');
 
         letters = letters.filter(function (el) {
             var i = 0,
@@ -33,7 +33,7 @@ APP.tasks.stringReplacer = (function () {
                 otherLetters = [];
 
             for (i = 1; i < words.length; i += 1) {
-                otherLetters = words[i].split('');
+                otherLetters = words[i].toLowerCase().split('');
                 flag = false;
 
                 for (j = 0; j < otherLetters.length; j++) {
@@ -76,7 +76,7 @@ APP.tasks.stringReplacer = (function () {
 
         for (i = 0; i < str.length; i++) {
             for (j = 0; j < letters.length; j++) {
-                if (str[i] === letters[j]) {
+                if (str[i].toLowerCase() === letters[j]) {
                     str[i] = '';
                     break;
                 }
