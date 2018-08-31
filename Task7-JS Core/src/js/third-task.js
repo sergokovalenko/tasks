@@ -1,13 +1,13 @@
 var APP = APP || {};
 
-APP.createNamespace('APP.tasks.third');
+APP.createNamespace('APP.tasks.dateFormater');
 
-APP.tasks.third = (function () {
+APP.tasks.dateFormater = (function () {
     var input = {},
         resultBlock = {},
         submitBtn = {},
         regexp = /M{1,4}|yy(?:yy)?|([HMhmsd])\1?/g,
-        monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        currentL18n = {},
         formatFlags = {
             yy: function (date) {
                 return String(date.getFullYear()).substr(2);
@@ -21,11 +21,11 @@ APP.tasks.third = (function () {
             MM: function (date) {
                 return withZero(date.getMonth() + 1);
             },
-            MMM: function (date, localization) {
-                return shorten(monthNames[date.getMonth()], 3);
+            MMM: function (date) {
+                return shorten(currentL18n.monthNames[date.getMonth()], 3);
             },
-            MMMM: function (date, localization) {
-                return monthNames[date.getMonth()];
+            MMMM: function (date) {
+                return currentL18n.monthNames[date.getMonth()];
             },
             d: function (date) {
                 return date.getDay() + 1;
@@ -39,10 +39,10 @@ APP.tasks.third = (function () {
             HH: function (date) {
                 return withZero(date.getHours());
             },
-            h: function (date, localization) {
+            h: function (date) {
                 return date.getHours();
             },
-            hh: function (date, localization) {
+            hh: function (date) {
                 return withZero(date.getHours());
             },
             m: function (date) {
@@ -69,15 +69,17 @@ APP.tasks.third = (function () {
         return value;
     }
 
-    function getResultForThirdTask() {
-        var value = input.value,
-            date = new Date(2015, 2, 4, 5, 7, 8);
+    function showFormatedDate(pattern, l18nString) {
+        var date = new Date(2015, 2, 4, 5, 7, 8);
 
-        value = value.replace(regexp, function (match) {
+        l18nString = l18nString || 'en-US';
+        currentL18n = getL18n(l18nString);
+
+        pattern = pattern.replace(regexp, function (match) {
             return formatFlags[match](date);
         });
 
-        return value;
+        return pattern;
     }
 
     function shorten(value, length) {
@@ -85,7 +87,7 @@ APP.tasks.third = (function () {
     }
 
     function showResult() {
-        var result = getResultForThirdTask();
+        var result = showFormatedDate(input.value);
 
         resultBlock.innerText = result;
     }
@@ -99,8 +101,23 @@ APP.tasks.third = (function () {
         });
     }
 
+    function getL18n(l18nString) {
+        var l18n = {};
+
+        switch (l18nString.toLowerCase()) {
+            case 'ru-ru':
+                l18n.monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+                break;
+            default:
+                l18n.monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                break;
+        }
+
+        return l18n;
+    }
+
     return {
-        getResultForThirdTask: getResultForThirdTask,
+        showFormatedDate: showFormatedDate,
         init: init
     };
 }());
@@ -108,9 +125,9 @@ APP.tasks.third = (function () {
 window.onload = function () {
     var calculator = APP.tasks.first,
         replacer = APP.tasks.second,
-        dateWorker = APP.tasks.third;
+        dateFormater = APP.tasks.dateFormater;
 
     calculator.init();
     replacer.init();
-    dateWorker.init();
+    dateFormater.init();
 };
