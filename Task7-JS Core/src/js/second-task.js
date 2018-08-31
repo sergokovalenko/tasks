@@ -1,19 +1,16 @@
 var APP = APP || {};
 
-APP.createNamespace('APP.tasks.second');
+APP.createNamespace('APP.tasks.stringReplacer');
 
-APP.tasks.second = (function () {
-    var inputVal = '',
-        input = {},
-        resultBlock = {},
-        submitBtn = {};
+APP.tasks.stringReplacer = (function () {
+    var inputVal = '';
 
-    function getResultForSecondTask() {
+    function replaceDublicatedLetters(str) {
         var words = [],
             letters = [],
             result = '';
 
-        inputVal = input.value;
+        inputVal = str;
         result = inputVal.split('');
         words = inputVal.split(/[.?,;:!]|\s/g).filter(function (n) {
             return n !== '';
@@ -59,7 +56,8 @@ APP.tasks.second = (function () {
     }
 
     function removeDuplicatedLetters(letters, str) {
-        var i = 0, j = 0;
+        var i = 0,
+            j = 0;
 
         for (i = 0; i < str.length; i++) {
             for (j = 0; j < letters.length; j++) {
@@ -73,31 +71,7 @@ APP.tasks.second = (function () {
         return str;
     }
 
-    function showResult() {
-        var result = getResultForSecondTask();
-
-        resultBlock.innerText = result;
-    }
-
-    function init() {
-        resultBlock = document.getElementsByClassName('result-value')[1];
-        input = document.getElementsByClassName('second-task-val')[0];
-        submitBtn = document.getElementsByClassName('submit-second-task')[0];
-        submitBtn.addEventListener('click', function () {
-            showResult();
-        });
-    }
-
     return {
-        getResultForSecondTask: getResultForSecondTask,
-        init: init
+        replaceDublicatedLetters: replaceDublicatedLetters
     };
 }());
-
-window.onload = function () {
-    var calculator = APP.tasks.first,
-        replacer = APP.tasks.second;
-
-    calculator.init();
-    replacer.init();
-};
