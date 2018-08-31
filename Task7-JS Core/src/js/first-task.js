@@ -61,7 +61,7 @@ APP.tasks.calculator = (function () {
     }
 
     function validate(value) {
-        return value || /^[^=]*[0-9][^=]*=[^=]*$/.test(value);
+        return /^[^=]*[0-9][^=]*=[^=]*$/.test(value);
     }
 
     return {
