@@ -1,25 +1,23 @@
-APP.createNamespace("APP.tasks.first");
+'use strict';
+var APP = APP || {};
 
-APP.tasks.first = (function () {
-    var result = 0,
-        inputVal = "",
-        input = {},
-        resultBlock = {},
-        submitBtn = {};
+APP.createNamespace('APP.tasks.calculator');
 
-    function getResultForFirstTask() {
-        var str = '',
+APP.tasks.calculator = (function () {
+    function calculate(inputValue) {
+        var result = 0,
+            str = '',
             i = 0,
-            errorMessage = "Invalid value",
+            errorMessage = 'Invalid value',
             numbers = [],
             operators = [];
-        inputVal = document.getElementsByClassName("first-task-val")[0].value;
 
-        if (!validate(inputVal)) {
+        if (!validate(inputValue)) {
             return errorMessage;
         }
 
-        str = inputVal.replace(/[^0-9\.+\-*/=]/g, '');
+        str = inputValue.replace(/[^0-9.+\-*/=]/g, '');
+        str = str.substring(0, str.indexOf('=') + 1);
 
         numbers = str.match(/[0-9]+(\.[0-9]+)?/g);
         operators = str.match(/[-+/*]/g);
@@ -34,7 +32,7 @@ APP.tasks.first = (function () {
             return result;
         }
 
-        if ( numbers.length <= operators.length) {
+        if (numbers.length <= operators.length) {
             return errorMessage;
         }
 
@@ -57,34 +55,20 @@ APP.tasks.first = (function () {
             }
         }
 
-        return Math.round( result*100)/100;
+        return roundNumber(result, 2);
+    }
+
+    function roundNumber(number, count) {
+        count = Math.pow(10, count);
+
+        return Math.round(number * count) / count;
     }
 
     function validate(value) {
-        if (!value || !/[0-9]|[-/*+]|={1}/g.test(value)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    function showResult() {
-        var result = getResultForFirstTask();
-        resultBlock.innerText = result;
-    }
-
-    function init() {
-        resultBlock = document.getElementsByClassName('result-value')[0];
-        input = document.getElementsByClassName("first-task-val")[0];
-        submitBtn = document.getElementsByClassName("submit-first-task")[0];
-        submitBtn.addEventListener('click', function () {
-            showResult();
-        });
+        return /^[^=]*[0-9][^=]*=[^=]*$/.test(value);
     }
 
     return {
-        getResultForFirstTask: getResultForFirstTask,
-        showResult: showResult,
-        init: init
-    }
+        calculate: calculate
+    };
 }());

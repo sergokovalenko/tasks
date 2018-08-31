@@ -1,23 +1,18 @@
-APP.createNamespace("APP.tasks.second");
+var APP = APP || {};
 
-APP.tasks.second = (function () {
-    var result = 0,
-        inputVal = "",
-        input = {},
-        resultBlock = {},
-        submitBtn = {};
+APP.createNamespace('APP.tasks.stringReplacer');
 
-    function getResultForSecondTask() {
+APP.tasks.stringReplacer = (function () {
+    var inputVal = '';
+
+    function replaceDublicatedLettersInString(str) {
         var words = [],
             letters = [],
-            i = 0,
-            j = 0,
-            result = '',
-            flag = false;
+            result = '';
 
-        inputVal = input.value;
+        inputVal = str;
         result = inputVal.split('');
-        words = inputVal.split(/[\.?,;:!]|\s/g).filter(function (n) {
+        words = inputVal.split(/[.?,;:!]|\s/g).filter(function (n) {
             return n !== '';
         });
 
@@ -29,12 +24,12 @@ APP.tasks.second = (function () {
             return words[0];
         }
 
-        letters = words[0].split('');
-        letters = letters.filter(function (el, ind) {
+        letters = getShortestWord(words).split('');
+
+        letters = letters.filter(function (el) {
             var i = 0,
                 j = 0,
                 flag = false,
-                regexpString = '',
                 otherLetters = [];
 
             for (i = 1; i < words.length; i += 1) {
@@ -48,8 +43,9 @@ APP.tasks.second = (function () {
                     }
                 }
 
-                if (!flag)
+                if (!flag) {
                     return false;
+                }
             }
 
             return true;
@@ -60,7 +56,24 @@ APP.tasks.second = (function () {
         return result.join('');
     }
 
+    function getShortestWord(words) {
+        var i = 1,
+            result = words[0];
+
+        for (i = 1; i < words.length; i++) {
+            if (result.length > words[i].length) {
+                result = words[i];
+                result.length = words[i].length;
+            }
+        }
+
+        return result;
+    }
+
     function removeDuplicatedLetters(letters, str) {
+        var i = 0,
+            j = 0;
+
         for (i = 0; i < str.length; i++) {
             for (j = 0; j < letters.length; j++) {
                 if (str[i] === letters[j]) {
@@ -73,30 +86,7 @@ APP.tasks.second = (function () {
         return str;
     }
 
-    function showResult() {
-        var result = getResultForSecondTask();
-        resultBlock.innerText = result;
-    }
-
-    function init() {
-        resultBlock = document.getElementsByClassName('result-value')[1];
-        input = document.getElementsByClassName("second-task-val")[0];
-        submitBtn = document.getElementsByClassName("submit-second-task")[0];
-        submitBtn.addEventListener('click', function () {
-            showResult();
-        });
-    }
-
     return {
-        getResultForSecondTask: getResultForSecondTask,
-        init: init
+        replaceDublicatedLettersInString: replaceDublicatedLettersInString
     };
-})();
-
-window.onload = function () {
-    var calculator = APP.tasks.first,
-        replacer = APP.tasks.second;
-
-    calculator.init();
-    replacer.init();
-};
+}());
