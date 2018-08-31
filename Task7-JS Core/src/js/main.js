@@ -3,6 +3,7 @@ var APP;
 window.onload = function () {
     var calculator = APP.tasks.calculator,
         replacer = APP.tasks.stringReplacer,
+        formater = APP.tasks.dateFormater,
         models = APP.models;
 
     models.init();
@@ -17,4 +18,14 @@ window.onload = function () {
 
         models.outputs.secondResultBlock.innerHTML = result;
     });
+
+    models.buttons.submitThirdTask.addEventListener('click', function () {
+        var result = replacer.replaceDublicatedLettersInString(models.inputs.thirdInput.value);
+
+        models.outputs.thirdResultBlock.innerHTML = result;
+    });
+
+    Date.prototype.format = function (formatString, l10nString) {
+        return formater.showFormatedDate(formatString, l10nString);
+    };
 };
