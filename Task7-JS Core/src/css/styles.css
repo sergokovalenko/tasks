@@ -1,0 +1,16 @@
+.task {
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    text-align: center;
+}
+
+.task-name {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.result {
+    margin-top: 10px;
+}
