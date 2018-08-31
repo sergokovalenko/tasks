@@ -1,4 +1,6 @@
+"use strict";
 var APP = APP || {};
+
 APP.createNamespace = function (path) {
     var parts = path.split('.'),
         parent = APP,
