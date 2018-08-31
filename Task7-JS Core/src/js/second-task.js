@@ -1,8 +1,9 @@
-APP.createNamespace("APP.tasks.second");
+var APP = APP || {};
+
+APP.createNamespace('APP.tasks.second');
 
 APP.tasks.second = (function () {
-    var result = 0,
-        inputVal = "",
+    var inputVal = '',
         input = {},
         resultBlock = {},
         submitBtn = {};
@@ -10,16 +11,13 @@ APP.tasks.second = (function () {
     function getResultForSecondTask() {
         var words = [],
             letters = [],
-            i = 0,
-            j = 0,
-            result = '',
-            flag = false;
+            result = '';
 
         inputVal = input.value;
         result = inputVal.split('');
-        words = inputVal.split(/[\.?,;:!]|\s/g).filter(function (n) {
-            return n != ''
-        });;
+        words = inputVal.split(/[.?,;:!]|\s/g).filter(function (n) {
+            return n !== '';
+        });
 
         if (words.length === 0) {
             return inputVal;
@@ -30,11 +28,10 @@ APP.tasks.second = (function () {
         }
 
         letters = words[0].split('');
-        letters = letters.filter(function (el, ind) {
+        letters = letters.filter(function (el) {
             var i = 0,
                 j = 0,
                 flag = false,
-                regexpString = '',
                 otherLetters = [];
 
             for (i = 1; i < words.length; i += 1) {
@@ -42,18 +39,19 @@ APP.tasks.second = (function () {
                 flag = false;
 
                 for (j = 0; j < otherLetters.length; j++) {
-                    if (el == otherLetters[j]) {
+                    if (el === otherLetters[j]) {
                         flag = true;
                         break;
                     }
                 }
 
-                if (!flag)
+                if (!flag) {
                     return false;
+                }
             }
 
             return true;
-        })
+        });
 
         result = removeDuplicatedLetters(letters, result);
 
@@ -61,9 +59,11 @@ APP.tasks.second = (function () {
     }
 
     function removeDuplicatedLetters(letters, str) {
+        var i = 0, j = 0;
+
         for (i = 0; i < str.length; i++) {
             for (j = 0; j < letters.length; j++) {
-                if (str[i] == letters[j]) {
+                if (str[i] === letters[j]) {
                     str[i] = '';
                     break;
                 }
@@ -75,13 +75,14 @@ APP.tasks.second = (function () {
 
     function showResult() {
         var result = getResultForSecondTask();
+
         resultBlock.innerText = result;
     }
 
     function init() {
         resultBlock = document.getElementsByClassName('result-value')[1];
-        input = document.getElementsByClassName("second-task-val")[0];
-        submitBtn = document.getElementsByClassName("submit-second-task")[0];
+        input = document.getElementsByClassName('second-task-val')[0];
+        submitBtn = document.getElementsByClassName('submit-second-task')[0];
         submitBtn.addEventListener('click', function () {
             showResult();
         });
@@ -90,8 +91,8 @@ APP.tasks.second = (function () {
     return {
         getResultForSecondTask: getResultForSecondTask,
         init: init
-    }
-})();
+    };
+}());
 
 window.onload = function () {
     var calculator = APP.tasks.first,
@@ -99,4 +100,4 @@ window.onload = function () {
 
     calculator.init();
     replacer.init();
-}
+};
