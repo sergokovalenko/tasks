@@ -1,7 +1,9 @@
-"use strict";
-APP.createNamespace("APP.models.inputs");
-APP.createNamespace("APP.models.buttons");
-APP.createNamespace("APP.models.outputs");
+'use strict';
+var APP = APP || {};
+
+APP.createNamespace('APP.models.inputs');
+APP.createNamespace('APP.models.buttons');
+APP.createNamespace('APP.models.outputs');
 
 APP.models = (function () {
     var inputs = {
@@ -11,7 +13,7 @@ APP.models = (function () {
         },
         buttons = {
             submitFirstTask: null,
-            submitSecnodTask: null,
+            submitSecondTask: null,
             submitThirdTask: null
         },
         outputs = {
@@ -30,7 +32,7 @@ APP.models = (function () {
         inputs.thirdInput = inputArr[2];
 
         buttons.submitFirstTask = btnArr[0];
-        buttons.submitSecnodTask = btnArr[1];
+        buttons.submitSecondTask = btnArr[1];
         buttons.submitThirdTask = btnArr[2];
 
         outputs.firstResultBlock = outputArr[0];

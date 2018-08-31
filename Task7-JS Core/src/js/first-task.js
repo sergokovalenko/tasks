@@ -72,15 +72,3 @@ APP.tasks.calculator = (function () {
         calculate: calculate
     };
 }());
-
-window.onload = function () {
-    var calculator = APP.tasks.calculator,
-        models = APP.models;
-
-    models.init();
-    models.buttons.submitFirstTask.addEventListener('click', function () {
-        var result = calculator.calculate(models.inputs.firstInput.value);
-
-        models.outputs.firstResultBlock.innerHTML = result;
-    });
-};
