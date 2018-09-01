@@ -3,47 +3,35 @@ var APP = APP || {};
 APP.createNamespace('APP.tasks.stringReplacer');
 
 APP.tasks.stringReplacer = (function () {
-    var inputVal = '';
-
-    function replaceDublicatedLettersInString(str) {
+    function replaceDuplicatedLettersInString(str) {
         var words = [],
+            shortestWordInfo = {},
             letters = [],
+            inputVal = '',
             result = '';
 
         inputVal = str;
         result = inputVal.split('');
-        words = inputVal.split(/[.?,;:!]|\s/g).filter(function (n) {
+        words = inputVal.split(/[.?,;:!]|\s/).filter(function (n) {
             return n !== '';
         });
 
-        if (words.length === 0) {
+        if (words.length === 0 || words.length === 1) {
             return inputVal;
         }
 
-        if (words.length === 1) {
-            return words[0];
-        }
-
-        letters = getShortestWord(words).toLowerCase().split('');
+        shortestWordInfo = getShortestWord(words);
+        letters = getUniqueLetters(shortestWordInfo.word);
 
         letters = letters.filter(function (el) {
-            var i = 0,
-                j = 0,
-                flag = false,
-                otherLetters = [];
+            var i = 0;
 
-            for (i = 1; i < words.length; i += 1) {
-                otherLetters = words[i].toLowerCase().split('');
-                flag = false;
-
-                for (j = 0; j < otherLetters.length; j++) {
-                    if (el === otherLetters[j]) {
-                        flag = true;
-                        break;
-                    }
+            for (i = 0; i < words.length; i += 1) {
+                if (shortestWordInfo.ind === i) {
+                    continue;
                 }
 
-                if (!flag) {
+                if (words[i].indexOf(el) === -1) {
                     return false;
                 }
             }
@@ -58,12 +46,29 @@ APP.tasks.stringReplacer = (function () {
 
     function getShortestWord(words) {
         var i = 1,
-            result = words[0];
+            result = {
+                word: words[0],
+                ind: 0
+            };
 
         for (i = 1; i < words.length; i++) {
-            if (result.length > words[i].length) {
-                result = words[i];
-                result.length = words[i].length;
+            if (result.word.length > words[i].length) {
+                result.word = words[i];
+                result.ind = i;
+            }
+        }
+
+        return result;
+    }
+
+    function getUniqueLetters(word) {
+        var i = 0,
+            arr = word.toLowerCase().split(''),
+            result = [];
+
+        for (i = 0; i < arr.length; i += 1) {
+            if (result.indexOf(arr[i]) === -1) {
+                result.push(arr[i]);
             }
         }
 
@@ -87,6 +92,6 @@ APP.tasks.stringReplacer = (function () {
     }
 
     return {
-        replaceDublicatedLettersInString: replaceDublicatedLettersInString
+        replaceDuplicatedLettersInString: replaceDuplicatedLettersInString
     };
 }());
