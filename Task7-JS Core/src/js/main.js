@@ -7,6 +7,11 @@ window.onload = function () {
         models = APP.models;
 
     models.init();
+
+    Date.prototype.format = function (formatString, l10nString) {
+        return formater.showFormatedDate(formatString, l10nString);
+    };
+
     models.buttons.submitFirstTask.addEventListener('click', function () {
         var result = calculator.calculate(models.inputs.firstInput.value);
 
@@ -25,7 +30,7 @@ window.onload = function () {
         models.outputs.thirdResultBlock.innerHTML = result;
     });
 
-    Date.prototype.format = function (formatString, l10nString) {
-        return formater.showFormatedDate(formatString, l10nString);
-    };
+    models.inputs.dateInput.addEventListener('input', function () {
+        models.inputs.dateInput.value = models.inputs.dateInput.value.replace(/[^0-9\s]/g, '');
+    });
 };
