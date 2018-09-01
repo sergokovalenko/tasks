@@ -6,11 +6,12 @@ APP.createNamespace('APP.tasks.calculator');
 APP.tasks.calculator = (function () {
     function calculate(inputValue) {
         var result = 0,
-            str = '',
+            matchArr = [],
             i = 0,
             errorMessage = 'Invalid value',
-            numbers = [],
-            operators = [];
+            str = '',
+            lastElem = ',',
+            searchPattern = /[+-]?[0-9]+(\.[0-9]+)?|[-+*/]/ig;
 
         if (!validate(inputValue)) {
             return errorMessage;
@@ -18,40 +19,43 @@ APP.tasks.calculator = (function () {
 
         str = inputValue.replace(/[^0-9.+\-*/=]/g, '');
         str = str.substring(0, str.indexOf('=') + 1);
+        //для избегания проблем с унарными операторами
+        str = str.replace(/([^+-])[+]/g, '$1++');
+        str = str.replace(/([^+-])[-]/g, '$1+-');
 
-        numbers = str.match(/[0-9]+(\.[0-9]+)?/g);
-        operators = str.match(/[-+/*]/g);
+        matchArr = str.match(searchPattern);
+        console.log(matchArr);
 
-        if (!numbers) {
+        if (!matchArr || matchArr.length < 1) {
             return errorMessage;
         }
 
-        result = +numbers[0];
+        lastElem = matchArr[matchArr.length - 1];
 
-        if (!operators) {
-            return result;
-        }
-
-        if (numbers.length <= operators.length) {
+        if (lastElem === '+' || lastElem === '-' || lastElem === '*' || lastElem === '/') {
             return errorMessage;
         }
 
-        for (i = 1; i < numbers.length; i += 1) {
-            switch (operators[i - 1]) {
+        result = +matchArr[0];
+
+        for (i = 1; i < matchArr.length - 1; i++) {
+            switch (matchArr[i]) {
                 case '+':
-                    result += +numbers[i];
+                    result += +matchArr[i + 1];
                     break;
                 case '-':
-                    result -= +numbers[i];
+                    result -= +matchArr[i + 1];
                     break;
                 case '*':
-                    result *= +numbers[i];
+                    result *= +matchArr[i + 1];
                     break;
                 case '/':
-                    result /= +numbers[i];
+                    result /= +matchArr[i + 1];
+                    break;
+                case '=':
                     break;
                 default:
-                    break;
+                    continue;
             }
         }
 
@@ -61,11 +65,15 @@ APP.tasks.calculator = (function () {
     function roundNumber(number, count) {
         var pow = Math.pow(10, count);
 
-        return Math.round(number * pow) / pow;
+        return (Math.round(number * pow) / pow).toFixed(count);
     }
 
     function validate(value) {
-        return /^[^=]*[0-9][^=]*=[^=]*$/.test(value);
+        if (!/^[^=]*[0-9][^=]*=[^=]*$/.test(value)) {
+            return false;
+        }
+
+        return !/\/\*|\*\/|\/\/|\*\*/g.test(value);
     }
 
     return {
