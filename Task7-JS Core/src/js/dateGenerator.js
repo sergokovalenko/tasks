@@ -12,13 +12,9 @@ APP.utilities.dateGenerator = (function () {
         return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
     };
 
-    function generate() {
+    function getRandomDate() {
         var year = 0,
             month = 0;
-
-        if (generatedDate) {
-            return generatedDate;
-        }
 
         year = getRandomInt(1000, curDate.getFullYear());
         month = getRandomInt(0, 11);
@@ -31,14 +27,14 @@ APP.utilities.dateGenerator = (function () {
         return generatedDate;
     }
 
-    function getRandomDate() {
-        return generate();
-    }
-
     function getParamString() {
-        var date = generate();
+        var date = getRandomDate();
 
         return date.getFullYear() + " " + date.getMonth() + " " + date.getDate() + " " + date.getHours() + " " + date.getMinutes() + " " + date.getSeconds();
+    }
+
+    function getGeneratedDate() {
+        return generatedDate ? generatedDate : getRandomDate();
     }
 
     function getRandomInt(min, max) {
@@ -47,6 +43,7 @@ APP.utilities.dateGenerator = (function () {
 
     return {
         getRandomDate: getRandomDate,
-        getParamString: getParamString
+        getParamString: getParamString,
+        getGeneratedDate: getGeneratedDate
     };
 }());
