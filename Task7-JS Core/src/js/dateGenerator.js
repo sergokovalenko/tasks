@@ -1,0 +1,52 @@
+'use strict';
+
+var APP = APP || {};
+
+APP.createNamespace('APP.utilities.dateGenerator');
+
+APP.utilities.dateGenerator = (function () {
+    var curDate = new Date(),
+        generatedDate = null;
+
+    Date.prototype.daysInMonth = function () {
+        return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
+    };
+
+    function generate() {
+        var year = 0,
+            month = 0;
+
+        if (generatedDate) {
+            return generatedDate;
+        }
+
+        year = getRandomInt(1000, curDate.getFullYear());
+        month = getRandomInt(0, 11);
+        generatedDate = new Date(year, month);
+        generatedDate.setDate(getRandomInt(0, generatedDate.daysInMonth()));
+        generatedDate.setHours(getRandomInt(0, 23));
+        generatedDate.setMinutes(getRandomInt(0, 60));
+        generatedDate.setSeconds(getRandomInt(0, 60));
+
+        return generatedDate;
+    }
+
+    function getRandomDate() {
+        return generate();
+    }
+
+    function getParamString() {
+        var date = generate();
+
+        return date.getFullYear() + " " + date.getMonth() + " " + date.getDate() + " " + date.getHours() + " " + date.getMinutes() + " " + date.getSeconds();
+    }
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    return {
+        getRandomDate: getRandomDate,
+        getParamString: getParamString
+    };
+}());
