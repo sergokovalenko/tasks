@@ -66,16 +66,17 @@ APP.tasks.dateFormater = (function () {
         return value;
     }
 
-    function showFormatedDate(pattern, l10nString) {
-        var date = new Date(2015, 2, 4, 5, 7, 8),
-            curl18n = '',
+    function showFormatedDate(pattern, l10nString, date) {
+        var curDate = null,
+            curl10n = '',
             result = '';
 
-        curl18n = l10nString || 'en-US';
-        currentL10n = getL18n(curl18n);
+        curDate = date || new Date();
+        curl10n = l10nString || 'en-US';
+        currentL10n = getL10n(curl10n);
 
         result = pattern.replace(regexp, function (match) {
-            return formatFlags[match](date);
+            return formatFlags[match](curDate);
         });
 
         return result;
@@ -85,7 +86,7 @@ APP.tasks.dateFormater = (function () {
         return value.substr(0, length);
     }
 
-    function getL18n(l10nString) {
+    function getL10n(l10nString) {
         var l18n = {};
 
         switch (l10nString.toLowerCase()) {

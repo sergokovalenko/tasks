@@ -4,6 +4,7 @@ window.onload = function () {
     var calculator = APP.tasks.calculator,
         replacer = APP.tasks.stringReplacer,
         formater = APP.tasks.dateFormater,
+        dateGenerator = APP.utilities.dateGenerator,
         models = APP.models;
 
     models.init();
@@ -25,7 +26,7 @@ window.onload = function () {
     });
 
     models.buttons.submitThirdTask.addEventListener('click', function () {
-        var result = replacer.replaceDublicatedLettersInString(models.inputs.thirdInput.value);
+        var result = formater.showFormatedDate(models.inputs.thirdInput.value, null, dateGenerator.getGeneratedDate());
 
         models.outputs.thirdResultBlock.innerHTML = result;
     });
@@ -33,4 +34,10 @@ window.onload = function () {
     models.inputs.dateInput.addEventListener('input', function () {
         models.inputs.dateInput.value = models.inputs.dateInput.value.replace(/[^0-9\s]/g, '');
     });
+
+    models.buttons.generateDate.addEventListener('click', function () {
+        models.inputs.dateInput.value = dateGenerator.getParamString();
+    });
+
+    models.buttons.generateDate.click();
 };
