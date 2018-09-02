@@ -1,4 +1,4 @@
-var APP;
+var APP = APP || {};
 
 window.onload = function () {
     var calculator = APP.tasks.calculator,
@@ -20,7 +20,7 @@ window.onload = function () {
     });
 
     models.buttons.submitSecondTask.addEventListener('click', function () {
-        var result = replacer.replaceDublicatedLettersInString(models.inputs.secondInput.value);
+        var result = replacer.replaceDuplicatedLettersInString(models.inputs.secondInput.value);
 
         models.outputs.secondResultBlock.innerHTML = result;
     });
