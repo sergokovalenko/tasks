@@ -28,31 +28,37 @@ window.onload = function () {
     models.buttons.submitThirdTask.addEventListener('click', function () {
         var dateInputVal = models.inputs.dateInput.value,
             date = {},
-            result = '';
-        var a = dateInputVal.split(' ').filter(function (n) {
+            result = '',
+            parsedDateString = '',
+            selector = document.getElementById('l10n'),
+            l10n = selector.options[selector.options.selectedIndex].value;
+
+        parsedDateString = dateInputVal.split(' ').filter(function (n) {
             return n !== '';
         });
 
-        console.log(a);
+        console.log(parsedDateString);
 
-        if (!a && a.length !== 6) {
-            models.buttons.generateDate.click();
-            result = formater.showFormatedDate(models.inputs.thirdInput.value, 'en-US', dateGenerator.getGeneratedDate());
-            models.outputs.thirdResultBlock.innerHTML = result;
+        if (!parsedDateString && parsedDateString.length !== 6) {
+            invalidDateActions();
             return;
         }
 
-        date = new Date(a[0], a[1], a[2], a[3], a[4], a[5]);
+        date = new Date(parsedDateString[0], parsedDateString[1], parsedDateString[2], parsedDateString[3], parsedDateString[4], parsedDateString[5]);
 
         if (!date.getFullYear()) {
-            models.buttons.generateDate.click();
-            result = formater.showFormatedDate(models.inputs.thirdInput.value, 'en-US', dateGenerator.getGeneratedDate());
-            models.outputs.thirdResultBlock.innerHTML = result;
+            invalidDateActions();
             return;
         }
 
-        result = formater.showFormatedDate(models.inputs.thirdInput.value, 'en-US', date);
+        result = formater.showFormatedDate(models.inputs.thirdInput.value, l10n, date);
         models.outputs.thirdResultBlock.innerHTML = result;
+
+        function invalidDateActions() {
+            models.buttons.generateDate.click();
+            result = formater.showFormatedDate(models.inputs.thirdInput.value, l10n, dateGenerator.getGeneratedDate());
+            models.outputs.thirdResultBlock.innerHTML = result;
+        }
     });
 
     models.inputs.dateInput.addEventListener('input', function () {
