@@ -26,7 +26,7 @@ APP.utilities.dateGenerator = (function () {
     function getParamString() {
         var date = getRandomDate();
 
-        return date.getFullYear() + " " + date.getMonth() + " " + date.getDate() + " " + date.getHours() + " " + date.getMinutes() + " " + date.getSeconds();
+        return date.getFullYear() + ' ' + date.getMonth() + ' ' + date.getDate() + ' ' + date.getHours() + ' ' + date.getMinutes() + ' ' + date.getSeconds();
     }
 
     function getGeneratedDate() {
