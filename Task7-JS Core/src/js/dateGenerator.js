@@ -8,10 +8,6 @@ APP.utilities.dateGenerator = (function () {
     var curDate = new Date(),
         generatedDate = null;
 
-    Date.prototype.daysInMonth = function () {
-        return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
-    };
-
     function getRandomDate() {
         var year = 0,
             month = 0;
@@ -19,7 +15,7 @@ APP.utilities.dateGenerator = (function () {
         year = getRandomInt(1000, curDate.getFullYear());
         month = getRandomInt(0, 11);
         generatedDate = new Date(year, month);
-        generatedDate.setDate(getRandomInt(0, generatedDate.daysInMonth()));
+        generatedDate.setDate(getRandomInt(0, daysInMonth(generatedDate)));
         generatedDate.setHours(getRandomInt(0, 23));
         generatedDate.setMinutes(getRandomInt(0, 60));
         generatedDate.setSeconds(getRandomInt(0, 60));
@@ -39,6 +35,10 @@ APP.utilities.dateGenerator = (function () {
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function daysInMonth(date) {
+        return 33 - new Date(date.getFullYear(), date.getMonth(), 33).getDate();
     }
 
     return {
