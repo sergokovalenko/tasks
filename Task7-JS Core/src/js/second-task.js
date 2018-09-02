@@ -7,17 +7,14 @@ APP.tasks.stringReplacer = (function () {
         var words = [],
             shortestWordInfo = {},
             letters = [],
-            inputVal = '',
-            result = '';
+            result = str;
 
-        inputVal = str;
-        result = inputVal.split('');
-        words = inputVal.split(/[.?,;:!]|\s/).filter(function (n) {
+        words = str.split(/[.?,;:!]|\s/).filter(function (n) {
             return n !== '';
         });
 
-        if (words.length === 0 || words.length === 1) {
-            return inputVal;
+        if (words.length < 2) {
+            return result;
         }
 
         shortestWordInfo = getShortestWord(words);
@@ -63,7 +60,7 @@ APP.tasks.stringReplacer = (function () {
 
     function getUniqueLetters(word) {
         var i = 0,
-            arr = word.toLowerCase().split(''),
+            arr = word.toLowerCase(),
             result = [];
 
         for (i = 0; i < arr.length; i += 1) {
@@ -77,18 +74,19 @@ APP.tasks.stringReplacer = (function () {
 
     function removeDuplicatedLetters(letters, str) {
         var i = 0,
-            j = 0;
+            j = 0,
+            result = str.split('');
 
-        for (i = 0; i < str.length; i++) {
+        for (i = 0; i < result.length; i++) {
             for (j = 0; j < letters.length; j++) {
-                if (str[i].toLowerCase() === letters[j]) {
-                    str[i] = '';
+                if (result[i].toLowerCase() === letters[j]) {
+                    result[i] = '';
                     break;
                 }
             }
         }
 
-        return str;
+        return result;
     }
 
     return {
