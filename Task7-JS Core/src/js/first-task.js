@@ -11,7 +11,7 @@ APP.tasks.calculator = (function () {
             errorMessage = 'Invalid value',
             str = '',
             lastElem = ',',
-            searchPattern = /[+-]?[0-9]+(\.[0-9]+)?|[-+*/]/ig;
+            searchPattern = /[+-]?[0-9]+(\.[0-9]+)?|[-+*/]/g;
 
         if (!validate(inputValue)) {
             return errorMessage;
@@ -19,12 +19,11 @@ APP.tasks.calculator = (function () {
 
         str = inputValue.replace(/[^0-9.+\-*/=]/g, '');
         str = str.substring(0, str.indexOf('=') + 1);
-        //для избегания проблем с унарными операторами
+
         str = str.replace(/([^+-])[+]/g, '$1++');
         str = str.replace(/([^+-])[-]/g, '$1+-');
 
         matchArr = str.match(searchPattern);
-        console.log(matchArr);
 
         if (!matchArr || matchArr.length < 1) {
             return errorMessage;
