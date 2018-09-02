@@ -9,12 +9,14 @@ APP.models = (function () {
     var inputs = {
             firstInput: null,
             secondInput: null,
-            thirdInput: null
+            thirdInput: null,
+            dateInput: null
         },
         buttons = {
             submitFirstTask: null,
             submitSecondTask: null,
-            submitThirdTask: null
+            submitThirdTask: null,
+            generateDate: null
         },
         outputs = {
             firstResultBlock: null,
@@ -23,17 +25,18 @@ APP.models = (function () {
         };
 
     function init() {
-        var inputArr = document.getElementsByClassName('task-value'),
-            btnArr = document.getElementsByClassName('submit-task'),
+        var btnArr = document.getElementsByClassName('submit-task'),
             outputArr = document.getElementsByClassName('result-value');
 
-        inputs.firstInput = inputArr[0];
-        inputs.secondInput = inputArr[1];
-        inputs.thirdInput = inputArr[2];
+        inputs.firstInput = document.getElementById('task1-value');
+        inputs.secondInput = document.getElementById('task2-value');
+        inputs.thirdInput = document.getElementById('task3-value');
+        inputs.dateInput = document.getElementById('task3-date');
 
         buttons.submitFirstTask = btnArr[0];
         buttons.submitSecondTask = btnArr[1];
         buttons.submitThirdTask = btnArr[2];
+        buttons.generateDate = document.getElementsByClassName('generate-date')[0];
 
         outputs.firstResultBlock = outputArr[0];
         outputs.secondResultBlock = outputArr[1];
