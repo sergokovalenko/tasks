@@ -26,8 +26,32 @@ window.onload = function () {
     });
 
     models.buttons.submitThirdTask.addEventListener('click', function () {
-        var result = formater.showFormatedDate(models.inputs.thirdInput.value, null, dateGenerator.getGeneratedDate());
+        var dateInputVal = models.inputs.dateInput.value,
+            date = {},
+            result = '';
+        var a = dateInputVal.split(' ').filter(function (n) {
+            return n !== '';
+        });
 
+        console.log(a);
+
+        if (!a && a.length !== 6) {
+            models.buttons.generateDate.click();
+            result = formater.showFormatedDate(models.inputs.thirdInput.value, 'en-US', dateGenerator.getGeneratedDate());
+            models.outputs.thirdResultBlock.innerHTML = result;
+            return;
+        }
+
+        date = new Date(a[0], a[1], a[2], a[3], a[4], a[5]);
+
+        if (!date.getFullYear()) {
+            models.buttons.generateDate.click();
+            result = formater.showFormatedDate(models.inputs.thirdInput.value, 'en-US', dateGenerator.getGeneratedDate());
+            models.outputs.thirdResultBlock.innerHTML = result;
+            return;
+        }
+
+        result = formater.showFormatedDate(models.inputs.thirdInput.value, 'en-US', date);
         models.outputs.thirdResultBlock.innerHTML = result;
     });
 
@@ -38,6 +62,4 @@ window.onload = function () {
     models.buttons.generateDate.addEventListener('click', function () {
         models.inputs.dateInput.value = dateGenerator.getParamString();
     });
-
-    models.buttons.generateDate.click();
 };
