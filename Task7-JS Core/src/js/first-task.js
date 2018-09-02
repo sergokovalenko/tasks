@@ -1,12 +1,14 @@
-"use strict";
-APP.createNamespace("APP.tasks.calculator");
+'use strict';
+var APP = APP || {};
+
+APP.createNamespace('APP.tasks.calculator');
 
 APP.tasks.calculator = (function () {
     function calculate(inputValue) {
         var result = 0,
             str = '',
             i = 0,
-            errorMessage = "Invalid value",
+            errorMessage = 'Invalid value',
             numbers = [],
             operators = [];
 
@@ -14,7 +16,7 @@ APP.tasks.calculator = (function () {
             return errorMessage;
         }
 
-        str = inputValue.replace(/[^0-9\.+\-*/=]/g, '');
+        str = inputValue.replace(/[^0-9.+\-*/=]/g, '');
         str = str.substring(0, str.indexOf('=') + 1);
 
         numbers = str.match(/[0-9]+(\.[0-9]+)?/g);
@@ -48,6 +50,8 @@ APP.tasks.calculator = (function () {
                 case '/':
                     result /= +numbers[i];
                     break;
+                default:
+                    break;
             }
         }
 
@@ -68,14 +72,3 @@ APP.tasks.calculator = (function () {
         calculate: calculate
     };
 }());
-
-window.onload = function () {
-    var calculator = APP.tasks.calculator,
-        models = APP.models;
-
-    models.init();
-    models.buttons.submitFirstTask.addEventListener('click', function () {
-        var result = calculator.calculate(models.inputs.firstInput.value);
-        models.outputs.firstResultBlock.innerHTML = result;
-    });
-};

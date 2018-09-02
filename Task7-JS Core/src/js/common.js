@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var APP = APP || {};
 
 APP.createNamespace = function (path) {
@@ -11,7 +11,7 @@ APP.createNamespace = function (path) {
     }
 
     for (i = 0; i < parts.length; i += 1) {
-        if (typeof parent[parts[i]] === "undefined") {
+        if (typeof parent[parts[i]] === 'undefined') {
             parent[parts[i]] = {};
         }
 
@@ -19,4 +19,4 @@ APP.createNamespace = function (path) {
     }
 
     return parent;
-}
+};
