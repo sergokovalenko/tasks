@@ -31,16 +31,16 @@ APP.tasks.dateFormater = (function () {
                 return withZero(date.getDay() + 1);
             },
             H: function (date) {
-                return date.getHours() % 12 || 12;
-            },
-            HH: function (date) {
-                return withZero(date.getHours() % 12 || 12);
-            },
-            h: function (date) {
                 return date.getHours();
             },
-            hh: function (date) {
+            HH: function (date) {
                 return withZero(date.getHours());
+            },
+            h: function (date) {
+                return date.getHours() % 12 || 12;
+            },
+            hh: function (date) {
+                return withZero(date.getHours() % 12 || 12);
             },
             m: function (date) {
                 return date.getMinutes();
