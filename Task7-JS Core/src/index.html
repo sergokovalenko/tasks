@@ -11,7 +11,8 @@
 <body>
     <div class="task">
         <h3 class="task-name">Task 1</h3>
-        <label for="task2-value">Expression: </label>
+        <div class="input-group">
+        <label for="task1-value">Expression: </label>
         <input class="first-task-val task-value" id="task1-value" list="calc-expressions" type="text" placeholder="2*24="
             maxlength="100" autocomplete="off" autofocus>
         <datalist id="calc-expressions">
@@ -21,12 +22,14 @@
             <option value="(^.^) 1234567890 (^.^) =">
         </datalist>
         <button class="submit-first-task submit-task">Show result</button>
+    </div>
         <div class="result">Result:
             <span class="result-value"></span>
         </div>
     </div>
     <div class="task">
         <h3 class="task-name">Task 2</h3>
+        <div class="input-group">
         <label for="task2-value">Text: </label>
         <input class="second-task-val task-value" id="task2-value" list="text-expressions" type="text" maxlength="100"
             placeholder="Enter text" autocomplete="off" />
@@ -37,16 +40,20 @@
             <option value="aWord.?wOrDd">
         </datalist>
         <button class="submit-second-task submit-task">Show result</button>
+        </div>
         <div class="result">Result:
             <span class="result-value"></span>
         </div>
     </div>
     <div class="task">
         <h3 class="task-name">Task 3</h3>
+        <div class="input-group">
         <label for="task3-date">Date value: </label>
         <input class="third-task-date task-value" id="task3-date" type="datetime" maxlength="20" placeholder="yyyy mm dd hh mm ss"
             autocomplete="off" readonly>
         <button class="submit-third-task generate-date">Random date</button>
+        </div>
+        <div class="input-group">
         <label for="task3-value">Pattern: </label>
         <input class="third-task-val task-value" id="task3-value" list="date-expressions" type="text" maxlength="100"
             placeholder="Enter pattern" autocomplete="off" />
@@ -59,6 +66,7 @@
             <option value="HH hh M MM MMM MMMM m mm">
         </datalist>
         <button class="submit-third-task submit-task">Show result</button>
+        </div>
         <div class="result">Result:
             <span class="result-value"></span>
         </div>

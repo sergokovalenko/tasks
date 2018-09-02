@@ -2,13 +2,21 @@
     margin-top: 15px;
     margin-right: auto;
     margin-left: auto;
-    width: 400px;
+    padding: 15px;
+    width: 600px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(98, 0, 255);
     text-align: center;
 }
 
 .task-name {
     margin: 0;
     margin-bottom: 10px;
+}
+
+.input-group {
+    margin-top: 10px;
 }
 
 .result {
