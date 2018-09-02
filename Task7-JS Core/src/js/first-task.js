@@ -10,6 +10,7 @@ APP.tasks.calculator = (function () {
             i = 0,
             errorMessage = 'Invalid value',
             str = '',
+            expression = '',
             lastElem = ',',
             searchPattern = /[+-]?[0-9]+(\.[0-9]+)?|[-+*/]/g;
 
@@ -17,11 +18,14 @@ APP.tasks.calculator = (function () {
             return errorMessage;
         }
 
-        str = inputValue.replace(/[^0-9.+\-*/=]/g, '');
+        str = inputValue.replace(/([^0-9])\./g, '$1');
+        str = str.replace(/[^0-9.+\-*/=]/g, '');
+        str = str.replace(/([0-9])\.([^0-9])/g, '$1$2');
         str = str.substring(0, str.indexOf('=') + 1);
+        expression = str;
 
-        str = str.replace(/([^+-])[+]/g, '$1++');
-        str = str.replace(/([^+-])[-]/g, '$1+-');
+        str = str.replace(/([^-+*/])[+]([^-+*/])/g, '$1++$2');
+        str = str.replace(/([^-+*/])[-]([^-+*/])/g, '$1+-$2');
 
         matchArr = str.match(searchPattern);
 
@@ -58,7 +62,7 @@ APP.tasks.calculator = (function () {
             }
         }
 
-        return roundNumber(result, 2);
+        return expression + roundNumber(result, 2);
     }
 
     function roundNumber(number, count) {
@@ -68,11 +72,11 @@ APP.tasks.calculator = (function () {
     }
 
     function validate(value) {
-        if (!/^[^=]*[0-9][^=]*=[^=]*$/.test(value)) {
+        if (!/^[^*/=]*[0-9][^=]*=[^=]*$/.test(value)) {
             return false;
         }
 
-        return !/\/\*|\*\/|\/\/|\*\*/g.test(value);
+        return !/\/\*|\*\/|\/\/|\*\*/g.test(value) && !/[-+*/]{3,}/g.test(value) && !/[0-9]+\.[0-9]+\.[0-9]+/g.test(value);
     }
 
     return {
