@@ -11,5 +11,5 @@ ctx.fillStyle = '#ff0000';
 ctx.fillRect(0, 0, 512, 480);
 
 window.onload = function () {
-  console.log('number');
+  console.log('asdfjklghjs');
 };
