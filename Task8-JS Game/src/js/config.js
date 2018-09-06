@@ -11,4 +11,5 @@ export default {
     down: 'DOWN',
     left: 'LEFT',
   },
+  blockWidth: 48,
 };
