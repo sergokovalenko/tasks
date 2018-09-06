@@ -1,47 +1,48 @@
-import input from './../keyHandler';
+import Entity from './entity';
 
-let position;
-let size;
-let velocity;
-let spriteInfo;
-let direction;
-let live;
+const input = window.input || {};
 
-function Tank(x, y, width, height, sprite, speed = 1, dir = 'top') {
-  position.x = x;
-  position.y = y;
-  size.width = width;
-  size.height = height;
-  velocity = speed;
-  spriteInfo = sprite;
-  direction = dir;
-  live = 3;
+function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top') {
+  Entity.apply(this, [x, y, width, height]);
+  this.keys = keys;
+  this.velocity = speed;
+  this.spriteInfo = sprite;
+  this.direction = dir;
+  this.live = 3;
 }
 
-function shoot() {
+Tank.prototype.shoot = () => {
   // realization
-}
+};
 
 Tank.prototype.update = function update(dt) {
-  if (input.isDown('DOWN') || input.isDown('s')) {
-    position[1] += velocity * dt;
+  if (input.isDown(this.keys.up) || input.isDown('w')) {
+    this.position.y -= this.velocity * dt;
+    this.direction = 'top';
+    return;
   }
 
-  if (input.isDown('UP') || input.isDown('w')) {
-    position[1] -= velocity * dt;
+  if (input.isDown(this.keys.right) || input.isDown('d')) {
+    this.position.x += this.velocity * dt;
+    this.direction = 'right';
+    return;
   }
 
-  if (input.isDown('LEFT') || input.isDown('a')) {
-    position[0] -= velocity * dt;
+  if (input.isDown(this.keys.down) || input.isDown('s')) {
+    this.position.y += this.velocity * dt;
+    this.direction = 'down';
+    return;
   }
 
-  if (input.isDown('RIGHT') || input.isDown('d')) {
-    position[0] += velocity * dt;
+  if (input.isDown(this.keys.left) || input.isDown('a')) {
+    this.position.x -= this.velocity * dt;
+    this.direction = 'left';
+    return;
   }
 
   if (input.isDown('SPACE')) {
-    shoot();
+    this.shoot();
   }
 };
 
-Tank.prototype.update = shoot;
+export default Tank;

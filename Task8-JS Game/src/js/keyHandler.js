@@ -1,4 +1,4 @@
-(function () {
+(function init() {
   let pressedKeys = {};
 
   function setKey(event, status) {
@@ -9,11 +9,11 @@
       case 32:
         key = 'SPACE';
         break;
-      case 38:
-        key = 'UP';
-        break;
       case 37:
         key = 'LEFT';
+        break;
+      case 38:
+        key = 'UP';
         break;
       case 39:
         key = 'RIGHT';
@@ -24,8 +24,6 @@
       default:
         key = String.fromCharCode(code);
     }
-
-    console.log(`Pressed key: ${key}`);
 
     pressedKeys[key] = status;
   }
