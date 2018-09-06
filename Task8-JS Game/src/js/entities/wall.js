@@ -7,3 +7,5 @@ function Wall(x, y, width, height, sprite, isDestr = true, hasColl = true, hasCo
   this.hasColl = hasColl;
   this.hasCollWithBul = hasCollWithBul;
 }
+
+export default Wall;
