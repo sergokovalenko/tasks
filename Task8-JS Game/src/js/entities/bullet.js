@@ -1,33 +1,26 @@
-let position;
-let size;
-let velocity;
-let spriteInfo;
-let direction;
+import Entity from './entity';
 
-function Bullet(x, y, width, height, sprite, speed = 1, dir = 'top') {
-  position.x = x;
-  position.y = y;
-  size.width = width;
-  size.height = height;
-  velocity = speed;
-  spriteInfo = sprite;
-  direction = dir;
+function Bullet(x, y, width, height, sprite, speed = 1100, dir = 'top') {
+  Entity.apply(this, [x, y, width, height]);
+  this.velocity = speed;
+  this.spriteInfo = sprite;
+  this.direction = dir;
 }
 
 Bullet.prototype.update = function update(dt) {
-  if (direction === 'down') {
-    position[1] += velocity * dt;
+  if (this.direction === 'down') {
+    this.position[1] += this.velocity * dt;
   }
 
-  if (direction === 'up') {
-    position[1] -= velocity * dt;
+  if (this.direction === 'up') {
+    this.position[1] -= this.velocity * dt;
   }
 
-  if (direction === 'left') {
-    position[0] -= velocity * dt;
+  if (this.direction === 'left') {
+    this.position[0] -= this.velocity * dt;
   }
 
-  if (direction === 'right') {
-    position[0] += velocity * dt;
+  if (this.direction === 'right') {
+    this.position[0] += this.velocity * dt;
   }
 };
