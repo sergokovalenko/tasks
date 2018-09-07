@@ -1,4 +1,5 @@
 import Entity from './entity';
+import Bullet from './bullet';
 
 const input = window.input || {};
 
@@ -10,13 +11,68 @@ function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top') {
   this.spriteInfo = sprite;
   this.direction = dir;
   this.live = 3;
+  this.bulletTimer = 0;
 }
 
-Tank.prototype.shoot = () => {
-  // realization
+Tank.prototype.shoot = function shoot(step) {
+  if (this.bulletTimer <= step) {
+    this.bulletTimer = 0.5;
+
+    switch (this.direction) {
+      case 'top':
+        return new Bullet(
+          (this.position.x + (this.size.width / 2)) - 2,
+          this.position.y - 6,
+          5,
+          5,
+          null,
+          1100,
+          'up',
+        );
+
+      case 'left':
+        return new Bullet(
+          this.position.x - 6,
+          (this.position.y + (this.size.height / 2)) - 2,
+          5,
+          5,
+          null,
+          1100,
+          'left',
+        );
+
+      case 'down':
+        return new Bullet(
+          (this.position.x + (this.size.width / 2)) - 2,
+          (this.position.y + this.size.height) + 2,
+          5,
+          5,
+          null,
+          1100,
+          'down',
+        );
+
+      case 'right':
+        return new Bullet(
+          (this.position.x + this.size.width) + 2,
+          (this.position.y + (this.size.height / 2)) - 2,
+          5,
+          5,
+          null,
+          1100,
+          'right',
+        );
+
+      default:
+        return null;
+    }
+  }
+  return null;
 };
 
-Tank.prototype.update = function update() {
+Tank.prototype.update = function update(step) {
+  this.bulletTimer -= step;
+
   if (input.isDown(this.keys.up) || input.isDown('w')) {
     this.position.y -= this.velocity;
     this.direction = 'top';
@@ -38,12 +94,12 @@ Tank.prototype.update = function update() {
   if (input.isDown(this.keys.left) || input.isDown('a')) {
     this.position.x -= this.velocity;
     this.direction = 'left';
-    return;
+    // return;
   }
 
-  if (input.isDown('SPACE')) {
-    this.shoot();
-  }
+  // if (input.isDown('SPACE')) {
+  //   this.shoot();
+  // }
 };
 
 export default Tank;

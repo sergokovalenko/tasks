@@ -31,7 +31,7 @@ function getTanks(count) {
     ));
   }
 
-  for (let i = 0; i < config.gameWidth; i += 100) {
+  for (let i = 100; i < config.gameWidth; i += 100) {
     tanks.push(new Enemy(
       i,
       i,
