@@ -1,7 +1,11 @@
 import config from './config';
 import Tank from './entities/tank';
 import getTanks from './tankFactory';
-import hasCollisionWithBorderds from './collisionManager';
+import {
+  hasCollisionWithBorderds,
+  macroCollision,
+} from './collisionManager';
+import Enemy from './entities/enemyTank';
 
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
@@ -56,7 +60,7 @@ function draw() {
   ctx.fillStyle = '#00ff00';
   ctx.fillRect(player.position.x, player.position.y, player.size.width, player.size.height);
 
-  ctx.fillStyle = '#0000ff';
+  ctx.fillStyle = '#00f0f0';
   for (let i = 0; i < enemies.length; i += 1) {
     ctx.fillRect(
       enemies[i].position.x,
@@ -67,14 +71,65 @@ function draw() {
   }
 }
 
+function collisionAction(obj) {
+  const collisedObj = obj;
+
+  switch (obj.direction) {
+    case 'top':
+      collisedObj.position.y += collisedObj.velocity;
+      break;
+    case 'right':
+      collisedObj.position.x -= collisedObj.velocity;
+      break;
+    case 'down':
+      collisedObj.position.y -= collisedObj.velocity;
+      break;
+    case 'left':
+      collisedObj.position.x += collisedObj.velocity;
+      break;
+    default:
+      break;
+  }
+}
+
+function playerCol(obj1, obj2) {
+  if (macroCollision(obj1, obj2)) {
+    collisionAction(obj1);
+  }
+}
+
+function enemyCol(obj1, obj2) {
+  if (macroCollision(obj1, obj2)) {
+    collisionAction(obj1);
+
+    if (obj1 instanceof (Enemy) && obj2 instanceof (Tank)) {
+      obj1.changeDirection();
+    }
+  }
+}
+
 function update() {
   player.update(step);
   fixCollisionsWithBorders(player);
 
   for (let i = 0; i < enemies.length; i += 1) {
+    playerCol(player, enemies[i]);
     enemies[i].update(step);
     fixCollisionsWithBorders(enemies[i]);
   }
+
+  for (let i = 0; i < enemies.length; i += 1) {
+    fixCollisionsWithBorders(enemies[i]);
+    enemyCol(enemies[i], player);
+  }
+
+  // for (let i = 0; i < enemies.length; i += 1) {
+  //   for (let j = 0; j < enemies.length; j += 1) {
+  //     if (i !== j) {
+  //       collisionWorker(enemies[i], enemies[j]);
+  //     }
+  //   }
+  // }
 }
 
 const frame = () => {
