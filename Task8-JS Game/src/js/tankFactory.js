@@ -31,38 +31,18 @@ function getTanks(count) {
     ));
   }
 
-  tanks.push(new Enemy(
-    x,
-    0,
-    config.blockWidth,
-    config.blockWidth,
-    null,
-    config.playerSpeed,
-    null,
-    'down',
-  ));
-
-  tanks.push(new Enemy(
-    200,
-    200,
-    config.blockWidth,
-    config.blockWidth,
-    null,
-    config.playerSpeed,
-    null,
-    'down',
-  ));
-
-  tanks.push(new Enemy(
-    200,
-    300,
-    config.blockWidth,
-    config.blockWidth,
-    null,
-    config.playerSpeed,
-    null,
-    'down',
-  ));
+  for (let i = 0; i < config.gameWidth; i += 100) {
+    tanks.push(new Enemy(
+      i,
+      i,
+      config.blockWidth,
+      config.blockWidth,
+      null,
+      config.playerSpeed,
+      null,
+      'down',
+    ));
+  }
 
   return tanks;
 }

@@ -13,8 +13,8 @@ let dt = 0;
 const step = 1 / config.fps;
 let last = performance.now();
 const player = new Tank(
-  100,
-  100,
+  400,
+  750,
   config.blockWidth,
   config.blockWidth,
   null,
@@ -105,6 +105,10 @@ function enemyCol(obj1, obj2) {
     if (obj1 instanceof (Enemy) && obj2 instanceof (Tank)) {
       obj1.changeDirection();
     }
+
+    if (obj1 instanceof (Enemy) && obj2 instanceof (Enemy)) {
+      obj1.changeDirection();
+    }
   }
 }
 
@@ -121,15 +125,12 @@ function update() {
   for (let i = 0; i < enemies.length; i += 1) {
     fixCollisionsWithBorders(enemies[i]);
     enemyCol(enemies[i], player);
+    for (let j = 0; j < enemies.length; j += 1) {
+      if (i !== j) {
+        enemyCol(enemies[i], enemies[j]);
+      }
+    }
   }
-
-  // for (let i = 0; i < enemies.length; i += 1) {
-  //   for (let j = 0; j < enemies.length; j += 1) {
-  //     if (i !== j) {
-  //       collisionWorker(enemies[i], enemies[j]);
-  //     }
-  //   }
-  // }
 }
 
 const frame = () => {
