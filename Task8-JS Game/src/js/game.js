@@ -23,7 +23,7 @@ const player = new Tank(
   config.playerSpeed,
   config.playerKeys,
 );
-const enemies = getTanks(3);
+const enemiesArr = getTanks(3);
 
 canvas.width = config.gameWidth;
 canvas.height = config.gameHeight;
@@ -34,6 +34,31 @@ function bulletCollisionsWithBorders(bullets) {
     if (hasCollisionWithBorderds(bullets[i])) {
       bullets.splice(i, 1);
       i -= 1;
+    }
+  }
+}
+
+function enemyCollisionWithBullet(bullets, enemies) {
+  for (let i = 0; i < bullets.length; i += 1) {
+    for (let j = 0; j < enemies.length; j += 1) {
+      if (macroCollision(bullets[i], enemies[j])) {
+        bullets.splice(i, 1);
+        enemies.splice(j, 1);
+        i -= 1;
+        break;
+      }
+    }
+  }
+}
+
+function tankCollisionWithBullet(obj, bullets) {
+  const object = obj;
+
+  for (let i = 0; i < bullets.length; i += 1) {
+    if (macroCollision(obj, bullets[i])) {
+      object.live -= 1;
+      bullets.splice(i, 1);
+      return;
     }
   }
 }
@@ -72,12 +97,12 @@ function draw() {
   ctx.fillRect(player.position.x, player.position.y, player.size.width, player.size.height);
 
   ctx.fillStyle = '#00f0f0';
-  for (let i = 0; i < enemies.length; i += 1) {
+  for (let i = 0; i < enemiesArr.length; i += 1) {
     ctx.fillRect(
-      enemies[i].position.x,
-      enemies[i].position.y,
-      enemies[i].size.width,
-      enemies[i].size.height,
+      enemiesArr[i].position.x,
+      enemiesArr[i].position.y,
+      enemiesArr[i].size.width,
+      enemiesArr[i].size.height,
     );
   }
 
@@ -145,19 +170,21 @@ function update() {
 
   fixCollisionsWithBorders(player);
   bulletCollisionsWithBorders(bulletsArr);
+  enemyCollisionWithBullet(bulletsArr, enemiesArr);
+  tankCollisionWithBullet(player, bulletsArr);
 
-  for (let i = 0; i < enemies.length; i += 1) {
-    playerCol(player, enemies[i]);
-    enemies[i].update(step);
-    fixCollisionsWithBorders(enemies[i]);
+  for (let i = 0; i < enemiesArr.length; i += 1) {
+    playerCol(player, enemiesArr[i]);
+    enemiesArr[i].update(step);
+    fixCollisionsWithBorders(enemiesArr[i]);
   }
 
-  for (let i = 0; i < enemies.length; i += 1) {
-    fixCollisionsWithBorders(enemies[i]);
-    enemyCol(enemies[i], player);
-    for (let j = 0; j < enemies.length; j += 1) {
+  for (let i = 0; i < enemiesArr.length; i += 1) {
+    fixCollisionsWithBorders(enemiesArr[i]);
+    enemyCol(enemiesArr[i], player);
+    for (let j = 0; j < enemiesArr.length; j += 1) {
       if (i !== j) {
-        enemyCol(enemies[i], enemies[j]);
+        enemyCol(enemiesArr[i], enemiesArr[j]);
       }
     }
   }

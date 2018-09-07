@@ -16,7 +16,7 @@ function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top') {
 
 Tank.prototype.shoot = function shoot(step) {
   if (this.bulletTimer <= step) {
-    this.bulletTimer = 0.5;
+    this.bulletTimer = 1;
 
     switch (this.direction) {
       case 'top':
@@ -26,7 +26,7 @@ Tank.prototype.shoot = function shoot(step) {
           5,
           5,
           null,
-          1100,
+          600,
           'up',
         );
 
@@ -37,7 +37,7 @@ Tank.prototype.shoot = function shoot(step) {
           5,
           5,
           null,
-          1100,
+          600,
           'left',
         );
 
@@ -48,7 +48,7 @@ Tank.prototype.shoot = function shoot(step) {
           5,
           5,
           null,
-          1100,
+          600,
           'down',
         );
 
@@ -59,7 +59,7 @@ Tank.prototype.shoot = function shoot(step) {
           5,
           5,
           null,
-          1100,
+          600,
           'right',
         );
 
