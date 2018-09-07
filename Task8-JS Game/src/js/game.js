@@ -11,6 +11,8 @@ const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 let dt = 0;
 const step = 1 / config.fps;
+const input = window.input || {};
+const bulletsArr = [];
 let last = performance.now();
 const player = new Tank(
   400,
@@ -26,6 +28,15 @@ const enemies = getTanks(3);
 canvas.width = config.gameWidth;
 canvas.height = config.gameHeight;
 document.body.appendChild(canvas);
+
+function bulletCollisionsWithBorders(bullets) {
+  for (let i = 0; i < bullets.length; i += 1) {
+    if (hasCollisionWithBorderds(bullets[i])) {
+      bullets.splice(i, 1);
+      i -= 1;
+    }
+  }
+}
 
 function fixCollisionsWithBorders(obj) {
   const collisionResult = hasCollisionWithBorderds(obj);
@@ -54,7 +65,7 @@ function fixCollisionsWithBorders(obj) {
 }
 
 function draw() {
-  ctx.fillStyle = '#ff0000';
+  ctx.fillStyle = '#000000';
   ctx.fillRect(0, 0, 800, 800);
 
   ctx.fillStyle = '#00ff00';
@@ -67,6 +78,16 @@ function draw() {
       enemies[i].position.y,
       enemies[i].size.width,
       enemies[i].size.height,
+    );
+  }
+
+  ctx.fillStyle = '#f0f0f0';
+  for (let i = 0; i < bulletsArr.length; i += 1) {
+    ctx.fillRect(
+      bulletsArr[i].position.x,
+      bulletsArr[i].position.y,
+      bulletsArr[i].size.width,
+      bulletsArr[i].size.height,
     );
   }
 }
@@ -113,8 +134,17 @@ function enemyCol(obj1, obj2) {
 }
 
 function update() {
+  if (input.isDown('SPACE')) {
+    const bul = player.shoot(step);
+
+    if (bul) {
+      bulletsArr.push(bul);
+    }
+  }
   player.update(step);
+
   fixCollisionsWithBorders(player);
+  bulletCollisionsWithBorders(bulletsArr);
 
   for (let i = 0; i < enemies.length; i += 1) {
     playerCol(player, enemies[i]);
@@ -130,6 +160,10 @@ function update() {
         enemyCol(enemies[i], enemies[j]);
       }
     }
+  }
+
+  for (let i = 0; i < bulletsArr.length; i += 1) {
+    bulletsArr[i].update();
   }
 }
 

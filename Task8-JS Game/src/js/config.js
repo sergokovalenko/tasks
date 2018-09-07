@@ -5,6 +5,8 @@ export default {
   gameHeight: 800,
   playerSpeed: 100,
   bulletSpeed: 1000,
+  bulletWidth: 5,
+  bulletHeight: 5,
   playerKeys: {
     up: 'UP',
     right: 'RIGHT',
