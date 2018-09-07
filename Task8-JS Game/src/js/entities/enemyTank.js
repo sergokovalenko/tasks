@@ -60,4 +60,9 @@ Enemy.prototype.update = function update(dt) {
   }
 };
 
+Enemy.prototype.changeDirection = function changeDirection() {
+  this.timer = 2;
+  this.direction = getRandomDirection();
+};
+
 export default Enemy;

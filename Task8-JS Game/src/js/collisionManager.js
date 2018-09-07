@@ -20,4 +20,25 @@ function hasCollisionWithBorderds(obj) {
   return false;
 }
 
-export default hasCollisionWithBorderds;
+function macroCollision(obj1, obj2) {
+  let XColl = false;
+  let YColl = false;
+
+  if ((obj1.position.x + obj1.size.width >= obj2.position.x) &&
+    (obj1.position.x <= obj2.position.x + obj2.size.width)) {
+    XColl = true;
+  }
+
+  if ((obj1.position.y + obj1.size.height >= obj2.position.y) &&
+    (obj1.position.y <= obj2.position.y + obj2.size.height)) {
+    YColl = true;
+  }
+
+  if (XColl && YColl) {
+    return true;
+  }
+  return false;
+}
+
+export { hasCollisionWithBorderds };
+export { macroCollision };
