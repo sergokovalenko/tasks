@@ -23,8 +23,6 @@ function getTanks(count) {
       x = 750;
     }
 
-    console.log(tank);
-
     tank.position.x = x;
     tank.position.y = 0;
 
