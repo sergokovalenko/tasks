@@ -2,7 +2,7 @@ import Tank from './tank';
 
 function Enemy(x, y, width, height, sprite, speed = 1, keys, dir = 'down') {
   Tank.apply(this, [x, y, width, height, sprite, speed, keys, dir]);
-  this.timer = 1;
+  this.moveTimer = 1;
 }
 
 function getRandomInt(min, max) {
@@ -52,16 +52,16 @@ Enemy.prototype.update = function update(dt) {
       break;
   }
 
-  this.timer -= dt;
+  this.moveTimer -= dt;
 
-  if (this.timer < dt) {
-    this.timer = 2;
+  if (this.moveTimer < dt) {
+    this.moveTimer = 2;
     this.direction = getRandomDirection();
   }
 };
 
 Enemy.prototype.changeDirection = function changeDirection() {
-  this.timer = 2;
+  this.moveTimer = 2;
   this.direction = getRandomDirection();
 };
 

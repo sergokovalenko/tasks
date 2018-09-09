@@ -1,4 +1,4 @@
-import config from './config';
+import { all as config } from './config';
 import Tank from './entities/tank';
 import getTanks from './tankFactory';
 import {

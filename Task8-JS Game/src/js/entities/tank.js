@@ -1,5 +1,6 @@
 import Entity from './entity';
 import Bullet from './bullet';
+import { bulletsSettings } from './../config';
 
 const input = window.input || {};
 
@@ -16,17 +17,17 @@ function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top') {
 
 Tank.prototype.shoot = function shoot(step) {
   if (this.bulletTimer <= step) {
-    this.bulletTimer = 1;
+    this.bulletTimer = 0.5;
 
     switch (this.direction) {
       case 'top':
         return new Bullet(
           (this.position.x + (this.size.width / 2)) - 2,
           this.position.y - 6,
-          5,
-          5,
+          bulletsSettings.bulletWidth,
+          bulletsSettings.bulletHeight,
           null,
-          600,
+          bulletsSettings.bulletSpeed,
           'up',
         );
 
@@ -34,10 +35,10 @@ Tank.prototype.shoot = function shoot(step) {
         return new Bullet(
           this.position.x - 6,
           (this.position.y + (this.size.height / 2)) - 2,
-          5,
-          5,
+          bulletsSettings.bulletWidth,
+          bulletsSettings.bulletHeight,
           null,
-          600,
+          bulletsSettings.bulletSpeed,
           'left',
         );
 
@@ -45,10 +46,10 @@ Tank.prototype.shoot = function shoot(step) {
         return new Bullet(
           (this.position.x + (this.size.width / 2)) - 2,
           (this.position.y + this.size.height) + 2,
-          5,
-          5,
+          bulletsSettings.bulletWidth,
+          bulletsSettings.bulletHeight,
           null,
-          600,
+          bulletsSettings.bulletSpeed,
           'down',
         );
 
@@ -56,10 +57,10 @@ Tank.prototype.shoot = function shoot(step) {
         return new Bullet(
           (this.position.x + this.size.width) + 2,
           (this.position.y + (this.size.height / 2)) - 2,
-          5,
-          5,
+          bulletsSettings.bulletWidth,
+          bulletsSettings.bulletHeight,
           null,
-          600,
+          bulletsSettings.bulletSpeed,
           'right',
         );
 
@@ -68,6 +69,26 @@ Tank.prototype.shoot = function shoot(step) {
     }
   }
   return null;
+};
+
+Tank.prototype.moveUp = function moveUp() {
+  this.position.y -= this.velocity;
+  this.direction = 'top';
+};
+
+Tank.prototype.moveRight = function moveUp() {
+  this.position.x += this.velocity;
+  this.direction = 'right';
+};
+
+Tank.prototype.moveDown = function moveUp() {
+  this.position.y += this.velocity;
+  this.direction = 'down';
+};
+
+Tank.prototype.moveLeft = function moveUp() {
+  this.position.x -= this.velocity;
+  this.direction = 'left';
 };
 
 Tank.prototype.update = function update(step) {
@@ -94,12 +115,7 @@ Tank.prototype.update = function update(step) {
   if (input.isDown(this.keys.left) || input.isDown('a')) {
     this.position.x -= this.velocity;
     this.direction = 'left';
-    // return;
   }
-
-  // if (input.isDown('SPACE')) {
-  //   this.shoot();
-  // }
 };
 
 export default Tank;
