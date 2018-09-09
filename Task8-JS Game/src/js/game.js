@@ -1,5 +1,6 @@
 import { all as config } from './config';
 import Tank from './entities/tank';
+import MovementManager from './Managers/movementManager';
 import getTanks from './tankFactory';
 import {
   hasCollisionWithBorderds,
@@ -24,6 +25,16 @@ const player = new Tank(
   config.playerKeys,
 );
 const enemiesArr = getTanks(3);
+
+const movementManager = new MovementManager();
+
+(function init() {
+  movementManager.addMovement(player, 'keyboard');
+
+  for (let i = 0; i < enemiesArr.length; i += 1) {
+    movementManager.addMovement(enemiesArr[i], 'ai');
+  }
+}());
 
 canvas.width = config.gameWidth;
 canvas.height = config.gameHeight;
@@ -166,7 +177,8 @@ function update() {
       bulletsArr.push(bul);
     }
   }
-  player.update(step);
+  movementManager.update(step);
+  // player.update(step);
 
   fixCollisionsWithBorders(player);
   bulletCollisionsWithBorders(bulletsArr);
@@ -175,7 +187,7 @@ function update() {
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
     playerCol(player, enemiesArr[i]);
-    enemiesArr[i].update(step);
+    // enemiesArr[i].update(step);ц
     fixCollisionsWithBorders(enemiesArr[i]);
   }
 

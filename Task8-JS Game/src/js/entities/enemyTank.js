@@ -41,30 +41,8 @@ function getRandomDirection() {
   return direction;
 }
 
-Enemy.prototype.update = function update(dt) {
-  switch (this.direction) {
-    case 'top':
-      this.position.y -= this.velocity;
-      break;
-    case 'right':
-      this.position.x += this.velocity;
-      break;
-    case 'down':
-      this.position.y += this.velocity;
-      break;
-    case 'left':
-      this.position.x -= this.velocity;
-      break;
-    default:
-      break;
-  }
+Enemy.prototype.update = function update() {
 
-  this.moveTimer -= dt;
-
-  if (this.moveTimer < dt) {
-    this.moveTimer = 2;
-    this.direction = getRandomDirection();
-  }
 };
 
 Enemy.prototype.changeDirection = function changeDirection() {
