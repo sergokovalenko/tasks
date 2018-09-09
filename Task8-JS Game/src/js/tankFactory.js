@@ -1,5 +1,5 @@
 import Enemy from './entities/enemyTank';
-import config from './config';
+import { all as config } from './config';
 
 const tanks = [];
 
