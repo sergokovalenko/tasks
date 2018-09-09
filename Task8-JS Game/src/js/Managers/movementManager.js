@@ -1,7 +1,8 @@
 function MovementManager() {
   this.objects = [];
+  this.that = this;
   this.types = {
-    keyboard: function move(obj) {
+    keyboard: function keyboard(obj) {
       const input = window.input || {};
 
       if (input.isDown(obj.keys.up) || input.isDown('w')) {
@@ -9,17 +10,17 @@ function MovementManager() {
         return;
       }
 
-      if (input.isDown(this.keys.right) || input.isDown('d')) {
+      if (input.isDown(obj.keys.right) || input.isDown('d')) {
         obj.moveRight();
         return;
       }
 
-      if (input.isDown(this.keys.down) || input.isDown('s')) {
+      if (input.isDown(obj.keys.down) || input.isDown('s')) {
         obj.moveDown();
         return;
       }
 
-      if (input.isDown(this.keys.left) || input.isDown('a')) {
+      if (input.isDown(obj.keys.left) || input.isDown('a')) {
         obj.moveLeft();
       }
     },
@@ -63,3 +64,5 @@ MovementManager.prototype.update = function update(dt) {
     this.types[this.objects[i].moveType](this.objects[i].obj, dt);
   }
 };
+
+export default MovementManager;
