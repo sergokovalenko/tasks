@@ -3,7 +3,6 @@ const all = {
   updatesPerSecond: 30,
   gameWidth: 800,
   gameHeight: 650,
-  playerSpeed: 100,
   bulletSpeed: 1000,
   bulletWidth: 5,
   bulletHeight: 5,
@@ -14,6 +13,19 @@ const all = {
     down: 'DOWN',
     left: 'LEFT',
   },
+  playerSpeed: 100,
+  blockWidth: 48,
+  blockHeight: 48,
+};
+
+const playerSettings = {
+  playerKeys: {
+    up: 'UP',
+    right: 'RIGHT',
+    down: 'DOWN',
+    left: 'LEFT',
+  },
+  playerSpeed: 100,
   blockWidth: 48,
   blockHeight: 48,
 };
@@ -32,4 +44,4 @@ const gameSettings = {
   gameHeight: 800,
 };
 
-export { all, bulletsSettings, gameSettings };
+export { all, bulletsSettings, gameSettings, playerSettings };

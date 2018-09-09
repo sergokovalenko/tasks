@@ -1,7 +1,7 @@
 import { all as config } from './config';
 import Tank from './entities/tank';
 import MovementManager from './Managers/movementManager';
-import getTanks from './tankFactory';
+import getTanks from './tankGenerator';
 import {
   hasCollisionWithBorderds,
   macroCollision,
