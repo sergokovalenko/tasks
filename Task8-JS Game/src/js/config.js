@@ -1,47 +1,60 @@
+const fps = 60;
+const updatesPerSecond = 30;
+const gameWidth = 800;
+const gameHeight = 650;
+const bulletSpeed = 1000;
+const bulletWidth = 5;
+const bulletHeight = 5;
+const bulletRealoadTimeForPlayers = 0.5;
+const playerKeys = {
+  up: 'UP',
+  right: 'RIGHT',
+  down: 'DOWN',
+  left: 'LEFT',
+};
+const playerSpeed = 100;
+const blockWidth = 48;
+const blockHeight = 48;
+
 const all = {
-  fps: 60,
-  updatesPerSecond: 30,
-  gameWidth: 800,
-  gameHeight: 650,
-  bulletSpeed: 1000,
-  bulletWidth: 5,
-  bulletHeight: 5,
-  bulletRealoadTimeForPlayers: 0.5,
-  playerKeys: {
-    up: 'UP',
-    right: 'RIGHT',
-    down: 'DOWN',
-    left: 'LEFT',
-  },
-  playerSpeed: 100,
-  blockWidth: 48,
-  blockHeight: 48,
+  fps,
+  updatesPerSecond,
+  gameWidth,
+  gameHeight,
+  bulletSpeed,
+  bulletWidth,
+  bulletHeight,
+  bulletRealoadTimeForPlayers,
+  playerKeys,
+  playerSpeed,
+  blockWidth,
+  blockHeight,
 };
 
 const playerSettings = {
-  playerKeys: {
-    up: 'UP',
-    right: 'RIGHT',
-    down: 'DOWN',
-    left: 'LEFT',
-  },
-  playerSpeed: 100,
-  blockWidth: 48,
-  blockHeight: 48,
+  playerKeys,
+  playerSpeed,
+  blockWidth,
+  blockHeight,
 };
 
 const bulletsSettings = {
-  bulletSpeed: 600,
-  bulletWidth: 5,
-  bulletHeight: 5,
-  bulletRealoadTimeForPlayers: 0.5,
+  bulletSpeed,
+  bulletWidth,
+  bulletHeight,
+  bulletRealoadTimeForPlayers,
 };
 
 const gameSettings = {
-  fps: 60,
-  updatesPerSecond: 30,
-  gameWidth: 800,
-  gameHeight: 800,
+  fps,
+  updatesPerSecond,
+  gameWidth,
+  gameHeight,
 };
 
-export { all, bulletsSettings, gameSettings, playerSettings };
+export {
+  all,
+  bulletsSettings,
+  gameSettings,
+  playerSettings,
+};
