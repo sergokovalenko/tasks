@@ -5,6 +5,13 @@ function Enemy(x, y, width, height, sprite, speed = 1, keys, dir = 'down') {
   this.moveTimer = 1;
 }
 
+(function inherit(C, Parent) {
+  const F = function () {};
+  const Child = C;
+  F.prototype = Parent.prototype;
+  Child.prototype = new F();
+}(Enemy, Tank));
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
