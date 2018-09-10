@@ -13,7 +13,6 @@ function getTexturesForLevel(arr) {
       switch (arr[i][j]) {
         case 1:
           texture = factory.makeBreakWall(j * config.wallWidth, i * config.wallWidth);
-          console.log(j * config.wallWidth);
           break;
         case 2:
           texture = factory.makeStilWall(j * config.wallWidth, i * config.wallWidth);

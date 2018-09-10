@@ -11,6 +11,7 @@ const playerKeys = {
   right: 'RIGHT',
   down: 'DOWN',
   left: 'LEFT',
+  shoot: ['SPACE'],
 };
 const playerSpeed = 100;
 const blockWidth = 48;
