@@ -1,29 +1,38 @@
+import WeaponFactory from './../factories/weaponFactory';
+
+const factory = new WeaponFactory();
+
 function MovementManager() {
   this.objects = [];
   this.types = {
-    keyboard: function keyboard(obj) {
+    keyboard(obj) {
       const input = window.input || {};
 
-      if (input.isDown(obj.keys.up) || input.isDown('w')) {
+      if (input.isDown(obj.keys.up)) {
         obj.moveUp();
         return;
       }
 
-      if (input.isDown(obj.keys.right) || input.isDown('d')) {
+      if (input.isDown(obj.keys.right)) {
         obj.moveRight();
         return;
       }
 
-      if (input.isDown(obj.keys.down) || input.isDown('s')) {
+      if (input.isDown(obj.keys.down)) {
         obj.moveDown();
         return;
       }
 
-      if (input.isDown(obj.keys.left) || input.isDown('a')) {
+      if (input.isDown(obj.keys.left)) {
+        obj.moveLeft();
+        return;
+      }
+
+      if (input.isDown(obj.keys.shoot[0])) {
         obj.moveLeft();
       }
     },
-    ai: function ai(obj, dt) {
+    ai(obj, dt) {
       const entity = obj;
 
       switch (entity.direction) {
@@ -53,7 +62,11 @@ function MovementManager() {
 }
 
 MovementManager.prototype.addMovement = function addMovement(toObj, type) {
-  const movableObj = { obj: toObj, moveType: type };
+  const movableObj = {
+    obj: toObj,
+    moveType: type,
+    weaponArr: [],
+  };
 
   this.objects.push(movableObj);
 };
@@ -61,6 +74,27 @@ MovementManager.prototype.addMovement = function addMovement(toObj, type) {
 MovementManager.prototype.update = function update(dt) {
   for (let i = 0; i < this.objects.length; i += 1) {
     this.types[this.objects[i].moveType](this.objects[i].obj, dt);
+  }
+};
+
+MovementManager.prototype.addWeapon = function addWeapon(toObj, weaponType, delay = 1) {
+  let movableObj = null;
+  const weapon = factory[`make${weaponType}`]();
+  weapon.delay = delay;
+  console.log(weapon);
+
+  const find = this.objects.find(el => el.obj === toObj);
+  console.log(find);
+
+  if (find) {
+    find.weaponArr.push(weapon);
+  } else {
+    movableObj = {
+      obj: toObj,
+      weaponArr: [weapon],
+    };
+
+    this.objects.push(movableObj);
   }
 };
 

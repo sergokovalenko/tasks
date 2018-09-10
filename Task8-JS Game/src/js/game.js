@@ -33,6 +33,7 @@ const movementManager = new MovementManager();
 
 (function init() {
   movementManager.addMovement(player, 'keyboard');
+  movementManager.addWeapon(player, 'Bullet');
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
     movementManager.addMovement(enemiesArr[i], 'ai');
