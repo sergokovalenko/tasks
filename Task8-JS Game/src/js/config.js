@@ -1,7 +1,7 @@
 const fps = 60;
 const updatesPerSecond = 30;
-const gameWidth = 800;
-const gameHeight = 650;
+const gameWidth = 880;
+const gameHeight = 880;
 const bulletSpeed = 1000;
 const bulletWidth = 5;
 const bulletHeight = 5;
@@ -15,6 +15,8 @@ const playerKeys = {
 const playerSpeed = 100;
 const blockWidth = 48;
 const blockHeight = 48;
+const wallWidth = 55;
+const wallHeight = 55;
 
 const all = {
   fps,
@@ -52,9 +54,15 @@ const gameSettings = {
   gameHeight,
 };
 
+const wallSetting = {
+  wallWidth,
+  wallHeight,
+};
+
 export {
   all,
   bulletsSettings,
   gameSettings,
   playerSettings,
+  wallSetting,
 };

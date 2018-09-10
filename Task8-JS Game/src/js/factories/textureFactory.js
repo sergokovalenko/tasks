@@ -1,4 +1,4 @@
-import { playerSettings as config } from './../config';
+import { wallSetting as config } from './../config';
 import Wall from './../entities/wall';
 
 function TextureFactory(playerUrl, enemyUrl) {
@@ -9,13 +9,13 @@ function TextureFactory(playerUrl, enemyUrl) {
 TextureFactory.prototype = {
   constructor: TextureFactory,
   makeBreakWall: function makeBreakWall(x = 0, y = 0) {
-    return new Wall(x, y, config.blockWidth, config.blockHeight, null);
+    return new Wall(x, y, config.wallWidth, config.wallHeight, null);
   },
   makeStilWall: function makeStilWall(x = 0, y = 0) {
-    return new Wall(x, y, config.blockWidth, config.blockHeight, null, false);
+    return new Wall(x, y, config.wallWidth, config.wallHeight, null, false);
   },
   makeEagle: function makeEagle(x = 0, y = 0) {
-    return new Wall(x, y, config.blockWidth, config.blockHeight, null);
+    return new Wall(x, y, config.wallWidth, config.wallHeight, null);
   },
 };
 

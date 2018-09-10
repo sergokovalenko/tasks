@@ -2,6 +2,8 @@ import { all as config } from './config';
 import Tank from './entities/tank';
 import MovementManager from './Managers/movementManager';
 import getTanks from './tankGenerator';
+import levels from './levelCofig';
+import getTextures from './mapGenerator';
 import {
   hasCollisionWithBorderds,
   macroCollision,
@@ -25,6 +27,7 @@ const player = new Tank(
   config.playerKeys,
 );
 const enemiesArr = getTanks(3);
+const textures = getTextures(levels.level1);
 
 const movementManager = new MovementManager();
 
@@ -102,7 +105,7 @@ function fixCollisionsWithBorders(obj) {
 
 function draw() {
   ctx.fillStyle = '#000000';
-  ctx.fillRect(0, 0, 800, 800);
+  ctx.fillRect(0, 0, config.gameWidth, config.gameHeight);
 
   ctx.fillStyle = '#00ff00';
   ctx.fillRect(player.position.x, player.position.y, player.size.width, player.size.height);
@@ -124,6 +127,16 @@ function draw() {
       bulletsArr[i].position.y,
       bulletsArr[i].size.width,
       bulletsArr[i].size.height,
+    );
+  }
+
+  ctx.fillStyle = '#ff0000';
+  for (let i = 0; i < textures.length; i += 1) {
+    ctx.fillRect(
+      textures[i].position.x,
+      textures[i].position.y,
+      textures[i].size.width,
+      textures[i].size.height,
     );
   }
 }
