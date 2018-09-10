@@ -1,6 +1,5 @@
 function MovementManager() {
   this.objects = [];
-  this.that = this;
   this.types = {
     keyboard: function keyboard(obj) {
       const input = window.input || {};
