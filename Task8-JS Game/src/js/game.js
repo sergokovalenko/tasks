@@ -1,6 +1,7 @@
 import { all as config } from './config';
 import Tank from './entities/tank';
 import MovementManager from './Managers/movementManager';
+import ShootingManager from './Managers/shootingManager';
 import getTanks from './tankGenerator';
 import levels from './levelCofig';
 import getTextures from './mapGenerator';
@@ -14,8 +15,8 @@ const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 let dt = 0;
 const step = 1 / config.fps;
-const input = window.input || {};
-const bulletsArr = [];
+// const input = window.input || {};
+let bulletsArr = [];
 let last = performance.now();
 const player = new Tank(
   400,
@@ -29,11 +30,14 @@ const player = new Tank(
 const enemiesArr = getTanks(3);
 const textures = getTextures(levels.level1);
 
-const movementManager = new MovementManager();
+let shootingManager;
+let movementManager;
 
 (function init() {
+  shootingManager = new ShootingManager();
+  movementManager = new MovementManager(shootingManager);
   movementManager.addMovement(player, 'keyboard');
-  movementManager.addWeapon(player, 'Bullet');
+  shootingManager.addWeapon(player, 'Bullet');
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
     movementManager.addMovement(enemiesArr[i], 'ai');
@@ -184,14 +188,12 @@ function enemyCol(obj1, obj2) {
 }
 
 function update() {
-  if (input.isDown('SPACE')) {
-    const bul = player.shoot(step);
-
-    if (bul) {
-      bulletsArr.push(bul);
-    }
-  }
   movementManager.update(step);
+  shootingManager.update(step);
+  if (shootingManager.isWeaponAdded) {
+    console.log('eee');
+    bulletsArr = shootingManager.getWeaponsArr();
+  }
   // player.update(step);
 
   fixCollisionsWithBorders(player);
