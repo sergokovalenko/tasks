@@ -2,11 +2,15 @@ import WeaponFactory from './../factories/weaponFactory';
 
 const factory = new WeaponFactory();
 
-function MovementManager() {
+function MovementManager(shootingManager) {
   this.objects = [];
+  this.shootingManager = shootingManager;
   this.types = {
-    keyboard(obj) {
+    keyboard(obj, dt) {
       const input = window.input || {};
+      const entity = obj;
+
+      entity.bulletTimer -= dt;
 
       if (input.isDown(obj.keys.up)) {
         obj.moveUp();
@@ -28,8 +32,8 @@ function MovementManager() {
         return;
       }
 
-      if (input.isDown(obj.keys.shoot[0])) {
-        obj.moveLeft();
+      if (shootingManager && obj.canShoot && input.isDown(obj.keys.shoot[0])) {
+        shootingManager.shoot(obj);
       }
     },
     ai(obj, dt) {

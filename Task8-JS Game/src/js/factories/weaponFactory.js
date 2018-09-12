@@ -7,8 +7,14 @@ function WeaponFactory() {
 
 WeaponFactory.prototype = {
   constructor: WeaponFactory,
-  makeBullet(x = 0, y = 0) {
-    return new Bullet(x, y, config.bulletWidth, config.bulletHeight, null);
+  makeBullet(x = 0, y = 0, direction = 'top') {
+    return new Bullet(
+      x, y, config.bulletWidth,
+      config.bulletHeight,
+      null,
+      config.bulletSpeed,
+      direction,
+    );
   },
 };
 
