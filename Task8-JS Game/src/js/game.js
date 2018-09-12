@@ -15,7 +15,6 @@ const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 let dt = 0;
 const step = 1 / config.fps;
-// const input = window.input || {};
 let bulletsArr = [];
 let last = performance.now();
 const player = new Tank(
@@ -41,6 +40,7 @@ let movementManager;
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
     movementManager.addMovement(enemiesArr[i], 'ai');
+    shootingManager.addWeapon(enemiesArr[i], 'Bullet');
   }
 }());
 
@@ -62,6 +62,7 @@ function enemyCollisionWithBullet(bullets, enemies) {
     for (let j = 0; j < enemies.length; j += 1) {
       if (macroCollision(bullets[i], enemies[j])) {
         bullets.splice(i, 1);
+        shootingManager.clearWeapons(enemies[j]);
         enemies.splice(j, 1);
         i -= 1;
         break;
