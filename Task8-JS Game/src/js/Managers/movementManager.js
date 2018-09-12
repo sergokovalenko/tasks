@@ -1,3 +1,7 @@
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function MovementManager(shootingManager) {
   this.objects = [];
   this.shootingManager = shootingManager;
@@ -53,9 +57,15 @@ function MovementManager(shootingManager) {
       }
 
       entity.moveTimer -= dt;
+      entity.shootTimer -= dt;
 
       if (entity.moveTimer < dt) {
         entity.changeDirection();
+      }
+
+      if (shootingManager && entity.canShoot && entity.shootTimer < dt) {
+        entity.shootTimer = getRandomInt(2, 5);
+        shootingManager.shoot(entity);
       }
     },
   };

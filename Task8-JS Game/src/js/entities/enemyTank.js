@@ -1,8 +1,13 @@
 import Tank from './tank';
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function Enemy(x, y, width, height, sprite, speed = 1, keys, dir = 'down') {
   Tank.apply(this, [x, y, width, height, sprite, speed, keys, dir]);
   this.moveTimer = 1;
+  this.shootTimer = getRandomInt(2, 5);
 }
 
 (function inherit(C, Parent) {
@@ -11,10 +16,6 @@ function Enemy(x, y, width, height, sprite, speed = 1, keys, dir = 'down') {
   F.prototype = Parent.prototype;
   Child.prototype = new F();
 }(Enemy, Tank));
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
 
 function getRandomDirection() {
   let direction;
@@ -46,7 +47,7 @@ Enemy.prototype.update = function update() {
 };
 
 Enemy.prototype.changeDirection = function changeDirection() {
-  this.moveTimer = 2;
+  this.moveTimer = getRandomInt(1, 5);
   this.direction = getRandomDirection();
 };
 

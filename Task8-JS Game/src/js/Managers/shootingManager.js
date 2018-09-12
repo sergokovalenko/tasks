@@ -12,7 +12,7 @@ function ShootingManager() {
     bullet(obj) {
       const tank = this.that.objects.find(el => el.obj === obj);
 
-      if (tank.obj.bulletTimer < 0) {
+      if (tank && tank.obj.bulletTimer < 0) {
         let x = 0;
         let y = 0;
         let { direction } = tank.obj;
@@ -44,8 +44,6 @@ function ShootingManager() {
         }
 
         const bullet = factory.makeBullet(x, y, direction);
-        console.log(bullet);
-        console.log(this.that.isWeaponAdded);
 
         if (bullet) {
           this.that.weaponArr.push(bullet);
@@ -64,6 +62,14 @@ ShootingManager.prototype.update = function update(dt) {
 ShootingManager.prototype.getWeaponsArr = function getWeaponsArr() {
   this.isWeaponAdded = false;
   return this.weaponArr;
+};
+
+ShootingManager.prototype.clearWeapons = function clearWeapons(obj) {
+  const find = this.objects.findIndex(el => el.obj === obj);
+
+  if (find !== -1) {
+    this.objects.splice(find, 1);
+  }
 };
 
 ShootingManager.prototype.shoot = function update(obj, weaponIndex) {
