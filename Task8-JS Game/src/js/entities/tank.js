@@ -2,7 +2,7 @@ import Entity from './entity';
 import Bullet from './bullet';
 import { bulletsSettings } from './../config';
 
-function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top') {
+function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top', canShoot = true) {
   Entity.apply(this, [x, y, width, height]);
   this.keys = keys;
   this.acceleration = 0.02;
@@ -11,6 +11,7 @@ function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top') {
   this.direction = dir;
   this.live = 3;
   this.bulletTimer = 0;
+  this.canShoot = canShoot;
 }
 
 Tank.prototype.shoot = function shoot(step) {
