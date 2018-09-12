@@ -8,13 +8,15 @@ function ShootingManager() {
   this.weaponArr = [];
   this.isWeaponAdded = false;
   this.types = {
+    that: this,
     bullet(obj) {
-      const tank = obj;
+      const tank = this.that.objects.find(el => el.obj === obj);
 
       if (tank.obj.bulletTimer < 0) {
         let x = 0;
         let y = 0;
-        let [direction] = obj.direction;
+        let { direction } = tank.obj;
+        this.that.isWeaponAdded = true;
 
         tank.obj.bulletTimer = tank.delay;
 
@@ -22,6 +24,7 @@ function ShootingManager() {
           case 'top':
             x = (obj.position.x + (obj.size.width / 2)) - (bulletsSettings.bulletHeight / 2);
             y = obj.position.y - 6;
+            direction = 'up';
             break;
           case 'left':
             x = obj.position.x - 6;
@@ -36,14 +39,16 @@ function ShootingManager() {
             y = (obj.position.y + (obj.size.height / 2)) - (bulletsSettings.bulletWidth / 2);
             break;
           default:
-            direction = 'top';
+            direction = 'up';
             break;
         }
 
         const bullet = factory.makeBullet(x, y, direction);
+        console.log(bullet);
+        console.log(this.that.isWeaponAdded);
 
         if (bullet) {
-          this.weaponArr.push(bullet);
+          this.that.weaponArr.push(bullet);
         }
       }
     },
@@ -54,6 +59,11 @@ ShootingManager.prototype.update = function update(dt) {
   for (let i = 0; i < this.objects.length; i += 1) {
     this.objects[i].obj.bulletTimer -= dt;
   }
+};
+
+ShootingManager.prototype.getWeaponsArr = function getWeaponsArr() {
+  this.isWeaponAdded = false;
+  return this.weaponArr;
 };
 
 ShootingManager.prototype.shoot = function update(obj, weaponIndex) {
@@ -71,10 +81,8 @@ ShootingManager.prototype.addWeapon = function addWeapon(toObj, weaponType, dela
   let movableObj = null;
   const weapon = factory[`make${weaponType}`]();
   weapon.delay = delay;
-  console.log(weapon);
 
   const find = this.objects.find(el => el.obj === toObj);
-  console.log(find);
 
   if (find) {
     find.weaponArr.push(weapon);

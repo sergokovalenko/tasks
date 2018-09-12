@@ -1,7 +1,3 @@
-import WeaponFactory from './../factories/weaponFactory';
-
-const factory = new WeaponFactory();
-
 function MovementManager(shootingManager) {
   this.objects = [];
   this.shootingManager = shootingManager;
@@ -78,27 +74,6 @@ MovementManager.prototype.addMovement = function addMovement(toObj, type) {
 MovementManager.prototype.update = function update(dt) {
   for (let i = 0; i < this.objects.length; i += 1) {
     this.types[this.objects[i].moveType](this.objects[i].obj, dt);
-  }
-};
-
-MovementManager.prototype.addWeapon = function addWeapon(toObj, weaponType, delay = 1) {
-  let movableObj = null;
-  const weapon = factory[`make${weaponType}`]();
-  weapon.delay = delay;
-  console.log(weapon);
-
-  const find = this.objects.find(el => el.obj === toObj);
-  console.log(find);
-
-  if (find) {
-    find.weaponArr.push(weapon);
-  } else {
-    movableObj = {
-      obj: toObj,
-      weaponArr: [weapon],
-    };
-
-    this.objects.push(movableObj);
   }
 };
 
