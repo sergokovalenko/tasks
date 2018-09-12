@@ -10,6 +10,7 @@ import {
   macroCollision,
 } from './collisionManager';
 import Enemy from './entities/enemyTank';
+import Wall from './entities/wall';
 
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
@@ -196,7 +197,7 @@ function enemyCol(obj1, obj2) {
   if (macroCollision(obj1, obj2)) {
     collisionAction(obj1);
 
-    if (obj1 instanceof (Enemy) && obj2 instanceof (Tank)) {
+    if (obj1 instanceof (Enemy) && (obj2 instanceof (Tank) || obj2 instanceof (Wall))) {
       obj1.changeDirection();
     }
 
@@ -219,9 +220,17 @@ function update() {
   tankCollisionWithBullet(player, bulletsArr);
   wallCollisionsWithBullets(textures, bulletsArr);
 
+  for (let i = 0; i < textures.length; i += 1) {
+    playerCol(player, textures[i]);
+  }
+
   for (let i = 0; i < enemiesArr.length; i += 1) {
     playerCol(player, enemiesArr[i]);
     fixCollisionsWithBorders(enemiesArr[i]);
+
+    for (let j = 0; j < textures.length; j += 1) {
+      enemyCol(enemiesArr[i], textures[j]);
+    }
   }
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
