@@ -57,6 +57,24 @@ function bulletCollisionsWithBorders(bullets) {
   }
 }
 
+function wallCollisionsWithBullets(walls, bullets) {
+  for (let i = 0; i < walls.length; i += 1) {
+    if (walls[i].hasCollWithBul) {
+      for (let j = 0; j < bullets.length; j += 1) {
+        if (macroCollision(walls[i], bullets[j])) {
+          bullets.splice(j, 1);
+          j -= 1;
+          if (walls[i].isDestr) {
+            walls.splice(i, 1);
+            i -= 1;
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
 function enemyCollisionWithBullet(bullets, enemies) {
   for (let i = 0; i < bullets.length; i += 1) {
     for (let j = 0; j < enemies.length; j += 1) {
@@ -192,19 +210,17 @@ function update() {
   movementManager.update(step);
   shootingManager.update(step);
   if (shootingManager.isWeaponAdded) {
-    console.log('eee');
     bulletsArr = shootingManager.getWeaponsArr();
   }
-  // player.update(step);
 
   fixCollisionsWithBorders(player);
   bulletCollisionsWithBorders(bulletsArr);
   enemyCollisionWithBullet(bulletsArr, enemiesArr);
   tankCollisionWithBullet(player, bulletsArr);
+  wallCollisionsWithBullets(textures, bulletsArr);
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
     playerCol(player, enemiesArr[i]);
-    // enemiesArr[i].update(step);ц
     fixCollisionsWithBorders(enemiesArr[i]);
   }
 
@@ -226,7 +242,6 @@ function update() {
 const frame = () => {
   const now = performance.now();
   dt += now - last;
-  // dt += Math.min(1, (now - last) / 1000);
 
   while (dt > step) {
     dt -= step;
