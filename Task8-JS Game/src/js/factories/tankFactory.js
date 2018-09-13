@@ -10,7 +10,6 @@ function TankFactory(playerUrl, enemyUrl) {
 TankFactory.prototype = {
   constructor: TankFactory,
   makePlayer: function makePlayer(playerSprite, keys = config.playerKeys) {
-    console.log(playerSprite);
     return new Tank(
       400,
       750,

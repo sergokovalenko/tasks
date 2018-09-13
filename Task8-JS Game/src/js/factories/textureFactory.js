@@ -8,14 +8,14 @@ function TextureFactory(playerUrl, enemyUrl) {
 
 TextureFactory.prototype = {
   constructor: TextureFactory,
-  makeBreakWall: function makeBreakWall(x = 0, y = 0) {
-    return new Wall(x, y, config.wallWidth, config.wallHeight, null);
+  makeBreakWall: function makeBreakWall(x = 0, y = 0, sprite = null) {
+    return new Wall(x, y, config.wallWidth, config.wallHeight, sprite);
   },
-  makeStilWall: function makeStilWall(x = 0, y = 0) {
-    return new Wall(x, y, config.wallWidth, config.wallHeight, null, false);
+  makeStilWall: function makeStilWall(x = 0, y = 0, sprite = null) {
+    return new Wall(x, y, config.wallWidth, config.wallHeight, sprite, false);
   },
-  makeEagle: function makeEagle(x = 0, y = 0) {
-    return new Wall(x, y, config.wallWidth, config.wallHeight, null);
+  makeEagle: function makeEagle(x = 0, y = 0, sprite = null) {
+    return new Wall(x, y, config.wallWidth, config.wallHeight, sprite);
   },
 };
 
