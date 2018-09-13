@@ -26,7 +26,7 @@ let collisionManager;
 
 canvas.width = config.gameWidth;
 canvas.height = config.gameHeight;
-document.body.appendChild(canvas);
+document.getElementById('canvas-wrapper').appendChild(canvas);
 
 function drawTank(pl) {
   let { x } = pl.spriteInfo.position;
@@ -62,7 +62,6 @@ function draw() {
 
   drawTank(player);
 
-  ctx.fillStyle = '#00f0f0';
   for (let i = 0; i < enemiesArr.length; i += 1) {
     drawTank(enemiesArr[i]);
   }
