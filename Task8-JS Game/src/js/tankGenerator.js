@@ -4,12 +4,12 @@ import { gameSettings as config } from './config';
 const tanks = [];
 const factory = new TankFactory(null, null);
 
-function getTanks(count) {
+function getTanks(count, enemySprite) {
   let x = 0;
   let tank;
 
   for (let i = 0; i < count; i += 1) {
-    tank = factory.makeStandartEnemy();
+    tank = factory.makeStandartEnemy(enemySprite);
 
     if (i % 3 === 0) {
       x = 0;
@@ -30,7 +30,7 @@ function getTanks(count) {
   }
 
   for (let i = 100; i < config.gameHeight; i += 100) {
-    tank = factory.makeStandartEnemy();
+    tank = factory.makeStandartEnemy(enemySprite);
     tank.position.x = i;
     tank.position.y = i;
     tanks.push(tank);
@@ -39,8 +39,8 @@ function getTanks(count) {
   return tanks;
 }
 
-function getPlayer() {
-  return factory.makePlayer();
+function getPlayer(playerSprite) {
+  return factory.makePlayer(playerSprite);
 }
 
 export { getTanks };

@@ -1,13 +1,14 @@
-function Sprite(url, pos, size, frames, dir, once) {
-  this.pos = pos;
-  this.size = size;
+import Entity from './entity';
+
+function Sprite(url, x, y, width, height, frames) {
+  Entity.call(this, x, y, width, height);
+  this.url = url;
   this.frames = frames;
   this.index = 0;
-  this.url = url;
-  this.dir = dir || 'horizontal';
-  this.once = once;
 }
 
 Sprite.prototype.draw = function () {
   // realization
 };
+
+export default Sprite;

@@ -2,7 +2,11 @@ import { all as config } from './config';
 import Tank from './entities/tank';
 import MovementManager from './Managers/movementManager';
 import ShootingManager from './Managers/shootingManager';
-import { getTanks, getPlayer } from './tankGenerator';
+import SpriteMaker from './Managers/spriteMaker';
+import {
+  getTanks,
+  getPlayer,
+} from './tankGenerator';
 import levels from './levelCofig';
 import getTextures from './mapGenerator';
 import {
@@ -20,22 +24,10 @@ let bulletsArr = [];
 let last = performance.now();
 let player;
 let enemiesArr;
-let textures = getTextures(levels.level2);
-
+let textures;
 let shootingManager;
 let movementManager;
-
-// (function init() {
-//   shootingManager = new ShootingManager();
-//   movementManager = new MovementManager(shootingManager);
-//   movementManager.addMovement(player, 'keyboard');
-//   shootingManager.addWeapon(player, 'Bullet');
-
-//   for (let i = 0; i < enemiesArr.length; i += 1) {
-//     movementManager.addMovement(enemiesArr[i], 'ai');
-//     shootingManager.addWeapon(enemiesArr[i], 'Bullet');
-//   }
-// }());
+let spriteMaker;
 
 canvas.width = config.gameWidth;
 canvas.height = config.gameHeight;
@@ -120,21 +112,43 @@ function fixCollisionsWithBorders(obj) {
   }
 }
 
+function drawTank(pl) {
+  let { x } = pl.spriteInfo.position;
+  switch (pl.direction) {
+    case 'right':
+      x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 6);
+      break;
+    case 'down':
+      x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 4);
+      break;
+    case 'left':
+      x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 2);
+      break;
+    default:
+      break;
+  }
+  ctx.drawImage(
+    window.resources.getImg(pl.spriteInfo.url),
+    x,
+    pl.spriteInfo.position.y,
+    pl.spriteInfo.size.width,
+    pl.spriteInfo.size.height,
+    pl.position.x,
+    pl.position.y,
+    pl.size.width,
+    pl.size.height,
+  );
+}
+
 function draw() {
   ctx.fillStyle = '#000000';
   ctx.fillRect(0, 0, config.gameWidth, config.gameHeight);
 
-  ctx.fillStyle = '#00ff00';
-  ctx.fillRect(player.position.x, player.position.y, player.size.width, player.size.height);
+  drawTank(player);
 
   ctx.fillStyle = '#00f0f0';
   for (let i = 0; i < enemiesArr.length; i += 1) {
-    ctx.fillRect(
-      enemiesArr[i].position.x,
-      enemiesArr[i].position.y,
-      enemiesArr[i].size.width,
-      enemiesArr[i].size.height,
-    );
+    drawTank(enemiesArr[i]);
   }
 
   ctx.fillStyle = '#f0f0f0';
@@ -189,11 +203,11 @@ function enemyCol(obj1, obj2) {
   if (macroCollision(obj1, obj2)) {
     collisionAction(obj1);
 
-    if (obj1 instanceof (Enemy) && (obj2 instanceof (Tank) || obj2 instanceof (Wall))) {
+    if (obj1 instanceof Enemy && (obj2 instanceof Tank || obj2 instanceof Wall)) {
       obj1.changeDirection();
     }
 
-    if (obj1 instanceof (Enemy) && obj2 instanceof (Enemy)) {
+    if (obj1 instanceof Enemy && obj2 instanceof Enemy) {
       obj1.changeDirection();
     }
   }
@@ -254,9 +268,15 @@ const frame = () => {
   requestAnimationFrame(frame);
 };
 
-function initialize() {
-  enemiesArr = getTanks(3);
-  player = getPlayer();
+
+function initialize(all) {
+  spriteMaker = new SpriteMaker(all);
+  const playerSprite = spriteMaker.getSpriteFor('player');
+  const enemySprite = spriteMaker.getSpriteFor('enemy');
+  console.log(enemySprite);
+
+  player = getPlayer(playerSprite);
+  enemiesArr = getTanks(3, enemySprite);
   textures = getTextures(levels.level2);
   shootingManager = new ShootingManager();
   movementManager = new MovementManager(shootingManager);
