@@ -1,7 +1,7 @@
 import {
   hasCollisionWithBorderds,
   macroCollision,
-} from './../collisionManager';
+} from './../helpers/collisionHelper';
 
 function CollisionManager() {}
 
