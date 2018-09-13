@@ -2,7 +2,7 @@ import { all as config } from './config';
 import Tank from './entities/tank';
 import MovementManager from './Managers/movementManager';
 import ShootingManager from './Managers/shootingManager';
-import getTanks from './tankGenerator';
+import { getTanks, getPlayer } from './tankGenerator';
 import levels from './levelCofig';
 import getTextures from './mapGenerator';
 import {
@@ -18,32 +18,24 @@ let dt = 0;
 const step = 1 / config.fps;
 let bulletsArr = [];
 let last = performance.now();
-const player = new Tank(
-  400,
-  750,
-  config.blockWidth,
-  config.blockWidth,
-  null,
-  config.playerSpeed,
-  config.playerKeys,
-);
-const enemiesArr = getTanks(3);
-const textures = getTextures(levels.level1);
+let player;
+let enemiesArr;
+let textures = getTextures(levels.level2);
 
 let shootingManager;
 let movementManager;
 
-(function init() {
-  shootingManager = new ShootingManager();
-  movementManager = new MovementManager(shootingManager);
-  movementManager.addMovement(player, 'keyboard');
-  shootingManager.addWeapon(player, 'Bullet');
+// (function init() {
+//   shootingManager = new ShootingManager();
+//   movementManager = new MovementManager(shootingManager);
+//   movementManager.addMovement(player, 'keyboard');
+//   shootingManager.addWeapon(player, 'Bullet');
 
-  for (let i = 0; i < enemiesArr.length; i += 1) {
-    movementManager.addMovement(enemiesArr[i], 'ai');
-    shootingManager.addWeapon(enemiesArr[i], 'Bullet');
-  }
-}());
+//   for (let i = 0; i < enemiesArr.length; i += 1) {
+//     movementManager.addMovement(enemiesArr[i], 'ai');
+//     shootingManager.addWeapon(enemiesArr[i], 'Bullet');
+//   }
+// }());
 
 canvas.width = config.gameWidth;
 canvas.height = config.gameHeight;
@@ -262,4 +254,21 @@ const frame = () => {
   requestAnimationFrame(frame);
 };
 
-requestAnimationFrame(frame);
+function initialize() {
+  enemiesArr = getTanks(3);
+  player = getPlayer();
+  textures = getTextures(levels.level2);
+  shootingManager = new ShootingManager();
+  movementManager = new MovementManager(shootingManager);
+  movementManager.addMovement(player, 'keyboard');
+  shootingManager.addWeapon(player, 'Bullet');
+
+  for (let i = 0; i < enemiesArr.length; i += 1) {
+    movementManager.addMovement(enemiesArr[i], 'ai');
+    shootingManager.addWeapon(enemiesArr[i], 'Bullet');
+  }
+
+  requestAnimationFrame(frame);
+}
+
+export default initialize;
