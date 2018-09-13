@@ -1,5 +1,5 @@
-import './js/keyHandler';
-import './js/resourceLoader';
+import './js/helpers/keyHandler';
+import './js/helpers/resourceLoader';
 import * as all from './assets/img/allObj.png';
 import * as textures from './assets/img/textures.png';
 import init from './js/game';

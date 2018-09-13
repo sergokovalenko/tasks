@@ -1,4 +1,4 @@
-import { all as config } from './config';
+import { all as config } from './../config';
 
 function hasCollisionWithBorderds(obj) {
   if (obj.position.x <= 0) {
