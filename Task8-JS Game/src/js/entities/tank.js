@@ -75,17 +75,17 @@ Tank.prototype.moveUp = function moveUp() {
   this.direction = 'top';
 };
 
-Tank.prototype.moveRight = function moveUp() {
+Tank.prototype.moveRight = function moveRight() {
   this.position.x += this.velocity;
   this.direction = 'right';
 };
 
-Tank.prototype.moveDown = function moveUp() {
+Tank.prototype.moveDown = function moveDown() {
   this.position.y += this.velocity;
   this.direction = 'down';
 };
 
-Tank.prototype.moveLeft = function moveUp() {
+Tank.prototype.moveLeft = function moveLeft() {
   this.position.x -= this.velocity;
   this.direction = 'left';
 };

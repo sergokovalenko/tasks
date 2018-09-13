@@ -20,6 +20,7 @@
       return;
     }
     const img = new Image();
+    img.src = url;
     img.onload = function onload() {
       resourceCache[url] = img;
 
@@ -30,7 +31,6 @@
       }
     };
     resourceCache[url] = false;
-    img.src = url;
   }
 
   function load(urlOrArr) {
@@ -58,5 +58,6 @@
     getImg,
     onReady,
     isReady,
+    resourceCache,
   };
 }());

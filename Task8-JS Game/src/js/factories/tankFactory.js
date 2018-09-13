@@ -9,24 +9,25 @@ function TankFactory(playerUrl, enemyUrl) {
 
 TankFactory.prototype = {
   constructor: TankFactory,
-  makePlayer: function makePlayer(keys = config.playerKeys) {
+  makePlayer: function makePlayer(playerSprite, keys = config.playerKeys) {
+    console.log(playerSprite);
     return new Tank(
       400,
       750,
       config.blockWidth,
       config.blockWidth,
-      null,
+      playerSprite,
       config.playerSpeed,
       keys,
     );
   },
-  makeStandartEnemy: function makeStandartEnemy() {
+  makeStandartEnemy: function makeStandartEnemy(enemySprite) {
     return new Enemy(
       0,
       0,
       config.blockWidth,
       config.blockWidth,
-      null,
+      enemySprite,
       config.playerSpeed,
       null,
       'down',
