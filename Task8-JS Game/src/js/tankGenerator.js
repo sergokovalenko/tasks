@@ -39,4 +39,9 @@ function getTanks(count) {
   return tanks;
 }
 
-export default getTanks;
+function getPlayer() {
+  return factory.makePlayer();
+}
+
+export { getTanks };
+export { getPlayer };

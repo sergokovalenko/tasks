@@ -1,2 +1,6 @@
 import './js/keyHandler';
-import './js/game';
+import init from './js/game';
+
+window.onload = () => {
+  init();
+};
