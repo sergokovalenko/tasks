@@ -3,7 +3,7 @@ import TextureFactory from './factories/textureFactory';
 
 const factory = new TextureFactory();
 
-function getTexturesForLevel(arr) {
+function getTexturesForLevel(arr, wallSprite, stillWallSprite) {
   const textures = [];
 
   for (let i = 0; i < arr.length; i += 1) {
@@ -12,13 +12,17 @@ function getTexturesForLevel(arr) {
 
       switch (arr[i][j]) {
         case 1:
-          texture = factory.makeBreakWall(j * config.wallWidth, i * config.wallWidth);
+          texture = factory.makeBreakWall(j * config.wallWidth, i * config.wallWidth, wallSprite);
           break;
         case 2:
-          texture = factory.makeStilWall(j * config.wallWidth, i * config.wallWidth);
+          texture = factory.makeStilWall(
+            j * config.wallWidth,
+            i * config.wallWidth,
+            stillWallSprite,
+          );
           break;
         case 100:
-          texture = factory.makeEagle(j * config.wallWidth, i * config.wallWidth);
+          texture = factory.makeEagle(j * config.wallWidth, i * config.wallWidth, wallSprite);
           break;
         default:
           break;
