@@ -13,28 +13,34 @@ function MovementManager(shootingManager) {
       entity.bulletTimer -= dt;
 
       if (input.isDown(obj.keys.up)) {
-        obj.moveUp();
+        entity.isMoving = true;
+        entity.moveUp();
         return;
       }
 
       if (input.isDown(obj.keys.right)) {
+        entity.isMoving = true;
         obj.moveRight();
         return;
       }
 
       if (input.isDown(obj.keys.down)) {
-        obj.moveDown();
+        entity.isMoving = true;
+        entity.moveDown();
         return;
       }
 
       if (input.isDown(obj.keys.left)) {
-        obj.moveLeft();
+        entity.isMoving = true;
+        entity.moveLeft();
         return;
       }
 
       if (shootingManager && obj.canShoot && input.isDown(obj.keys.shoot[0])) {
         shootingManager.shoot(obj);
       }
+
+      entity.isMoving = false;
     },
     ai(obj, dt) {
       const entity = obj;
