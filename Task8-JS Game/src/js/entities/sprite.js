@@ -5,7 +5,7 @@ function Sprite(url, x, y, width, height, frameCount = 0, animationTime = 1 / 24
   this.url = url;
   this.frameCount = frameCount;
   this.index = 0;
-  this.animationTimer = 1 / 24;
+  this.animationTimer = animationTime;
   this.currentFrame = 0;
   const timeForAnimation = animationTime;
   this.getAnimationTime = function anim() { return timeForAnimation; };

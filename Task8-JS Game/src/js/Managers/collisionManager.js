@@ -72,21 +72,22 @@ CollisionManager.prototype.fixCollisionsWithBorders = function col(obj) {
   if (collisionResult) {
     if (collisionResult === 'top') {
       entity.position.y += entity.velocity;
-      return;
     }
 
     if (collisionResult === 'right') {
       entity.position.x -= entity.velocity;
-      return;
     }
 
     if (collisionResult === 'bottom') {
       entity.position.y -= entity.velocity;
-      return;
     }
 
     if (collisionResult === 'left') {
       entity.position.x += entity.velocity;
+    }
+
+    if (entity.changeDirection) {
+      entity.changeDirection();
     }
   }
 };
