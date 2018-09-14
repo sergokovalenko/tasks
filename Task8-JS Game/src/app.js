@@ -1,16 +1,21 @@
 import './js/helpers/keyHandler';
 import './js/helpers/resourceLoader';
 import * as all from './assets/img/allObj.png';
-import { initialize as init, pauseGame } from './js/game';
+import {
+  initialize as init,
+  pauseGame,
+} from './js/game';
 
 window.onload = () => {
   window.resources.load(all);
-  setTimeout(() => {
-    init(all);
-  }, 1000);
+  const btnStart = document.getElementById('start-btn');
 
-  const btnPause = document.getElementById('pause-btn');
-  btnPause.addEventListener('click', () => {
-    pauseGame();
-  });
+  function start() {
+    this.innerText = 'Pause';
+    init(all);
+    this.removeEventListener('click', start);
+    this.addEventListener('click', pauseGame);
+  }
+
+  btnStart.addEventListener('click', start);
 };
