@@ -4,6 +4,7 @@ import * as all from './assets/img/allObj.png';
 import {
   initialize as init,
   pauseGame,
+  restart,
 } from './js/game';
 
 window.onload = () => {
@@ -18,4 +19,7 @@ window.onload = () => {
   }
 
   btnStart.addEventListener('click', start);
+
+  const btnReset = document.getElementById('reset-btn');
+  btnReset.addEventListener('click', restart);
 };

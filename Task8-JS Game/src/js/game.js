@@ -11,10 +11,8 @@ import getTextures from './mapGenerator';
 import CollisionManager from './Managers/collisionManager';
 import Drawer from './drawer';
 
-let canvas;
-let ctx;
-let dt = 0;
 const step = 1 / config.fps;
+let dt = 0;
 let bulletsArr = [];
 let last = performance.now();
 let player;
@@ -26,11 +24,59 @@ let spriteMaker;
 let collisionManager;
 let isPaused = false;
 let drawer;
+let score = 0;
+let gameState;
+let gameOverTimer;
+let playerSprite;
+let enemySprite;
+let wallSprite;
+let stillSprite;
+
+function restart() {
+  player = getPlayer(playerSprite);
+  enemiesArr = getTanks(3, enemySprite);
+  textures = getTextures(levels.level2, wallSprite, stillSprite);
+
+  movementManager.reset();
+  shootingManager.reset();
+  movementManager.addMovement(player, 'keyboard');
+  shootingManager.addWeapon(player, 'Bullet');
+
+  for (let i = 0; i < enemiesArr.length; i += 1) {
+    movementManager.addMovement(enemiesArr[i], 'ai');
+    shootingManager.addWeapon(enemiesArr[i], 'Bullet');
+  }
+
+  isPaused = false;
+  score = 0;
+  gameState = 'play';
+  gameOverTimer = 2;
+}
+
+function checkOnLose() {
+  if (player.live <= 0) {
+    gameState = 'lose';
+
+    return true;
+  }
+
+  return false;
+}
 
 function update() {
+  if (checkOnLose()) {
+    isPaused = true;
+    gameOverTimer -= step;
+    if (gameOverTimer <= 0) {
+      restart();
+    }
+    return;
+  }
+
   if (isPaused) {
     return;
   }
+
 
   movementManager.update(step);
   shootingManager.update(step);
@@ -40,7 +86,7 @@ function update() {
 
   collisionManager.fixCollisionsWithBorders(player);
   collisionManager.bulletCollisionsWithBorders(bulletsArr);
-  collisionManager.enemyCollisionWithBullet(bulletsArr, enemiesArr, shootingManager);
+  score += collisionManager.enemyCollisionWithBullet(bulletsArr, enemiesArr, shootingManager);
   collisionManager.tankCollisionWithBullet(player, bulletsArr);
   collisionManager.wallCollisionsWithBullets(textures, bulletsArr);
 
@@ -81,24 +127,22 @@ const frame = () => {
   }
   last = now;
   update();
-  drawer.drawAll(player, enemiesArr, bulletsArr, textures, isPaused);
+  drawer.drawAll(player, enemiesArr, bulletsArr, textures, score, gameState);
 
   requestAnimationFrame(frame);
 };
 
 function initialize(all) {
-  canvas = document.createElement('canvas');
-  ctx = canvas.getContext('2d');
-  drawer = new Drawer(ctx);
+  drawer = new Drawer();
   spriteMaker = new SpriteMaker(all);
   shootingManager = new ShootingManager();
   movementManager = new MovementManager(shootingManager);
   collisionManager = new CollisionManager();
 
-  const playerSprite = spriteMaker.getSpriteFor('player');
-  const enemySprite = spriteMaker.getSpriteFor('enemy');
-  const wallSprite = spriteMaker.getSpriteFor('wall');
-  const stillSprite = spriteMaker.getSpriteFor('stillWall');
+  playerSprite = spriteMaker.getSpriteFor('player');
+  enemySprite = spriteMaker.getSpriteFor('enemy');
+  wallSprite = spriteMaker.getSpriteFor('wall');
+  stillSprite = spriteMaker.getSpriteFor('stillWall');
 
   player = getPlayer(playerSprite);
   enemiesArr = getTanks(3, enemySprite);
@@ -112,16 +156,21 @@ function initialize(all) {
     shootingManager.addWeapon(enemiesArr[i], 'Bullet');
   }
 
-  canvas.width = config.gameWidth + 100;
-  canvas.height = config.gameHeight;
-  document.getElementById('canvas-wrapper').appendChild(canvas);
+  gameOverTimer = 3;
+  gameState = 'play';
 
   requestAnimationFrame(frame);
 }
 
 function pauseGame() {
   isPaused = !isPaused;
+  if (gameState === 'pause') {
+    gameState = 'play';
+  } else {
+    gameState = 'pause';
+  }
 }
 
 export { initialize };
 export { pauseGame };
+export { restart };

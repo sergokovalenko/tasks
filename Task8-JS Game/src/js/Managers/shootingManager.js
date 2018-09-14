@@ -103,4 +103,9 @@ ShootingManager.prototype.addWeapon = function addWeapon(toObj, weaponType, dela
   }
 };
 
+ShootingManager.prototype.reset = function reset() {
+  this.weaponArr = [];
+  this.isWeaponAdded = false;
+};
+
 export default ShootingManager;

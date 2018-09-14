@@ -1,7 +1,32 @@
-import { all as config } from './config';
+import { gameSettings as config } from './config';
 
-function Drawer(ctx) {
-  this.ctx = ctx;
+function Drawer() {
+  const canvas = document.createElement('canvas');
+  this.ctx = canvas.getContext('2d');
+  this.isPaused = false;
+
+  canvas.width = config.canvasWidth;
+  canvas.height = config.canvasHeight;
+  document.getElementById('canvas-wrapper').appendChild(canvas);
+}
+
+function pauseMessage(ctx) {
+  const context = ctx;
+  context.fillStyle = 'rgba(0,0,0,0.5)';
+  context.fillRect(0, 0, config.gameWidth, config.gameHeight);
+  context.fillStyle = '#ffffff';
+  context.font = '40px serif';
+  context.fillText('Pause', (config.gameWidth / 2) - 60, (config.gameHeight / 2) - 20);
+}
+
+function gameOverMessage(ctx, score) {
+  const context = ctx;
+  context.fillStyle = 'rgba(0,0,0,0.5)';
+  context.fillRect(0, 0, config.gameWidth, config.gameHeight);
+  context.fillStyle = '#ffffff';
+  context.font = '40px serif';
+  context.fillText('Game Over', (config.gameWidth / 2) - 60, (config.gameHeight / 2) - 20);
+  context.fillText(`Scores: ${score}`, (config.gameWidth / 2) - 60, (config.gameHeight / 2) + 20);
 }
 
 Drawer.prototype.drawBullets = function drawBullets(bullets) {
@@ -20,6 +45,10 @@ Drawer.prototype.drawEnemies = function drawEnemies(enemies) {
   for (let i = 0; i < enemies.length; i += 1) {
     this.drawTank(enemies[i]);
   }
+};
+
+Drawer.prototype.pause = function pause() {
+  this.isPaused = !this.isPaused;
 };
 
 Drawer.prototype.drawTextures = function drawTextures(textures) {
@@ -66,14 +95,14 @@ Drawer.prototype.drawTank = function drowTank(pl) {
   );
 };
 
-Drawer.prototype.drawAll = function draw(player, enemies, bullets, textures, isPaused) {
+Drawer.prototype.drawAll = function draw(player, enemies, bullets, textures, score = 0, gameState) {
   this.ctx.fillStyle = '#000000';
   this.ctx.fillRect(0, 0, config.gameWidth, config.gameHeight);
-  this.ctx.fillStyle = '#eeeeee';
+  this.ctx.fillStyle = '#efefef';
   this.ctx.fillRect(
     config.gameWidth,
     0,
-    config.gameWidth + 100,
+    config.gameWidth + 200,
     config.gameHeight,
   );
 
@@ -82,7 +111,23 @@ Drawer.prototype.drawAll = function draw(player, enemies, bullets, textures, isP
   this.drawBullets(bullets);
   this.drawTextures(textures);
 
-  if (isPaused) {
+  this.ctx.fillStyle = '#000000';
+  this.ctx.font = '22px serif';
+  this.ctx.fillText(`Lives: ${player.live}`, config.gameWidth + 10, (config.gameHeight / 2) - 11);
+  this.ctx.fillText(`Scores: ${score}`, config.gameWidth + 10, (config.gameHeight / 2) + 11);
+
+  switch (gameState) {
+    case 'pause':
+      pauseMessage(this.ctx);
+      break;
+    case 'lose':
+      gameOverMessage(this.ctx, score);
+      break;
+    default:
+      break;
+  }
+
+  if (this.isPaused) {
     this.ctx.fillStyle = 'rgba(0,0,0,0.5)';
     this.ctx.fillRect(0, 0, config.gameWidth, config.gameHeight);
     this.ctx.fillStyle = '#ffffff';

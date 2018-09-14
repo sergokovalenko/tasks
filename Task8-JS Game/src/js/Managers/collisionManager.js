@@ -33,6 +33,8 @@ CollisionManager.prototype.wallCollisionsWithBullets = function col(walls, bulle
 };
 
 CollisionManager.prototype.enemyCollisionWithBullet = (bullets, enemies, shootingManager) => {
+  let score = 0;
+
   for (let i = 0; i < bullets.length; i += 1) {
     for (let j = 0; j < enemies.length; j += 1) {
       if (macroCollision(bullets[i], enemies[j])) {
@@ -42,10 +44,13 @@ CollisionManager.prototype.enemyCollisionWithBullet = (bullets, enemies, shootin
         }
         enemies.splice(j, 1);
         i -= 1;
+        score = 100;
         break;
       }
     }
   }
+
+  return score;
 };
 
 CollisionManager.prototype.tankCollisionWithBullet = function col(obj, bullets) {
