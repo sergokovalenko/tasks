@@ -5,6 +5,7 @@ import SpriteMaker from './Managers/spriteMaker';
 import {
   getTanks,
   getPlayer,
+  getEnemyWithoutConflicts,
 } from './tankGenerator';
 import levels from './levelCofig';
 import getTextures from './mapGenerator';
@@ -82,6 +83,13 @@ function update() {
   shootingManager.update(step);
   if (shootingManager.isWeaponAdded) {
     bulletsArr = shootingManager.getWeaponsArr();
+  }
+
+  if (enemiesArr.length < 10) {
+    const enemy = getEnemyWithoutConflicts(player, textures, enemiesArr);
+    movementManager.addMovement(enemy, 'ai');
+    shootingManager.addWeapon(enemy, 'Bullet');
+    enemiesArr.push(enemy);
   }
 
   collisionManager.fixCollisionsWithBorders(player);
