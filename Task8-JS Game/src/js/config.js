@@ -1,7 +1,7 @@
 const fps = 60;
 const updatesPerSecond = 30;
-const gameWidth = 880;
-const gameHeight = 880;
+const gameWidth = 768;
+const gameHeight = 768;
 const bulletSpeed = 1000;
 const bulletWidth = 5;
 const bulletHeight = 5;
@@ -14,10 +14,10 @@ const playerKeys = {
   shoot: ['SPACE'],
 };
 const playerSpeed = 100;
-const blockWidth = 48;
-const blockHeight = 48;
-const wallWidth = 55;
-const wallHeight = 55;
+const blockWidth = 40;
+const blockHeight = 40;
+const wallWidth = 48;
+const wallHeight = 48;
 
 const all = {
   fps,

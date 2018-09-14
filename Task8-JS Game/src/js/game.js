@@ -76,16 +76,6 @@ function draw() {
     );
   }
 
-  ctx.fillStyle = '#ff0000';
-  for (let i = 0; i < textures.length; i += 1) {
-    ctx.fillRect(
-      textures[i].position.x,
-      textures[i].position.y,
-      textures[i].size.width,
-      textures[i].size.height,
-    );
-  }
-
   for (let i = 0; i < textures.length; i += 1) {
     ctx.drawImage(
       window.resources.getImg(textures[i].spriteInfo.url),
@@ -157,8 +147,8 @@ const frame = () => {
 };
 
 
-function initialize(all, texturesSprite) {
-  spriteMaker = new SpriteMaker(all, texturesSprite);
+function initialize(all) {
+  spriteMaker = new SpriteMaker(all);
   const playerSprite = spriteMaker.getSpriteFor('player');
   const enemySprite = spriteMaker.getSpriteFor('enemy');
   const wallSprite = spriteMaker.getSpriteFor('wall');
