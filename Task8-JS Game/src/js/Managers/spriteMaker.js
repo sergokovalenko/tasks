@@ -1,12 +1,11 @@
 import Sprite from './../entities/sprite';
 
-function SpriteMaker(all, textures) {
+function SpriteMaker(all) {
   this.all = all;
-  this.textures = textures;
   const playerSprite = new Sprite(all, 0, 0, 16, 16);
   const standartEnemy = new Sprite(all, 128, 64, 16, 16);
-  const wallSprite = new Sprite(all, 256, 128, 16, 16);
-  const stillSprite = new Sprite(textures, 0, 0, 16, 16);
+  const wallSprite = new Sprite(all, 256, 208, 16, 16);
+  const stillSprite = new Sprite(all, 256, 144, 16, 16);
   this.types = {
     player: () => playerSprite,
     enemy: () => standartEnemy,
