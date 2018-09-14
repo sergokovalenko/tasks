@@ -12,6 +12,7 @@ function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top', canShoo
   this.live = 1;
   this.bulletTimer = 0;
   this.canShoot = canShoot;
+  this.isMoving = true;
 }
 
 Tank.prototype.shoot = function shoot(step) {

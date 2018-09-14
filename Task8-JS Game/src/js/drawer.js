@@ -1,5 +1,7 @@
 import { gameSettings as config } from './config';
 
+const step = 1 / config.fps;
+
 function Drawer() {
   const canvas = document.createElement('canvas');
   this.ctx = canvas.getContext('2d');
@@ -68,7 +70,8 @@ Drawer.prototype.drawTextures = function drawTextures(textures) {
 };
 
 Drawer.prototype.drawTank = function drowTank(pl) {
-  let { x } = pl.spriteInfo.position;
+  const obj = pl;
+  let { x } = obj.spriteInfo.position;
   switch (pl.direction) {
     case 'right':
       x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 6);
@@ -82,16 +85,27 @@ Drawer.prototype.drawTank = function drowTank(pl) {
     default:
       break;
   }
+
+  if (obj.isMoving) {
+    obj.spriteInfo.animationTimer -= step;
+    if (obj.spriteInfo.animationTimer < step) {
+      obj.spriteInfo.currentFrame = (obj.spriteInfo.currentFrame + 1) % obj.spriteInfo.frameCount;
+      obj.spriteInfo.animationTimer = obj.spriteInfo.getAnimationTime();
+    }
+  }
+
+  x += obj.spriteInfo.currentFrame * obj.spriteInfo.size.width;
+
   this.ctx.drawImage(
-    window.resources.getImg(pl.spriteInfo.url),
+    window.resources.getImg(obj.spriteInfo.url),
     x,
-    pl.spriteInfo.position.y,
-    pl.spriteInfo.size.width,
-    pl.spriteInfo.size.height,
-    pl.position.x,
-    pl.position.y,
-    pl.size.width,
-    pl.size.height,
+    obj.spriteInfo.position.y,
+    obj.spriteInfo.size.width,
+    obj.spriteInfo.size.height,
+    obj.position.x,
+    obj.position.y,
+    obj.size.width,
+    obj.size.height,
   );
 };
 
