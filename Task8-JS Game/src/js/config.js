@@ -2,6 +2,8 @@ const fps = 60;
 const updatesPerSecond = 30;
 const gameWidth = 768;
 const gameHeight = 768;
+const canvasHeight = gameHeight;
+const canvasWidth = gameWidth + 150;
 const bulletSpeed = 1000;
 const bulletWidth = 5;
 const bulletHeight = 5;
@@ -53,6 +55,8 @@ const gameSettings = {
   updatesPerSecond,
   gameWidth,
   gameHeight,
+  canvasWidth,
+  canvasHeight,
 };
 
 const wallSetting = {

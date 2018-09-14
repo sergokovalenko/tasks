@@ -9,7 +9,7 @@ function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top', canShoo
   this.velocity = speed * this.acceleration;
   this.spriteInfo = sprite;
   this.direction = dir;
-  this.live = 3;
+  this.live = 1;
   this.bulletTimer = 0;
   this.canShoot = canShoot;
 }
@@ -88,10 +88,6 @@ Tank.prototype.moveDown = function moveDown() {
 Tank.prototype.moveLeft = function moveLeft() {
   this.position.x -= this.velocity;
   this.direction = 'left';
-};
-
-Tank.prototype.update = function update() {
-
 };
 
 export default Tank;

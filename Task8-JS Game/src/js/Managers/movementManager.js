@@ -81,6 +81,10 @@ MovementManager.prototype.addMovement = function addMovement(toObj, type) {
   this.objects.push(movableObj);
 };
 
+MovementManager.prototype.reset = function reset() {
+  this.objects = [];
+};
+
 MovementManager.prototype.update = function update(dt) {
   for (let i = 0; i < this.objects.length; i += 1) {
     this.types[this.objects[i].moveType](this.objects[i].obj, dt);

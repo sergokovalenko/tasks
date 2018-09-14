@@ -28,11 +28,11 @@
     pressedKeys[key] = status;
   }
 
-  document.addEventListener('keydown', (e) => {
+  document.body.addEventListener('keydown', (e) => {
     setKey(e, true);
   });
 
-  document.addEventListener('keyup', (e) => {
+  document.body.addEventListener('keyup', (e) => {
     setKey(e, false);
   });
 
