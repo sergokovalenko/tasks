@@ -23,6 +23,7 @@ let shootingManager;
 let movementManager;
 let spriteMaker;
 let collisionManager;
+let isPaused = false;
 
 canvas.width = config.gameWidth;
 canvas.height = config.gameHeight;
@@ -89,9 +90,21 @@ function draw() {
       textures[i].size.height,
     );
   }
+
+  if (isPaused) {
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(0, 0, config.gameWidth, config.gameHeight);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '32px serif';
+    ctx.fillText('Pause', (config.gameWidth / 2) - 50, (config.gameHeight / 2) - 16);
+  }
 }
 
 function update() {
+  if (isPaused) {
+    return;
+  }
+
   movementManager.update(step);
   shootingManager.update(step);
   if (shootingManager.isWeaponAdded) {
@@ -171,4 +184,9 @@ function initialize(all) {
   requestAnimationFrame(frame);
 }
 
-export default initialize;
+function pauseGame() {
+  isPaused = !isPaused;
+}
+
+export { initialize };
+export { pauseGame };
