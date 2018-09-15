@@ -2,11 +2,7 @@ import { all as config } from './config';
 import MovementManager from './Managers/movementManager';
 import ShootingManager from './Managers/shootingManager';
 import SpriteMaker from './Managers/spriteMaker';
-import {
-  getTanks,
-  getPlayer,
-  getEnemyWithoutConflicts,
-} from './tankGenerator';
+import { TankGenerator } from './tankGenerator';
 import levels from './levelCofig';
 import getTextures from './mapGenerator';
 import CollisionManager from './Managers/collisionManager';
@@ -32,14 +28,19 @@ let playerSprite;
 let enemySprite;
 let wallSprite;
 let stillSprite;
+let tankGenerator;
 
 function restart() {
-  player = getPlayer(playerSprite);
-  enemiesArr = getTanks(3, enemySprite);
-  textures = getTextures(levels.level2, wallSprite, stillSprite);
-
+  console.log(enemiesArr);
+  enemiesArr = [];
   movementManager.reset();
   shootingManager.reset();
+  tankGenerator.reset();
+  score = 0;
+  player = tankGenerator.getPlayer(playerSprite);
+  enemiesArr = tankGenerator.getTanks(3, enemySprite);
+  tankGenerator.update(score);
+  textures = getTextures(levels.level2, wallSprite, stillSprite);
   movementManager.addMovement(player, 'keyboard');
   shootingManager.addWeapon(player, 'Bullet');
 
@@ -49,9 +50,8 @@ function restart() {
   }
 
   isPaused = false;
-  score = 0;
   gameState = 'play';
-  gameOverTimer = 2;
+  gameOverTimer = 3;
 }
 
 function checkOnLose() {
@@ -78,19 +78,14 @@ function update() {
     return;
   }
 
-
+  tankGenerator.update(score);
   movementManager.update(step);
   shootingManager.update(step);
   if (shootingManager.isWeaponAdded) {
     bulletsArr = shootingManager.getWeaponsArr();
   }
 
-  if (enemiesArr.length < 10) {
-    const enemy = getEnemyWithoutConflicts(player, textures, enemiesArr);
-    movementManager.addMovement(enemy, 'ai');
-    shootingManager.addWeapon(enemy, 'Bullet');
-    enemiesArr.push(enemy);
-  }
+  enemiesArr = tankGenerator.getEnemies(enemiesArr, player, textures);
 
   collisionManager.fixCollisionsWithBorders(player);
   collisionManager.bulletCollisionsWithBorders(bulletsArr);
@@ -152,8 +147,9 @@ function initialize(all) {
   wallSprite = spriteMaker.getSpriteFor('wall');
   stillSprite = spriteMaker.getSpriteFor('stillWall');
 
-  player = getPlayer(playerSprite);
-  enemiesArr = getTanks(3, enemySprite);
+  tankGenerator = new TankGenerator(movementManager, shootingManager, enemySprite);
+  player = tankGenerator.getPlayer(playerSprite);
+  enemiesArr = tankGenerator.getTanks(3, enemySprite);
   textures = getTextures(levels.level2, wallSprite, stillSprite);
 
   movementManager.addMovement(player, 'keyboard');
