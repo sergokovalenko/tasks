@@ -5,7 +5,7 @@ function getRandomInt(min, max) {
 }
 
 function Enemy(x, y, width, height, sprite, speed = 1, keys, dir = 'down') {
-  Tank.apply(this, [x, y, width, height, sprite, speed, keys, dir]);
+  Tank.call(this, x, y, width, height, sprite, speed, keys, dir);
   this.moveTimer = 1;
   this.shootTimer = getRandomInt(2, 5);
 }

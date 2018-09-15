@@ -1,7 +1,7 @@
 import Entity from './entity';
 
 function Bullet(x, y, width, height, sprite, speed = 1100, dir = 'up') {
-  Entity.apply(this, [x, y, width, height]);
+  Entity.call(this, x, y, width, height);
   this.velocity = speed;
   this.spriteInfo = sprite;
   this.direction = dir;

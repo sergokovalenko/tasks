@@ -3,7 +3,7 @@ import Bullet from './bullet';
 import { bulletsSettings } from './../config';
 
 function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top', canShoot = true) {
-  Entity.apply(this, [x, y, width, height]);
+  Entity.call(this, x, y, width, height);
   this.keys = keys;
   this.acceleration = 0.02;
   this.velocity = speed * this.acceleration;
