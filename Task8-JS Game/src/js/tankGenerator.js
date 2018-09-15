@@ -2,7 +2,7 @@ import TankFactory from './factories/tankFactory';
 import { gameSettings as config } from './config';
 import { macroCollision } from './helpers/collisionHelper';
 
-const factory = new TankFactory(null, null);
+const factory = new TankFactory();
 let enemySprites;
 let movementManager;
 let shootingManager;
