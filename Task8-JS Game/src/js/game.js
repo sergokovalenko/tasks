@@ -95,6 +95,8 @@ function update() {
 
   enemiesArr = tankGenerator.getEnemies(enemiesArr, player, textures);
 
+  collisionManager.playerCollisinWithBonus(player, bonusArr);
+  collisionManager.enemyCollisinWithBonus(enemiesArr, bonusArr);
   collisionManager.fixCollisionsWithBorders(player);
   collisionManager.bulletCollisionsWithBorders(bulletsArr);
   score += collisionManager.enemyCollisionWithBullet(bulletsArr, enemiesArr, shootingManager);
@@ -157,7 +159,7 @@ function initialize(all) {
   starSprite = spriteMaker.getSpriteFor('starBonus');
   lifeSprite = spriteMaker.getSpriteFor('lifeBonus');
 
-  bonusGenerator = new BonusGenerator(60, lifeSprite, starSprite);
+  bonusGenerator = new BonusGenerator(6, lifeSprite, starSprite);
   tankGenerator = new TankGenerator(movementManager, shootingManager, enemySprite, playerSprite);
   player = tankGenerator.getPlayer();
   enemiesArr = tankGenerator.getTanks();

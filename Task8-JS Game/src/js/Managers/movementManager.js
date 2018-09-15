@@ -12,6 +12,25 @@ function MovementManager(shootingManager) {
 
       entity.bulletTimer -= dt;
 
+      if (entity.isUpdated) {
+        let delay = 1;
+        switch (entity.level) {
+          case 2:
+            delay -= 0.1;
+            break;
+          case 3:
+            delay -= 0.2;
+            break;
+          case 4:
+            delay -= 0.3;
+            break;
+          default:
+            break;
+        }
+        shootingManager.clearWeapons(entity);
+        shootingManager.addWeapon(entity, 'Bullet', delay);
+      }
+
       if (input.isDown(obj.keys.up)) {
         entity.isMoving = true;
         entity.moveUp();
