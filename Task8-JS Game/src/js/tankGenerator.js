@@ -5,8 +5,14 @@ import { macroCollision } from './helpers/collisionHelper';
 const tanks = [];
 const factory = new TankFactory(null, null);
 let enemySprites;
+let movementManager;
+let shootingManager;
 
-function TankGenerator(enemySprite) {
+function TankGenerator(moveManager, shootManager, enemySprite) {
+  this.gameScore = 0;
+  this.maxEnemiesOnMap = 3;
+  movementManager = moveManager;
+  shootingManager = shootManager;
   enemySprites = enemySprite;
 }
 
@@ -14,9 +20,18 @@ function getTanks(count, enemySprite) {
   let tank;
   enemySprites = enemySprite;
 
-  for (let i = 0; i < count; i += 1) {
+  for (let i = 0; i < 3; i += 1) {
+    let x = count;
+    x = 0;
     tank = factory.makeStandartEnemy(enemySprite);
+    if (i === 1) {
+      x = tank.size.width * 8;
+    }
+    if (i === 2) {
+      x = tank.size.width * 15;
+    }
 
+    tank.position.x = x;
     tanks.push(tank);
   }
 
@@ -52,9 +67,55 @@ function getEnemyWithoutConflicts(...objArrs) {
   return tank;
 }
 
+function getEnemies(enemyArray, player, textures) {
+  const diff = this.maxEnemiesOnMap - enemyArray.length;
+  console.log(this.maxEnemiesOnMap);
+
+  for (let i = 0; i < diff; i += 1) {
+    const tank = factory.makeStandartEnemy(enemySprites);
+    const fullArr = enemyArray.concat(textures);
+    fullArr.push(player);
+    rect(tank, [fullArr]);
+    movementManager.addMovement(tank, 'ai');
+    shootingManager.addWeapon(tank, 'Bullet');
+    enemyArray.push(tank);
+  }
+
+  return enemyArray;
+}
+
+
+function update(score) {
+  if (this.gameScore !== score) {
+    this.gameScore = score;
+
+    if (this.gameScore >= 300) {
+      this.maxEnemiesOnMap = 4;
+    }
+    if (this.gameScore >= 1000) {
+      this.maxEnemiesOnMap = 8;
+    }
+    if (this.gameScore >= 2000) {
+      this.maxEnemiesOnMap = 16;
+    }
+    if (this.gameScore >= 3000) {
+      this.maxEnemiesOnMap = 30;
+    }
+  }
+}
+
+function reset() {
+  this.maxEnemiesOnMap = 3;
+  this.gameScore = 0;
+  console.log(this.maxEnemiesOnMap);
+}
+
 TankGenerator.prototype.getEnemyWithoutConflicts = getEnemyWithoutConflicts;
 TankGenerator.prototype.getPlayer = getPlayer;
 TankGenerator.prototype.getTanks = getTanks;
+TankGenerator.prototype.update = update;
+TankGenerator.prototype.getEnemies = getEnemies;
+TankGenerator.prototype.reset = reset;
 
 export { getTanks };
 export { getPlayer };

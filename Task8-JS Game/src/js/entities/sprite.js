@@ -1,6 +1,6 @@
 import Entity from './entity';
 
-function Sprite(url, x, y, width, height, frameCount = 0, animationTime = 1 / 24) {
+function Sprite(url, x, y, width, height, frameCount = 0, animationTime = 1 / 10) {
   Entity.call(this, x, y, width, height);
   this.url = url;
   this.frameCount = frameCount;
