@@ -119,6 +119,26 @@ CollisionManager.prototype.playerCollisinWithObjects = function col(obj1, obj2) 
   }
 };
 
+CollisionManager.prototype.playerCollisinWithBonus = function col(player, bonusArr) {
+  bonusArr.forEach((bonus, i) => {
+    if (macroCollision(player, bonus)) {
+      bonus.affect(player);
+      bonusArr.splice(i, 1);
+    }
+  });
+};
+
+CollisionManager.prototype.enemyCollisinWithBonus = function col(enemyArr, bonusArr) {
+  enemyArr.forEach((enemy) => {
+    bonusArr.forEach((bonus, i) => {
+      if (macroCollision(enemy, bonus)) {
+        bonus.affect(enemy);
+        bonusArr.splice(i, 1);
+      }
+    });
+  });
+};
+
 CollisionManager.prototype.enemyCollisionWithObjects = function col(obj1, obj2) {
   if (macroCollision(obj1, obj2)) {
     collisionAction(obj1);
@@ -128,6 +148,5 @@ CollisionManager.prototype.enemyCollisionWithObjects = function col(obj1, obj2) 
     }
   }
 };
-
 
 export default CollisionManager;

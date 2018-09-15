@@ -15,7 +15,7 @@ const playerKeys = {
   left: 'LEFT',
   shoot: ['SPACE'],
 };
-const playerSpeed = 100;
+const playerSpeed = 2;
 const blockWidth = 40;
 const blockHeight = 40;
 const wallWidth = 48;

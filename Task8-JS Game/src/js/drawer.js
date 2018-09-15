@@ -69,9 +69,10 @@ Drawer.prototype.drawTextures = function drawTextures(textures) {
   }
 };
 
-Drawer.prototype.drawTank = function drowTank(pl) {
+Drawer.prototype.drawTank = function drawTank(pl) {
   const obj = pl;
   let { x } = obj.spriteInfo.position;
+  const { y } = obj.spriteInfo.position;
   switch (pl.direction) {
     case 'right':
       x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 6);
@@ -99,7 +100,7 @@ Drawer.prototype.drawTank = function drowTank(pl) {
   this.ctx.drawImage(
     window.resources.getImg(obj.spriteInfo.url),
     x,
-    obj.spriteInfo.position.y,
+    y + (obj.spriteInfo.size.height * (obj.level - 1)),
     obj.spriteInfo.size.width,
     obj.spriteInfo.size.height,
     obj.position.x,

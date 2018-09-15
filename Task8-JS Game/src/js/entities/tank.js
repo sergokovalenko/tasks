@@ -1,10 +1,9 @@
 import Entity from './entity';
 
-function Tank(x, y, width, height, sprite, speed = 1, keys, dir = 'top', canShoot = true) {
+function Tank(x, y, width, height, sprite, speed = 2, keys, dir = 'top', canShoot = true) {
   Entity.call(this, x, y, width, height);
   this.keys = keys;
-  this.acceleration = 0.02;
-  this.velocity = speed * this.acceleration;
+  this.velocity = speed;
   this.spriteInfo = sprite;
   this.direction = dir;
   this.bulletTimer = 0;
@@ -42,6 +41,7 @@ Tank.prototype.levelUp = function levelUp() {
 
   this.level += 1;
   this.isUpgraded = true;
+  this.velocity += 0.5;
 };
 
 export default Tank;
