@@ -16,8 +16,8 @@ WeaponFactory.prototype = {
     return new LifeBonus(
       x,
       y,
-      config.bulletWidth,
-      config.bulletHeight,
+      config.blockWidth,
+      config.blockHeight,
       lifeBonusSprite,
     );
   },
@@ -25,8 +25,8 @@ WeaponFactory.prototype = {
     return new UpgradeBonus(
       x,
       y,
-      config.bulletWidth,
-      config.bulletHeight,
+      config.blockWidth,
+      config.blockHeight,
       upgradeBonusSprite,
     );
   },

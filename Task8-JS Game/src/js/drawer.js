@@ -109,14 +109,22 @@ Drawer.prototype.drawTank = function drowTank(pl) {
   );
 };
 
-Drawer.prototype.drawAll = function draw(player, enemies, bullets, textures, score = 0, gameState) {
+Drawer.prototype.drawAll = function draw(
+  player,
+  enemies,
+  bullets,
+  textures,
+  bonusArr,
+  score = 0,
+  gameState,
+) {
   this.ctx.fillStyle = '#000000';
   this.ctx.fillRect(0, 0, config.gameWidth, config.gameHeight);
   this.ctx.fillStyle = '#efefef';
   this.ctx.fillRect(
     config.gameWidth,
     0,
-    config.gameWidth + 200,
+    config.canvasWidth,
     config.gameHeight,
   );
 
@@ -124,6 +132,7 @@ Drawer.prototype.drawAll = function draw(player, enemies, bullets, textures, sco
   this.drawEnemies(enemies);
   this.drawBullets(bullets);
   this.drawTextures(textures);
+  this.drawTextures(bonusArr);
 
   this.ctx.fillStyle = '#000000';
   this.ctx.font = '22px serif';
