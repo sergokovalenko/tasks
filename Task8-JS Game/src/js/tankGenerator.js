@@ -6,24 +6,24 @@ const factory = new TankFactory();
 let enemySprites;
 let movementManager;
 let shootingManager;
+let playerSprites;
 
-function TankGenerator(moveManager, shootManager, enemySprite) {
+function TankGenerator(moveManager, shootManager, enemySprite, playerSprite) {
   this.gameScore = 0;
   this.maxEnemiesOnMap = 3;
   movementManager = moveManager;
   shootingManager = shootManager;
   enemySprites = enemySprite;
+  playerSprites = playerSprite;
 }
 
-function getTanks(count, enemySprite) {
+function getTanks() {
   const tanks = [];
   let tank;
-  enemySprites = enemySprite;
 
   for (let i = 0; i < 3; i += 1) {
-    let x = count;
-    x = 0;
-    tank = factory.makeStandartEnemy(enemySprite);
+    let x = 0;
+    tank = factory.makeStandartEnemy(enemySprites);
     if (i === 1) {
       x = tank.size.width * 8;
     }
@@ -38,8 +38,8 @@ function getTanks(count, enemySprite) {
   return tanks;
 }
 
-function getPlayer(playerSprite) {
-  return factory.makePlayer(playerSprite);
+function getPlayer() {
+  return factory.makePlayer(playerSprites);
 }
 
 function getRandomInt(min, max) {
@@ -115,7 +115,4 @@ TankGenerator.prototype.update = update;
 TankGenerator.prototype.getEnemies = getEnemies;
 TankGenerator.prototype.reset = reset;
 
-export { getTanks };
-export { getPlayer };
-export { getEnemyWithoutConflicts };
-export { TankGenerator };
+export default TankGenerator;

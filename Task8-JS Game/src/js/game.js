@@ -2,7 +2,8 @@ import { all as config } from './config';
 import MovementManager from './Managers/movementManager';
 import ShootingManager from './Managers/shootingManager';
 import SpriteMaker from './Managers/spriteMaker';
-import { TankGenerator } from './tankGenerator';
+import TankGenerator from './tankGenerator';
+import BonusGenerator from './bonusGenerator';
 import levels from './levelCofig';
 import getTextures from './mapGenerator';
 import CollisionManager from './Managers/collisionManager';
@@ -11,6 +12,7 @@ import Drawer from './drawer';
 const step = 1 / config.fps;
 let dt = 0;
 let bulletsArr = [];
+let bonusArr = [];
 let last = performance.now();
 let player;
 let enemiesArr;
@@ -24,19 +26,23 @@ let drawer;
 let score = 0;
 let gameState;
 let gameOverTimer;
+let tankGenerator;
+let bonusGenerator;
 let playerSprite;
 let enemySprite;
 let wallSprite;
 let stillSprite;
-let tankGenerator;
+let starSprite;
+let lifeSprite;
 
 function restart() {
   enemiesArr = [];
+  bonusArr = [];
   movementManager.reset();
   shootingManager.reset();
   tankGenerator.reset();
   player = tankGenerator.getPlayer(playerSprite);
-  enemiesArr = tankGenerator.getTanks(3, enemySprite);
+  enemiesArr = tankGenerator.getTanks(enemySprite);
   textures = getTextures(levels.level2, wallSprite, stillSprite);
   movementManager.addMovement(player, 'keyboard');
   shootingManager.addWeapon(player, 'Bullet');
@@ -76,6 +82,10 @@ function update() {
     return;
   }
 
+  const bonus = bonusGenerator.generateBonus(step);
+  if (bonus) {
+    bonusArr.push(bonus);
+  }
   tankGenerator.update(score);
   movementManager.update(step);
   shootingManager.update(step);
@@ -128,7 +138,7 @@ const frame = () => {
   }
   last = now;
   update();
-  drawer.drawAll(player, enemiesArr, bulletsArr, textures, score, gameState);
+  drawer.drawAll(player, enemiesArr, bulletsArr, textures, bonusArr, score, gameState);
 
   requestAnimationFrame(frame);
 };
@@ -144,10 +154,13 @@ function initialize(all) {
   enemySprite = spriteMaker.getSpriteFor('enemy');
   wallSprite = spriteMaker.getSpriteFor('wall');
   stillSprite = spriteMaker.getSpriteFor('stillWall');
+  starSprite = spriteMaker.getSpriteFor('starBonus');
+  lifeSprite = spriteMaker.getSpriteFor('lifeBonus');
 
-  tankGenerator = new TankGenerator(movementManager, shootingManager, enemySprite);
-  player = tankGenerator.getPlayer(playerSprite);
-  enemiesArr = tankGenerator.getTanks(3, enemySprite);
+  bonusGenerator = new BonusGenerator(60, lifeSprite, starSprite);
+  tankGenerator = new TankGenerator(movementManager, shootingManager, enemySprite, playerSprite);
+  player = tankGenerator.getPlayer();
+  enemiesArr = tankGenerator.getTanks();
   textures = getTextures(levels.level2, wallSprite, stillSprite);
 
   movementManager.addMovement(player, 'keyboard');
