@@ -2,7 +2,6 @@ import TankFactory from './factories/tankFactory';
 import { gameSettings as config } from './config';
 import { macroCollision } from './helpers/collisionHelper';
 
-const tanks = [];
 const factory = new TankFactory(null, null);
 let enemySprites;
 let movementManager;
@@ -17,6 +16,7 @@ function TankGenerator(moveManager, shootManager, enemySprite) {
 }
 
 function getTanks(count, enemySprite) {
+  const tanks = [];
   let tank;
   enemySprites = enemySprite;
 
@@ -69,7 +69,6 @@ function getEnemyWithoutConflicts(...objArrs) {
 
 function getEnemies(enemyArray, player, textures) {
   const diff = this.maxEnemiesOnMap - enemyArray.length;
-  console.log(this.maxEnemiesOnMap);
 
   for (let i = 0; i < diff; i += 1) {
     const tank = factory.makeStandartEnemy(enemySprites);
@@ -107,7 +106,6 @@ function update(score) {
 function reset() {
   this.maxEnemiesOnMap = 3;
   this.gameScore = 0;
-  console.log(this.maxEnemiesOnMap);
 }
 
 TankGenerator.prototype.getEnemyWithoutConflicts = getEnemyWithoutConflicts;

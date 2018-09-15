@@ -31,15 +31,12 @@ let stillSprite;
 let tankGenerator;
 
 function restart() {
-  console.log(enemiesArr);
   enemiesArr = [];
   movementManager.reset();
   shootingManager.reset();
   tankGenerator.reset();
-  score = 0;
   player = tankGenerator.getPlayer(playerSprite);
   enemiesArr = tankGenerator.getTanks(3, enemySprite);
-  tankGenerator.update(score);
   textures = getTextures(levels.level2, wallSprite, stillSprite);
   movementManager.addMovement(player, 'keyboard');
   shootingManager.addWeapon(player, 'Bullet');
@@ -52,6 +49,7 @@ function restart() {
   isPaused = false;
   gameState = 'play';
   gameOverTimer = 3;
+  score = 0;
 }
 
 function checkOnLose() {
