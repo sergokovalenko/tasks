@@ -14,8 +14,8 @@ TankFactory.prototype = {
   constructor: TankFactory,
   makePlayer: function makePlayer(keys = config.playerKeys) {
     return new Tank(
-      400,
-      750,
+      config.respawn.x,
+      config.respawn.y,
       config.blockWidth,
       config.blockWidth,
       playerSprite,

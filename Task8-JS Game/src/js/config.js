@@ -58,6 +58,10 @@ export const lifeBonusSpriteParams = {
 };
 
 export const playerSettings = {
+  respawn: {
+    x: 400,
+    y: 728,
+  },
   playerKeys: {
     up: 'UP',
     right: 'RIGHT',
@@ -73,7 +77,7 @@ export const playerSettings = {
 };
 
 export const bulletsSettings = {
-  bulletSpeed: 1000,
+  bulletSpeed: 10,
   bulletWidth: 5,
   bulletHeight: 5,
   bulletRealoadTimeForPlayers: 0.5,
@@ -85,6 +89,8 @@ export const gameSettings = {
   gameHeight,
   canvasWidth,
   canvasHeight,
+  wallWidth: 48,
+  wallHeight: 48,
   timeForGameOverMessage: 3,
   timeBeetwenBonuses: 40,
   fontSizeMessage: 40,
@@ -95,3 +101,26 @@ export const wallSetting = {
   wallWidth: 48,
   wallHeight: 48,
 };
+
+setTimeout(() => {
+  if (window.innerHeight < 768) {
+    gameSettings.gameWidth = 512;
+    gameSettings.gameHeight = 512;
+    gameSettings.canvasHeight = 512;
+    gameSettings.canvasWidth = 662;
+    gameSettings.wallWidth = 32;
+    gameSettings.wallHeight = 32;
+
+    playerSettings.respawn.y = 256;
+    playerSettings.respawn.y = 488;
+    playerSettings.blockHeight = 24;
+    playerSettings.blockWidth = 24;
+    playerSettings.playerSpeed = 1;
+
+    wallSetting.wallHeight = 32;
+    wallSetting.wallWidth = 32;
+
+    bulletsSettings.bulletWidth = 2.5;
+    bulletsSettings.bulletHeight = 2.5;
+  }
+}, 100);
