@@ -42,8 +42,8 @@ function getPlayer() {
 
 function rect(tank, objArrs) {
   const copy = tank;
-  copy.position.x = getRandomInt(0, config.gameWidth - 50);
-  copy.position.y = getRandomInt(0, config.gameWidth - 50);
+  copy.position.x = getRandomInt(0, config.gameWidth - config.wallWidth);
+  copy.position.y = getRandomInt(0, config.gameWidth - config.wallHeight);
 
   for (let i = 0; i < objArrs.length; i += 1) {
     for (let j = 0; j < objArrs[i].length; j += 1) {
@@ -91,7 +91,7 @@ function update(score) {
     if (this.gameScore >= 2000) {
       this.maxEnemiesOnMap = 16;
     }
-    if (this.gameScore >= 3000) {
+    if (this.gameScore >= 4000) {
       this.maxEnemiesOnMap = 30;
     }
   }

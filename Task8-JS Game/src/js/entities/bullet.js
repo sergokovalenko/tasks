@@ -11,21 +11,21 @@ function Bullet(x, y, width, height, sprite, speed = 1100, dir = 'up') {
 
 Bullet.constructor = Bullet;
 
-Bullet.prototype.update = function update(dt = 0.02) {
+Bullet.prototype.update = function update() {
   if (this.direction === 'down') {
-    this.position.y += this.velocity * dt;
+    this.position.y += this.velocity;
   }
 
   if (this.direction === 'up') {
-    this.position.y -= this.velocity * dt;
+    this.position.y -= this.velocity;
   }
 
   if (this.direction === 'left') {
-    this.position.x -= this.velocity * dt;
+    this.position.x -= this.velocity;
   }
 
   if (this.direction === 'right') {
-    this.position.x += this.velocity * dt;
+    this.position.x += this.velocity;
   }
 };
 
