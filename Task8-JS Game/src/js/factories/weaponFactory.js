@@ -1,8 +1,10 @@
 import { bulletsSettings as config } from './../config';
 import Bullet from './../entities/bullet';
 
-function WeaponFactory() {
+let bulletSprite;
 
+function WeaponFactory(spriteForBullet = null) {
+  bulletSprite = spriteForBullet;
 }
 
 WeaponFactory.prototype = {
@@ -11,7 +13,7 @@ WeaponFactory.prototype = {
     return new Bullet(
       x, y, config.bulletWidth,
       config.bulletHeight,
-      null,
+      bulletSprite,
       config.bulletSpeed,
       direction,
     );

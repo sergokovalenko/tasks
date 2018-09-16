@@ -1,10 +1,11 @@
 import { wallSetting as config } from './config';
 import TextureFactory from './factories/textureFactory';
 
-const factory = new TextureFactory();
+let factory;
 
 function getTexturesForLevel(arr, wallSprite, stillWallSprite) {
   const textures = [];
+  factory = new TextureFactory(wallSprite, stillWallSprite);
 
   for (let i = 0; i < arr.length; i += 1) {
     for (let j = 0; j < arr.length; j += 1) {
@@ -12,17 +13,10 @@ function getTexturesForLevel(arr, wallSprite, stillWallSprite) {
 
       switch (arr[i][j]) {
         case 1:
-          texture = factory.makeBreakWall(j * config.wallWidth, i * config.wallWidth, wallSprite);
+          texture = factory.makeBreakWall(j * config.wallWidth, i * config.wallWidth);
           break;
         case 2:
-          texture = factory.makeStilWall(
-            j * config.wallWidth,
-            i * config.wallWidth,
-            stillWallSprite,
-          );
-          break;
-        case 100:
-          texture = factory.makeEagle(j * config.wallWidth, i * config.wallWidth, wallSprite);
+          texture = factory.makeStilWall(j * config.wallWidth, i * config.wallWidth);
           break;
         default:
           break;
