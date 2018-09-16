@@ -41,7 +41,7 @@ function restart() {
   tankGenerator.reset();
   player = tankGenerator.getPlayer();
   enemiesArr = tankGenerator.getTanks();
-  textures = getTextures(levels.level1, wallSprite, stillSprite);
+  textures = getTextures(levels[0], wallSprite, stillSprite);
   movementManager.addMovement(player, 'keyboard');
   shootingManager.addWeapon(player, 'Bullet');
 
@@ -134,8 +134,8 @@ const frame = () => {
   requestAnimationFrame(frame);
 };
 
-function initialize(all) {
-  drawer = new Drawer();
+function initialize(resources, all) {
+  drawer = new Drawer(resources);
   spriteMaker = new SpriteMaker(all);
   shootingManager = new ShootingManager();
   collisionManager = new CollisionManager();
@@ -152,7 +152,7 @@ function initialize(all) {
   tankGenerator = new TankGenerator(movementManager, shootingManager, enemySprite, playerSprite);
   player = tankGenerator.getPlayer();
   enemiesArr = tankGenerator.getTanks();
-  textures = getTextures(levels.level1, wallSprite, stillSprite);
+  textures = getTextures(levels[0], wallSprite, stillSprite);
 
   movementManager.addMovement(player, 'keyboard');
   shootingManager.addWeapon(player, 'Bullet');

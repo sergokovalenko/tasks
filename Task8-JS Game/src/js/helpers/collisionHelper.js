@@ -1,6 +1,6 @@
 import { gameSettings as config } from './../config';
 
-function hasCollisionWithBorderds(obj) {
+export const hasCollisionWithBorderds = (obj) => {
   if (obj.position.x <= 0) {
     return 'left';
   }
@@ -18,9 +18,9 @@ function hasCollisionWithBorderds(obj) {
   }
 
   return false;
-}
+};
 
-function macroCollision(obj1, obj2) {
+export const macroCollision = (obj1, obj2) => {
   let XColl = false;
   let YColl = false;
 
@@ -35,7 +35,4 @@ function macroCollision(obj1, obj2) {
   }
 
   return XColl && YColl;
-}
-
-export { hasCollisionWithBorderds };
-export { macroCollision };
+};

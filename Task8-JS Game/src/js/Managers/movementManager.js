@@ -1,5 +1,7 @@
 import input from './../helpers/keyHandler';
 import getRandomInt from './../helpers/randomizer';
+import Tank from '../entities/tank';
+// import Enemy from '../entities/enemyTank';
 
 function MovementManager(shootingManager, collisionManager) {
   this.collisionManager = collisionManager;
@@ -9,6 +11,10 @@ function MovementManager(shootingManager, collisionManager) {
     keyboard: (obj, dt) => {
       const entity = obj;
       let isKeyDown = false;
+
+      if (!(entity instanceof Tank)) {
+        return;
+      }
 
       entity.isMoving = false;
       entity.bulletTimer -= dt;
@@ -66,6 +72,10 @@ function MovementManager(shootingManager, collisionManager) {
     },
     ai: (obj, dt) => {
       const entity = obj;
+
+      if (!(entity instanceof Tank)) {
+        return;
+      }
 
       switch (entity.direction) {
         case 'top':

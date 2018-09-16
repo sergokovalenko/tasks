@@ -7,7 +7,7 @@ function Sprite(url, x, y, width, height, frameCount = 0, animationTime = 1 / 10
   this.animationTimer = animationTime;
   this.currentFrame = 0;
   const timeForAnimation = animationTime;
-  this.getAnimationTime = function anim() { return timeForAnimation; };
+  this.getAnimationTime = () => timeForAnimation;
 }
 
 Sprite.constructor = Sprite;

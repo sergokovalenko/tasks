@@ -3,11 +3,13 @@ import { gameSettings as config } from './config';
 const step = 1 / config.fps;
 const mainMessagePositionX = -60;
 const infoMessagePositionX = 10;
+let resources;
 
-function Drawer() {
+function Drawer(res) {
   const canvas = document.createElement('canvas');
   this.ctx = canvas.getContext('2d');
   this.isPaused = false;
+  resources = res;
 
   canvas.width = config.canvasWidth;
   canvas.height = config.canvasHeight;
@@ -58,7 +60,7 @@ Drawer.prototype.pause = function pause() {
 Drawer.prototype.drawTextures = function drawTextures(textures) {
   for (let i = 0; i < textures.length; i += 1) {
     this.ctx.drawImage(
-      window.resources.getImg(textures[i].spriteInfo.url),
+      resources.getImg(textures[i].spriteInfo.url),
       textures[i].spriteInfo.position.x,
       textures[i].spriteInfo.position.y,
       textures[i].spriteInfo.size.width,
@@ -75,15 +77,16 @@ Drawer.prototype.drawTank = function drawTank(pl) {
   const obj = pl;
   let { x } = obj.spriteInfo.position;
   const { y } = obj.spriteInfo.position;
+
   switch (pl.direction) {
-    case 'right':
-      x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 6);
+    case 'left':
+      x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 2);
       break;
     case 'down':
       x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 4);
       break;
-    case 'left':
-      x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 2);
+    case 'right':
+      x = pl.spriteInfo.position.x + (pl.spriteInfo.size.width * 6);
       break;
     default:
       break;
@@ -100,7 +103,7 @@ Drawer.prototype.drawTank = function drawTank(pl) {
   x += obj.spriteInfo.currentFrame * obj.spriteInfo.size.width;
 
   this.ctx.drawImage(
-    window.resources.getImg(obj.spriteInfo.url),
+    resources.getImg(obj.spriteInfo.url),
     x,
     y + (obj.spriteInfo.size.height * (obj.level - 1)),
     obj.spriteInfo.size.width,
@@ -125,7 +128,7 @@ Drawer.prototype.drawBonus = function drawBonus(bonus) {
   x += obj.spriteInfo.currentFrame * obj.spriteInfo.size.width;
 
   this.ctx.drawImage(
-    window.resources.getImg(obj.spriteInfo.url),
+    resources.getImg(obj.spriteInfo.url),
     x,
     obj.spriteInfo.position.y,
     obj.spriteInfo.size.width,
