@@ -1,7 +1,19 @@
-# Webpack 4 boilerplate for IL
+# JS Game: Battle Zone
 
-A simple boilerplate with webpack 4, eslint (airbnb), babel, scss.
+Task 08: JS Game
 
+## Movement
+```
+Up arrow - move up
+
+Right arrow - move right
+
+Down arrow - move down
+
+Left arrow - move left
+
+Space - shooting
+```
 ## Build Setup
 
 ``` bash
@@ -15,6 +27,6 @@ npm run dev
 npm run build
 
 # build for production
-npm run build:p
+npm run build:prod
 
 ```

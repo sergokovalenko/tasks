@@ -3,7 +3,6 @@ let pressedKeys = {};
 function setKey(event, status) {
   const code = event.keyCode;
   let key;
-  event.preventDefault();
 
   switch (code) {
     case 32:
