@@ -1,3 +1,5 @@
+import input from './../helpers/keyHandler';
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -8,7 +10,6 @@ function MovementManager(shootingManager, collisionManager) {
   this.shootingManager = shootingManager;
   this.types = {
     keyboard: (obj, dt) => {
-      const input = window.input || {};
       const entity = obj;
       let isKeyDown = false;
 
