@@ -2,19 +2,16 @@ import TankFactory from './factories/tankFactory';
 import { gameSettings as config } from './config';
 import { macroCollision } from './helpers/collisionHelper';
 
-const factory = new TankFactory();
-let enemySprites;
+let factory;
 let movementManager;
 let shootingManager;
-let playerSprites;
 
 function TankGenerator(moveManager, shootManager, enemySprite, playerSprite) {
+  factory = new TankFactory(playerSprite, enemySprite);
   this.gameScore = 0;
   this.maxEnemiesOnMap = 3;
   movementManager = moveManager;
   shootingManager = shootManager;
-  enemySprites = enemySprite;
-  playerSprites = playerSprite;
 }
 
 function getTanks() {
@@ -23,7 +20,7 @@ function getTanks() {
 
   for (let i = 0; i < 3; i += 1) {
     let x = 0;
-    tank = factory.makeStandartEnemy(enemySprites);
+    tank = factory.makeStandartEnemy();
     if (i === 1) {
       x = tank.size.width * 8;
     }
@@ -39,7 +36,7 @@ function getTanks() {
 }
 
 function getPlayer() {
-  return factory.makePlayer(playerSprites);
+  return factory.makePlayer();
 }
 
 function getRandomInt(min, max) {
@@ -62,7 +59,7 @@ function rect(tank, objArrs) {
 }
 
 function getEnemyWithoutConflicts(...objArrs) {
-  const tank = factory.makeStandartEnemy(enemySprites);
+  const tank = factory.makeStandartEnemy();
   rect(tank, objArrs);
   return tank;
 }
@@ -71,7 +68,7 @@ function getEnemies(enemyArray, player, textures) {
   const diff = this.maxEnemiesOnMap - enemyArray.length;
 
   for (let i = 0; i < diff; i += 1) {
-    const tank = factory.makeStandartEnemy(enemySprites);
+    const tank = factory.makeStandartEnemy();
     const fullArr = enemyArray.concat(textures);
     fullArr.push(player);
     rect(tank, [fullArr]);

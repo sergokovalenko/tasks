@@ -2,14 +2,17 @@ import { playerSettings as config } from './../config';
 import Tank from './../entities/tank';
 import Enemy from './../entities/enemyTank';
 
-function TankFactory(playerUrl, enemyUrl) {
-  this.playerUrl = playerUrl;
-  this.enemyUrl = enemyUrl;
+let playerSprite;
+let enemySprite;
+
+function TankFactory(spriteForPlayer, spriteForEnemy) {
+  playerSprite = spriteForPlayer;
+  enemySprite = spriteForEnemy;
 }
 
 TankFactory.prototype = {
   constructor: TankFactory,
-  makePlayer: function makePlayer(playerSprite, keys = config.playerKeys) {
+  makePlayer: function makePlayer(keys = config.playerKeys) {
     return new Tank(
       400,
       750,
@@ -20,7 +23,7 @@ TankFactory.prototype = {
       keys,
     );
   },
-  makeStandartEnemy: function makeStandartEnemy(enemySprite) {
+  makeStandartEnemy: function makeStandartEnemy() {
     return new Enemy(
       0,
       0,
