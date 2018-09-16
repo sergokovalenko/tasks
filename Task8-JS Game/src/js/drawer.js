@@ -110,6 +110,32 @@ Drawer.prototype.drawTank = function drawTank(pl) {
   );
 };
 
+Drawer.prototype.drawBonus = function drawBonus(bonus) {
+  const obj = bonus;
+  let { x } = obj.spriteInfo.position;
+
+  obj.spriteInfo.animationTimer -= step;
+  if (obj.spriteInfo.animationTimer <= step) {
+    obj.spriteInfo.currentFrame = (obj.spriteInfo.currentFrame + 1) % obj.spriteInfo.frameCount;
+    obj.spriteInfo.animationTimer = obj.spriteInfo.getAnimationTime();
+  }
+
+  x += obj.spriteInfo.currentFrame * obj.spriteInfo.size.width;
+
+  this.ctx.drawImage(
+    window.resources.getImg(obj.spriteInfo.url),
+    x,
+    obj.spriteInfo.position.y,
+    obj.spriteInfo.size.width,
+    obj.spriteInfo.size.height,
+    obj.position.x,
+    obj.position.y,
+    obj.size.width,
+    obj.size.height,
+  );
+};
+
+
 Drawer.prototype.drawAll = function draw(
   player,
   enemies,
@@ -133,7 +159,11 @@ Drawer.prototype.drawAll = function draw(
   this.drawEnemies(enemies);
   this.drawBullets(bullets);
   this.drawTextures(textures);
-  this.drawTextures(bonusArr);
+  // this.drawTextures(bonusArr);
+
+  for (let i = 0; i < bonusArr.length; i += 1) {
+    this.drawBonus(bonusArr[i]);
+  }
 
   this.ctx.fillStyle = '#000000';
   this.ctx.font = '22px serif';

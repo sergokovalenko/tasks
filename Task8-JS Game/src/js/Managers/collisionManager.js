@@ -3,7 +3,7 @@ import {
   macroCollision,
 } from './../helpers/collisionHelper';
 
-function CollisionManager() {}
+function CollisionManager() { }
 
 CollisionManager.prototype.bulletCollisionsWithBorders = function col(bullets) {
   for (let i = 0; i < bullets.length; i += 1) {
@@ -32,7 +32,7 @@ CollisionManager.prototype.wallCollisionsWithBullets = function col(walls, bulle
   }
 };
 
-CollisionManager.prototype.enemyCollisionWithBullet = (bullets, enemies, shootingManager) => {
+CollisionManager.prototype.enemyCollisionWithBullet = (bullets, enemies, shootingManager, move) => {
   let score = 0;
 
   for (let i = 0; i < bullets.length; i += 1) {
@@ -41,6 +41,9 @@ CollisionManager.prototype.enemyCollisionWithBullet = (bullets, enemies, shootin
         bullets.splice(i, 1);
         if (shootingManager) {
           shootingManager.clearWeapons(enemies[j]);
+        }
+        if (move) {
+          move.removeMovement(enemies[j]);
         }
         enemies.splice(j, 1);
         i -= 1;
@@ -119,6 +122,14 @@ CollisionManager.prototype.playerCollisinWithObjects = function col(obj1, obj2) 
   }
 };
 
+CollisionManager.prototype.playerCollisinWithEnimies = function col(obj1, objArr) {
+  objArr.forEach((obj) => {
+    if (obj1 !== obj.obj) {
+      this.playerCollisinWithObjects(obj1, obj.obj);
+    }
+  });
+};
+
 CollisionManager.prototype.playerCollisinWithBonus = function col(player, bonusArr) {
   bonusArr.forEach((bonus, i) => {
     if (macroCollision(player, bonus)) {
@@ -147,6 +158,14 @@ CollisionManager.prototype.enemyCollisionWithObjects = function col(obj1, obj2) 
       obj1.changeDirection();
     }
   }
+};
+
+CollisionManager.prototype.enemyCollisinWithTanks = function col(obj1, objArr) {
+  objArr.forEach((obj) => {
+    if (obj1 !== obj.obj) {
+      this.enemyCollisionWithObjects(obj1, obj.obj);
+    }
+  });
 };
 
 export default CollisionManager;
