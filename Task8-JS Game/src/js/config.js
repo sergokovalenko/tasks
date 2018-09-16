@@ -20,6 +20,11 @@ const blockWidth = 40;
 const blockHeight = 40;
 const wallWidth = 48;
 const wallHeight = 48;
+const timeForGameOverMessage = 3;
+const timeBeetwenBonuses = 40;
+
+const fontSizeMessage = 40;
+const fontSizeInfo = 22;
 
 const all = {
   fps,
@@ -57,6 +62,10 @@ const gameSettings = {
   gameHeight,
   canvasWidth,
   canvasHeight,
+  timeForGameOverMessage,
+  timeBeetwenBonuses,
+  fontSizeMessage,
+  fontSizeInfo,
 };
 
 const wallSetting = {
