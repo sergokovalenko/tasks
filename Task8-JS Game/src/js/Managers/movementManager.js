@@ -1,8 +1,5 @@
 import input from './../helpers/keyHandler';
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+import getRandomInt from './../helpers/randomizer';
 
 function MovementManager(shootingManager, collisionManager) {
   this.collisionManager = collisionManager;
