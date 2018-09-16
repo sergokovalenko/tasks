@@ -1,5 +1,5 @@
 import './js/helpers/keyHandler';
-import './js/helpers/resourceLoader';
+import resources from './js/helpers/resourceLoader';
 import * as all from './assets/img/allObj.png';
 import {
   initialize as init,
@@ -8,12 +8,12 @@ import {
 } from './js/game';
 
 window.onload = () => {
-  window.resources.load(all);
+  resources.load(all);
   const btnStart = document.getElementById('start-btn');
 
   function start() {
     this.innerText = 'Pause';
-    init(all);
+    init(resources, all);
     this.removeEventListener('click', start);
     this.addEventListener('click', pauseGame);
   }

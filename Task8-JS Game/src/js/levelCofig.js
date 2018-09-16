@@ -17,8 +17,6 @@ const level1 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-const levels = {
-  level1,
-};
+const levels = [level1];
 
 export default levels;
