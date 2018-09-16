@@ -1,4 +1,5 @@
 import Entity from './entity';
+import { playerSettings as config } from './../config';
 
 function Tank(x, y, width, height, sprite, speed = 2, keys, dir = 'top', canShoot = true) {
   Entity.call(this, x, y, width, height);
@@ -6,10 +7,10 @@ function Tank(x, y, width, height, sprite, speed = 2, keys, dir = 'top', canShoo
   this.velocity = speed;
   this.spriteInfo = sprite;
   this.direction = dir;
-  this.bulletTimer = 0;
-  this.live = 1;
-  this.level = 1;
+  this.live = config.startLives;
   this.canShoot = canShoot;
+  this.level = 1;
+  this.bulletTimer = 0;
   this.isMoving = true;
   this.isUpgraded = false;
 }
@@ -35,7 +36,7 @@ Tank.prototype.moveLeft = function moveLeft() {
 };
 
 Tank.prototype.levelUp = function levelUp() {
-  if (this.level >= 4) {
+  if (this.level >= config.maxLevel) {
     return;
   }
 
