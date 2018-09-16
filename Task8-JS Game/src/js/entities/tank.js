@@ -7,7 +7,7 @@ function Tank(x, y, width, height, sprite, speed = 2, keys, dir = 'top', canShoo
   this.spriteInfo = sprite;
   this.direction = dir;
   this.bulletTimer = 0;
-  this.live = 1;
+  this.live = 3;
   this.level = 1;
   this.canShoot = canShoot;
   this.isMoving = true;

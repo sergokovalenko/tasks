@@ -8,15 +8,14 @@ function ShootingManager() {
   this.weaponArr = [];
   this.isWeaponAdded = false;
   this.types = {
-    that: this,
-    bullet(obj) {
-      const tank = this.that.objects.find(el => el.obj === obj);
+    bullet: (obj) => {
+      const tank = this.objects.find(el => el.obj === obj);
 
       if (tank && tank.obj.bulletTimer < 0) {
         let x = 0;
         let y = 0;
         let { direction } = tank.obj;
-        this.that.isWeaponAdded = true;
+        this.isWeaponAdded = true;
 
         tank.obj.bulletTimer = tank.delay;
 
@@ -46,7 +45,7 @@ function ShootingManager() {
         const bullet = factory.makeBullet(x, y, direction);
 
         if (bullet) {
-          this.that.weaponArr.push(bullet);
+          this.weaponArr.push(bullet);
         }
       }
     },

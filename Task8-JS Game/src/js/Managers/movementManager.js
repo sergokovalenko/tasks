@@ -2,17 +2,20 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function MovementManager(shootingManager) {
+function MovementManager(shootingManager, collisionManager) {
+  this.collisionManager = collisionManager;
   this.objects = [];
   this.shootingManager = shootingManager;
   this.types = {
-    keyboard(obj, dt) {
+    keyboard: (obj, dt) => {
       const input = window.input || {};
       const entity = obj;
+      let isKeyDown = false;
 
+      entity.isMoving = false;
       entity.bulletTimer -= dt;
 
-      if (entity.isUpdated) {
+      if (entity.isUpgraded) {
         let delay = 1;
         switch (entity.level) {
           case 2:
@@ -27,41 +30,43 @@ function MovementManager(shootingManager) {
           default:
             break;
         }
+        entity.isUpgraded = false;
         shootingManager.clearWeapons(entity);
         shootingManager.addWeapon(entity, 'Bullet', delay);
       }
 
-      if (input.isDown(obj.keys.up)) {
+      if (input.isDown(obj.keys.up) && !isKeyDown) {
+        isKeyDown = true;
         entity.isMoving = true;
         entity.moveUp();
-        return;
       }
 
-      if (input.isDown(obj.keys.right)) {
+      if (input.isDown(obj.keys.right) && !isKeyDown) {
+        isKeyDown = true;
         entity.isMoving = true;
         obj.moveRight();
-        return;
       }
 
-      if (input.isDown(obj.keys.down)) {
+      if (input.isDown(obj.keys.down) && !isKeyDown) {
+        isKeyDown = true;
         entity.isMoving = true;
         entity.moveDown();
-        return;
       }
 
-      if (input.isDown(obj.keys.left)) {
+      if (input.isDown(obj.keys.left) && !isKeyDown) {
+        isKeyDown = true;
         entity.isMoving = true;
         entity.moveLeft();
-        return;
       }
+
+      this.collisionManager.playerCollisinWithEnimies(entity, this.objects);
+      this.collisionManager.fixCollisionsWithBorders(entity);
 
       if (shootingManager && obj.canShoot && input.isDown(obj.keys.shoot[0])) {
         shootingManager.shoot(obj);
       }
-
-      entity.isMoving = false;
     },
-    ai(obj, dt) {
+    ai: (obj, dt) => {
       const entity = obj;
 
       switch (entity.direction) {
@@ -88,6 +93,9 @@ function MovementManager(shootingManager) {
         entity.changeDirection();
       }
 
+      this.collisionManager.enemyCollisinWithTanks(entity, this.objects);
+      this.collisionManager.fixCollisionsWithBorders(entity);
+
       if (shootingManager && entity.canShoot && entity.shootTimer < dt) {
         entity.shootTimer = getRandomInt(2, 5);
         shootingManager.shoot(entity);
@@ -108,6 +116,14 @@ MovementManager.prototype.addMovement = function addMovement(toObj, type) {
 
 MovementManager.prototype.reset = function reset() {
   this.objects = [];
+};
+
+MovementManager.prototype.removeMovement = function removeMovement(obj) {
+  const find = this.objects.findIndex(el => el.obj === obj);
+
+  if (find !== -1) {
+    this.objects.splice(find, 1);
+  }
 };
 
 MovementManager.prototype.update = function update(dt) {

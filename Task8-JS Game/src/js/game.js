@@ -86,6 +86,9 @@ function update() {
   if (bonus) {
     bonusArr.push(bonus);
   }
+
+  enemiesArr = tankGenerator.getEnemies(enemiesArr, player, textures);
+
   tankGenerator.update(score);
   movementManager.update(step);
   shootingManager.update(step);
@@ -93,13 +96,16 @@ function update() {
     bulletsArr = shootingManager.getWeaponsArr();
   }
 
-  enemiesArr = tankGenerator.getEnemies(enemiesArr, player, textures);
-
   collisionManager.playerCollisinWithBonus(player, bonusArr);
   collisionManager.enemyCollisinWithBonus(enemiesArr, bonusArr);
-  collisionManager.fixCollisionsWithBorders(player);
+  // collisionManager.fixCollisionsWithBorders(player);
   collisionManager.bulletCollisionsWithBorders(bulletsArr);
-  score += collisionManager.enemyCollisionWithBullet(bulletsArr, enemiesArr, shootingManager);
+  score += collisionManager.enemyCollisionWithBullet(
+    bulletsArr,
+    enemiesArr,
+    shootingManager,
+    movementManager,
+  );
   collisionManager.tankCollisionWithBullet(player, bulletsArr);
   collisionManager.wallCollisionsWithBullets(textures, bulletsArr);
 
@@ -108,7 +114,7 @@ function update() {
   }
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
-    collisionManager.playerCollisinWithObjects(player, enemiesArr[i]);
+    // collisionManager.playerCollisinWithObjects(player, enemiesArr[i]);
     collisionManager.fixCollisionsWithBorders(enemiesArr[i]);
 
     for (let j = 0; j < textures.length; j += 1) {
@@ -118,12 +124,12 @@ function update() {
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
     collisionManager.fixCollisionsWithBorders(enemiesArr[i]);
-    collisionManager.enemyCollisionWithObjects(enemiesArr[i], player);
-    for (let j = 0; j < enemiesArr.length; j += 1) {
-      if (i !== j) {
-        collisionManager.enemyCollisionWithObjects(enemiesArr[i], enemiesArr[j]);
-      }
-    }
+    // collisionManager.enemyCollisionWithObjects(enemiesArr[i], player);
+    // for (let j = 0; j < enemiesArr.length; j += 1) {
+    //   if (i !== j) {
+    //     collisionManager.enemyCollisionWithObjects(enemiesArr[i], enemiesArr[j]);
+    //   }
+    // }
   }
 
   for (let i = 0; i < bulletsArr.length; i += 1) {
@@ -149,8 +155,8 @@ function initialize(all) {
   drawer = new Drawer();
   spriteMaker = new SpriteMaker(all);
   shootingManager = new ShootingManager();
-  movementManager = new MovementManager(shootingManager);
   collisionManager = new CollisionManager();
+  movementManager = new MovementManager(shootingManager, collisionManager);
 
   playerSprite = spriteMaker.getSpriteFor('player');
   enemySprite = spriteMaker.getSpriteFor('enemy');
@@ -159,7 +165,7 @@ function initialize(all) {
   starSprite = spriteMaker.getSpriteFor('starBonus');
   lifeSprite = spriteMaker.getSpriteFor('lifeBonus');
 
-  bonusGenerator = new BonusGenerator(6, lifeSprite, starSprite);
+  bonusGenerator = new BonusGenerator(40, lifeSprite, starSprite);
   tankGenerator = new TankGenerator(movementManager, shootingManager, enemySprite, playerSprite);
   player = tankGenerator.getPlayer();
   enemiesArr = tankGenerator.getTanks();

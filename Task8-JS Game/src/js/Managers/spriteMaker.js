@@ -6,8 +6,8 @@ function SpriteMaker(all) {
   const standartEnemy = new Sprite(all, 128, 64, 16, 16, 2);
   const wallSprite = new Sprite(all, 256, 208, 16, 16);
   const stillSprite = new Sprite(all, 256, 144, 16, 16);
-  const starSprite = new Sprite(all, 256, 64, 16, 16);
-  const lifeSprite = new Sprite(all, 256, 96, 16, 16);
+  const starSprite = new Sprite(all, 256, 64, 16, 16, 2, 0.5);
+  const lifeSprite = new Sprite(all, 256, 96, 16, 16, 2, 0.5);
   this.types = {
     player: () => playerSprite,
     enemy: () => standartEnemy,
