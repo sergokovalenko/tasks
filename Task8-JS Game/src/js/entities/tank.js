@@ -1,5 +1,6 @@
 import Entity from './entity';
 import { playerSettings as config } from './../config';
+import inherit from './../helpers/inheritance';
 
 function Tank(x, y, width, height, sprite, speed = 2, keys, dir = 'top', canShoot = true) {
   Entity.call(this, x, y, width, height);
@@ -14,6 +15,10 @@ function Tank(x, y, width, height, sprite, speed = 2, keys, dir = 'top', canShoo
   this.isMoving = true;
   this.isUpgraded = false;
 }
+
+(inherit(Tank, Entity));
+
+Tank.constructor = Tank;
 
 Tank.prototype.moveUp = function moveUp() {
   this.position.y -= this.velocity;
