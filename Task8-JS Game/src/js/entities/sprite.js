@@ -10,4 +10,6 @@ function Sprite(url, x, y, width, height, frameCount = 0, animationTime = 1 / 10
   this.getAnimationTime = function anim() { return timeForAnimation; };
 }
 
+Sprite.constructor = Sprite;
+
 export default Sprite;
