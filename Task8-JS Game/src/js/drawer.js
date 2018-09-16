@@ -137,7 +137,6 @@ Drawer.prototype.drawBonus = function drawBonus(bonus) {
   );
 };
 
-
 Drawer.prototype.drawAll = function draw(
   player,
   enemies,
