@@ -22,19 +22,19 @@ function ShootingManager() {
         switch (obj.direction) {
           case 'top':
             x = (obj.position.x + (obj.size.width / 2)) - (bulletsSettings.bulletHeight / 2);
-            y = obj.position.y - 6;
+            y = obj.position.y - (bulletsSettings.bulletHeight * 1.1);
             direction = 'up';
             break;
           case 'left':
-            x = obj.position.x - 6;
+            x = obj.position.x - (bulletsSettings.bulletWidth * 1.1);
             y = (obj.position.y + (obj.size.height / 2)) - (bulletsSettings.bulletWidth / 2);
             break;
           case 'down':
             x = (obj.position.x + (obj.size.width / 2)) - (bulletsSettings.bulletHeight / 2);
-            y = (obj.position.y + obj.size.height) + 2;
+            y = (obj.position.y + obj.size.height) + (bulletsSettings.bulletHeight / 2);
             break;
           case 'right':
-            x = (obj.position.x + obj.size.width) + 2;
+            x = (obj.position.x + obj.size.width) + (bulletsSettings.bulletWidth / 2);
             y = (obj.position.y + (obj.size.height / 2)) - (bulletsSettings.bulletWidth / 2);
             break;
           default:

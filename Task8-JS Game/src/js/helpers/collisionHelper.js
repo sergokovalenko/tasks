@@ -1,4 +1,4 @@
-import { all as config } from './../config';
+import { gameSettings as config } from './../config';
 
 function hasCollisionWithBorderds(obj) {
   if (obj.position.x <= 0) {
@@ -34,10 +34,7 @@ function macroCollision(obj1, obj2) {
     YColl = true;
   }
 
-  if (XColl && YColl) {
-    return true;
-  }
-  return false;
+  return XColl && YColl;
 }
 
 export { hasCollisionWithBorderds };

@@ -39,9 +39,9 @@ function restart() {
   movementManager.reset();
   shootingManager.reset();
   tankGenerator.reset();
-  player = tankGenerator.getPlayer(playerSprite);
-  enemiesArr = tankGenerator.getTanks(enemySprite);
-  textures = getTextures(levels.level2, wallSprite, stillSprite);
+  player = tankGenerator.getPlayer();
+  enemiesArr = tankGenerator.getTanks();
+  textures = getTextures(levels.level1, wallSprite, stillSprite);
   movementManager.addMovement(player, 'keyboard');
   shootingManager.addWeapon(player, 'Bullet');
 

@@ -1,86 +1,97 @@
-const fps = 60;
-const updatesPerSecond = 30;
 const gameWidth = 768;
 const gameHeight = 768;
 const canvasHeight = gameHeight;
 const canvasWidth = gameWidth + 150;
-const bulletSpeed = 1000;
-const bulletWidth = 5;
-const bulletHeight = 5;
-const bulletRealoadTimeForPlayers = 0.5;
-const playerKeys = {
-  up: 'UP',
-  right: 'RIGHT',
-  down: 'DOWN',
-  left: 'LEFT',
-  shoot: ['SPACE'],
-};
-const playerSpeed = 2;
-const maxLevel = 4;
-const startLives = 3;
-const blockWidth = 40;
-const blockHeight = 40;
-const wallWidth = 48;
-const wallHeight = 48;
-const timeForGameOverMessage = 3;
-const timeBeetwenBonuses = 40;
 
-const fontSizeMessage = 40;
-const fontSizeInfo = 22;
-
-const all = {
-  fps,
-  updatesPerSecond,
-  gameWidth,
-  gameHeight,
-  bulletSpeed,
-  bulletWidth,
-  bulletHeight,
-  bulletRealoadTimeForPlayers,
-  playerKeys,
-  playerSpeed,
-  blockWidth,
-  blockHeight,
+export const playerSprite = {
+  x: 0,
+  y: 0,
+  width: 16,
+  height: 16,
+  frameCount: 2,
+  animationTimer: 0.1,
 };
 
-const playerSettings = {
-  playerKeys,
-  playerSpeed,
-  blockWidth,
-  blockHeight,
-  maxLevel,
-  startLives,
+export const enemySprite = {
+  x: 128,
+  y: 64,
+  width: 16,
+  height: 16,
+  frameCount: 2,
+  animationTimer: 0.1,
 };
 
-const bulletsSettings = {
-  bulletSpeed,
-  bulletWidth,
-  bulletHeight,
-  bulletRealoadTimeForPlayers,
+export const wallSprite = {
+  x: 256,
+  y: 208,
+  width: 16,
+  height: 16,
+  frameCount: 0,
+  animationTimer: 0,
 };
 
-const gameSettings = {
-  fps,
-  updatesPerSecond,
+export const stillSprite = {
+  x: 256,
+  y: 208,
+  width: 16,
+  height: 16,
+  frameCount: 0,
+  animationTimer: 0,
+};
+
+export const starBonusSprite = {
+  x: 256,
+  y: 64,
+  width: 16,
+  height: 16,
+  frameCount: 2,
+  animationTimer: 0.5,
+};
+
+export const lifeBonusSprite = {
+  x: 256,
+  y: 96,
+  width: 16,
+  height: 16,
+  frameCount: 2,
+  animationTimer: 0.5,
+};
+
+export const playerSettings = {
+  playerKeys: {
+    up: 'UP',
+    right: 'RIGHT',
+    down: 'DOWN',
+    left: 'LEFT',
+    shoot: ['SPACE'],
+  },
+  playerSpeed: 2,
+  blockWidth: 40,
+  blockHeight: 40,
+  maxLevel: 4,
+  startLives: 3,
+};
+
+export const bulletsSettings = {
+  bulletSpeed: 1000,
+  bulletWidth: 5,
+  bulletHeight: 5,
+  bulletRealoadTimeForPlayers: 0.5,
+};
+
+export const gameSettings = {
+  fps: 60,
   gameWidth,
   gameHeight,
   canvasWidth,
   canvasHeight,
-  timeForGameOverMessage,
-  timeBeetwenBonuses,
-  fontSizeMessage,
-  fontSizeInfo,
+  timeForGameOverMessage: 3,
+  timeBeetwenBonuses: 40,
+  fontSizeMessage: 40,
+  fontSizeInfo: 22,
 };
 
-const wallSetting = {
-  wallWidth,
-  wallHeight,
-};
-
-export {
-  all,
-  bulletsSettings,
-  gameSettings,
-  playerSettings,
-  wallSetting,
+export const wallSetting = {
+  wallWidth: 48,
+  wallHeight: 48,
 };
