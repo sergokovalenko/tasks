@@ -1,11 +1,8 @@
 import BonusFactory from './factories/bonusFactory';
+import getRandomInt from './helpers/randomizer';
 
 let factory;
 let bonusSpawnTimer;
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
 
 function BonusGenerator(bonusTimer = 30, lifeSprite, starSprite) {
   factory = new BonusFactory(lifeSprite, starSprite);

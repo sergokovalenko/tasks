@@ -1,6 +1,7 @@
 import TankFactory from './factories/tankFactory';
 import { gameSettings as config } from './config';
 import { macroCollision } from './helpers/collisionHelper';
+import getRandomInt from './helpers/randomizer';
 
 let factory;
 let movementManager;
@@ -37,10 +38,6 @@ function getTanks() {
 
 function getPlayer() {
   return factory.makePlayer();
-}
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function rect(tank, objArrs) {

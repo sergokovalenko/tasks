@@ -3,7 +3,7 @@ const gameHeight = 768;
 const canvasHeight = gameHeight;
 const canvasWidth = gameWidth + 150;
 
-export const playerSprite = {
+export const playerSpriteParams = {
   x: 0,
   y: 0,
   width: 16,
@@ -12,7 +12,7 @@ export const playerSprite = {
   animationTimer: 0.1,
 };
 
-export const enemySprite = {
+export const enemySpriteParams = {
   x: 128,
   y: 64,
   width: 16,
@@ -21,7 +21,7 @@ export const enemySprite = {
   animationTimer: 0.1,
 };
 
-export const wallSprite = {
+export const wallSpriteParams = {
   x: 256,
   y: 208,
   width: 16,
@@ -30,16 +30,16 @@ export const wallSprite = {
   animationTimer: 0,
 };
 
-export const stillSprite = {
+export const stillSpriteParams = {
   x: 256,
-  y: 208,
+  y: 144,
   width: 16,
   height: 16,
   frameCount: 0,
   animationTimer: 0,
 };
 
-export const starBonusSprite = {
+export const starBonusSpriteParams = {
   x: 256,
   y: 64,
   width: 16,
@@ -48,7 +48,7 @@ export const starBonusSprite = {
   animationTimer: 0.5,
 };
 
-export const lifeBonusSprite = {
+export const lifeBonusSpriteParams = {
   x: 256,
   y: 96,
   width: 16,
