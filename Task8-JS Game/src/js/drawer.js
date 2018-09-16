@@ -1,6 +1,8 @@
 import { gameSettings as config } from './config';
 
 const step = 1 / config.fps;
+const mainMessagePositionX = -60;
+const infoMessagePositionX = 10;
 
 function Drawer() {
   const canvas = document.createElement('canvas');
@@ -17,8 +19,8 @@ function pauseMessage(ctx) {
   context.fillStyle = 'rgba(0,0,0,0.5)';
   context.fillRect(0, 0, config.gameWidth, config.gameHeight);
   context.fillStyle = '#ffffff';
-  context.font = '40px serif';
-  context.fillText('Pause', (config.gameWidth / 2) - 60, (config.gameHeight / 2) - 20);
+  context.font = `${config.fontSizeMessage}px serif`;
+  context.fillText('Pause', (config.gameWidth / 2) + mainMessagePositionX, (config.gameHeight / 2) - (config.fontSizeMessage / 2));
 }
 
 function gameOverMessage(ctx, score) {
@@ -26,9 +28,9 @@ function gameOverMessage(ctx, score) {
   context.fillStyle = 'rgba(0,0,0,0.5)';
   context.fillRect(0, 0, config.gameWidth, config.gameHeight);
   context.fillStyle = '#ffffff';
-  context.font = '40px serif';
-  context.fillText('Game Over', (config.gameWidth / 2) - 60, (config.gameHeight / 2) - 20);
-  context.fillText(`Scores: ${score}`, (config.gameWidth / 2) - 60, (config.gameHeight / 2) + 20);
+  context.font = `${config.fontSizeMessage}px serif`;
+  context.fillText('Game Over', (config.gameWidth / 2) + mainMessagePositionX, (config.gameHeight / 2) - (config.fontSizeMessage / 2));
+  context.fillText(`Scores: ${score}`, (config.gameWidth / 2) + mainMessagePositionX, (config.gameHeight / 2) + (config.fontSizeMessage / 2));
 }
 
 Drawer.prototype.drawBullets = function drawBullets(bullets) {
@@ -159,16 +161,15 @@ Drawer.prototype.drawAll = function draw(
   this.drawEnemies(enemies);
   this.drawBullets(bullets);
   this.drawTextures(textures);
-  // this.drawTextures(bonusArr);
 
   for (let i = 0; i < bonusArr.length; i += 1) {
     this.drawBonus(bonusArr[i]);
   }
 
   this.ctx.fillStyle = '#000000';
-  this.ctx.font = '22px serif';
-  this.ctx.fillText(`Lives: ${player.live}`, config.gameWidth + 10, (config.gameHeight / 2) - 11);
-  this.ctx.fillText(`Scores: ${score}`, config.gameWidth + 10, (config.gameHeight / 2) + 11);
+  this.ctx.font = `${config.fontSizeInfo}px serif`;
+  this.ctx.fillText(`Lives: ${player.live}`, config.gameWidth + infoMessagePositionX, (config.gameHeight / 2) - (config.fontSizeInfo / 2));
+  this.ctx.fillText(`Scores: ${score}`, config.gameWidth + infoMessagePositionX, (config.gameHeight / 2) + (config.fontSizeInfo / 2));
 
   switch (gameState) {
     case 'pause':
@@ -179,14 +180,6 @@ Drawer.prototype.drawAll = function draw(
       break;
     default:
       break;
-  }
-
-  if (this.isPaused) {
-    this.ctx.fillStyle = 'rgba(0,0,0,0.5)';
-    this.ctx.fillRect(0, 0, config.gameWidth, config.gameHeight);
-    this.ctx.fillStyle = '#ffffff';
-    this.ctx.font = '40px serif';
-    this.ctx.fillText('Pause', (config.gameWidth / 2) - 60, (config.gameHeight / 2) - 20);
   }
 };
 

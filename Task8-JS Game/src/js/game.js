@@ -1,4 +1,4 @@
-import { all as config } from './config';
+import { gameSettings as config } from './config';
 import MovementManager from './Managers/movementManager';
 import ShootingManager from './Managers/shootingManager';
 import SpriteMaker from './Managers/spriteMaker';
@@ -10,10 +10,8 @@ import CollisionManager from './Managers/collisionManager';
 import Drawer from './drawer';
 
 const step = 1 / config.fps;
-let dt = 0;
 let bulletsArr = [];
 let bonusArr = [];
-let last = performance.now();
 let player;
 let enemiesArr;
 let textures;
@@ -54,7 +52,7 @@ function restart() {
 
   isPaused = false;
   gameState = 'play';
-  gameOverTimer = 3;
+  gameOverTimer = config.timeForGameOverMessage;
   score = 0;
 }
 
@@ -98,7 +96,6 @@ function update() {
 
   collisionManager.playerCollisinWithBonus(player, bonusArr);
   collisionManager.enemyCollisinWithBonus(enemiesArr, bonusArr);
-  // collisionManager.fixCollisionsWithBorders(player);
   collisionManager.bulletCollisionsWithBorders(bulletsArr);
   score += collisionManager.enemyCollisionWithBullet(
     bulletsArr,
@@ -114,7 +111,6 @@ function update() {
   }
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
-    // collisionManager.playerCollisinWithObjects(player, enemiesArr[i]);
     collisionManager.fixCollisionsWithBorders(enemiesArr[i]);
 
     for (let j = 0; j < textures.length; j += 1) {
@@ -124,12 +120,6 @@ function update() {
 
   for (let i = 0; i < enemiesArr.length; i += 1) {
     collisionManager.fixCollisionsWithBorders(enemiesArr[i]);
-    // collisionManager.enemyCollisionWithObjects(enemiesArr[i], player);
-    // for (let j = 0; j < enemiesArr.length; j += 1) {
-    //   if (i !== j) {
-    //     collisionManager.enemyCollisionWithObjects(enemiesArr[i], enemiesArr[j]);
-    //   }
-    // }
   }
 
   for (let i = 0; i < bulletsArr.length; i += 1) {
@@ -138,13 +128,6 @@ function update() {
 }
 
 const frame = () => {
-  const now = performance.now();
-  dt += now - last;
-
-  while (dt > step) {
-    dt -= step;
-  }
-  last = now;
   update();
   drawer.drawAll(player, enemiesArr, bulletsArr, textures, bonusArr, score, gameState);
 
@@ -165,11 +148,11 @@ function initialize(all) {
   starSprite = spriteMaker.getSpriteFor('starBonus');
   lifeSprite = spriteMaker.getSpriteFor('lifeBonus');
 
-  bonusGenerator = new BonusGenerator(40, lifeSprite, starSprite);
+  bonusGenerator = new BonusGenerator(config.timeBeetwenBonuses, lifeSprite, starSprite);
   tankGenerator = new TankGenerator(movementManager, shootingManager, enemySprite, playerSprite);
   player = tankGenerator.getPlayer();
   enemiesArr = tankGenerator.getTanks();
-  textures = getTextures(levels.level2, wallSprite, stillSprite);
+  textures = getTextures(levels.level1, wallSprite, stillSprite);
 
   movementManager.addMovement(player, 'keyboard');
   shootingManager.addWeapon(player, 'Bullet');
@@ -179,7 +162,8 @@ function initialize(all) {
     shootingManager.addWeapon(enemiesArr[i], 'Bullet');
   }
 
-  gameOverTimer = 3;
+  score = 0;
+  gameOverTimer = config.timeForGameOverMessage;
   gameState = 'play';
 
   requestAnimationFrame(frame);
