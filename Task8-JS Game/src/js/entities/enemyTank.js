@@ -11,7 +11,7 @@ function Enemy(x, y, width, height, sprite, speed = 1, keys, dir = 'down') {
 }
 
 (function inherit(C, Parent) {
-  const F = function () {};
+  const F = function f() {};
   const Child = C;
   F.prototype = Parent.prototype;
   Child.prototype = new F();

@@ -16,6 +16,8 @@ const playerKeys = {
   shoot: ['SPACE'],
 };
 const playerSpeed = 2;
+const maxLevel = 4;
+const startLives = 3;
 const blockWidth = 40;
 const blockHeight = 40;
 const wallWidth = 48;
@@ -46,6 +48,8 @@ const playerSettings = {
   playerSpeed,
   blockWidth,
   blockHeight,
+  maxLevel,
+  startLives,
 };
 
 const bulletsSettings = {
