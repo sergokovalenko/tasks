@@ -3,16 +3,8 @@
 }
 
 .formline {
-    overflow: hidden;
-
-    & input {
-        width: 100%;
-    }
-
     & div {
-        display: block;
         overflow: hidden;
-        padding-right: 10px;
     }
 
     // & span {

@@ -1,0 +1,51 @@
+[{
+        "id": 1,
+        "name": "Apple",
+        "email": "mail@mail.ru",
+        "count": 100,
+        "price": 0.2,
+        "country": "country",
+        "city": "city"
+    }, {
+        "id": 2,
+        "name": "Little House",
+        "email": "mail@mail.ru",
+        "count": 2,
+        "price": 532184,
+        "country": "country",
+        "city": "city"
+    }, {
+        "id": 3,
+        "name": "Water",
+        "email": "mail@mail.ru",
+        "count": 1000,
+        "price": 0.1,
+        "country": "country",
+        "city": "city"
+    },
+    {
+        "id": 4,
+        "name": "Banana",
+        "email": "mail@mail.ru",
+        "count": 52,
+        "price": 0.5,
+        "country": "country",
+        "city": "city"
+    }, {
+        "id": 5,
+        "name": "Big House",
+        "email": "mail@mail.ru",
+        "count": 1,
+        "price": 1000000.25,
+        "country": "country",
+        "city": "city"
+    }, {
+        "id": 5,
+        "name": "Tesla car",
+        "email": "mail@mail.ru",
+        "count": 21,
+        "price": 250000,
+        "country": "country",
+        "city": "city"
+    }
+]
