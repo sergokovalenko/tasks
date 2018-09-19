@@ -84,7 +84,7 @@ const config = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: 'index.html'
-    }),
+    })
   ],
 };
 

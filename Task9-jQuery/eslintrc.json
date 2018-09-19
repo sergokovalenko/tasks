@@ -2,7 +2,7 @@
   "env": {
     "browser": true,
     "jQuery": true,
-    "es6": false,
+    "es6": true,
     "amd": true
   },
   "globals": {
