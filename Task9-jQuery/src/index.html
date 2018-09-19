@@ -6,11 +6,62 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Task09. jQuery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
 </head>
 
 <body>
+  <div class="container">
+    <section class="row action-block">
+      <div class="col-8">
+        <div class="formline">
+          <button class="btn btn-light float-right search">Search</button>
+          <div>
+            <input class="form-control" type="text" placeholder="Type here for search" id="search-field">
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-light float-right addNew">Add new</button>
+      </div>
+    </section>
+    <section class="row content">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center">
+                Name
+                <i class="sort triangle-top"></i>
+              </th>
+              <th class="text-center">
+                Price
+                <i class="sort triangle-top"></i>
+              </th>
+              <th class="text-center">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="name">Thing0123456789</span>
+                <span class="count badge badge-pill badge-dark float-right mr-1">5</span>
+              </td>
+              <td class="text-center">
+                <span class="price">13.254$</span>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-light mt-1 edit">Edit</button>
+                <button class="btn btn-danger mt-1 delete">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 </body>
 
 </html>
