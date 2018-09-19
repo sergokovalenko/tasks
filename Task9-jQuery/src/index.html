@@ -62,6 +62,108 @@
       </div>
     </section>
   </div>
+  <div class="modal-content" style="width: 600px">
+    <div class="modal-header" style="border-bottom: 1px solid rgb(229, 229, 229);">
+      <h3 class="m-auto">Are you sure?</h3>
+    </div>
+    <div class="modal-body">
+      <p class="text-center">Are you sure you want to perform this action?</p>
+      <div class="text-center"><button class="btn btn-danger" id="delete">Yes</button><button class="btn btn-light" id="close">No</button></div>
+    </div>
+  </div>
+  <div class="modal-content" style="width: 600px">
+    <div class="modal-header" style="border-bottom: medium none;"><button type="button" class="close"
+        id="close"><span>&times;</span></button></div>
+    <div class="modal-body">
+      <form class="">
+        <div class="form-group">
+          <label for="name" class="d-block">Name:</label>
+          <input class="form-control w-50 d-inline" placeholder="Name" id="name" maxlength="20" type="text">
+          <div class="hiding d-inline">• Required field</div>
+          <div class="error error-name"></div>
+        </div>
+        <div class="form-group"><label for="name" class="d-block">Supplier Email:</label>
+          <input class="form-control w-50 d-inline" placeholder="abc@mail.ru"
+            id="email" maxlength="20" type="text">
+          <div class="hiding d-inline">• Incorrect email</div>
+          <div class="error error-name"></div>
+        </div>
+        <div class="form-group"><label for="count">Count:</label>
+          <input class="form-control w-25" placeholder="1" id="count"
+            maxlength="4" type="text">
+          <div class="error error-count"></div>
+        </div>
+        <div class="form-group"><label for="price" class="d-block">Price:</label>
+          <input class="form-control w-50" placeholder="1000" id="price"
+            maxlength="13" type="text">
+          <div class="error error-price"></div>
+        </div>
+        <div class="form-group">
+          <label class="d-block" for="delivery">Delivery</label>
+          <div class="row">
+            <div class="col">
+              <select class="form-control" id="delivery">
+                <option></option>
+                <option>Country</option>
+                <option>City</option>
+              </select>
+            </div>
+            <div class="card col mr-4">
+              <!-- <div class="card-body"> -->
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="country" id="russia" value="russia" checked>
+                <label class="form-check-label" for="russia">
+                  Russia
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="country" id="usa" value="USA">
+                <label class="form-check-label" for="usa">
+                  USA
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="country" id="japan" value="japan">
+                <label class="form-check-label" for="japan">
+                  Japan
+                </label>
+              </div>
+              <!-- </div> -->
+            </div>
+            <div class="card col mr-4">
+              <!-- <div class="card-body"> -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="select-all">
+                <label class="form-check-label" for="select-all">
+                  Select All
+                </label>
+              </div>
+              <hr>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="city" value="saratov" id="saratov">
+                <label class="form-check-label" for="saratov">
+                  Saratov
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="city" value="moscow" id="moscow">
+                <label class="form-check-label" for="moscow">
+                  Moscow
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="city" value="piter" id="piter">
+                <label class="form-check-label" for="piter">
+                  Piter
+                </label>
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div><button class="btn btn-default" id="superBtn" disabled="">Add/Update</button>
+      </form>
+    </div>
+  </div>
 </body>
 
 </html>
