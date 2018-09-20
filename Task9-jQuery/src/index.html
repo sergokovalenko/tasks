@@ -11,7 +11,48 @@
 </head>
 
 <body>
+  <script id="tableRowTemplate" type="text/html">
+    <tr>
+        <td>
+          <span class="name"><%-product.name%></span>
+          <span class="count badge badge-pill badge-dark float-right mr-1"><%-product.count%></span>
+        </td>
+        <td class="text-center">
+          <span class="price"><%-product.price%></span>
+        </td>
+        <td class="text-center">
+          <button class="btn btn-light mt-1 edit" data-id="<%-product.id%>">Edit</button>
+          <button class="btn btn-danger mt-1 delete" data-id="<%-product.id%>">Delete</button>
+        </td>
+      </tr>
+  </script>
+  <script id="tableTemplate" type="text/html">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">
+              Name
+              <i class="sort triangle-top"></i>
+            </th>
+            <th class="text-center">
+              Price
+              <i class="sort triangle-top"></i>
+            </th>
+            <th class="text-center">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            <% _.each(productList, function(product) { %>
+              <%= productRowTemplateFunc({ product: product }) %>
+            <% }); %>
+        </tbody>
+      </table>
+  </script>
+
   <div class="container">
+    <div id="test"></div>
     <section class="row action-block">
       <div class="col-8">
         <div class="formline">
@@ -26,40 +67,7 @@
       </div>
     </section>
     <section class="row content">
-      <div class="col-12">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th class="text-center">
-                Name
-                <i class="sort triangle-top"></i>
-              </th>
-              <th class="text-center">
-                Price
-                <i class="sort triangle-top"></i>
-              </th>
-              <th class="text-center">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <span class="name">Thing0123456789</span>
-                <span class="count badge badge-pill badge-dark float-right mr-1">5</span>
-              </td>
-              <td class="text-center">
-                <span class="price">13.254$</span>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-light mt-1 edit">Edit</button>
-                <button class="btn btn-danger mt-1 delete">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div id="container" class="col-12"></div>
     </section>
   </div>
   <div class="modal-content" style="width: 600px">
@@ -72,8 +80,7 @@
     </div>
   </div>
   <div class="modal-content" style="width: 600px">
-    <div class="modal-header" style="border-bottom: medium none;"><button type="button" class="close"
-        id="close"><span>&times;</span></button></div>
+    <div class="modal-header" style="border-bottom: medium none;"><button type="button" class="close" id="close"><span>&times;</span></button></div>
     <div class="modal-body">
       <form class="">
         <div class="form-group">
@@ -83,19 +90,16 @@
           <div class="error error-name"></div>
         </div>
         <div class="form-group"><label for="name" class="d-block">Supplier Email:</label>
-          <input class="form-control w-50 d-inline" placeholder="abc@mail.ru"
-            id="email" maxlength="20" type="text">
+          <input class="form-control w-50 d-inline" placeholder="abc@mail.ru" id="email" maxlength="20" type="text">
           <div class="hiding d-inline">• Incorrect email</div>
           <div class="error error-name"></div>
         </div>
         <div class="form-group"><label for="count">Count:</label>
-          <input class="form-control w-25" placeholder="1" id="count"
-            maxlength="4" type="text">
+          <input class="form-control w-25" placeholder="1" id="count" maxlength="4" type="text">
           <div class="error error-count"></div>
         </div>
         <div class="form-group"><label for="price" class="d-block">Price:</label>
-          <input class="form-control w-50" placeholder="1000" id="price"
-            maxlength="13" type="text">
+          <input class="form-control w-50" placeholder="1000" id="price" maxlength="13" type="text">
           <div class="error error-price"></div>
         </div>
         <div class="form-group">

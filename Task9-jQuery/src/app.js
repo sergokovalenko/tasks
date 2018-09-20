@@ -1,4 +1,9 @@
 import $ from 'jquery';
 import './assets/scss/main.scss';
+import Table from './js/table';
 
-console.log($);
+$('document').ready(() => {
+  const table = new Table();
+
+  table.drawFullTable();
+});
