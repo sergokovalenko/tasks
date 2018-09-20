@@ -2,12 +2,15 @@ import $ from 'jquery';
 import Bll from './Bll';
 import { productRowTemplateFunc, tableTemplateFunc } from './templates';
 import DeleteModal from './components/deleteModal';
+import ChangeModal from './components/changeModal';
 
 class Table {
   constructor() {
     this.logic = new Bll();
     this.deleteModal = new DeleteModal(this.logic, 'modal-container');
+    this.changeModal = new ChangeModal(this.logic, 'modal-container');
     this.edit = function edit(productId) {
+      this.changeModal.show(productId);
       console.log(`edit ${productId}`);
     };
     this.delete = function del(productId) {
