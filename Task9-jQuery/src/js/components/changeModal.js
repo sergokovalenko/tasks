@@ -9,8 +9,11 @@ class ChangeModal {
   }
 
   show(id) {
+    const product = this.logic.getElementById(id);
+    console.log(id);
+    console.log(product);
     const modal = changeModalTemplateFunc({
-      id,
+      product,
     });
     this.elem.html(modal);
     this.modal = $('#modalWindow');

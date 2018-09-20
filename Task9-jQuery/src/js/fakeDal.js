@@ -9,7 +9,8 @@ class Dal {
   }
 
   getElementById(id) {
-    return this.data.find(el => el.id === id);
+    const a = this.data.find(el => el.id === +id);
+    return a;
   }
 
   removeElement(id) {
