@@ -1,4 +1,4 @@
-import Dal from './Dal';
+import Dal from './fakeDal';
 
 class Bll {
   constructor() {
