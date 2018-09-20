@@ -5,7 +5,7 @@
         "count": 100,
         "price": 0.2,
         "country": "country",
-        "city": "city"
+        "city": ["saratov"]
     }, {
         "id": 2,
         "name": "Little House",
@@ -13,7 +13,7 @@
         "count": 2,
         "price": 532184,
         "country": "country",
-        "city": "city"
+        "city": ["saratov"]
     }, {
         "id": 3,
         "name": "Water",
@@ -21,7 +21,7 @@
         "count": 1000,
         "price": 0.1,
         "country": "country",
-        "city": "city"
+        "city": ["saratov"]
     },
     {
         "id": 4,
@@ -30,7 +30,7 @@
         "count": 52,
         "price": 0.5,
         "country": "country",
-        "city": "city"
+        "city": ["saratov"]
     }, {
         "id": 5,
         "name": "Big House",
@@ -38,14 +38,14 @@
         "count": 1,
         "price": 1000000.25,
         "country": "country",
-        "city": "city"
+        "city": ["saratov"]
     }, {
-        "id": 5,
+        "id": 6,
         "name": "Tesla car",
         "email": "mail@mail.ru",
         "count": 21,
         "price": 250000,
         "country": "country",
-        "city": "city"
+        "city": ["saratov"]
     }
 ]
