@@ -18,7 +18,7 @@
           <span class="count badge badge-pill badge-dark float-right mr-1"><%-product.count%></span>
         </td>
         <td class="text-center">
-          <span class="price"><%-product.price%></span>
+          <span class="price"><%-window.priceConvertor.convertNumberToPrice(product.price)%></span>
         </td>
         <td class="text-center">
           <button class="btn btn-light mt-1 edit" data-id="<%-product.id%>" data-action="edit">Edit</button>
@@ -32,23 +32,28 @@
           <tr>
             <th class="text-center">
               Name
-              <i class="sort triangle-top"></i>
+              <i class="sort triangle-top" data-action="sortByName"></i>
             </th>
             <th class="text-center">
               Price
-              <i class="sort triangle-top"></i>
+              <i class="sort triangle-top" data-action="sortByPrice"></i>
             </th>
             <th class="text-center">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tableBody">
             <% _.each(productList, function(product) { %>
               <%= productRowTemplateFunc({ product: product }) %>
             <% }); %>
         </tbody>
       </table>
+  </script>
+  <script id="tableRowRedrawTemplate" type="text/html">
+    <% _.each(productList, function(product) { %>
+      <%= productRowTemplateFunc({ product: product }) %>
+    <% }); %>
   </script>
   <script id="modalDeleteTemplate" type="text/html">
     <div id="modalWindow" class="modal">
@@ -162,11 +167,10 @@
   </script>
 
   <div class="container">
-    <div id="test"></div>
     <section class="row action-block">
       <div class="col-8">
         <div class="formline">
-          <button class="btn btn-light float-right search">Search</button>
+          <button class="btn btn-light float-right" id="searchBtn">Search</button>
           <div class="pr-2">
             <input class="form-control" type="text" placeholder="Type here for search" id="search-field">
           </div>
