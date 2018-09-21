@@ -14,11 +14,52 @@ function setEvents() {
     });
     const errorBlock = $('.error-name:eq(0)');
     if (hasError) {
-      console.log('invalid');
       errorBlock.html(validator.messages[0]);
-      console.log(validator.messages);
     } else {
-      console.log('valid');
+      errorBlock.html('');
+    }
+  });
+
+  $('#email').on('blur', function nameClick() {
+    const value = $(this).val();
+    const hasError = validator.validate({
+      email: value,
+    });
+    const errorBlock = $('.error-email:eq(0)');
+    if (hasError) {
+      errorBlock.html(validator.messages[0]);
+    } else {
+      errorBlock.html('');
+    }
+  });
+
+  $('#count').on('blur', function nameClick() {
+    const value = $(this).val();
+    const hasError = validator.validate({
+      count: value,
+    });
+    const errorBlock = $('.error-count:eq(0)');
+    if (hasError) {
+      errorBlock.html(validator.messages[0]);
+    } else {
+      errorBlock.html('');
+    }
+  });
+
+  $('#count').bind('input propertychange', function a() {
+    const input = $(this);
+    input.val(input.val().replace(/[^0-9]/g, ''));
+  });
+
+  $('#price').on('blur', function nameClick() {
+    const value = $(this).val();
+    const hasError = validator.validate({
+      price: value,
+    });
+    const errorBlock = $('.error-price:eq(0)');
+    if (hasError) {
+      errorBlock.html(validator.messages[0]);
+    } else {
       errorBlock.html('');
     }
   });
