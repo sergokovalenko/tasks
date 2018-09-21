@@ -8,19 +8,19 @@ const validator = {
     },
     isInteger: {
       validate(value) {
-        return !/^[1-9][0-9]{0,2}$/.test(value);
+        return /^[1-9][0-9]{0,2}$/.test(value);
       },
       errorMessage: 'the value can only contain numbers',
     },
     isDoubleNumber: {
       validate(value) {
-        return !/^([1-9][0-9]{0,7}(.[0-9]{1,2})?)|(0[.][0-9]{1,2})$/.test(value);
+        return /^([1-9][0-9]{0,7}(.[0-9]{1,2})?)|(0[.][0-9]{1,2})$/.test(value);
       },
       errorMessage: 'the value can only contain double numbers',
     },
     isAlphaNum: {
       validate(value) {
-        return !/[^a­z0­9]/i.test(value);
+        return /[a-z0-9]+/i.test(value);
       },
       errorMessage: 'the value can only contain characters and numbers, no special symbols',
     },
@@ -43,20 +43,18 @@ const validator = {
 
   validate(data) {
     this.messages = [];
-
     // перебор валидационных правил
     const keys = Object.keys(data);
     keys.forEach((key) => {
       if (this.config[key]) {
         this.config[key].forEach((i) => {
-          const type = this.config[key][i];
-          const checker = this.types[type];
-
-          if (type) {
+          console.log(i);
+          const checker = this.types[i];
+          if (i) {
             if (!checker) {
               const obj = {
                 name: 'ValidationError',
-                message: `No handler to validate type ${type}`,
+                message: `No handler to validate type ${i}`,
               };
               throw obj;
             }
