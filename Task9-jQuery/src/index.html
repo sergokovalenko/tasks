@@ -90,10 +90,10 @@
                 <div class="form-group"><label for="name" class="d-block">Supplier Email:</label>
                   <input class="form-control w-50 d-inline" placeholder="abc@mail.ru" id="email" name="email" maxlength="20" type="text" value="<%-product.email%>">
                   <div class="hiding d-inline">• Incorrect email</div>
-                  <div class="error error-name"></div>
+                  <div class="error error-email"></div>
                 </div>
                 <div class="form-group"><label for="count">Count:</label>
-                  <input class="form-control w-25" placeholder="1" id="count" name="count" maxlength="4" type="text" value="<%-product.count%>">
+                  <input class="form-control w-25" placeholder="1" id="count" name="count" maxlength="3" type="text" value="<%-product.count%>">
                   <div class="error error-count"></div>
                 </div>
                 <div class="form-group"><label for="price" class="d-block">Price:</label>
@@ -112,19 +112,19 @@
                     </div>
                     <div class="card col mr-4">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="country" value="russia" checked>
+                        <input class="form-check-input" id="russia" type="radio" name="country" value="russia" checked>
                         <label class="form-check-label" for="russia">
                           Russia
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="country" value="USA">
+                        <input class="form-check-input" id="usa" type="radio" name="country" value="USA">
                         <label class="form-check-label" for="usa">
                           USA
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="country" value="japan">
+                        <input class="form-check-input" id="japan" type="radio" name="country" value="japan">
                         <label class="form-check-label" for="japan">
                           Japan
                         </label>
@@ -139,19 +139,19 @@
                       </div>
                       <hr>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="city" value="saratov" id="saratov">
+                        <input class="form-check-input" id="saratov" type="checkbox" name="city" value="saratov" id="saratov">
                         <label class="form-check-label" for="saratov">
                           Saratov
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="city" value="moscow">
+                        <input class="form-check-input" id="moscow" type="checkbox" name="city" value="moscow">
                         <label class="form-check-label" for="moscow">
                           Moscow
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="city" value="piter">
+                        <input class="form-check-input" id="piter" type="checkbox" name="city" value="piter">
                         <label class="form-check-label" for="piter">
                           Piter
                         </label>

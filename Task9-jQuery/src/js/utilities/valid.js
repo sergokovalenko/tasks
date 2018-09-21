@@ -30,6 +30,12 @@ const validator = {
       },
       errorMessage: 'the value can only be a valid number, e.g.1, 3.14 or 2010',
     },
+    isEmail: {
+      validate(value) {
+        return /^[a-z0-9]+([a-z0-9._-]*[a-z0-9]+)?@([a-z0-9]+([a-z0-9-]*[a-z0-9]+)?\.)+[a-z]{2,6}$/.test(value);
+      },
+      errorMessage: 'invalid email address',
+    },
   },
 
   messages: [],
@@ -48,7 +54,6 @@ const validator = {
     keys.forEach((key) => {
       if (this.config[key]) {
         this.config[key].forEach((i) => {
-          console.log(i);
           const checker = this.types[i];
           if (i) {
             if (!checker) {
