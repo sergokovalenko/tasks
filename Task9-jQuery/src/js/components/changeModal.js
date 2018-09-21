@@ -8,18 +8,18 @@ function setEvents() {
   });
 
   $('#name').on('blur', function nameClick() {
-    const value = this.innerText;
+    const value = $(this).val();
     const hasError = validator.validate({
       name: value,
     });
     const errorBlock = $('.error-name:eq(0)');
     if (hasError) {
-      errorBlock.html('');
       console.log('invalid');
-    } else {
       errorBlock.html(validator.messages[0]);
       console.log(validator.messages);
+    } else {
       console.log('valid');
+      errorBlock.html('');
     }
   });
 }
@@ -42,9 +42,6 @@ class ChangeModal {
     this.modal.css('display', 'block');
 
     setEvents.bind(this)();
-    // $('#close').on('click', () => {
-    //   this.modal.css('display', 'none');
-    // });
   }
 
   hide() {
