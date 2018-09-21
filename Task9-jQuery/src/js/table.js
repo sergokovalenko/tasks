@@ -7,7 +7,6 @@ import {
 } from './templates';
 import DeleteModal from './components/deleteModal';
 import ChangeModal from './components/changeModal';
-// import { convertNumberToPrice } from './utilities/priceConvertor';
 
 class Table {
   constructor() {

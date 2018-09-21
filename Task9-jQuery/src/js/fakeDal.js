@@ -9,18 +9,17 @@ class Dal {
   }
 
   getElementById(id) {
-    const a = this.data.find(el => el.id === +id);
-    return a;
+    return this.data.find(el => el.id === +id);
   }
 
   removeElement(id) {
-    const index = this.data.findIndex(el => el.id === id);
+    const index = this.data.findIndex(el => el.id === +id);
 
     if (index < 0) {
       return false;
     }
 
-    this.data.splice(index, 0);
+    this.data.splice(index, 1);
     return true;
   }
 
