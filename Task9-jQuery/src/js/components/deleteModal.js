@@ -1,30 +1,28 @@
 import $ from 'jquery';
 import { deleteModalTemplateFunc } from './../templates';
 
-function setEvents() {
-  $('#close').on('click', () => {
-    this.modal.css('display', 'none');
-  });
-}
-
 class DeleteModal {
-  constructor(logic, elemId) {
-    this.logic = logic;
-    this.elem = $(`#${elemId}`);
+  constructor(parentId = '') {
+    this.parentId = parentId;
     this.modal = null;
-    // setEvents.bind(this);
   }
 
-  show(id) {
+  show(id, callback) {
     const modal = deleteModalTemplateFunc({
       id,
     });
-    this.elem.html(modal);
+    $('#modal-container').html(modal);
     this.modal = $('#modalWindow');
     this.modal.css('display', 'block');
 
-    setEvents.bind(this)();
-    // setEvents();
+    $(`#${this.parentId} #close`).on('click', () => {
+      this.hide();
+    });
+
+    $(`#${this.parentId} #delete`).on('click', () => {
+      callback(id);
+      this.hide();
+    });
   }
 
   hide() {

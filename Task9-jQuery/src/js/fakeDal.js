@@ -9,11 +9,11 @@ class Dal {
   }
 
   getElementById(id) {
-    return this.data.find(el => el.id === +id);
+    return this.data.find(el => +el.id === +id);
   }
 
   removeElement(id) {
-    const index = this.data.findIndex(el => el.id === +id);
+    const index = this.data.findIndex(el => +el.id === +id);
 
     if (index < 0) {
       return false;
@@ -28,7 +28,7 @@ class Dal {
   }
 
   update(el) {
-    const index = this.data.findIndex(row => row.id === el.id);
+    const index = this.data.findIndex(row => +row.id === +el.id);
 
     if (index < 0) {
       return false;
