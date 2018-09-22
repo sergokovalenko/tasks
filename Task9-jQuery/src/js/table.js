@@ -11,15 +11,15 @@ import Filter from './components/search';
 
 class Table {
   constructor() {
-    this.id = Math.random().toString(36).substr(2, 10);
+    this.id = Math.random().toString(20).substr(2, 10);
     this.logic = new Bll();
-    this.deleteModal = new DeleteModal(this.logic, 'modal-container');
-    this.changeModal = new ChangeModal(this.logic, 'modal-container');
+    this.deleteModal = new DeleteModal(this.id, 'modal-container');
+    this.changeModal = new ChangeModal(this.id, 'modal-container');
     this.filterComponent = new Filter();
-    this.filterComponent.render(this.filter.bind(this));
     this.actionTypes = {
       edit: (productId) => {
-        this.changeModal.show(productId, this.addAndRepaint.bind(this));
+        const prod = this.logic.getElementById(productId);
+        this.changeModal.show(prod, this.addAndRepaint.bind(this));
       },
       delete: (productId) => {
         this.deleteModal.show(productId);
@@ -58,12 +58,16 @@ class Table {
 
   drawFullTable() {
     const productList = this.logic.getAll();
+    const { id } = this;
 
     const table = tableTemplateFunc({
+      id,
       productList,
       productRowTemplateFunc,
     });
     $('#container').html(table);
+
+    this.filterComponent.render(this.filter.bind(this));
 
     $('.table').on('click', '.delete, .edit, .sort', (e) => {
       const $btn = $(e.target);
