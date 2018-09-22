@@ -26,30 +26,6 @@
         </td>
       </tr>
   </script>
-  <script id="tableTemplate" type="text/html">
-    <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th class="text-center">
-              Name
-              <i class="sort triangle-top" data-action="sortByName"></i>
-            </th>
-            <th class="text-center">
-              Price
-              <i class="sort triangle-top" data-action="sortByPrice"></i>
-            </th>
-            <th class="text-center">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-            <% _.each(productList, function(product) { %>
-              <%= productRowTemplateFunc({ product: product }) %>
-            <% }); %>
-        </tbody>
-      </table>
-  </script>
   <script id="tableRowRedrawTemplate" type="text/html">
     <% _.each(productList, function(product) { %>
       <%= productRowTemplateFunc({ product: product }) %>
@@ -165,7 +141,6 @@
       </div>
     </div>
   </script>
-
   <script id="searchTemplate" type="text/html">
     <div class="formline">
       <button class="btn btn-light float-right" id="searchBtn">Search</button>
@@ -174,26 +149,45 @@
       </div>
     </div>
   </script>
+  <script id="taskTemplate" type="text/html">
+    <div id="<%-id%>">
+      <section class="row action-block">
+        <div class="col-8" id="searchBlock"></div>
+        <div class="col-4" id="addBlock">
+          <button class="btn btn-light float-right" id="addNew">Add new</button>
+        </div>
+      </section>
+      <section class="row content">
+        <div id="container" class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    Name
+                    <i class="sort triangle-top" data-action="sortByName"></i>
+                  </th>
+                  <th class="text-center">
+                    Price
+                    <i class="sort triangle-top" data-action="sortByPrice"></i>
+                  </th>
+                  <th class="text-center">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                  <% _.each(productList, function(product) { %>
+                    <%= productRowTemplateFunc({ product: product }) %>
+                  <% }); %>
+              </tbody>
+            </table>
+        </div>
+      </section>
+      <div id="modal-container"></div>
+    </div>
+  </script>
 
-  <div class="container">
-    <section class="row action-block">
-      <div class="col-8" id="searchBlock">
-        <!-- <div class="formline">
-          <button class="btn btn-light float-right" id="searchBtn">Search</button>
-          <div class="pr-2">
-            <input class="form-control" type="text" placeholder="Type here for search" id="search-field">
-          </div>
-        </div> -->
-      </div>
-      <div class="col-4">
-        <button class="btn btn-light float-right" id="addNew">Add new</button>
-      </div>
-    </section>
-    <section class="row content">
-      <div id="container" class="col-12"></div>
-    </section>
-  </div>
-  <div id="modal-container"></div>
+  <div class="container" id="container"></div>
 </body>
 
 </html>

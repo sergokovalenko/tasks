@@ -39,13 +39,13 @@ function mapObject(formId) {
 
 function setEvents(callback) {
   // TODO: делегирование событий
-  const $superBtn = $('#superBtn');
-  const $close = $('#close');
-  const $name = $('#name');
-  const $email = $('#email');
-  const $count = $('#count');
-  const $price = $('#price');
-  const $selectAllBox = $('#select-all');
+  const $superBtn = $(`#${this.parentId} #superBtn`);
+  const $close = $(`#${this.parentId} #close`);
+  const $name = $(`#${this.parentId} #name`);
+  const $email = $(`#${this.parentId} #email`);
+  const $count = $(`#${this.parentId} #count`);
+  const $price = $(`#${this.parentId} #price`);
+  const $selectAllBox = $(`${this.parentId} #select-all`);
 
   $close.on('click', () => {
     this.modal.css('display', 'none');
@@ -103,32 +103,17 @@ function setEvents(callback) {
 }
 
 class ChangeModal {
-  constructor(logic, elemId) {
-    this.logic = logic;
-    this.elem = $(`#${elemId}`);
+  constructor(parentId = '') {
+    this.parentId = parentId;
     this.modal = null;
     setEvents.bind(this);
   }
 
-  show(id, callback) {
-    let modal;
-    if (id <= -1000) {
-      const product = {
-        name: '',
-        price: '',
-        email: '',
-        count: '',
-      };
-      modal = changeModalTemplateFunc({
-        product,
-      });
-    } else {
-      const product = this.logic.getElementById(id);
-      modal = changeModalTemplateFunc({
-        product,
-      });
-    }
-    this.elem.html(modal);
+  show(product, callback) {
+    const modal = changeModalTemplateFunc({
+      product,
+    });
+    $('#modal-container').html(modal);
     this.modal = $('#modalWindow');
     this.modal.css('display', 'block');
 
