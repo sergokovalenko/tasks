@@ -8,14 +8,28 @@ import {
 import DeleteModal from './components/deleteModal';
 import ChangeModal from './components/changeModal';
 import Filter from './components/search';
+import Add from './components/addButton';
+
+function addNew() {
+  const prod = {
+    name: '',
+    email: '',
+    count: '',
+    price: '',
+    country: '',
+    city: [],
+  };
+  this.changeModal.show(prod, this.addAndRepaint.bind(this));
+}
 
 class Table {
   constructor() {
-    this.id = Math.random().toString(20).substr(2, 10);
+    this.uniqueId = Math.random().toString(20).substr(2, 10);
     this.logic = new Bll();
-    this.deleteModal = new DeleteModal(this.id, 'modal-container');
-    this.changeModal = new ChangeModal(this.id, 'modal-container');
+    this.deleteModal = new DeleteModal(this.uniqueId, 'modal-container');
+    this.changeModal = new ChangeModal(this.uniqueId, 'modal-container');
     this.filterComponent = new Filter();
+    this.addComponent = new Add();
     this.actionTypes = {
       edit: (productId) => {
         const prod = this.logic.getElementById(productId);
@@ -58,7 +72,7 @@ class Table {
 
   drawFullTable() {
     const productList = this.logic.getAll();
-    const { id } = this;
+    const { uniqueId: id } = this;
 
     const table = tableTemplateFunc({
       id,
@@ -68,6 +82,7 @@ class Table {
     $('#container').html(table);
 
     this.filterComponent.render(this.filter.bind(this));
+    this.addComponent.render(addNew.bind(this));
 
     $('.table').on('click', '.delete, .edit, .sort', (e) => {
       const $btn = $(e.target);
