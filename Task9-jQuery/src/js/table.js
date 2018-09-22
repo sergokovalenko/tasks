@@ -14,7 +14,7 @@ class Table {
     this.deleteModal = new DeleteModal(this.logic, 'modal-container');
     this.changeModal = new ChangeModal(this.logic, 'modal-container');
     this.edit = function edit(productId) {
-      this.changeModal.show(productId);
+      this.changeModal.show(productId, this.addAndRepaint);
     };
     this.delete = function del(productId) {
       this.deleteModal.show(productId);
@@ -41,6 +41,14 @@ class Table {
       $curElem.toggleClass('triangle-bottom');
       this.redrawTable();
     };
+  }
+
+  addAndRepaint(prod) {
+    console.log('callback');
+    const product = prod;
+    product.id = 100;
+    this.logic.add(product);
+    this.redrawTable();
   }
 
   drawFullTable() {
