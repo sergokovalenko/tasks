@@ -166,15 +166,24 @@
     </div>
   </script>
 
+  <script id="searchTemplate" type="text/html">
+    <div class="formline">
+      <button class="btn btn-light float-right" id="searchBtn">Search</button>
+      <div class="pr-2">
+        <input class="form-control" type="text" placeholder="Type here for search" id="search-field">
+      </div>
+    </div>
+  </script>
+
   <div class="container">
     <section class="row action-block">
-      <div class="col-8">
-        <div class="formline">
+      <div class="col-8" id="searchBlock">
+        <!-- <div class="formline">
           <button class="btn btn-light float-right" id="searchBtn">Search</button>
           <div class="pr-2">
             <input class="form-control" type="text" placeholder="Type here for search" id="search-field">
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col-4">
         <button class="btn btn-light float-right" id="addNew">Add new</button>

@@ -7,44 +7,49 @@ import {
 } from './templates';
 import DeleteModal from './components/deleteModal';
 import ChangeModal from './components/changeModal';
+import Filter from './components/search';
 
 class Table {
   constructor() {
+    this.id = Math.random().toString(36).substr(2, 10);
     this.logic = new Bll();
     this.deleteModal = new DeleteModal(this.logic, 'modal-container');
     this.changeModal = new ChangeModal(this.logic, 'modal-container');
-    this.edit = function edit(productId) {
-      this.changeModal.show(productId, this.addAndRepaint);
-    };
-    this.delete = function del(productId) {
-      this.deleteModal.show(productId);
-    };
-    this.sortByName = function sortByName(id, $curElem) {
-      if ($curElem.hasClass('triangle-top')) {
-        this.logic.getAll().sort((a, b) => a.name > b.name);
-      } else {
-        this.logic.getAll().sort((a, b) => a.name < b.name);
-      }
+    this.filterComponent = new Filter();
+    this.filterComponent.render(this.filter.bind(this));
+    this.actionTypes = {
+      edit: (productId) => {
+        this.changeModal.show(productId, this.addAndRepaint.bind(this));
+      },
+      delete: (productId) => {
+        this.deleteModal.show(productId);
+      },
+      sortByName: (id, $curElem) => {
+        if ($curElem.hasClass('triangle-top')) {
+          this.logic.getAll().sort((a, b) => a.name > b.name);
+        } else {
+          this.logic.getAll().sort((a, b) => a.name < b.name);
+        }
 
-      $curElem.toggleClass('triangle-top');
-      $curElem.toggleClass('triangle-bottom');
-      this.redrawTable();
-    };
-    this.sortByPrice = function sortByPrice(id, $curElem) {
-      if ($curElem.hasClass('triangle-top')) {
-        this.logic.getAll().sort((a, b) => a.price > b.price);
-      } else {
-        this.logic.getAll().sort((a, b) => a.price < b.price);
-      }
+        $curElem.toggleClass('triangle-top');
+        $curElem.toggleClass('triangle-bottom');
+        this.redrawTable();
+      },
+      sortByPrice: (id, $curElem) => {
+        if ($curElem.hasClass('triangle-top')) {
+          this.logic.getAll().sort((a, b) => a.price > b.price);
+        } else {
+          this.logic.getAll().sort((a, b) => a.price < b.price);
+        }
 
-      $curElem.toggleClass('triangle-top');
-      $curElem.toggleClass('triangle-bottom');
-      this.redrawTable();
+        $curElem.toggleClass('triangle-top');
+        $curElem.toggleClass('triangle-bottom');
+        this.redrawTable();
+      },
     };
   }
 
   addAndRepaint(prod) {
-    console.log('callback');
     const product = prod;
     product.id = 100;
     this.logic.add(product);
@@ -64,7 +69,7 @@ class Table {
       const $btn = $(e.target);
       const action = $btn.attr('data-action');
 
-      this[action]($btn.attr('data-id'), $btn);
+      this.actionTypes[action]($btn.attr('data-id'), $btn);
     });
   }
 
@@ -79,14 +84,17 @@ class Table {
   }
 
   filter(expr) {
-    const productList = this.logic.find(expr);
+    if (expr) {
+      const productList = this.logic.find(expr);
+      const table = tableRowRedrawTemplate({
+        productList,
+        productRowTemplateFunc,
+      });
 
-    const table = tableRowRedrawTemplate({
-      productList,
-      productRowTemplateFunc,
-    });
-
-    $('#tableBody').html(table);
+      $('#tableBody').html(table);
+    } else {
+      this.redrawTable();
+    }
   }
 }
 

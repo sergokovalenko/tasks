@@ -89,10 +89,9 @@ function setEvents(callback) {
     if (!$superBtn.prop('disabled')) {
       const product = mapObject('modalForm');
 
-      console.log(product);
       if (!validator.validate(product)) {
         callback(product);
-        console.log('Added');
+        this.hide();
       } else {
         $name.blur();
         $email.blur();
