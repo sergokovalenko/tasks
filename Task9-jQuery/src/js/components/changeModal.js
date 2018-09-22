@@ -2,11 +2,11 @@ import $ from 'jquery';
 import { changeModalTemplateFunc } from './../templates';
 import validator from './../utilities/valid';
 
-function blurEvent(field, fieldName, $submitBtn) {
-  const value = $(field).val();
-  const hasError = validator.validate({
-    name: value,
-  });
+function blurEvent($field, fieldName, $submitBtn) {
+  const value = $field.val();
+  const obj = {};
+  obj[fieldName] = value;
+  const hasError = validator.validate(obj);
   const errorBlock = $(`.error-${fieldName}:eq(0)`);
   if (hasError) {
     errorBlock.html(validator.messages[0]);
@@ -22,7 +22,7 @@ function blurEvent(field, fieldName, $submitBtn) {
 
 function mapObject(formId) {
   const product = {};
-  const serialized = $(`#${formId}`).serializeArray();
+  const serialized = $(`#${this.parentId} #${formId}`).serializeArray();
   serialized.forEach((el) => {
     product[el.name] = el.value;
   });
@@ -45,22 +45,22 @@ function setEvents(callback) {
   const $email = $(`#${this.parentId} #email`);
   const $count = $(`#${this.parentId} #count`);
   const $price = $(`#${this.parentId} #price`);
-  const $selectAllBox = $(`${this.parentId} #select-all`);
+  const $selectAllBox = $(`#${this.parentId} #select-all`);
 
   $close.on('click', () => {
     this.modal.css('display', 'none');
   });
 
-  $name.on('blur', function nameClick() {
-    blurEvent(this, 'name', $superBtn);
+  $name.on('blur', () => {
+    blurEvent($name, 'name', $superBtn);
   });
 
-  $email.on('blur', function emailClick() {
-    blurEvent(this, 'email', $superBtn);
+  $email.on('blur', () => {
+    blurEvent($email, 'email', $superBtn);
   });
 
-  $count.on('blur', function countClick() {
-    blurEvent(this, 'count', $superBtn);
+  $count.on('blur', () => {
+    blurEvent($count, 'count', $superBtn);
   });
 
   $count.bind('input propertychange', function a() {
@@ -68,17 +68,14 @@ function setEvents(callback) {
     input.val(input.val().replace(/[^0-9]/g, ''));
   });
 
-  $price.on('blur', function nameClick() {
-    blurEvent(this, 'price', $superBtn);
-    const product = mapObject('modalForm');
-
-    console.log(product);
+  $price.on('blur', () => {
+    blurEvent($price, 'price', $superBtn);
   });
 
   $selectAllBox.on('click', () => {
     const flag = $selectAllBox.prop('checked');
 
-    $('input[name="city"]').each((i, el) => {
+    $(`#${this.parentId} input[name="city"]`).each((i, el) => {
       $(el).prop('checked', flag);
     });
   });
@@ -87,7 +84,7 @@ function setEvents(callback) {
     e.preventDefault();
 
     if (!$superBtn.prop('disabled')) {
-      const product = mapObject('modalForm');
+      const product = mapObject.call(this, 'modalForm');
 
       if (!validator.validate(product)) {
         callback(product);
@@ -107,17 +104,19 @@ class ChangeModal {
     this.parentId = parentId;
     this.modal = null;
     setEvents.bind(this);
+    mapObject.bind(this);
   }
 
-  show(product, callback) {
+  show(product, callback, type = 'Edit') {
     const modal = changeModalTemplateFunc({
       product,
     });
     $('#modal-container').html(modal);
-    this.modal = $('#modalWindow');
+    this.modal = $(`#${this.parentId} #modalWindow`);
     this.modal.css('display', 'block');
 
-    setEvents.call(this, callback);
+    $(`#${this.parentId} #superBtn`).text(type);
+    setEvents.call(this, callback, type);
   }
 
   hide() {

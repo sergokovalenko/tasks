@@ -9,6 +9,7 @@ import DeleteModal from './components/deleteModal';
 import ChangeModal from './components/changeModal';
 import Filter from './components/search';
 import Add from './components/addButton';
+import Component from './components/component';
 
 function addNew() {
   const prod = {
@@ -19,24 +20,43 @@ function addNew() {
     country: '',
     city: [],
   };
-  this.changeModal.show(prod, this.addAndRepaint.bind(this));
+  this.changeModal.show(prod, this.addAndRepaint.bind(this), 'Add new');
 }
 
-class Table {
+function deleteProduct(id) {
+  this.logic.removeElement(id);
+  this.redrawTable();
+}
+
+function getMaxIdOfElements(arr) {
+  let max = arr[0];
+  arr.forEach((el) => {
+    if (+el.id > max) {
+      max = +el.id;
+    }
+  });
+
+  return max;
+}
+
+class Table extends Component {
   constructor() {
+    super();
+    this.templateFunc = tableTemplateFunc;
     this.uniqueId = Math.random().toString(20).substr(2, 10);
     this.logic = new Bll();
-    this.deleteModal = new DeleteModal(this.uniqueId, 'modal-container');
-    this.changeModal = new ChangeModal(this.uniqueId, 'modal-container');
+    this.deleteModal = new DeleteModal(this.uniqueId);
+    this.changeModal = new ChangeModal(this.uniqueId);
     this.filterComponent = new Filter();
     this.addComponent = new Add();
+    this.nextIdForProduct = getMaxIdOfElements(this.logic.getAll()) + 1;
     this.actionTypes = {
       edit: (productId) => {
         const prod = this.logic.getElementById(productId);
-        this.changeModal.show(prod, this.addAndRepaint.bind(this));
+        this.changeModal.show(prod, this.editAndRepaint.bind(this));
       },
       delete: (productId) => {
-        this.deleteModal.show(productId);
+        this.deleteModal.show(productId, deleteProduct.bind(this));
       },
       sortByName: (id, $curElem) => {
         if ($curElem.hasClass('triangle-top')) {
@@ -65,8 +85,14 @@ class Table {
 
   addAndRepaint(prod) {
     const product = prod;
-    product.id = 100;
+    product.id = this.nextIdForProduct;
+    this.nextIdForProduct += 1;
     this.logic.add(product);
+    this.redrawTable();
+  }
+
+  editAndRepaint(prod) {
+    this.logic.update(prod);
     this.redrawTable();
   }
 
@@ -74,7 +100,7 @@ class Table {
     const productList = this.logic.getAll();
     const { uniqueId: id } = this;
 
-    const table = tableTemplateFunc({
+    const table = this.templateFunc({
       id,
       productList,
       productRowTemplateFunc,
