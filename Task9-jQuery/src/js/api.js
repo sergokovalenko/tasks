@@ -1,6 +1,6 @@
 import Dal from './fakeDal';
 
-const timeOutTime = 500;
+const timeOutTime = 0;
 
 class Api {
   constructor() {
