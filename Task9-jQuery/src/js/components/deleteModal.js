@@ -1,14 +1,17 @@
 import $ from 'jquery';
 import { deleteModalTemplateFunc } from './../templates';
+import Component from './component';
 
-class DeleteModal {
+class DeleteModal extends Component {
   constructor(parentId = '') {
+    super();
+    this.templateFunc = deleteModalTemplateFunc;
     this.parentId = parentId;
     this.modal = null;
   }
 
-  show(id, callback) {
-    const modal = deleteModalTemplateFunc({
+  render(id, callback) {
+    const modal = this.templateFunc({
       id,
     });
     $('#modal-container').html(modal);
@@ -20,7 +23,9 @@ class DeleteModal {
     });
 
     $(`#${this.parentId} #delete`).on('click', () => {
-      callback(id);
+      if (callback) {
+        callback(id);
+      }
       this.hide();
     });
   }

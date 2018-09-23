@@ -20,7 +20,7 @@ function addNew() {
     country: '',
     city: [],
   };
-  this.changeModal.show(prod, this.addAndRepaint.bind(this), 'Add new');
+  this.changeModal.render(prod, this.addAndRepaint.bind(this), 'Add new');
 }
 
 function deleteProduct(id) {
@@ -47,16 +47,16 @@ class Table extends Component {
     this.logic = new Bll();
     this.deleteModal = new DeleteModal(this.uniqueId);
     this.changeModal = new ChangeModal(this.uniqueId);
-    this.filterComponent = new Filter();
-    this.addComponent = new Add();
+    this.filterComponent = new Filter(this.uniqueId);
+    this.addComponent = new Add(this.uniqueId);
     this.nextIdForProduct = getMaxIdOfElements(this.logic.getAll()) + 1;
     this.actionTypes = {
       edit: (productId) => {
         const prod = this.logic.getElementById(productId);
-        this.changeModal.show(prod, this.editAndRepaint.bind(this));
+        this.changeModal.render(prod, this.editAndRepaint.bind(this));
       },
       delete: (productId) => {
-        this.deleteModal.show(productId, deleteProduct.bind(this));
+        this.deleteModal.render(productId, deleteProduct.bind(this));
       },
       sortByName: (id, $curElem) => {
         if ($curElem.hasClass('triangle-top')) {
