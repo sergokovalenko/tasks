@@ -26,7 +26,10 @@ function addNew() {
 function deleteProduct(id) {
   this.logic.removeElement(id)
     .then(() => {
-      this.redrawTable();
+      this.logic.find(this.filterExpression)
+        .then((all) => {
+          this.redrawTable(all);
+        });
     }, (err) => {
       alert(err.message);
     });
@@ -47,6 +50,7 @@ class Table extends Component {
   constructor() {
     super();
     this.templateFunc = tableTemplateFunc;
+    this.rowsTemplateFunc = tableRowRedrawTemplate;
     this.uniqueId = Math.random().toString(20).substr(2, 10);
     this.logic = new Bll();
     this.deleteModal = new DeleteModal(this.uniqueId);
@@ -68,26 +72,32 @@ class Table extends Component {
         this.deleteModal.render(productId, deleteProduct.bind(this));
       },
       sortByName: (id, $curElem) => {
-        if ($curElem.hasClass('triangle-top')) {
-          this.logic.getAll().sort((a, b) => a.name > b.name);
-        } else {
-          this.logic.getAll().sort((a, b) => a.name < b.name);
-        }
+        this.logic.find(this.filterExpression)
+          .then((products) => {
+            if ($curElem.hasClass('triangle-top')) {
+              products.sort((a, b) => a.name > b.name);
+            } else {
+              products.sort((a, b) => a.name < b.name);
+            }
 
-        $curElem.toggleClass('triangle-top');
-        $curElem.toggleClass('triangle-bottom');
-        this.redrawTable();
+            $curElem.toggleClass('triangle-top');
+            $curElem.toggleClass('triangle-bottom');
+            this.redrawTable(products);
+          });
       },
       sortByPrice: (id, $curElem) => {
-        if ($curElem.hasClass('triangle-top')) {
-          this.logic.getAll().sort((a, b) => a.price > b.price);
-        } else {
-          this.logic.getAll().sort((a, b) => a.price < b.price);
-        }
+        this.logic.find(this.filterExpression)
+          .then((products) => {
+            if ($curElem.hasClass('triangle-top')) {
+              products.sort((a, b) => a.price > b.price);
+            } else {
+              products.sort((a, b) => a.price < b.price);
+            }
 
-        $curElem.toggleClass('triangle-top');
-        $curElem.toggleClass('triangle-bottom');
-        this.redrawTable();
+            $curElem.toggleClass('triangle-top');
+            $curElem.toggleClass('triangle-bottom');
+            this.redrawTable(products);
+          });
       },
     };
   }
@@ -98,7 +108,10 @@ class Table extends Component {
     this.nextIdForProduct += 1;
     this.logic.add(product)
       .then(() => {
-        this.redrawTable();
+        this.logic.find(this.filterExpression)
+          .then((all) => {
+            this.redrawTable(all);
+          });
       }, (err) => {
         alert(err.message);
       });
@@ -107,13 +120,16 @@ class Table extends Component {
   editAndRepaint(prod) {
     this.logic.update(prod)
       .then(() => {
-        this.redrawTable();
+        this.logic.find(this.filterExpression)
+          .then((all) => {
+            this.redrawTable(all);
+          });
       }, (err) => {
         alert(err.message);
       });
   }
 
-  drawFullTable() {
+  render() {
     this.logic.getAll()
       .then((productList) => {
         const {
@@ -143,41 +159,22 @@ class Table extends Component {
       });
   }
 
-  redrawTable() {
-    this.logic.getAll()
-      .then((productList) => {
-        const table = tableRowRedrawTemplate({
-          productList,
-          productRowTemplateFunc,
-        });
-        $('#tableBody').html(table);
-        $('.table').on('click', '.delete, .edit, .sort', (e) => {
-          const $btn = $(e.target);
-          const action = $btn.attr('data-action');
-          this.actionTypes[action]($btn.attr('data-id'), $btn);
-        });
-      }, (err) => {
-        alert(err.message);
-      });
+  redrawTable(productList) {
+    const table = this.rowsTemplateFunc({
+      productList,
+      productRowTemplateFunc,
+    });
+    $('#tableBody').html(table);
   }
 
   filter(expr) {
-    if (expr) {
-      this.filterExpression = expr;
-      this.logic.find(expr)
-        .then((productList) => {
-          const table = tableRowRedrawTemplate({
-            productList,
-            productRowTemplateFunc,
-          });
-
-          $('#tableBody').html(table);
-        }, (err) => {
-          alert(err.message);
-        });
-    } else {
-      this.redrawTable();
-    }
+    this.filterExpression = expr;
+    this.logic.find(expr)
+      .then((productList) => {
+        this.redrawTable(productList);
+      }, (err) => {
+        alert(err.message);
+      });
   }
 }
 

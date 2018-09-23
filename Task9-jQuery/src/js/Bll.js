@@ -70,7 +70,13 @@ class Bll {
   find(expr) {
     return new Promise((resolve, reject) => {
       setInterval(() => {
-        const arr = this.dal.find(expr);
+        let arr = [];
+        if (expr) {
+          arr = this.dal.find(expr);
+        } else {
+          arr = this.dal.getAll();
+        }
+
         if (arr) {
           resolve(arr);
         }

@@ -6,5 +6,5 @@ import Table from './js/table';
 $('document').ready(() => {
   const table = new Table();
 
-  table.drawFullTable();
+  table.render();
 });
