@@ -141,12 +141,12 @@ class Table extends Component {
           productList,
           productRowTemplateFunc,
         });
-        $('#container').html(table);
+        $('.container').html(table);
 
         this.filterComponent.render(this.filter.bind(this));
         this.addComponent.render(addNew.bind(this));
 
-        $('.table').on('click', '.delete, .edit, .sort', (e) => {
+        $(`#${this.uniqueId} .table`).on('click', '.delete, .edit, .sort', (e) => {
           const $btn = $(e.target);
           const action = $btn.attr('data-action');
 

@@ -52,10 +52,6 @@ function setEvents(callback) {
   const $citiesBlock = $(`#${this.parentId} .cities:eq(0)`);
   let prevSelection = '';
 
-  console.log($price);
-  console.log($count);
-  console.log($delivery);
-
   $delivery.on('click', () => {
     const text = $(`#${this.parentId} .delivery:eq(0) option:selected`).text();
     if (prevSelection.localeCompare(text) === 0) {
@@ -156,8 +152,8 @@ class ChangeModal extends Component {
     const modal = this.templateFunc({
       product,
     });
-    $(`#${this.parentId} #modal-container`).html(modal);
-    this.modal = $(`#${this.parentId} .modalWindow`);
+    $(`#${this.parentId} .modal-container:eq(0)`).html(modal);
+    this.modal = $(`#${this.parentId} .modalWindow:eq(0)`);
     this.modal.css('display', 'block');
 
     $(`#${this.parentId} .superBtn`).text(type);

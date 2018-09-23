@@ -14,15 +14,15 @@ class DeleteModal extends Component {
     const modal = this.templateFunc({
       id,
     });
-    $('#modal-container').html(modal);
-    this.modal = $('#modalWindow');
+    $('.modal-container:eq(0)').html(modal);
+    this.modal = $('.modalWindow:eq(0)');
     this.modal.css('display', 'block');
 
-    $(`#${this.parentId} #close`).on('click', () => {
+    $(`#${this.parentId} .close-btn:eq(0)`).on('click', () => {
       this.hide();
     });
 
-    $(`#${this.parentId} #delete`).on('click', () => {
+    $(`#${this.parentId} .delete-btn:eq(0)`).on('click', () => {
       if (callback) {
         callback(id);
       }

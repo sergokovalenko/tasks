@@ -11,8 +11,8 @@ class Add extends Component {
 
   render(callback) {
     const field = this.templateFunc();
-    $(`#${this.parentId} #addBlock`).html(field);
-    $(`#${this.parentId} #addNew`).on('click', () => {
+    $(`#${this.parentId} .add-block:eq(0)`).html(field);
+    $(`#${this.parentId} .add-new:eq(0)`).on('click', () => {
       callback();
     });
   }
