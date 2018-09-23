@@ -1,26 +1,14 @@
-# JS Game: Battle Zone
+# Table products
 
-Task 08: JS Game
+Task 09: jQuery
 
-## Movement
-```
-Up arrow - move up
-
-Right arrow - move right
-
-Down arrow - move down
-
-Left arrow - move left
-
-Space - shooting
-```
 ## Build Setup
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:3000
 npm run dev
 
 # build
