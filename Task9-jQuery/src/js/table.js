@@ -11,6 +11,17 @@ import Filter from './components/search';
 import Add from './components/addButton';
 import Component from './components/component';
 
+function addAndRepaint(prod) {
+  this.api.add(prod)
+    .then(() => this.api.find(this.filterExpression))
+    .then((all) => {
+      this.redrawTable(all);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
 function addNew() {
   const prod = {
     name: '',
@@ -20,8 +31,9 @@ function addNew() {
     country: '',
     city: [],
   };
-  this.changeModal.render(prod, this.addAndRepaint.bind(this), 'Add new');
+  this.changeModal.render(prod, addAndRepaint.bind(this), 'Add new');
 }
+
 
 function deleteProduct(id) {
   this.api.removeElement(id)
@@ -34,17 +46,6 @@ function deleteProduct(id) {
     .catch((err) => {
       console.log(err.message);
     });
-}
-
-function getMaxIdOfElements(arr) {
-  let max = arr[0];
-  arr.forEach((el) => {
-    if (+el.id > max) {
-      max = +el.id;
-    }
-  });
-
-  return max;
 }
 
 function sortElements(sortFunc, $curElem) {
@@ -71,7 +72,6 @@ class Table extends Component {
     this.changeModal = new ChangeModal(this.uniqueId);
     this.filterComponent = new Filter(this.uniqueId);
     this.addComponent = new Add(this.uniqueId);
-    this.nextIdForProduct = 0;
     this.filterExpression = '';
     this.actionTypes = {
       edit: (productId) => {
@@ -109,22 +109,6 @@ class Table extends Component {
     };
   }
 
-  addAndRepaint(prod) {
-    const product = prod;
-    product.id = this.nextIdForProduct;
-    this.nextIdForProduct += 1;
-    this.api.add(product)
-      .then(() => {
-        this.api.find(this.filterExpression)
-          .then((all) => {
-            this.redrawTable(all);
-          });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
-
   editAndRepaint(prod) {
     this.api.update(prod)
       .then(() => this.api.find(this.filterExpression))
@@ -159,8 +143,6 @@ class Table extends Component {
 
           this.actionTypes[action]($btn.attr('data-id'), $btn);
         });
-
-        this.nextIdForProduct = getMaxIdOfElements(productList);
       })
       .catch((err) => {
         console.log(err.message);
@@ -172,7 +154,7 @@ class Table extends Component {
       productList,
       productRowTemplateFunc,
     });
-    $('#tableBody').html(table);
+    $('.tableBody:eq(0)').html(table);
   }
 
   filter(expr) {

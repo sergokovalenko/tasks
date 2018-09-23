@@ -1,8 +1,21 @@
 import data from './data.json';
 
+
+function getMaxIdOfElements(arr) {
+  let max = arr[0].id;
+  arr.forEach((el) => {
+    if (+el.id > max) {
+      max = +el.id;
+    }
+  });
+
+  return max;
+}
+
 class Dal {
   constructor() {
     this.data = [...data];
+    this.newId = getMaxIdOfElements(this.data);
   }
   getAll() {
     return this.data;
@@ -24,8 +37,11 @@ class Dal {
   }
 
   add(el) {
+    const product = el;
+    this.newId += 1;
+    product.id = this.newId;
     this.data.push(el);
-    return true;
+    return this.newId;
   }
 
   update(el) {
