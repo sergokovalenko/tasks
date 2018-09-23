@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Bll from './Bll';
+import Api from './api';
 import {
   productRowTemplateFunc,
   tableTemplateFunc,
@@ -24,9 +24,9 @@ function addNew() {
 }
 
 function deleteProduct(id) {
-  this.logic.removeElement(id)
+  this.api.removeElement(id)
     .then(() => {
-      this.logic.find(this.filterExpression)
+      this.api.find(this.filterExpression)
         .then((all) => {
           this.redrawTable(all);
         });
@@ -48,7 +48,7 @@ function getMaxIdOfElements(arr) {
 }
 
 function sortElements(sortFunc, $curElem) {
-  this.logic.find(this.filterExpression)
+  this.api.find(this.filterExpression)
     .then((products) => {
       products.sort(sortFunc);
       $curElem.toggleClass('triangle-top');
@@ -66,7 +66,7 @@ class Table extends Component {
     this.templateFunc = tableTemplateFunc;
     this.rowsTemplateFunc = tableRowRedrawTemplate;
     this.uniqueId = Math.random().toString(20).substr(2, 10);
-    this.logic = new Bll();
+    this.api = new Api();
     this.deleteModal = new DeleteModal(this.uniqueId);
     this.changeModal = new ChangeModal(this.uniqueId);
     this.filterComponent = new Filter(this.uniqueId);
@@ -75,7 +75,7 @@ class Table extends Component {
     this.filterExpression = '';
     this.actionTypes = {
       edit: (productId) => {
-        this.logic.getElementById(productId)
+        this.api.getElementById(productId)
           .then((prod) => {
             this.changeModal.render(prod, this.editAndRepaint.bind(this));
           })
@@ -113,9 +113,9 @@ class Table extends Component {
     const product = prod;
     product.id = this.nextIdForProduct;
     this.nextIdForProduct += 1;
-    this.logic.add(product)
+    this.api.add(product)
       .then(() => {
-        this.logic.find(this.filterExpression)
+        this.api.find(this.filterExpression)
           .then((all) => {
             this.redrawTable(all);
           });
@@ -126,8 +126,8 @@ class Table extends Component {
   }
 
   editAndRepaint(prod) {
-    this.logic.update(prod)
-      .then(() => this.logic.find(this.filterExpression))
+    this.api.update(prod)
+      .then(() => this.api.find(this.filterExpression))
       .then((all) => {
         this.redrawTable(all);
       })
@@ -136,8 +136,8 @@ class Table extends Component {
       });
   }
 
-  render() {
-    this.logic.getAll()
+  render(insertSelector) {
+    this.api.getAll()
       .then((productList) => {
         const {
           uniqueId: id,
@@ -148,7 +148,7 @@ class Table extends Component {
           productList,
           productRowTemplateFunc,
         });
-        $('.container').html(table);
+        $(insertSelector).html(table);
 
         this.filterComponent.render(this.filter.bind(this));
         this.addComponent.render(addNew.bind(this));
@@ -177,7 +177,7 @@ class Table extends Component {
 
   filter(expr) {
     this.filterExpression = expr;
-    this.logic.find(expr)
+    this.api.find(expr)
       .then((productList) => {
         this.redrawTable(productList);
       })

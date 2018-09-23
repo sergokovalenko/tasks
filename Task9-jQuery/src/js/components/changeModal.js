@@ -2,9 +2,14 @@ import $ from 'jquery';
 import { changeModalTemplateFunc } from './../templates';
 import validator from './../utilities/valid';
 import Component from './component';
+import { convertNumberToPrice, convertPriceToNumber } from '../utilities/priceConvertor';
 
 function blurEvent($field, fieldName, $submitBtn) {
-  const value = $field.val();
+  let value = $field.val();
+  if (fieldName.localeCompare('price') === 0) {
+    value = convertPriceToNumber($field.val());
+  }
+
   const obj = {};
   obj[fieldName] = value;
   const hasError = validator.validate(obj);
@@ -24,6 +29,7 @@ function blurEvent($field, fieldName, $submitBtn) {
 function mapObject(formClass) {
   const product = {};
   const serialized = $(`#${this.parentId} .${formClass}:eq(0)`).serializeArray();
+  product.price = convertPriceToNumber(product.price);
   serialized.forEach((el) => {
     product[el.name] = el.value;
   });
@@ -39,7 +45,6 @@ function mapObject(formClass) {
 }
 
 function setEvents(callback) {
-  // TODO: делегирование событий
   const $superBtn = $(`#${this.parentId} .superBtn:eq(0)`);
   const $close = $(`#${this.parentId} .close:eq(0)`);
   const $name = $(`#${this.parentId} .name-input:eq(0)`);
@@ -99,6 +104,11 @@ function setEvents(callback) {
 
   $price.on('blur', () => {
     blurEvent($price, 'price', $superBtn);
+    $price.val(convertNumberToPrice($price.val()));
+  });
+
+  $price.on('focus', () => {
+    $price.val(convertPriceToNumber($price.val()));
   });
 
   $selectAllBox.on('click', () => {
