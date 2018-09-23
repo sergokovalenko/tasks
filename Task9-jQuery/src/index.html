@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Task09. jQuery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <script id="tableRowTemplate" type="text/html">
+    <tr>
+        <td>
+          <span class="name"><%-product.name%></span>
+          <span class="count badge badge-pill badge-dark float-right mr-1"><%-product.count%></span>
+        </td>
+        <td class="text-center">
+          <span class="price"><%-window.priceConvertor.convertNumberToPrice(product.price)%></span>
+        </td>
+        <td class="text-center">
+          <button class="btn btn-light mt-1 edit" data-id="<%-product.id%>" data-action="edit">Edit</button>
+          <button class="btn btn-danger mt-1 delete" data-id="<%-product.id%>" data-action="delete">Delete</button>
+        </td>
+      </tr>
+  </script>
+  <script id="tableRowRedrawTemplate" type="text/html">
+    <% _.each(productList, function(product) { %>
+      <%= productRowTemplateFunc({ product: product }) %>
+    <% }); %>
+  </script>
+  <script id="modalDeleteTemplate" type="text/html">
+    <div class="modal modalWindow">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="border-bottom: 1px solid rgb(229, 229, 229);">
+            <h3 class="m-auto">Are you sure?</h3>
+          </div>
+          <div class="modal-body">
+           <p class="text-center">Are you sure you want to perform this action?</p>
+           <div class="text-center">
+              <button class="btn btn-danger delete-btn" data-id="<%-id%>">Yes</button>
+              <button class="btn btn-light close-btn">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+  <script id="addTemplate" type="text/html">
+    <button class="btn btn-light add-new float-right">Add new</button>
+  </script>
+  <script id="modalChangeTemplate" type="text/html">
+    <div class="modal modalWindow">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header"><button type="button" class="close"><span>&times;</span></button></div>
+            <div class="modal-body">
+              <form class="modalForm">
+                <input name="id" type="hidden" value="<%-product.id%>">
+                <div class="form-group">
+                  <label class="d-block">
+                    <span class="d-block mb-2">Name:</span>
+                    <input class="form-control name-input w-50 d-inline" placeholder="Name" name="name" maxlength="20" type="text" value="<%-product.name%>">
+                    <div class="hiding d-inline">• Required field</div>
+                  </label>
+                  <div class="error error-name"></div>
+                </div>
+                <div class="form-group">
+                  <label class="d-block">
+                    <span class="d-block mb-2">Supplier Email:</span>
+                    <input class="form-control email-input w-50 d-inline" placeholder="abc@mail.ru" name="email" maxlength="20" type="text" value="<%-product.email%>">
+                    <div class="error error-email d-inline"></div>
+                  </label>
+                  <div class="error error-email"></div>
+                </div>
+                <div class="form-group">
+                  <label class="d-block">
+                    <span class="d-block mb-2">Count:</span>
+                    <input class="form-control count-input w-25" placeholder="1" name="count" maxlength="3" type="text" value="<%-product.count%>">
+                  </label>
+                  <div class="error error-count"></div>
+                </div>
+                <div class="form-group">
+                  <label class="d-block">
+                    <span class="d-block mb-2">Price:</span>
+                    <input class="form-control price-input w-50" placeholder="100" name="price" maxlength="13" type="text" value="<%-window.priceConvertor.convertNumberToPrice(product.price)%>">
+                  </label>
+                  <div class="error error-price"></div>
+                </div>
+                <div class="form-group">
+                  <span>Delivery</span><span class="error error-delivery ml-3"></span>
+                  <div class="row">
+                    <div class="col">
+                      <select class="form-control delivery">
+                        <option></option>
+                        <option>Country</option>
+                        <option>City</option>
+                      </select>
+                    </div>
+                    <div class="card col countries mr-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="country" value="russia" checked>
+                          Russia
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="country" value="USA">
+                          USA
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="country" value="japan">
+                          Japan
+                        </label>
+                      </div>
+                    </div>
+                    <div class="card col cities mr-4">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                          <input class="form-check-input select-all" type="checkbox" name="select-all">
+                            Select All
+                          </label>
+                        </div>
+                        <hr>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                          <input class="form-check-input" id="saratov" type="checkbox" name="city" value="saratov">
+                            Saratov
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" name="city" value="moscow">
+                            Moscow
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" name="city" value="piter">
+                            Saint Petersburg
+                          </label>
+                        </div>
+                    </div>
+                  </div>
+                </div><button class="btn btn-default superBtn" disabled=""></button>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </script>
+  <script id="searchTemplate" type="text/html">
+    <div class="formline">
+      <button class="btn btn-light search-btn float-right">Search</button>
+      <div class="pr-2">
+        <input class="form-control search-field" type="text" placeholder="Type here for search">
+      </div>
+    </div>
+  </script>
+  <script id="taskTemplate" type="text/html">
+    <div id="<%-id%>">
+      <section class="row action-block">
+        <div class="col-8 search-block"></div>
+        <div class="col-4 add-block"></div>
+      </section>
+      <section class="row content">
+        <div class="col-12 container">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    Name
+                    <i class="sort triangle-top" data-action="sortByName"></i>
+                  </th>
+                  <th class="text-center">
+                    Price
+                    <i class="sort triangle-top" data-action="sortByPrice"></i>
+                  </th>
+                  <th class="text-center">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="tableBody">
+                  <% _.each(productList, function(product) { %>
+                    <%= productRowTemplateFunc({ product: product }) %>
+                  <% }); %>
+              </tbody>
+            </table>
+        </div>
+      </section>
+      <div class="modal-container"></div>
+    </div>
+  </script>
+
+  <div class="container" id="container"></div>
+</body>
+
+</html>
