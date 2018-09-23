@@ -62,3 +62,15 @@ button.delete {
 label[for="count"] {
     margin-right: 10px;
 }
+
+.countries, .cities {
+    visibility: hidden;
+}
+
+.modal-content {
+    width: 600px;
+    .modal-header {
+        border-bottom: medium none;
+    }
+}
+
