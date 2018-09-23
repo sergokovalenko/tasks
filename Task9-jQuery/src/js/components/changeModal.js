@@ -135,16 +135,17 @@ class ChangeModal extends Component {
   constructor(parentId = '') {
     super();
     this.parentId = parentId;
+    this.templateFunc = changeModalTemplateFunc;
     this.modal = null;
     setEvents.bind(this);
     mapObject.bind(this);
   }
 
   render(product, callback, type = 'Edit') {
-    const modal = changeModalTemplateFunc({
+    const modal = this.templateFunc({
       product,
     });
-    $('#modal-container').html(modal);
+    $(`#${this.parentId} #modal-container`).html(modal);
     this.modal = $(`#${this.parentId} #modalWindow`);
     this.modal.css('display', 'block');
 
