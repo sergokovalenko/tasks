@@ -27,7 +27,7 @@
         "id": 4,
         "name": "Banana",
         "email": "mail@mail.ru",
-        "count": 52,
+        "count": 20,
         "price": 0.5,
         "country": "country",
         "city": ["saratov"]

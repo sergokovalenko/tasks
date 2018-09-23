@@ -2,7 +2,7 @@ import data from './data.json';
 
 class Dal {
   constructor() {
-    this.data = data;
+    this.data = [...data];
   }
   getAll() {
     return this.data;
@@ -13,16 +13,6 @@ class Dal {
   }
 
   removeElement(id) {
-    // const promise = new Promise((resolve, reject) => {
-    //   const index = this.data.findIndex(el => +el.id === +id);
-
-    //   if (index < 0) {
-    //     reject(new Error('Not found'));
-    //   }
-
-    //   this.data.splice(index, 1);
-    //   return resolve(true);
-    // });
     const index = this.data.findIndex(el => +el.id === +id);
 
     if (index < 0) {

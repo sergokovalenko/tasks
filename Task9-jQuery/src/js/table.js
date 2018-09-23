@@ -30,8 +30,9 @@ function deleteProduct(id) {
         .then((all) => {
           this.redrawTable(all);
         });
-    }, (err) => {
-      alert(err.message);
+    })
+    .catch((err) => {
+      console.log(err.message);
     });
 }
 
@@ -44,6 +45,19 @@ function getMaxIdOfElements(arr) {
   });
 
   return max;
+}
+
+function sortElements(sortFunc, $curElem) {
+  this.logic.find(this.filterExpression)
+    .then((products) => {
+      products.sort(sortFunc);
+      $curElem.toggleClass('triangle-top');
+      $curElem.toggleClass('triangle-bottom');
+      this.redrawTable(products);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 }
 
 class Table extends Component {
@@ -64,40 +78,33 @@ class Table extends Component {
         this.logic.getElementById(productId)
           .then((prod) => {
             this.changeModal.render(prod, this.editAndRepaint.bind(this));
-          }, (err) => {
-            alert(err.message);
+          })
+          .catch((err) => {
+            console.log(err.message);
           });
       },
       delete: (productId) => {
         this.deleteModal.render(productId, deleteProduct.bind(this));
       },
       sortByName: (id, $curElem) => {
-        this.logic.find(this.filterExpression)
-          .then((products) => {
-            if ($curElem.hasClass('triangle-top')) {
-              products.sort((a, b) => a.name > b.name);
-            } else {
-              products.sort((a, b) => a.name < b.name);
-            }
+        let sortFunc;
+        if ($curElem.hasClass('triangle-top')) {
+          sortFunc = ((a, b) => a.name > b.name);
+        } else {
+          sortFunc = ((a, b) => a.name < b.name);
+        }
 
-            $curElem.toggleClass('triangle-top');
-            $curElem.toggleClass('triangle-bottom');
-            this.redrawTable(products);
-          });
+        sortElements.call(this, sortFunc, $curElem);
       },
       sortByPrice: (id, $curElem) => {
-        this.logic.find(this.filterExpression)
-          .then((products) => {
-            if ($curElem.hasClass('triangle-top')) {
-              products.sort((a, b) => a.price > b.price);
-            } else {
-              products.sort((a, b) => a.price < b.price);
-            }
+        let sortFunc;
+        if ($curElem.hasClass('triangle-top')) {
+          sortFunc = ((a, b) => a.price > b.price);
+        } else {
+          sortFunc = ((a, b) => a.price < b.price);
+        }
 
-            $curElem.toggleClass('triangle-top');
-            $curElem.toggleClass('triangle-bottom');
-            this.redrawTable(products);
-          });
+        sortElements.call(this, sortFunc, $curElem);
       },
     };
   }
@@ -112,20 +119,20 @@ class Table extends Component {
           .then((all) => {
             this.redrawTable(all);
           });
-      }, (err) => {
-        alert(err.message);
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
   }
 
   editAndRepaint(prod) {
     this.logic.update(prod)
-      .then(() => {
-        this.logic.find(this.filterExpression)
-          .then((all) => {
-            this.redrawTable(all);
-          });
-      }, (err) => {
-        alert(err.message);
+      .then(() => this.logic.find(this.filterExpression))
+      .then((all) => {
+        this.redrawTable(all);
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
   }
 
@@ -154,8 +161,9 @@ class Table extends Component {
         });
 
         this.nextIdForProduct = getMaxIdOfElements(productList);
-      }, (err) => {
-        alert(err.message);
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
   }
 
@@ -172,8 +180,9 @@ class Table extends Component {
     this.logic.find(expr)
       .then((productList) => {
         this.redrawTable(productList);
-      }, (err) => {
-        alert(err.message);
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
   }
 }
