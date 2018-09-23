@@ -1,6 +1,8 @@
 import Dal from './fakeDal';
 
-class Bll {
+const timeOutTime = 500;
+
+class Api {
   constructor() {
     this.dal = new Dal();
   }
@@ -14,7 +16,7 @@ class Bll {
         }
 
         reject(new Error('Server Error'));
-      }, 500);
+      }, timeOutTime);
     });
   }
 
@@ -27,7 +29,7 @@ class Bll {
         }
 
         reject(new Error('Not found'));
-      }, 500);
+      }, timeOutTime);
     });
   }
 
@@ -39,7 +41,7 @@ class Bll {
         }
 
         reject(new Error('Not found'));
-      }, 500);
+      }, timeOutTime);
     });
   }
 
@@ -51,7 +53,7 @@ class Bll {
         }
 
         reject(new Error('Server error'));
-      }, 500);
+      }, timeOutTime);
     });
   }
 
@@ -63,7 +65,7 @@ class Bll {
         }
 
         reject(new Error('Server error'));
-      }, 500);
+      }, timeOutTime);
     });
   }
 
@@ -82,9 +84,9 @@ class Bll {
         }
 
         reject(new Error('Server error'));
-      }, 500);
+      }, timeOutTime);
     });
   }
 }
 
-export default Bll;
+export default Api;

@@ -86,7 +86,7 @@
                 <div class="form-group">
                   <label class="d-block">
                     <span class="d-block mb-2">Price:</span>
-                    <input class="form-control price-input w-50" placeholder="100" name="price" maxlength="13" type="text" value="<%-product.price%>">
+                    <input class="form-control price-input w-50" placeholder="100" name="price" maxlength="13" type="text" value="<%-window.priceConvertor.convertNumberToPrice(product.price)%>">
                   </label>
                   <div class="error error-price"></div>
                 </div>
