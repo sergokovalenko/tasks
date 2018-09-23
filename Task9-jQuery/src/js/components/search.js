@@ -12,9 +12,9 @@ class Filter extends Component {
 
   render(callback) {
     const field = this.templateFunc();
-    $(`#${this.parentId} #searchBlock`).html(field);
-    $(`#${this.parentId} #searchBtn`).on('click', () => {
-      const expr = $(`#${this.parentId} #search-field`).val().trim();
+    $(`#${this.parentId} .search-block:eq(0)`).html(field);
+    $(`#${this.parentId} .search-btn:eq(0)`).on('click', () => {
+      const expr = $(`#${this.parentId} .search-field:eq(0)`).val().trim();
       callback(expr);
     });
   }

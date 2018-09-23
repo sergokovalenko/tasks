@@ -32,7 +32,7 @@
     <% }); %>
   </script>
   <script id="modalDeleteTemplate" type="text/html">
-    <div id="modalWindow" class="modal">
+    <div class="modal modalWindow">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header" style="border-bottom: 1px solid rgb(229, 229, 229);">
@@ -41,8 +41,8 @@
           <div class="modal-body">
            <p class="text-center">Are you sure you want to perform this action?</p>
            <div class="text-center">
-              <button class="btn btn-danger" id="delete" data-id="<%-id%>">Yes</button>
-              <button class="btn btn-light" id="close">No</button>
+              <button class="btn btn-danger delete-btn" data-id="<%-id%>">Yes</button>
+              <button class="btn btn-light close-btn">No</button>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
     </div>
   </script>
   <script id="addTemplate" type="text/html">
-    <button class="btn btn-light float-right" id="addNew">Add new</button>
+    <button class="btn btn-light add-new float-right">Add new</button>
   </script>
   <script id="modalChangeTemplate" type="text/html">
     <div class="modal modalWindow">
@@ -157,20 +157,20 @@
   </script>
   <script id="searchTemplate" type="text/html">
     <div class="formline">
-      <button class="btn btn-light float-right" id="searchBtn">Search</button>
+      <button class="btn btn-light search-btn float-right">Search</button>
       <div class="pr-2">
-        <input class="form-control" type="text" placeholder="Type here for search" id="search-field">
+        <input class="form-control search-field" type="text" placeholder="Type here for search">
       </div>
     </div>
   </script>
   <script id="taskTemplate" type="text/html">
     <div id="<%-id%>">
       <section class="row action-block">
-        <div class="col-8" id="searchBlock"></div>
-        <div class="col-4" id="addBlock"></div>
+        <div class="col-8 search-block"></div>
+        <div class="col-4 add-block"></div>
       </section>
       <section class="row content">
-        <div id="container" class="col-12">
+        <div class="col-12 container">
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -195,7 +195,7 @@
             </table>
         </div>
       </section>
-      <div id="modal-container"></div>
+      <div class="modal-container"></div>
     </div>
   </script>
 
