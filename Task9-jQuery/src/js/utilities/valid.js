@@ -36,6 +36,12 @@ const validator = {
       },
       errorMessage: 'invalid email address',
     },
+    isNonEmptyArr: {
+      validate(value) {
+        return value.length > 0;
+      },
+      errorMessage: 'you should select city',
+    },
   },
 
   messages: [],
@@ -45,11 +51,12 @@ const validator = {
     email: ['isNonEmpty', 'isEmail'],
     count: ['isInteger'],
     price: ['isDoubleNumber'],
+    country: ['isNonEmpty'],
+    city: ['isNonEmptyArr'],
   },
 
   validate(data) {
     this.messages = [];
-    // перебор валидационных правил
     const keys = Object.keys(data);
     keys.forEach((key) => {
       if (this.config[key]) {

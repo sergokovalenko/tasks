@@ -53,91 +53,102 @@
     <button class="btn btn-light float-right" id="addNew">Add new</button>
   </script>
   <script id="modalChangeTemplate" type="text/html">
-    <div id="modalWindow" class="modal">
+    <div class="modal modalWindow">
       <div class="modal-dialog">
-        <div class="modal-content" style="width: 600px">
-          <div class="modal-header" style="border-bottom: medium none;"><button type="button" class="close" id="close"><span>&times;</span></button></div>
+        <div class="modal-content">
+          <div class="modal-header"><button type="button" class="close"><span>&times;</span></button></div>
             <div class="modal-body">
-              <form id="modalForm">
-                <input id="id" name="id" type="hidden" value="<%-product.id%>">
+              <form class="modalForm">
+                <input name="id" type="hidden" value="<%-product.id%>">
                 <div class="form-group">
-                  <label for="name" class="d-block">Name:</label>
-                  <input class="form-control w-50 d-inline" placeholder="Name" id="name" name="name" maxlength="20" type="text" value="<%-product.name%>">
-                  <div class="hiding d-inline">• Required field</div>
+                  <label class="d-block">
+                    <span class="d-block mb-2">Name:</span>
+                    <input class="form-control name-input w-50 d-inline" placeholder="Name" name="name" maxlength="20" type="text" value="<%-product.name%>">
+                    <div class="hiding d-inline">• Required field</div>
+                  </label>
                   <div class="error error-name"></div>
                 </div>
-                <div class="form-group"><label for="name" class="d-block">Supplier Email:</label>
-                  <input class="form-control w-50 d-inline" placeholder="abc@mail.ru" id="email" name="email" maxlength="20" type="text" value="<%-product.email%>">
-                  <div class="hiding d-inline">• Incorrect email</div>
+                <div class="form-group">
+                  <label class="d-block">
+                    <span class="d-block mb-2">Supplier Email:</span>
+                    <input class="form-control email-input w-50 d-inline" placeholder="abc@mail.ru" name="email" maxlength="20" type="text" value="<%-product.email%>">
+                    <div class="error error-email d-inline"></div>
+                  </label>
                   <div class="error error-email"></div>
                 </div>
-                <div class="form-group"><label for="count">Count:</label>
-                  <input class="form-control w-25" placeholder="1" id="count" name="count" maxlength="3" type="text" value="<%-product.count%>">
+                <div class="form-group">
+                  <label class="d-block">
+                    <span class="d-block mb-2">Count:</span>
+                    <input class="form-control count-input w-25" placeholder="1" name="count" maxlength="3" type="text" value="<%-product.count%>">
+                  </label>
                   <div class="error error-count"></div>
                 </div>
-                <div class="form-group"><label for="price" class="d-block">Price:</label>
-                  <input class="form-control w-50" placeholder="1000" id="price" name="price" maxlength="13" type="text" value="<%-product.price%>">
+                <div class="form-group">
+                  <label class="d-block">
+                    <span class="d-block mb-2">Price:</span>
+                    <input class="form-control price-input w-50" placeholder="100" name="price" maxlength="13" type="text" value="<%-product.price%>">
+                  </label>
                   <div class="error error-price"></div>
                 </div>
                 <div class="form-group">
-                  <label class="d-block" for="delivery">Delivery</label>
+                  <span>Delivery</span><span class="error error-delivery ml-3"></span>
                   <div class="row">
                     <div class="col">
-                      <select class="form-control" id="delivery">
+                      <select class="form-control delivery">
                         <option></option>
                         <option>Country</option>
                         <option>City</option>
                       </select>
                     </div>
-                    <div class="card col mr-4" id="countries">
-                          <div class="form-check">
-                            <input class="form-check-input" id="russia" type="radio" name="country" value="russia" checked>
-                            <label class="form-check-label" for="russia">
-                              Russia
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="usa" type="radio" name="country" value="USA">
-                            <label class="form-check-label" for="usa">
-                              USA
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="japan" type="radio" name="country" value="japan">
-                            <label class="form-check-label" for="japan">
-                              Japan
-                            </label>
+                    <div class="card col countries mr-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="country" value="russia" checked>
+                          Russia
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="country" value="USA">
+                          USA
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="country" value="japan">
+                          Japan
+                        </label>
                       </div>
                     </div>
-                    <div class="card col mr-4" id="cities">
+                    <div class="card col cities mr-4">
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="select-all" value="" id="select-all">
-                          <label class="form-check-label" for="select-all">
+                          <label class="form-check-label">
+                          <input class="form-check-input select-all" type="checkbox" name="select-all">
                             Select All
                           </label>
                         </div>
                         <hr>
                         <div class="form-check">
-                          <input class="form-check-input" id="saratov" type="checkbox" name="city" value="saratov" id="saratov">
-                          <label class="form-check-label" for="saratov">
+                          <label class="form-check-label">
+                          <input class="form-check-input" id="saratov" type="checkbox" name="city" value="saratov">
                             Saratov
                           </label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" id="moscow" type="checkbox" name="city" value="moscow">
-                          <label class="form-check-label" for="moscow">
+                          <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" name="city" value="moscow">
                             Moscow
                           </label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" id="piter" type="checkbox" name="city" value="piter">
-                          <label class="form-check-label" for="piter">
-                            Piter
+                          <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" name="city" value="piter">
+                            Saint Petersburg
                           </label>
                         </div>
                     </div>
                   </div>
-                </div><button class="btn btn-default" id="superBtn" disabled="">Add/Update</button>
+                </div><button class="btn btn-default superBtn" disabled=""></button>
               </form>
             </div>
           </div>

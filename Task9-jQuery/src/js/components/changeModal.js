@@ -21,9 +21,9 @@ function blurEvent($field, fieldName, $submitBtn) {
   }
 }
 
-function mapObject(formId) {
+function mapObject(formClass) {
   const product = {};
-  const serialized = $(`#${this.parentId} #${formId}`).serializeArray();
+  const serialized = $(`#${this.parentId} .${formClass}:eq(0)`).serializeArray();
   serialized.forEach((el) => {
     product[el.name] = el.value;
   });
@@ -40,20 +40,24 @@ function mapObject(formId) {
 
 function setEvents(callback) {
   // TODO: делегирование событий
-  const $superBtn = $(`#${this.parentId} #superBtn`);
-  const $close = $(`#${this.parentId} #close`);
-  const $name = $(`#${this.parentId} #name`);
-  const $email = $(`#${this.parentId} #email`);
-  const $count = $(`#${this.parentId} #count`);
-  const $price = $(`#${this.parentId} #price`);
-  const $delivery = $(`#${this.parentId} #delivery`);
-  const $selectAllBox = $(`#${this.parentId} #select-all`);
-  const $countriesBlock = $(`#${this.parentId} #countries`);
-  const $citiesBlock = $(`#${this.parentId} #cities`);
+  const $superBtn = $(`#${this.parentId} .superBtn:eq(0)`);
+  const $close = $(`#${this.parentId} .close:eq(0)`);
+  const $name = $(`#${this.parentId} .name-input:eq(0)`);
+  const $email = $(`#${this.parentId} .email-input:eq(0)`);
+  const $count = $(`#${this.parentId} .count-input:eq(0)`);
+  const $price = $(`#${this.parentId} .price-input:eq(0)`);
+  const $delivery = $(`#${this.parentId} .delivery:eq(0)`);
+  const $selectAllBox = $(`#${this.parentId} .select-all:eq(0)`);
+  const $countriesBlock = $(`#${this.parentId} .countries:eq(0)`);
+  const $citiesBlock = $(`#${this.parentId} .cities:eq(0)`);
   let prevSelection = '';
 
+  console.log($price);
+  console.log($count);
+  console.log($delivery);
+
   $delivery.on('click', () => {
-    const text = $(`#${this.parentId} #delivery option:selected`).text();
+    const text = $(`#${this.parentId} .delivery:eq(0) option:selected`).text();
     if (prevSelection.localeCompare(text) === 0) {
       return;
     }
@@ -93,9 +97,8 @@ function setEvents(callback) {
     blurEvent($count, 'count', $superBtn);
   });
 
-  $count.bind('input propertychange', function a() {
-    const input = $(this);
-    input.val(input.val().replace(/[^0-9]/g, ''));
+  $count.bind('input propertychange', () => {
+    $count.val($count.val().replace(/[^0-9]/g, ''));
   });
 
   $price.on('blur', () => {
@@ -115,7 +118,15 @@ function setEvents(callback) {
 
     if (!$superBtn.prop('disabled')) {
       const product = mapObject.call(this, 'modalForm');
+      if (validator.validate({
+        city: product.city,
+        country: product.country,
+      })) {
+        $(`#${this.parentId} .error-delivery`).html(validator.messages[0]);
+        return;
+      }
 
+      $(`#${this.parentId} .error-delivery`).html(validator.messages[0]);
       if (!validator.validate(product)) {
         if (callback) {
           callback(product);
@@ -146,10 +157,10 @@ class ChangeModal extends Component {
       product,
     });
     $(`#${this.parentId} #modal-container`).html(modal);
-    this.modal = $(`#${this.parentId} #modalWindow`);
+    this.modal = $(`#${this.parentId} .modalWindow`);
     this.modal.css('display', 'block');
 
-    $(`#${this.parentId} #superBtn`).text(type);
+    $(`#${this.parentId} .superBtn`).text(type);
     setEvents.call(this, callback, type);
   }
 
