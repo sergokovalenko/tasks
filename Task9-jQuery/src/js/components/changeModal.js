@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { changeModalTemplateFunc } from './../templates';
 import validator from './../utilities/valid';
+import Component from './component';
 
 function blurEvent($field, fieldName, $submitBtn) {
   const value = $field.val();
@@ -45,7 +46,36 @@ function setEvents(callback) {
   const $email = $(`#${this.parentId} #email`);
   const $count = $(`#${this.parentId} #count`);
   const $price = $(`#${this.parentId} #price`);
+  const $delivery = $(`#${this.parentId} #delivery`);
   const $selectAllBox = $(`#${this.parentId} #select-all`);
+  const $countriesBlock = $(`#${this.parentId} #countries`);
+  const $citiesBlock = $(`#${this.parentId} #cities`);
+  let prevSelection = '';
+
+  $delivery.on('click', () => {
+    const text = $(`#${this.parentId} #delivery option:selected`).text();
+    if (prevSelection.localeCompare(text) === 0) {
+      return;
+    }
+
+    prevSelection = text;
+    switch (text) {
+      case 'Country':
+        $countriesBlock.css('visibility', 'visible');
+        $countriesBlock.css('border', '1px solid rgba(0,0,0,.125)');
+        $citiesBlock.css('visibility', 'hidden');
+        $citiesBlock.css('border', 'none');
+        break;
+      case 'City':
+        $countriesBlock.css('visibility', 'hidden');
+        $countriesBlock.css('border', 'none');
+        $citiesBlock.css('visibility', 'visible');
+        $citiesBlock.css('border', '1px solid rgba(0,0,0,.125)');
+        break;
+      default:
+        break;
+    }
+  });
 
   $close.on('click', () => {
     this.modal.css('display', 'none');
@@ -87,7 +117,9 @@ function setEvents(callback) {
       const product = mapObject.call(this, 'modalForm');
 
       if (!validator.validate(product)) {
-        callback(product);
+        if (callback) {
+          callback(product);
+        }
         this.hide();
       } else {
         $name.blur();
@@ -99,15 +131,16 @@ function setEvents(callback) {
   });
 }
 
-class ChangeModal {
+class ChangeModal extends Component {
   constructor(parentId = '') {
+    super();
     this.parentId = parentId;
     this.modal = null;
     setEvents.bind(this);
     mapObject.bind(this);
   }
 
-  show(product, callback, type = 'Edit') {
+  render(product, callback, type = 'Edit') {
     const modal = changeModalTemplateFunc({
       product,
     });

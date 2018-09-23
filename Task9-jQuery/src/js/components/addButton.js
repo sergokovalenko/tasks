@@ -3,15 +3,16 @@ import Component from './component';
 import { addTemplate } from '../templates';
 
 class Add extends Component {
-  constructor() {
+  constructor(parentId) {
     super();
+    this.parentId = parentId;
     this.templateFunc = addTemplate;
   }
 
   render(callback) {
     const field = this.templateFunc();
-    $('#addBlock').html(field);
-    $('#addNew').on('click', () => {
+    $(`#${this.parentId} #addBlock`).html(field);
+    $(`#${this.parentId} #addNew`).on('click', () => {
       callback();
     });
   }
