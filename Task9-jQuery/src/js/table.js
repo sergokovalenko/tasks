@@ -24,8 +24,12 @@ function addNew() {
 }
 
 function deleteProduct(id) {
-  this.logic.removeElement(id);
-  this.redrawTable();
+  this.logic.removeElement(id)
+    .then(() => {
+      this.redrawTable();
+    }, (err) => {
+      alert(err.message);
+    });
 }
 
 function getMaxIdOfElements(arr) {
@@ -49,11 +53,16 @@ class Table extends Component {
     this.changeModal = new ChangeModal(this.uniqueId);
     this.filterComponent = new Filter(this.uniqueId);
     this.addComponent = new Add(this.uniqueId);
-    this.nextIdForProduct = getMaxIdOfElements(this.logic.getAll()) + 1;
+    this.nextIdForProduct = 0;
+    this.filterExpression = '';
     this.actionTypes = {
       edit: (productId) => {
-        const prod = this.logic.getElementById(productId);
-        this.changeModal.render(prod, this.editAndRepaint.bind(this));
+        this.logic.getElementById(productId)
+          .then((prod) => {
+            this.changeModal.render(prod, this.editAndRepaint.bind(this));
+          }, (err) => {
+            alert(err.message);
+          });
       },
       delete: (productId) => {
         this.deleteModal.render(productId, deleteProduct.bind(this));
@@ -87,56 +96,85 @@ class Table extends Component {
     const product = prod;
     product.id = this.nextIdForProduct;
     this.nextIdForProduct += 1;
-    this.logic.add(product);
-    this.redrawTable();
+    this.logic.add(product)
+      .then(() => {
+        this.redrawTable();
+      }, (err) => {
+        alert(err.message);
+      });
   }
 
   editAndRepaint(prod) {
-    this.logic.update(prod);
-    this.redrawTable();
+    this.logic.update(prod)
+      .then(() => {
+        this.redrawTable();
+      }, (err) => {
+        alert(err.message);
+      });
   }
 
   drawFullTable() {
-    const productList = this.logic.getAll();
-    const { uniqueId: id } = this;
+    this.logic.getAll()
+      .then((productList) => {
+        const {
+          uniqueId: id,
+        } = this;
 
-    const table = this.templateFunc({
-      id,
-      productList,
-      productRowTemplateFunc,
-    });
-    $('#container').html(table);
+        const table = this.templateFunc({
+          id,
+          productList,
+          productRowTemplateFunc,
+        });
+        $('#container').html(table);
 
-    this.filterComponent.render(this.filter.bind(this));
-    this.addComponent.render(addNew.bind(this));
+        this.filterComponent.render(this.filter.bind(this));
+        this.addComponent.render(addNew.bind(this));
 
-    $('.table').on('click', '.delete, .edit, .sort', (e) => {
-      const $btn = $(e.target);
-      const action = $btn.attr('data-action');
+        $('.table').on('click', '.delete, .edit, .sort', (e) => {
+          const $btn = $(e.target);
+          const action = $btn.attr('data-action');
 
-      this.actionTypes[action]($btn.attr('data-id'), $btn);
-    });
+          this.actionTypes[action]($btn.attr('data-id'), $btn);
+        });
+
+        this.nextIdForProduct = getMaxIdOfElements(productList);
+      }, (err) => {
+        alert(err.message);
+      });
   }
 
   redrawTable() {
-    const productList = this.logic.getAll();
-
-    const table = tableRowRedrawTemplate({
-      productList,
-      productRowTemplateFunc,
-    });
-    $('#tableBody').html(table);
+    this.logic.getAll()
+      .then((productList) => {
+        const table = tableRowRedrawTemplate({
+          productList,
+          productRowTemplateFunc,
+        });
+        $('#tableBody').html(table);
+        $('.table').on('click', '.delete, .edit, .sort', (e) => {
+          const $btn = $(e.target);
+          const action = $btn.attr('data-action');
+          this.actionTypes[action]($btn.attr('data-id'), $btn);
+        });
+      }, (err) => {
+        alert(err.message);
+      });
   }
 
   filter(expr) {
     if (expr) {
-      const productList = this.logic.find(expr);
-      const table = tableRowRedrawTemplate({
-        productList,
-        productRowTemplateFunc,
-      });
+      this.filterExpression = expr;
+      this.logic.find(expr)
+        .then((productList) => {
+          const table = tableRowRedrawTemplate({
+            productList,
+            productRowTemplateFunc,
+          });
 
-      $('#tableBody').html(table);
+          $('#tableBody').html(table);
+        }, (err) => {
+          alert(err.message);
+        });
     } else {
       this.redrawTable();
     }
