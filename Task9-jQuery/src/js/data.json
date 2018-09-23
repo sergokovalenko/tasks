@@ -4,7 +4,7 @@
         "email": "mail@mail.ru",
         "count": 100,
         "price": 0.2,
-        "country": "country",
+        "country": "russia",
         "city": ["saratov"]
     }, {
         "id": 2,
@@ -12,7 +12,7 @@
         "email": "mail@mail.ru",
         "count": 2,
         "price": 532184,
-        "country": "country",
+        "country": "russia",
         "city": ["saratov"]
     }, {
         "id": 3,
@@ -20,7 +20,7 @@
         "email": "mail@mail.ru",
         "count": 1000,
         "price": 0.1,
-        "country": "country",
+        "country": "russia",
         "city": ["saratov"]
     },
     {
@@ -29,7 +29,7 @@
         "email": "mail@mail.ru",
         "count": 20,
         "price": 0.5,
-        "country": "country",
+        "country": "russia",
         "city": ["saratov"]
     }, {
         "id": 5,
@@ -37,7 +37,7 @@
         "email": "mail@mail.ru",
         "count": 1,
         "price": 1000000.25,
-        "country": "country",
+        "country": "russia",
         "city": ["saratov"]
     }, {
         "id": 6,
@@ -45,7 +45,7 @@
         "email": "mail@mail.ru",
         "count": 21,
         "price": 250000,
-        "country": "country",
+        "country": "russia",
         "city": ["saratov"]
     }
 ]

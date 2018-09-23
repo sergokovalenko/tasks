@@ -29,10 +29,10 @@ function blurEvent($field, fieldName, $submitBtn) {
 function mapObject(formClass) {
   const product = {};
   const serialized = $(`#${this.parentId} .${formClass}:eq(0)`).serializeArray();
-  product.price = convertPriceToNumber(product.price);
   serialized.forEach((el) => {
     product[el.name] = el.value;
   });
+  product.price = convertPriceToNumber(product.price);
   product.city = [];
   $('input[name="city"]').each((i, el) => {
     const $el = $(el);

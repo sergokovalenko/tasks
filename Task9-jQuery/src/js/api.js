@@ -9,7 +9,7 @@ class Api {
 
   getAll() {
     return new Promise((resolve, reject) => {
-      setInterval(() => {
+      setTimeout(() => {
         const elements = this.dal.getAll();
         if (elements) {
           resolve(elements);
@@ -22,7 +22,7 @@ class Api {
 
   getElementById(id) {
     return new Promise((resolve, reject) => {
-      setInterval(() => {
+      setTimeout(() => {
         const element = this.dal.getElementById(id);
         if (element) {
           resolve(element);
@@ -35,7 +35,7 @@ class Api {
 
   removeElement(id) {
     return new Promise((resolve, reject) => {
-      setInterval(() => {
+      setTimeout(() => {
         if (this.dal.removeElement(id)) {
           resolve(true);
         }
@@ -47,7 +47,7 @@ class Api {
 
   add(el) {
     return new Promise((resolve, reject) => {
-      setInterval(() => {
+      setTimeout(() => {
         if (this.dal.add(el)) {
           resolve(true);
         }
@@ -59,7 +59,7 @@ class Api {
 
   update(el) {
     return new Promise((resolve, reject) => {
-      setInterval(() => {
+      setTimeout(() => {
         if (this.dal.update(el)) {
           resolve(true);
         }
@@ -71,7 +71,7 @@ class Api {
 
   find(expr) {
     return new Promise((resolve, reject) => {
-      setInterval(() => {
+      setTimeout(() => {
         let arr = [];
         if (expr) {
           arr = this.dal.find(expr);
