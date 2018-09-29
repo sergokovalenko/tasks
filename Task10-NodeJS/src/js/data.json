@@ -1,0 +1,51 @@
+[{
+        "id": 1,
+        "name": "Apple",
+        "email": "mail@mail.ru",
+        "count": 100,
+        "price": 0.2,
+        "country": "russia",
+        "city": ["saratov"]
+    }, {
+        "id": 2,
+        "name": "Little House",
+        "email": "mail@mail.ru",
+        "count": 2,
+        "price": 532184,
+        "country": "russia",
+        "city": ["saratov"]
+    }, {
+        "id": 3,
+        "name": "Water",
+        "email": "mail@mail.ru",
+        "count": 1000,
+        "price": 0.1,
+        "country": "russia",
+        "city": ["saratov"]
+    },
+    {
+        "id": 4,
+        "name": "Banana",
+        "email": "mail@mail.ru",
+        "count": 20,
+        "price": 0.5,
+        "country": "russia",
+        "city": ["saratov"]
+    }, {
+        "id": 5,
+        "name": "Big House",
+        "email": "mail@mail.ru",
+        "count": 1,
+        "price": 1000000.25,
+        "country": "russia",
+        "city": ["saratov"]
+    }, {
+        "id": 6,
+        "name": "Tesla car",
+        "email": "mail@mail.ru",
+        "count": 21,
+        "price": 250000,
+        "country": "russia",
+        "city": ["saratov"]
+    }
+]
