@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "maximum": 999999999,
+      "minimum": 0
+    }
+  }
+}
