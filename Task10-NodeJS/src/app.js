@@ -1,12 +1,19 @@
 const express = require('express');
 const data = require('./js/dataWorker');
 const bodyParser = require('body-parser');
+const Ajv = require('ajv');
+const schema = require('./js/schema.json');
 
+const ajv = new Ajv({
+  allErrors: true,
+});
+const validator = ajv.compile(schema);
 const app = express();
 const jsonParser = bodyParser.json();
 
 app.get('/', (req, res) => {
   res.redirect('/getAll');
+  console.log(validator({ name: 'e', price: -2 }));
 });
 
 app.get('/getAll', (req, res) => {
