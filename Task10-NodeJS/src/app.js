@@ -1,7 +1,7 @@
 const express = require('express');
-const data = require('./js/dataWorker');
-const bodyParser = require('body-parser');
 const Ajv = require('ajv');
+const bodyParser = require('body-parser');
+const data = require('./js/dataWorker');
 const schema = require('./js/schema.json');
 
 const ajv = new Ajv({
@@ -12,8 +12,10 @@ const app = express();
 const jsonParser = bodyParser.json();
 
 app.get('/', (req, res) => {
-  res.redirect('/getAll');
+  // TODO: раздавать статику, удалить логирование в консоль
   console.log(validator({ name: 'e', price: -2 }));
+  console.log(ajv.errorsText(validator.errors, { dataVar: 'product' }));
+  res.send(validator.errors);
 });
 
 app.get('/getAll', (req, res) => {
@@ -36,9 +38,14 @@ app.post('/product', jsonParser, (req, res) => {
     res.sendStatus(400).send('Bad Request');
     return;
   }
-  data.add(req.body);
 
-  res.send(req.body.id);
+  if (validator(req.body)) {
+    const newProductId = data.add(req.body);
+    res.send(newProductId);
+    return;
+  }
+
+  res.send(validator.errors);
 });
 
 app.put('/product', jsonParser, (req, res) => {
@@ -46,29 +53,38 @@ app.put('/product', jsonParser, (req, res) => {
     res.sendStatus(400).send('Bad Request');
     return;
   }
-  data.update(req.body);
+  if (validator(req.body)) {
+    const success = data.update(req.body);
+    res.send(success);
+    return;
+  }
 
-  res.send(req.body.id);
+  res.send(validator.errors);
 });
 
 app.delete('/product/:id', (req, res) => {
-  const product = data.removeElement(req.params.id);
-  if (!product) {
+  if (+req.params.id) {
+    res.sendStatus(400).send('Bad Request');
+    return;
+  }
+
+  const success = data.removeElement(req.params.id);
+  if (!success) {
     res.sendStatus(404).send('Not Found');
     return;
   }
 
-  res.json(product);
+  res.json(success);
 });
 
 app.get('/filter/:expr', (req, res) => {
-  const filtered = data.find(req.params.expr);
-  if (!filtered) {
+  const filteredData = data.find(req.params.expr);
+  if (!filteredData) {
     res.sendStatus(404).send('Not Found');
     return;
   }
 
-  res.json(filtered);
+  res.json(filteredData);
 });
 
 app.listen(3000, () => {
