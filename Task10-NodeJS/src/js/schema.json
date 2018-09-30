@@ -1,15 +1,37 @@
 {
+  "required": ["name", "email", "count", "price", "country", "city"],
   "properties": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 15,
+      "pattern": "^[a-zA-Z].*$"
     },
-    "country": {
-      "type": "string"
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "count": {
+      "type": "integer",
+      "maximum": 999
     },
     "price": {
       "type": "number",
-      "maximum": 999999999,
+      "maximum": 99999999999,
       "minimum": 0
+    },
+    "country": {
+      "type": "string",
+      "minLength": 3
+    },
+    "city": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
     }
-  }
+  },
+  "additionalProperties": false
 }
