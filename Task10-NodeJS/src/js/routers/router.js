@@ -1,7 +1,7 @@
 const express = require('express');
 const Ajv = require('ajv');
 const data = require('./../dataWorker');
-const schema = require('./../schema.json');
+const schema = require('./../schemas/productSchema.json');
 
 const router = express.Router();
 const ajv = new Ajv({

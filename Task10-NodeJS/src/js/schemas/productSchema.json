@@ -1,5 +1,5 @@
 {
-  "required": ["name", "email", "count", "price", "country", "city"],
+  "required": ["name", "country", "city"],
   "properties": {
     "name": {
       "type": "string",
@@ -12,7 +12,8 @@
     },
     "count": {
       "type": "integer",
-      "maximum": 999
+      "maximum": 999,
+      "minimum": 0
     },
     "price": {
       "type": "number",
