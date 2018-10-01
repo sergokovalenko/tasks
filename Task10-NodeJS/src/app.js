@@ -1,6 +1,6 @@
 const express = require('express');
 const Ajv = require('ajv');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const data = require('./js/dataWorker');
 const schema = require('./js/schema.json');
 
@@ -9,7 +9,9 @@ const ajv = new Ajv({
 });
 const validator = ajv.compile(schema);
 const app = express();
-const jsonParser = bodyParser.json();
+// const jsonParser = bodyParser.json();
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   // TODO: раздавать статику, удалить логирование в консоль
@@ -33,7 +35,7 @@ app.get('/product/:id', (req, res) => {
   res.json(product);
 });
 
-app.post('/product', jsonParser, (req, res) => {
+app.post('/product', (req, res) => {
   if (!req.body) {
     res.sendStatus(400).send('Bad Request');
     return;
@@ -48,7 +50,7 @@ app.post('/product', jsonParser, (req, res) => {
   res.send(validator.errors);
 });
 
-app.put('/product', jsonParser, (req, res) => {
+app.put('/product', (req, res) => {
   if (!req.body) {
     res.sendStatus(400).send('Bad Request');
     return;
@@ -78,11 +80,11 @@ app.delete('/product/:id', (req, res) => {
 });
 
 app.get('/filter/:expr', (req, res) => {
-  const filteredData = data.find(req.params.expr);
-  if (!filteredData) {
-    res.sendStatus(404).send('Not Found');
+  if (!req.params.expr) {
+    res.json([]);
     return;
   }
+  const filteredData = data.find(req.params.expr);
 
   res.json(filteredData);
 });
