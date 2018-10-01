@@ -8,17 +8,20 @@
     },
     "email": {
       "type": "string",
-      "format": "email"
+      "format": "email",
+      "default": ""
     },
     "count": {
       "type": "integer",
       "maximum": 999,
-      "minimum": 0
+      "minimum": 0,
+      "default": 0
     },
     "price": {
       "type": "number",
       "maximum": 99999999999,
-      "minimum": 0.1
+      "minimum": 0.01,
+      "default": 0.01
     },
     "country": {
       "type": "string",
