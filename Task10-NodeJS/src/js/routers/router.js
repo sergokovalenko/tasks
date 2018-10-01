@@ -11,13 +11,13 @@ const validator = ajv.compile(schema);
 
 router.get('/', (req, res) => {
   const all = data.getAll();
-  res.json(all);
+  res.status(200).json(all);
 });
 
 router.route('/:id')
   .all((req, res, next) => {
     if (!req.params.id) {
-      res.sendStatus(404).send('Not Found');
+      res.status(404).send('Not Found');
       return;
     }
     next();
@@ -25,7 +25,7 @@ router.route('/:id')
   .get((req, res) => {
     const product = data.getElementById(req.params.id);
     if (!product) {
-      res.sendStatus(404).send('Not Found');
+      res.status(404).send('Not Found');
       return;
     }
 
@@ -33,12 +33,12 @@ router.route('/:id')
   })
   .put((req, res) => {
     if (!req.body) {
-      res.sendStatus(400).send('Bad Request');
+      res.status(400).send('Bad Request');
       return;
     }
     if (validator(req.body)) {
       const success = data.update(req.body);
-      res.send(success);
+      res.status(201).send(success);
       return;
     }
 
@@ -47,11 +47,11 @@ router.route('/:id')
   .delete((req, res) => {
     const success = data.removeElement(req.params.id);
     if (!success) {
-      res.sendStatus(404).send('Not Found');
+      res.status(404).send('Not Found');
       return;
     }
 
-    res.json(success);
+    res.status(201).json(success);
   });
 
 module.exports = router;
