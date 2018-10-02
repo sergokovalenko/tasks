@@ -1,6 +1,6 @@
 const express = require('express');
 const Ajv = require('ajv');
-const data = require('./../dataWorker');
+const dataStorage = require('./../dataWorker');
 const schema = require('./../schemas/productSchema.json');
 const Logger = require('./../Logger');
 
@@ -14,7 +14,7 @@ const ajv = new Ajv({
 const validator = ajv.compile(schema);
 
 function validMiddleware(req, res, next) {
-  if (req.body) {
+  if (Object.keys(req.body).length > 0) {
     const isValid = validator(req.body);
     if (!isValid) {
       logger.validationError(ajv.errorsText(validator.errors));
@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
   if (!req.body) {
     res.sendStatus(400);
   }
-  const success = data.add(req.body);
+  const success = dataStorage.add(req.body);
   res.status(200).json(success);
 });
 
@@ -46,12 +46,14 @@ router.route('/:id')
     }
   })
   .get((req, res) => {
-    const product = data.getElementById(req.params.id);
-    if (!product) {
-      res.sendStatus(404);
-    } else {
-      res.status(200).json(product);
-    }
+    dataStorage.getElementById(req.params.id)
+      .then((product) => {
+        if (!product) {
+          res.sendStatus(404);
+        } else {
+          res.status(200).json(product);
+        }
+      });
   })
   .put((req, res) => {
     if (!req.body) {
@@ -59,16 +61,20 @@ router.route('/:id')
     }
     const product = req.body;
     product.id = req.params.id;
-    const success = data.update(product);
-    res.status(201).send(success);
+    dataStorage.update(product)
+      .then((success) => {
+        res.status(201).send(success);
+      });
   })
   .delete((req, res) => {
-    const success = data.removeElement(req.params.id);
-    if (!success) {
-      res.sendStatus(404);
-    } else {
-      res.status(201).json(success);
-    }
+    dataStorage.removeElement(req.params.id)
+      .then((success) => {
+        if (!success) {
+          res.sendStatus(404);
+        } else {
+          res.status(201).json(success);
+        }
+      });
   });
 
 module.exports = router;

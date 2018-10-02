@@ -15,54 +15,64 @@ let newId = getMaxIdOfElements(data);
 
 const dataWorker = {
   getAll() {
-    return data;
+    return Promise.resolve(data);
   },
   getElementById(id) {
-    return data.find(el => +el.id === +id);
+    return Promise.resolve(data.find(el => +el.id === +id));
   },
   removeElement(id) {
-    const index = data.findIndex(el => +el.id === +id);
+    return new Promise((resolve, reject) => {
+      const index = data.findIndex(el => +el.id === +id);
 
-    if (index < 0) {
-      return false;
-    }
+      if (index < 0) {
+        reject();
+      }
 
-    data.splice(index, 1);
-    return true;
+      data.splice(index, 1);
+      resolve(true);
+    });
   },
   add(el) {
-    const product = el;
-    newId += 1;
-    product.id = newId;
-    data.push(el);
-    return newId;
+    return new Promise((resolve) => {
+      const product = el;
+      newId += 1;
+      product.id = newId;
+      data.push(el);
+      resolve(newId);
+    });
   },
   update(el) {
-    const index = data.findIndex(row => +row.id === +el.id);
+    return new Promise((resolve, reject) => {
+      const index = data.findIndex(row => +row.id === +el.id);
 
-    if (index < 0) {
-      return false;
-    }
+      if (index < 0) {
+        reject();
+      }
 
-    const keys = Object.keys(el);
+      const keys = Object.keys(el);
 
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      data[index][key] = el[key];
-    }
+      for (let i = 0; i < keys.length; i += 1) {
+        const key = keys[i];
+        data[index][key] = el[key];
+      }
 
-    return true;
+      resolve(true);
+    });
   },
   find(expression) {
-    let condition = expression;
+    return new Promise((resolve) => {
+      let condition = expression;
+      let resultArr = [];
 
-    if (condition) {
-      condition = new RegExp(condition, 'gi');
-    }
+      if (condition) {
+        condition = new RegExp(condition, 'gi');
+        resultArr = data.filter(el => el.name.search(condition) >= 0);
+      } else {
+        resultArr = data;
+      }
 
-    const resultArr = data.filter(el => el.name.search(condition) >= 0);
-
-    return resultArr;
+      resolve(resultArr);
+    });
   },
 };
 
