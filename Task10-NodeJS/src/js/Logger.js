@@ -4,6 +4,7 @@ const path = require('path');
 class Logger {
   constructor(filename) {
     this.filePath = path.join(__dirname, 'logs', filename);
+    this.fd = fs.openSync(this.filePath, 'w');
   }
 
   log(level, message) {
@@ -11,11 +12,9 @@ class Logger {
     if (!errorLevel) {
       errorLevel = 'Unknown error';
     }
-    const logString = `[${new Date().toUTCString()}] [${errorLevel}] - ${message}\n`;
+    const logString = `[${new Date().toLocaleString()}] [${errorLevel}] - ${message}\n`;
 
-    fs.openSync(this.filePath, 'w');
     fs.appendFileSync(this.filePath, logString, 'utf8');
-    fs.closeSync(this.filePath);
   }
 
   validationError(message) {
@@ -24,6 +23,10 @@ class Logger {
 
   error(message) {
     this.log('Server error', message);
+  }
+
+  stop() {
+    fs.close(this.fd);
   }
 }
 
