@@ -8,8 +8,7 @@
     },
     "email": {
       "type": "string",
-      "format": "email",
-      "default": ""
+      "format": "email"
     },
     "count": {
       "type": "integer",
