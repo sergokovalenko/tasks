@@ -21,7 +21,7 @@ const dataWorker = {
     return data.find(el => +el.id === +id);
   },
   removeElement(id) {
-    const index = this.data.findIndex(el => +el.id === +id);
+    const index = data.findIndex(el => +el.id === +id);
 
     if (index < 0) {
       return false;

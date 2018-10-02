@@ -12,10 +12,9 @@ router.get('/:expr', (req, res) => {
   const filterResult = data.find(req.params.expr);
   if (!filterResult) {
     res.status(200).json([]);
-    return;
+  } else {
+    res.status(200).json(filterResult);
   }
-
-  res.json(filterResult);
 });
 
 module.exports = router;
