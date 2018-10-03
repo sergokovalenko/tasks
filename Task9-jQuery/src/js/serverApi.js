@@ -9,17 +9,17 @@ function rebuildIncomingObject(obj) {
 class Api {
   /* eslint-disable class-methods-use-this */
   getAll() {
-    return fetch('http://localhost:3001/products/')
+    return fetch('http://localhost:3000/api/products/')
       .then(response => response.json());
   }
 
   getElementById(id) {
-    return fetch(`http://localhost:3001/product/${id}`)
+    return fetch(`http://localhost:3000/api/product/${id}`)
       .then(response => response.json());
   }
 
   removeElement(id) {
-    return fetch(`http://localhost:3001/product/${id}`, {
+    return fetch(`http://localhost:3000/api/product/${id}`, {
       method: 'DELETE',
     })
       .then(response => response.json());
@@ -27,7 +27,7 @@ class Api {
 
   add(el) {
     const newObj = rebuildIncomingObject(el);
-    return fetch('http://localhost:3001/product/', {
+    return fetch('http://localhost:3000/api/product/', {
       method: 'POST',
       body: JSON.stringify(newObj),
       headers: {
@@ -41,7 +41,7 @@ class Api {
     const productId = el.id;
     const newObj = rebuildIncomingObject(el);
 
-    return fetch(`http://localhost:3001/product/${productId}`, {
+    return fetch(`http://localhost:3000/api/product/${productId}`, {
       method: 'PUT',
       body: JSON.stringify(newObj),
       headers: {
@@ -52,7 +52,7 @@ class Api {
   }
 
   find(expr) {
-    return fetch(`http://localhost:3001/products/${expr}`)
+    return fetch(`http://localhost:3000/api/products/${expr}`)
       .then(response => response.json());
   }
   // eslint-enable

@@ -1,20 +1,14 @@
-# Table products
+# Node server
 
-Task 09: jQuery
+## Task 10: Node.js
 
-## Build Setup
+### Build Setup
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:3000
-npm run dev
-
-# build
-npm run build
-
-# build for production
-npm run build:prod
+# start server at localhost:3000
+node src/app.js
 
 ```
