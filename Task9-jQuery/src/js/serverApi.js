@@ -51,22 +51,9 @@ class Api {
   }
 
   find(expr) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        let arr = [];
-        if (expr) {
-          arr = this.dal.find(expr);
-        } else {
-          arr = this.dal.getAll();
-        }
-
-        if (arr) {
-          resolve(arr);
-        }
-
-        reject(new Error('Server error'));
-      }, timeOutTime);
-    });
+    console.log(this.dal.newId);
+    return fetch(`http://localhost:3001/products/${expr}`)
+      .then(response => response.json());
   }
 }
 
