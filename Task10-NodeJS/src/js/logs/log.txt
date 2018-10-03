@@ -1,8 +1,3 @@
-[2018-10-4 01:01:50] [Validation error] - data.count should be <= 999, data.city should NOT have fewer than 1 items
-[2018-10-4 01:01:52] [Validation error] - data.count should be <= 999, data.city should NOT have fewer than 1 items
-[2018-10-4 01:01:57] [Validation error] - data.count should be <= 999
-[2018-10-4 01:01:59] [Validation error] - data.count should be <= 999
-[2018-10-4 01:02:07] [Validation error] - data.name should match pattern "^[a-zA-Z].*$", data.email should match format "email", data.city should NOT have fewer than 1 items
-[2018-10-4 01:03:02] [Validation error] - data.name should match pattern "^[a-zA-Z].*$"
-[2018-10-4 01:04:35] [Validation error] - data.city should NOT have fewer than 1 items
-[2018-10-4 01:06:19] [Validation error] - data.city should NOT have fewer than 1 items
+[2018-10-4 01:42:43] [Validation error] - data.name should match pattern "^[a-zA-Z].*$", data.email should match format "email", data.city should NOT have fewer than 1 items
+[2018-10-4 01:42:54] [Validation error] - data.name should match pattern "^[a-zA-Z].*$", data.email should match format "email", data.city should NOT have fewer than 1 items
+[2018-10-4 01:43:46] [Validation error] - data.name should match pattern "^[a-zA-Z].*$", data.email should match format "email", data.city should NOT have fewer than 1 items

@@ -11,7 +11,7 @@ const ajv = new Ajv({
   allErrors: true,
   useDefaults: true,
 });
-const validator = ajv.compile(schema);
+const validate = ajv.compile(schema);
 
 function sendErrorCode(response, code) {
   let message = '';
@@ -35,10 +35,9 @@ function sendErrorCode(response, code) {
 function validMiddleware(req, res, next) {
   try {
     if (Object.keys(req.body).length > 0) {
-      const isValid = validator(req.body);
-      if (!isValid) {
-        logger.validationError(ajv.errorsText(validator.errors));
-        res.send(validator.errors);
+      if (!validate(req.body)) {
+        logger.validationError(ajv.errorsText(validate.errors));
+        res.send(validate.errors);
       } else {
         next();
       }
