@@ -37,7 +37,7 @@ const dataWorker = {
       const product = el;
       newId += 1;
       product.id = newId;
-      data.push(el);
+      data.push(product);
       resolve(newId);
     });
   },

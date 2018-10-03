@@ -123,7 +123,6 @@ class Table extends Component {
   render(insertSelector) {
     this.api.getAll()
       .then((productList) => {
-        console.log(productList);
         const {
           uniqueId: id,
         } = this;
