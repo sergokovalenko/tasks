@@ -1,28 +1,29 @@
 const data = require('./data.json');
+const uuid = require('uuid/v4');
 
-function getMaxIdOfElements(arr) {
-  let max = arr[0].id;
-  arr.forEach((el) => {
-    if (+el.id > max) {
-      max = +el.id;
-    }
-  });
+// function getMaxIdOfElements(arr) {
+//   let max = arr[0].id;
+//   arr.forEach((el) => {
+//     if (+el.id > max) {
+//       max = +el.id;
+//     }
+//   });
 
-  return max;
-}
+//   return max;
+// }
 
-let newId = getMaxIdOfElements(data);
+// let newId = getMaxIdOfElements(data);
 
 const dataWorker = {
   getAll() {
     return Promise.resolve(data);
   },
   getElementById(id) {
-    return Promise.resolve(data.find(el => +el.id === +id));
+    return Promise.resolve(data.find(el => el.id === id));
   },
   removeElement(id) {
     return new Promise((resolve, reject) => {
-      const index = data.findIndex(el => +el.id === +id);
+      const index = data.findIndex(el => el.id === id);
 
       if (index < 0) {
         reject(new Error(`Product with id ${id} isn't exist`));
@@ -35,15 +36,15 @@ const dataWorker = {
   add(el) {
     return new Promise((resolve) => {
       const product = el;
-      newId += 1;
-      product.id = newId;
+      // newId += 1;
+      product.id = uuid();
       data.push(product);
-      resolve(newId);
+      resolve(product.id);
     });
   },
   update(el) {
     return new Promise((resolve, reject) => {
-      const index = data.findIndex(row => +row.id === +el.id);
+      const index = data.findIndex(row => row.id === el.id);
 
       if (index < 0) {
         reject(new Error(`Product with id ${+el.id} isn't exist`));

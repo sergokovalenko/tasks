@@ -1,5 +1,5 @@
 [{
-        "id": 1,
+        "id": "16cc9450-c74f-11e8-854f-75903babc56f",
         "name": "Apple",
         "email": "mail@mail.ru",
         "count": 100,
@@ -7,7 +7,7 @@
         "country": "russia",
         "city": ["saratov"]
     }, {
-        "id": 2,
+        "id": "16cc9451-c74f-11e8-854f-75903babc56f",
         "name": "Little House",
         "email": "mail@mail.ru",
         "count": 2,
@@ -15,7 +15,7 @@
         "country": "russia",
         "city": ["saratov"]
     }, {
-        "id": 3,
+        "id": "16cc9452-c74f-11e8-854f-75903babc56f",
         "name": "Water",
         "email": "mail@mail.ru",
         "count": 1000,
@@ -24,7 +24,7 @@
         "city": ["saratov"]
     },
     {
-        "id": 4,
+        "id": "16cc9453-c74f-11e8-854f-75903babc56f",
         "name": "Banana",
         "email": "mail@mail.ru",
         "count": 20,
@@ -32,7 +32,7 @@
         "country": "russia",
         "city": ["saratov"]
     }, {
-        "id": 5,
+        "id": "16cc9454-c74f-11e8-854f-75903babc56f",
         "name": "Big House",
         "email": "mail@mail.ru",
         "count": 1,
@@ -40,7 +40,7 @@
         "country": "russia",
         "city": ["saratov"]
     }, {
-        "id": 6,
+        "id": "16cc9455-c74f-11e8-854f-75903babc56f",
         "name": "Tesla car",
         "email": "mail@mail.ru",
         "count": 21,
