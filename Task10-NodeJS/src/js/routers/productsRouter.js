@@ -1,22 +1,32 @@
 const express = require('express');
 const data = require('./../dataWorker');
+const Logger = require('./../Logger');
 
 const router = express.Router();
+const logger = new Logger('log.txt');
 
 router.get('/', (req, res) => {
-  data.getAll().then((all) => {
-    res.status(200).json(all);
-  });
+  try {
+    data.getAll().then((all) => {
+      res.status(200).json(all);
+    });
+  } catch (e) {
+    logger.error(e);
+  }
 });
 
 router.get('/:expr', (req, res) => {
-  data.find(req.params.expr).then((filterResult) => {
-    if (!filterResult) {
-      res.status(200).json([]);
-    } else {
-      res.status(200).json(filterResult);
-    }
-  });
+  try {
+    data.find(req.params.expr).then((filterResult) => {
+      if (!filterResult) {
+        res.status(200).json([]);
+      } else {
+        res.status(200).json(filterResult);
+      }
+    });
+  } catch (e) {
+    logger.error(e);
+  }
 });
 
 module.exports = router;

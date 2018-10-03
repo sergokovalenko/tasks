@@ -25,7 +25,7 @@ const dataWorker = {
       const index = data.findIndex(el => +el.id === +id);
 
       if (index < 0) {
-        reject();
+        reject(new Error(`Product with id ${id} isn't exist`));
       }
 
       data.splice(index, 1);
@@ -46,7 +46,7 @@ const dataWorker = {
       const index = data.findIndex(row => +row.id === +el.id);
 
       if (index < 0) {
-        reject();
+        reject(new Error(`Product with id ${+el.id} isn't exist`));
       }
 
       const keys = Object.keys(el);
