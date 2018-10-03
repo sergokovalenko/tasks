@@ -7,95 +7,55 @@ function rebuildIncomingObject(obj) {
 }
 
 class Api {
-  // getAll() {
-  //   console.log(this.dal);
-  //   return fetch('http://localhost:3001/products/')
-  //     .then(response => response.json());
-  // }
+  /* eslint-disable class-methods-use-this */
+  getAll() {
+    return fetch('http://localhost:3001/products/')
+      .then(response => response.json());
+  }
 
-  // getElementById(id) {
-  //   console.log(this.dal);
-  //   return fetch(`http://localhost:3001/product/${id}`)
-  //     .then(response => response.json());
-  // }
+  getElementById(id) {
+    return fetch(`http://localhost:3001/product/${id}`)
+      .then(response => response.json());
+  }
 
-  // removeElement(id) {
-  //   console.log(this.dal);
-  //   return fetch(`http://localhost:3001/product/${id}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then(response => response.json());
-  // }
+  removeElement(id) {
+    return fetch(`http://localhost:3001/product/${id}`, {
+      method: 'DELETE',
+    })
+      .then(response => response.json());
+  }
 
-  // add(el) {
-  //   console.log(this.dal);
-  //   const newObj = rebuildIncomingObject(el);
-  //   return fetch('http://localhost:3001/product/', {
-  //     method: 'POST',
-  //     body: JSON.stringify(newObj),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then(response => response.json());
-  // }
+  add(el) {
+    const newObj = rebuildIncomingObject(el);
+    return fetch('http://localhost:3001/product/', {
+      method: 'POST',
+      body: JSON.stringify(newObj),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json());
+  }
 
-  // update(el) {
-  //   console.log(this.dal);
-  //   const productId = el.id;
-  //   const newObj = rebuildIncomingObject(el);
+  update(el) {
+    const productId = el.id;
+    const newObj = rebuildIncomingObject(el);
 
-  //   return fetch(`http://localhost:3001/product/${productId}`, {
-  //     method: 'PUT',
-  //     body: JSON.stringify(newObj),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then(response => response.json());
-  // }
+    return fetch(`http://localhost:3001/product/${productId}`, {
+      method: 'PUT',
+      body: JSON.stringify(newObj),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json());
+  }
 
-  // find(expr) {
-  //   console.log(this.dal);
-  //   return fetch(`http://localhost:3001/products/${expr}`)
-  //     .then(response => response.json());
-  // }
+  find(expr) {
+    return fetch(`http://localhost:3001/products/${expr}`)
+      .then(response => response.json());
+  }
+  // eslint-enable
 }
-
-Api.prototype.getAll = () => fetch('http://localhost:3001/products/').then(response => response.json());
-
-Api.prototype.getElementById = id => fetch(`http://localhost:3001/product/${id}`).then(response => response.json());
-
-Api.prototype.removeElement = id => fetch(`http://localhost:3001/product/${id}`, {
-  method: 'DELETE',
-}).then(response => response.json());
-
-Api.prototype.add = (el) => {
-  const newObj = rebuildIncomingObject(el);
-  return fetch('http://localhost:3001/product/', {
-    method: 'POST',
-    body: JSON.stringify(newObj),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(response => response.json());
-};
-
-Api.prototype.update = (el) => {
-  const productId = el.id;
-  const newObj = rebuildIncomingObject(el);
-
-  return fetch(`http://localhost:3001/product/${productId}`, {
-    method: 'PUT',
-    body: JSON.stringify(newObj),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(response => response.json());
-};
-
-Api.prototype.find = expr => fetch(`http://localhost:3001/products/${expr}`).then(response => response.json());
 
 export default Api;
