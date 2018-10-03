@@ -134,9 +134,19 @@ class Table extends Component {
 
   editAndRepaint(prod) {
     this.api.update(prod)
-      .then(() => this.api.find(this.filterExpression))
+      .then((errors) => {
+        if (!Array.isArray(errors)) {
+          this.changeModal.hide();
+          return this.api.find(this.filterExpression);
+        }
+
+        setValidationErrors(errors);
+        return false;
+      })
       .then((all) => {
-        this.redrawTable(all);
+        if (all) {
+          this.redrawTable(all);
+        }
       })
       .catch((err) => {
         console.log(err.message);
