@@ -21,6 +21,10 @@ class Logger {
     this.log('Validation error', message);
   }
 
+  requestError(message) {
+    this.log('Request error', message);
+  }
+
   error(message) {
     this.log('Server error', message);
   }
