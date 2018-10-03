@@ -33,6 +33,7 @@ router.post('/', (req, res) => {
   if (!req.body) {
     res.sendStatus(400);
   }
+
   const success = dataStorage.add(req.body);
   res.status(200).json(success);
 });

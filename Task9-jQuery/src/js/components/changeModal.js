@@ -1,28 +1,17 @@
 import $ from 'jquery';
 import { changeModalTemplateFunc } from './../templates';
-import validator from './../utilities/valid';
+// import validator from './../utilities/valid';
 import Component from './component';
-import { convertNumberToPrice, convertPriceToNumber } from '../utilities/priceConvertor';
+import {
+  convertNumberToPrice,
+  convertPriceToNumber,
+} from '../utilities/priceConvertor';
 
-function blurEvent($field, fieldName, $submitBtn) {
+function blurEvent($field, fieldName) {
   let value = $field.val();
   if (fieldName.localeCompare('price') === 0) {
     value = convertPriceToNumber($field.val());
-  }
-
-  const obj = {};
-  obj[fieldName] = value;
-  const hasError = validator.validate(obj);
-  const errorBlock = $(`.error-${fieldName}:eq(0)`);
-  if (hasError) {
-    errorBlock.html(validator.messages[0]);
-    $submitBtn.prop('disabled', true);
-  } else {
-    errorBlock.html('');
-    const isValid = $('.error').toArray().every(el => !el.innerHTML);
-    if (isValid) {
-      $submitBtn.prop('disabled', false);
-    }
+    $field.val(value);
   }
 }
 
@@ -124,26 +113,11 @@ function setEvents(callback) {
 
     if (!$superBtn.prop('disabled')) {
       const product = mapObject.call(this, 'modalForm');
-      if (validator.validate({
-        city: product.city,
-        country: product.country,
-      })) {
-        $(`#${this.parentId} .error-delivery`).html(validator.messages[0]);
-        return;
-      }
 
-      $(`#${this.parentId} .error-delivery`).html(validator.messages[0]);
-      if (!validator.validate(product)) {
-        if (callback) {
-          callback(product);
-        }
-        this.hide();
-      } else {
-        $name.blur();
-        $email.blur();
-        $count.blur();
-        $price.blur();
+      if (callback) {
+        callback(product);
       }
+      this.hide();
     }
   });
 }
