@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { changeModalTemplateFunc } from './../templates';
-// import validator from './../utilities/valid';
 import Component from './component';
 import {
   convertNumberToPrice,
@@ -117,7 +116,7 @@ function setEvents(callback) {
       if (callback) {
         callback(product);
       }
-      this.hide();
+      // this.hide();
     }
   });
 }
