@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Api from './api';
+import Api from './serverApi';
 import {
   productRowTemplateFunc,
   tableTemplateFunc,
@@ -123,6 +123,7 @@ class Table extends Component {
   render(insertSelector) {
     this.api.getAll()
       .then((productList) => {
+        console.log(productList);
         const {
           uniqueId: id,
         } = this;
