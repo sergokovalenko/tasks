@@ -19,8 +19,8 @@
     "price": {
       "type": "number",
       "maximum": 99999999999,
-      "minimum": 0.01,
-      "default": 0.01
+      "minimum": 0,
+      "default": 0
     },
     "country": {
       "type": "string",

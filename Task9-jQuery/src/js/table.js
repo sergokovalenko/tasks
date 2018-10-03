@@ -11,11 +11,34 @@ import Filter from './components/search';
 import Add from './components/addButton';
 import Component from './components/component';
 
+function setValidationErrors(errors) {
+  $('.error').html('');
+
+  errors.forEach((el) => {
+    const fieldName = el.dataPath.slice(1, el.dataPath.length);
+    if (fieldName.localeCompare('country') === 0 || fieldName.localeCompare('city') === 0) {
+      $('.error-delivery:eq(0)').html(`${fieldName} ${el.message}`);
+    } else {
+      $(`.error-${fieldName}:eq(0)`).html(el.message);
+    }
+  });
+}
+
 function addAndRepaint(prod) {
   this.api.add(prod)
-    .then(() => this.api.find(this.filterExpression))
+    .then((errors) => {
+      if (!Array.isArray(errors)) {
+        this.changeModal.hide();
+        return this.api.find(this.filterExpression);
+      }
+
+      setValidationErrors(errors);
+      return false;
+    })
     .then((all) => {
-      this.redrawTable(all);
+      if (all) {
+        this.redrawTable(all);
+      }
     })
     .catch((err) => {
       console.log(err.message);
