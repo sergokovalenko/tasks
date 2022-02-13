@@ -9,7 +9,7 @@
   "author": "Sergei Kovalenko",
   "license": "ISC",
   "dependencies": {
-    "ajv": "^6.5.4",
+    "ajv": "^6.12.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "eslint": "^4.9.0",
